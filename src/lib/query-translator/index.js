@@ -5,6 +5,6 @@ const visitor = visitorFactory(parser);
 
 module.exports = (query, projectId) => {
   parser.input = lexer.tokenize(query).tokens;
-  visitor.projectId = projectId;
+  visitor.defaultProjectId = projectId;
   return visitor.visit(parser.selectStatement());
 };

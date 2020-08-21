@@ -61,26 +61,26 @@ module.exports = (parser) => {
     }
 
     fromClause(ctx) {
-      return `FROM ${this.visit(ctx.fromItem)}`;
+      return `FROM ${this.visit(ctx.tableName)}`;
     }
 
-    fromItem(ctx) {
-      let projectId = ctx.projectName && ctx.datasetName ? this.visit(ctx.projectName) : this.projectId;
-      let datasetId = ctx.projectName && !ctx.datasetName ? this.visit(ctx.projectName) : this.visit(ctx.datasetName);
-      let tableId = this.visit(ctx.tableName);
+    tableName(ctx) {
+      let projectId = ctx.projectId && ctx.datasetId ? this.visit(ctx.projectId) : this.defaultProjectId;
+      let datasetId = ctx.projectId && !ctx.datasetId ? this.visit(ctx.projectId) : this.visit(ctx.datasetId);
+      let tableId = this.visit(ctx.tableId);
 
       return `${projectId}__${datasetId}.${tableId}`;
     }
 
-    projectName(ctx) {
+    projectId(ctx) {
       return ctx.Identifier[0].image;
     }
 
-    datasetName(ctx) {
+    datasetId(ctx) {
       return ctx.Identifier[0].image;
     }
 
-    tableName(ctx) {
+    tableId(ctx) {
       return ctx.Identifier[0].image;
     }
 
