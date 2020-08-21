@@ -1,0 +1,32 @@
+{
+  "name": "not-so-bigquery",
+  "version": "1.0.0",
+  "description": "An emulator for the Google BigQuery, that can be run locally, backed by PostgreSQL.",
+  "main": "src/application.js",
+  "scripts": {
+    "start": "node src/application",
+    "start:dev": "onchange -i -k 'src/**/*.js' -- npm run start",
+    "test:unit": "mocha 'src/**/*.spec.js'",
+    "test:e2e": "mocha 'test/e2e/**/*.spec.js'"
+  },
+  "keywords": [],
+  "author": "Adam Banky <banky.adam@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/bigquery": "5.1.0",
+    "chevrotain": "7.0.1",
+    "etag": "1.8.1",
+    "express": "4.17.1",
+    "express-async-router": "0.1.15",
+    "lodash": "4.17.19",
+    "pg": "8.3.0"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "dotenv": "8.2.0",
+    "mocha": "8.1.1",
+    "onchange": "7.0.2",
+    "sinon": "9.0.3",
+    "sinon-chai": "3.5.0"
+  }
+}

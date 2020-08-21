@@ -1,0 +1,6 @@
+{
+  "require": ["dotenv/config"],
+  "file": ["./test/mocha-init.js"],
+  "exit": true,
+  "timeout": 60000
+}
