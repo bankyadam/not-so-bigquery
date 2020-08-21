@@ -25,6 +25,21 @@ describe('Query Translator', function() {
       expect(subject('SELECT 1, f2, *, f4'))
         .to.be.eql('SELECT 1, f2, *, f4');
     });
+
+    it('SELECT DISTINCT', function() {
+      expect(subject('SELECT DISTINCT f1, f2'))
+        .to.be.eql('SELECT DISTINCT f1, f2');
+    });
+
+    it('SELECT ALL', function() {
+      expect(subject('SELECT ALL f1, f2'))
+        .to.be.eql('SELECT ALL f1, f2');
+    });
+
+    it('rejects SELECT ALL DISTINCT', function() {
+      expect(subject('SELECT ALL DISTINCT f1, f2'))
+        .to.be.undefined;
+    });
   });
 
   describe('from clause', function() {
@@ -112,6 +127,6 @@ describe('Query Translator', function() {
       const query = "\n    SELECT\n          simple_string_field, simple_integer_field\n    FROM\n        testing_2346494.test_table_2346494\n    ORDER BY\n            simple_boolean_field ASC,\n            simple_integer_field DESC\n  ";
       expect(subject(query, 'project_name'))
         .to.be.eql('SELECT simple_string_field, simple_integer_field FROM project_name__testing_2346494.test_table_2346494 ORDER BY simple_boolean_field ASC, simple_integer_field DESC');
-    })
+    });
   });
 });

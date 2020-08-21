@@ -29,7 +29,20 @@ module.exports = (parser) => {
     }
 
     select(ctx) {
-      return `SELECT ${this.visit(ctx.selectList)}`;
+      const statementParts = ['SELECT'];
+      if (ctx.selectModifier) {
+        statementParts.push(this.visit(ctx.selectModifier));
+      }
+      statementParts.push(this.visit(ctx.selectList));
+      return statementParts.join(' ');
+    }
+
+    selectModifier(ctx) {
+      if (ctx.SelectDistinct) {
+        return 'DISTINCT';
+      } else if (ctx.SelectAll) {
+        return 'ALL';
+      }
     }
 
     selectList(ctx) {

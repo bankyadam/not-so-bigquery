@@ -4,6 +4,8 @@ const TOKENS = require('../tokens');
 const lexerDefinition = [
   TOKENS.WhiteSpace,
   TOKENS.Select,
+  TOKENS.SelectDistinct,
+  TOKENS.SelectAll,
   TOKENS.Asterisk,
   TOKENS.From,
   TOKENS.GroupBy,
