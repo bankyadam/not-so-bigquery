@@ -7,13 +7,10 @@ module.exports = ($) => {
   });
 
   $.RULE('tableName', () => {
-    $.OPTION2(() => {
-      $.SUBRULE1($.projectId);
-    });
-    $.OPTION1(() => {
-      $.SUBRULE2($.datasetId);
-    });
+    $.OPTION2(() => $.SUBRULE2($.projectId));
+    $.OPTION1(() => $.SUBRULE1($.datasetId));
     $.SUBRULE($.tableId);
+    $.OPTION3(() => $.SUBRULE3($.tableAlias));
   });
 
   $.RULE('projectId', () => {
@@ -27,6 +24,11 @@ module.exports = ($) => {
   });
 
   $.RULE('tableId', () => {
+    $.CONSUME(TOKENS.Identifier);
+  });
+
+  $.RULE('tableAlias', () => {
+    $.OPTION(() => $.CONSUME(TOKENS.FromAs));
     $.CONSUME(TOKENS.Identifier);
   });
 };

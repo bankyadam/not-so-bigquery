@@ -54,6 +54,18 @@ describe('Query Translator', function() {
           .to.be.eql('SELECT 1 FROM defaultProject__dataset.tablename');
       });
     });
+
+    describe('table alias', function() {
+      it('handles alias', function() {
+        expect(subject('SELECT 1 FROM p.d.t alias'))
+          .to.be.eql('SELECT 1 FROM p__d.t AS alias')
+      });
+
+      it('handles AS alias', function() {
+        expect(subject('SELECT 1 FROM p.d.t AS alias'))
+          .to.be.eql('SELECT 1 FROM p__d.t AS alias')
+      });
+    });
   });
 
   describe('group by clause', function() {

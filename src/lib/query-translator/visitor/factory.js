@@ -69,7 +69,13 @@ module.exports = (parser) => {
       let datasetId = ctx.projectId && !ctx.datasetId ? this.visit(ctx.projectId) : this.visit(ctx.datasetId);
       let tableId = this.visit(ctx.tableId);
 
-      return `${projectId}__${datasetId}.${tableId}`;
+      const tableNameParts = [`${projectId}__${datasetId}.${tableId}`];
+
+      if (ctx.tableAlias) {
+        tableNameParts.push(this.visit(ctx.tableAlias));
+      }
+
+      return tableNameParts.join(' ');
     }
 
     projectId(ctx) {
@@ -82,6 +88,10 @@ module.exports = (parser) => {
 
     tableId(ctx) {
       return ctx.Identifier[0].image;
+    }
+
+    tableAlias(ctx) {
+      return `AS ${ctx.Identifier[0].image}`;
     }
 
     orderByClause(ctx) {
