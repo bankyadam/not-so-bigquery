@@ -1,0 +1,4 @@
+--INPUT--
+SELECT ALL f1, f2
+--EXPECT--
+SELECT ALL f1, f2

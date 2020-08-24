@@ -1,0 +1,4 @@
+--INPUT--
+SELECT 1, f2, *, f4
+--EXPECT--
+SELECT 1, f2, *, f4

@@ -1,0 +1,12 @@
+--INPUT--
+
+    SELECT
+          simple_string_field, simple_integer_field
+    FROM
+        testing_2346494.test_table_2346494
+    ORDER BY
+            simple_boolean_field ASC,
+            simple_integer_field DESC
+
+--EXPECT--
+SELECT simple_string_field, simple_integer_field FROM defaultProject__testing_2346494.test_table_2346494 ORDER BY simple_boolean_field ASC, simple_integer_field DESC

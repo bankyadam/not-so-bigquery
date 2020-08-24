@@ -1,0 +1,4 @@
+--INPUT--
+SELECT field_name
+--EXPECT--
+SELECT field_name
