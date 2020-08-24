@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (projectId, datasetId, tableId) => ({
   error: {
     code: 409,

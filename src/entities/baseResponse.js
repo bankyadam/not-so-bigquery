@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = class BaseResponseObject {
   get TYPE() { return 'base'; }
 
@@ -5,6 +7,6 @@ module.exports = class BaseResponseObject {
     return {
       kind: `bigquery#${this.TYPE}`,
       generator: 'not-so-big-query'
-    }
+    };
   }
-}
+};

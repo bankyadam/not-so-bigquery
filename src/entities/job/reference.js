@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = class JobReference {
   constructor(projectId, jobId, location) {
     this.projectId = projectId;

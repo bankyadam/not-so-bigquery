@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseAction = require('../baseAction');
 
 const { BigQueryProject: { create: createProject } } = require('../../db');
@@ -11,4 +13,4 @@ module.exports = class BaseProjectAction extends BaseAction {
   get _projectId() {
     return this._req.params.projectId;
   }
-}
+};

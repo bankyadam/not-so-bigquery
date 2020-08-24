@@ -1,3 +1,5 @@
+'use strict';
+
 const { QueryCache, BigQueryProject } = require('../../../db');
 const queryTranslator = require('../../../lib/query-translator');
 const JobResponseObject = require('../../../entities/job/response');
@@ -33,10 +35,10 @@ module.exports = async (req, res) => {
 
   const bqQuery = configuration.query.query;
   const pgQuery = queryTranslator(bqQuery, new BigQueryProject(null, projectId).internalId);
-console.log(bqQuery, pgQuery);
+  console.log(bqQuery, pgQuery);
   const queryCache = QueryCache.create();
   await queryCache.run(pgQuery, null, jobReference.jobId);
 
   res.json(new JobResponseObject(projectId, jobReference.jobId, jobReference.location, configuration, JOB_STATUS.DONE));
-}
+};
 

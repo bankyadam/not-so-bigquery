@@ -1,3 +1,5 @@
+'use strict';
+
 const crypto = require('crypto');
 
 const CACHE_SCHEMA_NAME = 'fake_bigquery__query_cache';

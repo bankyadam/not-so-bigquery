@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = class TableReference {
   constructor(projectId, datasetId, tableId) {
     this.projectId = projectId;

@@ -1,3 +1,5 @@
+'use strict';
+
 const { pageResult } = require('../../../db');
 const QueryResultResponseObject = require('../../../entities/queryResult/response');
 
@@ -15,4 +17,4 @@ module.exports = async (req, res) => {
 
   const { data, totalRows, nextPageToken, fields } = await pageResult(null, null, null, null, jobId);
   res.json(new QueryResultResponseObject(projectId, jobId, location, data, totalRows, nextPageToken, fields));
-}
+};

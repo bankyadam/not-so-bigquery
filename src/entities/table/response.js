@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseEntityResponse = require('../baseEntityResponse');
 const TableReference = require('./reference');
 
@@ -22,6 +24,7 @@ module.exports = class TableResponseObject extends BaseEntityResponse {
     return {
       id: this.REFERENCE.ID,
       tableReference: this.REFERENCE,
+      // eslint-disable-next-line max-len
       selfLink: `https://bigquery.googleapis.com/bigquery/v2/projects/${this.projectId}/datasets/${this.datasetId}/tables/${this.tableId}`,
       labels: {},
       friendlyName: '',

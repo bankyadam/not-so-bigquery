@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Method: jobs.query
  *
@@ -8,4 +10,4 @@
  */
 module.exports = async (req, res) => {
   res.sendStatus(501);
-}
+};

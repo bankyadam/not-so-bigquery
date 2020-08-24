@@ -1,3 +1,5 @@
+'use strict';
+
 const { pick } = require('lodash');
 
 const { DATASET_NAME, TABLE_NAME } = require('./common/config')();
@@ -18,7 +20,7 @@ const complexSchema = {
     fields.FIELD_SIMPLE_DATE,
     fields.FIELD_SIMPLE_DATETIME
   ]
-}
+};
 
 const cleanupDatasets = require('./common/cleanup-datasets');
 
@@ -32,7 +34,7 @@ describe('Tables', function() {
 
     [datasetReal] = (await bqReal.dataset(DATASET_NAME).get());
     [datasetFake] = (await bqFake.dataset(DATASET_NAME).get());
-  })
+  });
 
   after(async function() {
     await cleanupDatasets(DATASET_NAME);
@@ -41,8 +43,8 @@ describe('Tables', function() {
   it('checks for a table does not exist', async function() {
     const realShouldNotExists = (await datasetReal.table(TABLE_NAME).exists())[0];
     const fakeShouldNotExists = (await datasetFake.table(TABLE_NAME).exists())[0];
-    expect(realShouldNotExists).to.be.false
-    expect(fakeShouldNotExists).to.be.false
+    expect(realShouldNotExists).to.be.false;
+    expect(fakeShouldNotExists).to.be.false;
   });
 
   it('gets empty table list', async function() {
@@ -55,7 +57,7 @@ describe('Tables', function() {
     const realCreateTableResult = await datasetReal.createTable(TABLE_NAME, { schema: complexSchema });
     const fakeCreateTableResult = await datasetFake.createTable(TABLE_NAME, { schema: complexSchema });
 
-    const createTableAttributes = ['kind', 'id', 'selfLink', 'location', 'tableReference', 'metadata.kind', 'metadata.id', 'metadata.selfLink'];
+    const createTableAttributes = ['kind', 'id', 'selfLink', 'location', 'tableReference'];
     expect(pick(fakeCreateTableResult[0], createTableAttributes))
       .to.be.eql(pick(realCreateTableResult[0], createTableAttributes));
   });

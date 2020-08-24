@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseTableAction = require('../baseTableAction');
 const TableDataListResponseObject = require('../../../entities/tableDataList/response');
 

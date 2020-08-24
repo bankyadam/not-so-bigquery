@@ -1,3 +1,5 @@
+'use strict';
+
 const Db = require('./db');
 const Project = require('./bigQuery/project');
 const QueryCache = require('./queryCache');

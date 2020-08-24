@@ -1,8 +1,10 @@
+'use strict';
+
 const { createToken } = require('chevrotain');
 const Identifier = require('./identifier');
 
 module.exports = createToken({
-  name: "Select",
+  name: 'Select',
   pattern: /SELECT/,
   longer_alt: Identifier
 });

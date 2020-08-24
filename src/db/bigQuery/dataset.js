@@ -1,3 +1,5 @@
+'use strict';
+
 const Table = require('./table');
 const { map } = require('lodash');
 
@@ -46,7 +48,7 @@ module.exports = class Dataset {
     );
 
     return map(result.rows, (row) => {
-      return row['table_name'];
+      return row.table_name;
     });
   }
 };

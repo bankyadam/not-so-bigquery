@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseResponse = require('../baseResponse');
 
 module.exports = class TableDataInsertAllResponseObject extends BaseResponse {

@@ -1,3 +1,5 @@
+'use strict';
+
 const _ = require('lodash');
 const Dataset = require('./dataset');
 
@@ -29,7 +31,7 @@ module.exports = class Project {
     const result = await this._db.query('SELECT SCHEMA_NAME FROM information_schema.SCHEMATA');
 
     const datasetNames = _.map(result.rows, (row) => {
-      return row['schema_name'];
+      return row.schema_name;
     });
 
     return _.chain(datasetNames)
@@ -39,7 +41,7 @@ module.exports = class Project {
   }
 
   _isDatasetInternal(datasetId) {
-    return RESERVED_SCHEMA_NAMES.findIndex(schemaPattern => schemaPattern.test(datasetId)) !== -1
+    return RESERVED_SCHEMA_NAMES.findIndex(schemaPattern => schemaPattern.test(datasetId)) !== -1;
   }
 
   _isInCurrentProject(datasetId) {

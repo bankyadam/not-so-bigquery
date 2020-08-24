@@ -1,3 +1,5 @@
+'use strict';
+
 const QueryCache = require('../queryCache');
 const zlib = require('zlib');
 

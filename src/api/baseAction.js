@@ -1,3 +1,5 @@
+'use strict';
+
 class ErrorResponseSent extends Error {}
 
 module.exports = class BaseAction {
@@ -30,4 +32,4 @@ module.exports = class BaseAction {
       }
     };
   }
-}
+};

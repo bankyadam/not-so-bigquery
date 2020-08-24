@@ -1,6 +1,8 @@
+'use strict';
+
 const { createToken } = require('chevrotain');
 
 module.exports = createToken({
-  name: "Comma",
+  name: 'Comma',
   pattern: /,/
 });

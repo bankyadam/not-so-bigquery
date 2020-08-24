@@ -1,5 +1,6 @@
+'use strict';
+
 const subject = require('./headers');
-const { Response } = require('express');
 
 describe('Headers Middleware', function() {
   let response;

@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseTableAction = require('../baseTableAction');
 const TableResponseObject = require('../../../entities/table/response');
 

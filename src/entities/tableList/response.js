@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseEntityResponse = require('../baseEntityResponse');
 const TableResponseObject = require('../table/response');
 
@@ -9,7 +11,7 @@ module.exports = class TableListResponseObject extends BaseEntityResponse {
     this.tables = tables || [];
   }
 
-  get TYPE() { return 'tableList' };
+  get TYPE() { return 'tableList'; };
 
   compose() {
     return { tables: this._tables() };

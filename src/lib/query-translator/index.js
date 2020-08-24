@@ -1,3 +1,5 @@
+'use strict';
+
 const lexer = require('./lexer');
 const parser = require('./parser');
 const visitorFactory = require('./visitor/factory');

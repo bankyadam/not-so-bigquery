@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = class DatasetReference {
   constructor(projectId, datasetId) {
     this.projectId = projectId;

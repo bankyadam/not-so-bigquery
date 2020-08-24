@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseDatasetAction = require('../baseDatasetAction');
 const DatasetListResponseObject = require('../../../entities/datasetList/response');
 

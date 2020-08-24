@@ -1,8 +1,10 @@
+'use strict';
+
 const { BIGQUERY_TYPES } = require('./types');
 const {
   ENTITY_TYPES: METADATA_ENTITY_TYPES
 } = require('./enums/metadata');
-const { find, omit, get, keys, values } = require('lodash');
+const { find, get, keys } = require('lodash');
 
 const pageResult = require('../pageResult');
 
@@ -85,14 +87,14 @@ module.exports = class Table {
       `DROP TABLE IF EXISTS ${this._dataset.internalId}.${this.internalId}`
     );
     await this._db.query(
-        `DELETE
+      `DELETE
          FROM fake_bigquery__metadata.metadata
          WHERE entity_parent_path = $1
            AND entity_type = $2`,
       [this._pgTableReference, METADATA_ENTITY_TYPES.COLUMN]
     );
     await this._db.query(
-        `DELETE
+      `DELETE
          FROM fake_bigquery__metadata.metadata
          WHERE entity_parent_path = $1
            AND entity_type = $2`,
@@ -159,7 +161,9 @@ module.exports = class Table {
   async getData(options) {
     const query = `SELECT * FROM ${this._pgTableReference}`;
 
-    const { data, totalRows, nextPageToken } = await pageResult(this._db, query, null, options.maxResults, options.pageToken);
+    const { data, totalRows, nextPageToken } = await pageResult(
+      this._db, query, null, options.maxResults, options.pageToken
+    );
 
     return {
       data,

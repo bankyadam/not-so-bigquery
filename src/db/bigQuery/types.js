@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports.BIGQUERY_TYPES = {
   'STRING': 'TEXT',
   'INTEGER': 'BIGINT',

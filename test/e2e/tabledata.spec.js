@@ -1,3 +1,5 @@
+'use strict';
+
 const { sortBy, omit } = require('lodash');
 
 const { DATASET_NAME, TABLE_NAME } = require('./common/config')();
@@ -27,14 +29,14 @@ describe('TableData', function() {
 
     realTable = bqReal.dataset(DATASET_NAME).table(TABLE_NAME);
     fakeTable = bqFake.dataset(DATASET_NAME).table(TABLE_NAME);
-  })
+  });
 
   after(async function() {
     await cleanupDatasets(DATASET_NAME);
   });
 
   it('inserts rows to table', async function() {
-    const rows = []
+    const rows = [];
     for (let i = 0; i < 10; i++) {
       rows.push({
         [fields.FIELD_SIMPLE_STRING.name]: `long test to check ${i}`,
@@ -57,7 +59,7 @@ describe('TableData', function() {
   it('gets all rows paged', async function() {
     let realPagedOptions = { maxResults: 2 };
     let fakePagedOptions = { maxResults: 2 };
-    let realDataPaged
+    let realDataPaged;
     let fakeDataPaged;
     let realData = [];
     let fakeData = [];
@@ -68,7 +70,7 @@ describe('TableData', function() {
       if (fakeDataPaged[0]) { fakeData = fakeData.concat(fakeDataPaged[0]); }
       realPagedOptions = realDataPaged[1];
       fakePagedOptions = fakeDataPaged[1];
-    } while(realPagedOptions && fakePagedOptions);
+    } while (realPagedOptions && fakePagedOptions);
 
     expect(sortBy(fakeData, [fields.FIELD_SIMPLE_STRING.name, fields.FIELD_SIMPLE_INTEGER.name]))
       .to.be.eql(sortBy(realData, [fields.FIELD_SIMPLE_STRING.name, fields.FIELD_SIMPLE_INTEGER.name]));

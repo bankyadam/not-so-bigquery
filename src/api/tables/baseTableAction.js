@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseDatasetAction = require('../datasets/baseDatasetAction');
 
 const TableNotFoundError = require('../../entities/table/errors/tableNotFound');
@@ -28,4 +30,4 @@ module.exports = class BaseTableAction extends BaseDatasetAction {
 
     this._sendErrorResponse(new TableAlreadyExistsError(this._projectId, this._datasetId, this._tableId));
   }
-}
+};

@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseEntityResponse = require('../baseEntityResponse');
 const JobReference = require('./reference');
 
@@ -11,7 +13,7 @@ module.exports = class JobResponseObject extends BaseEntityResponse {
     this.state = state;
   }
 
-  get TYPE() { return 'job' };
+  get TYPE() { return 'job'; };
 
   get REFERENCE() {
     return new JobReference(this.projectId, this.jobId, this.location);
@@ -21,12 +23,13 @@ module.exports = class JobResponseObject extends BaseEntityResponse {
     return {
       id: this.REFERENCE.ID,
       jobReference: this.REFERENCE,
+      // eslint-disable-next-line max-len
       selfLink: `https://bigquery.googleapis.com/bigquery/v2/projects/${this.projectId}/jobs/${this.jobId}?location=${this.location}`,
       configuration: this.configuration,
       statistics: {},
       status: {
         state: this.state
       }
-    }
+    };
   }
-}
+};

@@ -1,3 +1,5 @@
+'use strict';
+
 const TableDataListResponseObject = require('../tableDataList/response');
 const JobReference = require('../job/reference');
 
@@ -10,7 +12,7 @@ module.exports = class JobResponseObject extends TableDataListResponseObject {
     this.fields = fields;
   }
 
-  get TYPE() { return 'getQueryResultsResponse' };
+  get TYPE() { return 'getQueryResultsResponse'; };
 
   get REFERENCE() {
     return new JobReference(this.projectId, this.jobId, this.location);
@@ -26,4 +28,4 @@ module.exports = class JobResponseObject extends TableDataListResponseObject {
       cacheHit: true
     });
   }
-}
+};

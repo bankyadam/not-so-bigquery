@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (_req, res, next) => {
   res.set({
     'x-content-type-options': 'nosniff',

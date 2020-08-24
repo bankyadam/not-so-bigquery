@@ -1,3 +1,5 @@
+'use strict';
+
 const { Client } = require('pg');
 const { POSTGRES_TYPES } = require('../bigQuery/types');
 

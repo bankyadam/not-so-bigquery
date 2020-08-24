@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseEntityResponse = require('../baseEntityResponse');
 const DatasetReference = require('./reference');
 
@@ -8,7 +10,7 @@ module.exports = class DatasetResponseObject extends BaseEntityResponse {
     this.datasetId = datasetId;
   }
 
-  get TYPE() { return 'dataset' };
+  get TYPE() { return 'dataset'; };
 
   get REFERENCE() {
     return new DatasetReference(this.projectId, this.datasetId);
@@ -27,6 +29,6 @@ module.exports = class DatasetResponseObject extends BaseEntityResponse {
       defaultPartitionExpirationMs: '',
       creationTime: '',
       lastModifiedTime: ''
-    }
+    };
   }
-}
+};

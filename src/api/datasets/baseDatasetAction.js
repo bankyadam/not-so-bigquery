@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseProjectAction = require('../projects/baseProjectAction');
 
 const DatasetNotFoundError = require('../../entities/dataset/errors/datasetNotFound');
@@ -28,4 +30,4 @@ module.exports = class BaseDatasetAction extends BaseProjectAction {
 
     this._sendErrorResponse(new DatasetAlreadyExistsError(this._projectId, this._datasetId));
   }
-}
+};

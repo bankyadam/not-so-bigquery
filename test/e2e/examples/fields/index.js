@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   FIELD_SIMPLE_STRING: {
     name: 'simple_string_field',
@@ -55,4 +57,4 @@ module.exports = {
     type: 'DATETIME',
     mode: 'NULLABLE'
   }
-}
+};

@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   ENTITY_TYPES: {
     PROJECT: 'project',

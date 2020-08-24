@@ -1,3 +1,7 @@
+/* eslint-disable max-len */
+
+'use strict';
+
 const subject = require('./index');
 
 describe('Query Translator', function() {
@@ -58,12 +62,12 @@ describe('Query Translator', function() {
     describe('table alias', function() {
       it('handles alias', function() {
         expect(subject('SELECT 1 FROM p.d.t alias'))
-          .to.be.eql('SELECT 1 FROM p__d.t AS alias')
+          .to.be.eql('SELECT 1 FROM p__d.t AS alias');
       });
 
       it('handles AS alias', function() {
         expect(subject('SELECT 1 FROM p.d.t AS alias'))
-          .to.be.eql('SELECT 1 FROM p__d.t AS alias')
+          .to.be.eql('SELECT 1 FROM p__d.t AS alias');
       });
     });
   });
@@ -136,7 +140,7 @@ describe('Query Translator', function() {
 
   describe('special cases', function() {
     it('translates', function() {
-      const query = "\n    SELECT\n          simple_string_field, simple_integer_field\n    FROM\n        testing_2346494.test_table_2346494\n    ORDER BY\n            simple_boolean_field ASC,\n            simple_integer_field DESC\n  ";
+      const query = '\n    SELECT\n          simple_string_field, simple_integer_field\n    FROM\n        testing_2346494.test_table_2346494\n    ORDER BY\n            simple_boolean_field ASC,\n            simple_integer_field DESC\n  ';
       expect(subject(query, 'project_name'))
         .to.be.eql('SELECT simple_string_field, simple_integer_field FROM project_name__testing_2346494.test_table_2346494 ORDER BY simple_boolean_field ASC, simple_integer_field DESC');
     });

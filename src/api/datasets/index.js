@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = require('../../lib/router-factory')(function(router) {
   router.use('/:datasetId/tables', require('../tables'));
 

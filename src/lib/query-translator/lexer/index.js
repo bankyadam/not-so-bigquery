@@ -1,3 +1,5 @@
+'use strict';
+
 const { Lexer } = require('chevrotain');
 const TOKENS = require('../tokens');
 

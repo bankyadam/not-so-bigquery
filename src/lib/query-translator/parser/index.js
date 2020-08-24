@@ -1,11 +1,13 @@
+/* eslint-disable new-cap */
+
+'use strict';
+
 const { CstParser } = require('chevrotain');
 const TOKENS = require('../tokens');
 
 class SelectParser extends CstParser {
   constructor() {
     super(TOKENS);
-
-    const $ = this;
 
     // query_statement:
     //     query_expr
@@ -47,37 +49,16 @@ class SelectParser extends CstParser {
     // join_type:
     //     { INNER | CROSS | FULL [OUTER] | LEFT [OUTER] | RIGHT [OUTER] }
 
-    $.RULE('selectStatement', () => {
-      $.SUBRULE($.queryExpression);
-    });
-
-    $.RULE('queryExpression', () => {
-      $.SUBRULE($.select);
-      $.OPTION1(() => {
-        $.SUBRULE1($.fromClause);
-      });
-      $.OPTION4(() => {
-        $.SUBRULE4($.groupByClause);
-      });
-      $.OPTION2(() => {
-        $.SUBRULE2($.orderByClause);
-      });
-      $.OPTION3(() => {
-        $.SUBRULE3($.limitClause);
-      });
-    });
-
-    require('./rules/select')($);
-    require('./rules/from_clause')($);
-    require('./rules/group_by_clause')($);
-    require('./rules/order_by_clause')($);
-    require('./rules/limit_clause')($);
+    require('./rules/select_statement')(this);
+    require('./rules/select')(this);
+    require('./rules/from_clause')(this);
+    require('./rules/group_by_clause')(this);
+    require('./rules/order_by_clause')(this);
+    require('./rules/limit_clause')(this);
 
     // COMMON RULES
 
-    $.RULE('expression', () => {
-      $.CONSUME(TOKENS.Identifier);
-    });
+    require('./rules/_common_rules')(this);
 
     this.performSelfAnalysis();
   }

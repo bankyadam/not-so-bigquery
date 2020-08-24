@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseError = require('../../baseError');
 const DatasetReference = require('../reference');
 

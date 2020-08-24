@@ -1,3 +1,5 @@
+'use strict';
+
 const BaseEntityResponse = require('../baseEntityResponse');
 const { map } = require('lodash');
 

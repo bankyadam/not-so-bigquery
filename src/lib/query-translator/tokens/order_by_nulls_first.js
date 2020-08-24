@@ -1,6 +1,8 @@
+'use strict';
+
 const { createToken } = require('chevrotain');
 
 module.exports = createToken({
-  name: "OrderByNullsFirst",
+  name: 'OrderByNullsFirst',
   pattern: /NULLS FIRST/
 });

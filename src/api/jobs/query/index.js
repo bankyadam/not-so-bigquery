@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Method: datasets.update
  *
@@ -9,4 +11,4 @@
  */
 module.exports = async (req, res) => {
   res.sendStatus(501);
-}
+};

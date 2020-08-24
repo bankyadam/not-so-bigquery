@@ -1,3 +1,5 @@
+'use strict';
+
 const etag = require('etag');
 const BaseResponseObject = require('./baseResponse');
 
@@ -15,10 +17,10 @@ module.exports = class BaseEntityResponseObject extends BaseResponseObject {
     return {
       ...response,
       etag: this._generateETag(response)
-    }
+    };
   }
 
   _generateETag(content) {
     return Buffer.from(JSON.parse(etag(JSON.stringify(content)))).toString('base64');
   }
-}
+};

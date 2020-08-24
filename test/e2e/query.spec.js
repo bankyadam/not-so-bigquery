@@ -1,3 +1,5 @@
+'use strict';
+
 const { DATASET_NAME, TABLE_NAME } = require('./common/config')();
 const bqReal = require('./common/connection-real');
 const bqFake = require('./common/connection-fake');

@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = require('../../lib/router-factory')(function(router) {
   router.get('/', require('./list'));
   router.post('/', require('./insert'));

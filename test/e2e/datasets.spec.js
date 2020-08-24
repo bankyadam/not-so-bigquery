@@ -1,3 +1,5 @@
+'use strict';
+
 const { pick } = require('lodash');
 
 const { DATASET_NAME } = require('./common/config')();
