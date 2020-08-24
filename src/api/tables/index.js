@@ -1,15 +1,15 @@
 'use strict';
 
 module.exports = require('../../lib/router-factory')(function(router) {
-  router.get('/', require('./list'));
-  router.post('/', require('./insert'));
+  router.get('/', require('./list').createHandler());
+  router.post('/', require('./insert').createHandler());
 
-  router.get('/:tableId', require('./get'));
-  router.delete('/:tableId', require('./delete'));
-  router.get('/:tableId/data', require('./data'));
-  router.post('/:tableId/insertAll', require('./insertAll'));
+  router.get('/:tableId', require('./get').createHandler());
+  router.delete('/:tableId', require('./delete').createHandler());
+  router.get('/:tableId/data', require('./data').createHandler());
+  router.post('/:tableId/insertAll', require('./insertAll').createHandler());
 
   // Not implemented
-  router.patch('/:tableId', require('./patch'));
-  router.put('/:tableId', require('./update'));
+  router.patch('/:tableId', require('./patch').createHandler());
+  router.put('/:tableId', require('./update').createHandler());
 });

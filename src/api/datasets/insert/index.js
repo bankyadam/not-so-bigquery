@@ -19,8 +19,8 @@ class DatasetsInsertAction extends BaseDatasetAction {
     await this._datasetShouldNotExist();
 
     await this._dataset.create();
-    this._res.json(new DatasetResponseObject(this._projectId, this._datasetId));
+    return new DatasetResponseObject(this._projectId, this._datasetId);
   }
 }
 
-module.exports = DatasetsInsertAction.createHandler();
+module.exports = DatasetsInsertAction;

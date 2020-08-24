@@ -9,9 +9,9 @@ const BaseTableAction = require('../baseTableAction');
  * Table resource, whereas the patch method only replaces fields that are provided
  * in the submitted Table resource.
  *
- * @url https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets/update
+ * @url https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/update
  */
 class TablesUpdateAction extends BaseTableAction {
 }
 
-module.exports = TablesUpdateAction.createHandler();
+module.exports = TablesUpdateAction;

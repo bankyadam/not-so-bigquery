@@ -5,7 +5,7 @@ const BaseDatasetAction = require('../datasets/baseDatasetAction');
 const TableNotFoundError = require('../../entities/table/errors/tableNotFound');
 const TableAlreadyExistsError = require('../../entities/table/errors/tableAlreadyExists');
 
-module.exports = class BaseTableAction extends BaseDatasetAction {
+class BaseTableAction extends BaseDatasetAction {
   constructor(req, res) {
     super(req, res);
     this._table = this._dataset.table(this._tableId);
@@ -30,4 +30,6 @@ module.exports = class BaseTableAction extends BaseDatasetAction {
 
     this._sendErrorResponse(new TableAlreadyExistsError(this._projectId, this._datasetId, this._tableId));
   }
-};
+}
+
+module.exports = BaseTableAction;

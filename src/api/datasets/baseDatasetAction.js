@@ -5,7 +5,7 @@ const BaseProjectAction = require('../projects/baseProjectAction');
 const DatasetNotFoundError = require('../../entities/dataset/errors/datasetNotFound');
 const DatasetAlreadyExistsError = require('../../entities/dataset/errors/datasetAlreadyExists');
 
-module.exports = class BaseDatasetAction extends BaseProjectAction {
+class BaseDatasetAction extends BaseProjectAction {
   constructor(req, res) {
     super(req, res);
     this._dataset = this._db.dataset(this._datasetId);
@@ -30,4 +30,6 @@ module.exports = class BaseDatasetAction extends BaseProjectAction {
 
     this._sendErrorResponse(new DatasetAlreadyExistsError(this._projectId, this._datasetId));
   }
-};
+}
+
+module.exports = BaseDatasetAction;

@@ -12,4 +12,4 @@ const BaseProjectAction = require('../baseProjectAction');
 class ProjectsListAction extends BaseProjectAction {
 }
 
-module.exports = ProjectsListAction.createHandler();
+module.exports = ProjectsListAction;

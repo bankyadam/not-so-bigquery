@@ -25,8 +25,8 @@ class TablesDataAction extends BaseTableAction {
     // const selectedFields = this._req.query.selectedFields
 
     const { totalRows, data, nextPageToken } = await this._table.getData({ maxResults, pageToken });
-    this._res.json(new TableDataListResponseObject(data, totalRows, nextPageToken));
+    return new TableDataListResponseObject(data, totalRows, nextPageToken);
   }
 }
 
-module.exports = TablesDataAction.createHandler();
+module.exports = TablesDataAction;

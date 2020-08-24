@@ -11,10 +11,10 @@ const DatasetResponseObject = require('../../../entities/dataset/response');
  * @url https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets/get
  */
 class DatasetsGetAction extends BaseDatasetAction {
-  async perform() {
+  async perform(params) {
     await this._datasetShouldExist();
-    this._res.json(new DatasetResponseObject(this._projectId, this._datasetId));
+    return new DatasetResponseObject(this._projectId, this._datasetId);
   }
 }
 
-module.exports = DatasetsGetAction.createHandler();
+module.exports = DatasetsGetAction;

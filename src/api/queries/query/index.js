@@ -1,5 +1,7 @@
 'use strict';
 
+const BaseAction = require('../../baseAction');
+
 /**
  * Method: jobs.query
  *
@@ -8,6 +10,7 @@
  *
  * @url https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query
  */
-module.exports = async (req, res) => {
-  res.sendStatus(501);
-};
+class JobsQueryAction extends BaseAction {
+}
+
+module.exports = JobsQueryAction;

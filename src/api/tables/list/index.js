@@ -13,8 +13,8 @@ const TableListResponseObject = require('../../../entities/tableList/response');
 class TablesListAction extends BaseTableAction {
   async perform() {
     const tables = await this._dataset.getTables();
-    this._res.json(new TableListResponseObject(this._projectId, this._datasetId, tables));
+    return new TableListResponseObject(this._projectId, this._datasetId, tables);
   }
 }
 
-module.exports = TablesListAction.createHandler();
+module.exports = TablesListAction;

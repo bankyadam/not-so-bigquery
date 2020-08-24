@@ -14,4 +14,4 @@ const BaseDatasetAction = require('../baseDatasetAction');
 class DatasetsUpdateAction extends BaseDatasetAction {
 }
 
-module.exports = DatasetsUpdateAction.createHandler();
+module.exports = DatasetsUpdateAction;

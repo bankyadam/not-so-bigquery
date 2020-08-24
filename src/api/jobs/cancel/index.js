@@ -1,5 +1,7 @@
 'use strict';
 
+const BaseAction = require('../../baseAction');
+
 /**
  * Method: jobs.cancel
  *
@@ -9,6 +11,7 @@
  *
  * @url https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/cancel
  */
-module.exports = async (req, res) => {
-  res.sendStatus(501);
-};
+class JobsCancelAction extends BaseAction {
+}
+
+module.exports = JobsCancelAction;

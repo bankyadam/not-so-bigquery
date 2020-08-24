@@ -17,8 +17,8 @@ class TablesGetAction extends BaseTableAction {
     await this._tableShouldExist();
 
     const fields = await this._table.fields();
-    this._res.json(new TableResponseObject(this._projectId, this._datasetId, this._tableId, fields));
+    return new TableResponseObject(this._projectId, this._datasetId, this._tableId, fields);
   }
 }
 
-module.exports = TablesGetAction.createHandler();
+module.exports = TablesGetAction;

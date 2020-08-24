@@ -14,4 +14,4 @@ const BaseTableAction = require('../baseTableAction');
 class TablesPatchAction extends BaseTableAction {
 }
 
-module.exports = TablesPatchAction.createHandler();
+module.exports = TablesPatchAction;

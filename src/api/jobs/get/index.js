@@ -1,5 +1,7 @@
 'use strict';
 
+const BaseAction = require('../../baseAction');
+
 /**
  * Method: jobs.get
  *
@@ -9,6 +11,7 @@
  *
  * @url https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/get
  */
-module.exports = async (req, res) => {
-  res.sendStatus(501);
-};
+class JobsGetAction extends BaseAction {
+}
+
+module.exports = JobsGetAction;

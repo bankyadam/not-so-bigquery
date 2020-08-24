@@ -1,5 +1,6 @@
 'use strict';
 
+const BaseJsonResponse = require('../../baseJsonAction');
 const { QueryCache, BigQueryProject } = require('../../../db');
 const queryTranslator = require('../../../lib/query-translator');
 const JobResponseObject = require('../../../entities/job/response');
@@ -22,23 +23,24 @@ const JOB_STATUS = require('../../../entities/job/enums/status');
  *
  * @url https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert
  */
-module.exports = async (req, res) => {
-  const configuration = req.body.configuration;
-  const jobReference = req.body.jobReference;
+class JobsInsertAction extends BaseJsonResponse {
+  async perform() {
+    const configuration = this._req.body.configuration;
+    const jobReference = this._req.body.jobReference;
 
-  if (configuration.query.useLegacySql) {
-    res.sendStatus(406);
-    return;
+    if (configuration.query.useLegacySql) {
+      this._sendResponseWithStatus(406);
+    }
+
+    const projectId = this._req.params.projectId;
+
+    const bqQuery = configuration.query.query;
+    const pgQuery = queryTranslator(bqQuery, new BigQueryProject(null, projectId).internalId);
+    const queryCache = QueryCache.create();
+    await queryCache.run(pgQuery, null, jobReference.jobId);
+
+    return new JobResponseObject(projectId, jobReference.jobId, jobReference.location, configuration, JOB_STATUS.DONE);
   }
+}
 
-  const projectId = req.params.projectId;
-
-  const bqQuery = configuration.query.query;
-  const pgQuery = queryTranslator(bqQuery, new BigQueryProject(null, projectId).internalId);
-  console.log(bqQuery, pgQuery);
-  const queryCache = QueryCache.create();
-  await queryCache.run(pgQuery, null, jobReference.jobId);
-
-  res.json(new JobResponseObject(projectId, jobReference.jobId, jobReference.location, configuration, JOB_STATUS.DONE));
-};
-
+module.exports = JobsInsertAction;

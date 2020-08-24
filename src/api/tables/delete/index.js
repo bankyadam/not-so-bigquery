@@ -10,13 +10,13 @@ const BaseTableAction = require('../baseTableAction');
  *
  * @url https://cloud.google.com/bigquery/docs/reference/rest/v2/tables/delete
  */
-class TablesGetAction extends BaseTableAction {
+class TablesDeleteAction extends BaseTableAction {
   async perform() {
     await this._tableShouldExist();
 
     await this._table.delete();
-    this._res.sendStatus(204);
+    this._sendResponseWithStatus(204);
   }
 }
 
-module.exports = TablesGetAction.createHandler();
+module.exports = TablesDeleteAction;

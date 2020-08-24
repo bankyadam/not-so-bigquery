@@ -35,8 +35,8 @@ class TablesInsertAllAction extends BaseTableAction {
       await this._table.insertRow(rows[i].json);
     }
 
-    this._res.json(new TableDataInsertAllResponseObject());
+    return new TableDataInsertAllResponseObject();
   }
 }
 
-module.exports = TablesInsertAllAction.createHandler();
+module.exports = TablesInsertAllAction;

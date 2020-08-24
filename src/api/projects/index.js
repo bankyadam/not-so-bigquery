@@ -6,6 +6,6 @@ module.exports = require('../../lib/router-factory')(function(router) {
   router.use('/:projectId/queries', require('../queries'));
 
   // Not implemented
-  router.get('/', require('./list'));
-  router.get('/:projectId/serviceAccount', require('./getServiceAccount'));
+  router.get('/', require('./list').createHandler());
+  router.get('/:projectId/serviceAccount', require('./getServiceAccount').createHandler());
 });

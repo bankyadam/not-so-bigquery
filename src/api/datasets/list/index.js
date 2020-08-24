@@ -14,8 +14,8 @@ const DatasetListResponseObject = require('../../../entities/datasetList/respons
 class DatasetsListAction extends BaseDatasetAction {
   async perform() {
     const datasets = await this._db.getDatasets();
-    this._res.json(new DatasetListResponseObject(this._projectId, datasets));
+    return new DatasetListResponseObject(this._projectId, datasets);
   }
 }
 
-module.exports = DatasetsListAction.createHandler();
+module.exports = DatasetsListAction;

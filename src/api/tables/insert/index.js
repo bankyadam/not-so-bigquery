@@ -20,8 +20,8 @@ class TablesInsertAction extends BaseTableAction {
 
     const schema = this._req.body.schema;
     await this._table.create(schema.fields);
-    this._res.json(new TableResponseObject(this._projectId, this._datasetId, this._tableId));
+    return new TableResponseObject(this._projectId, this._datasetId, this._tableId);
   }
 }
 
-module.exports = TablesInsertAction.createHandler();
+module.exports = TablesInsertAction;

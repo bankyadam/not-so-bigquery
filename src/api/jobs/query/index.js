@@ -1,14 +1,15 @@
 'use strict';
 
+const BaseAction = require('../../baseAction');
+
 /**
- * Method: datasets.update
+ * Method: jobs.query
  *
- * Updates information in an existing dataset. The update method replaces the entire
- * dataset resource, whereas the patch method only replaces fields that are provided
- * in the submitted dataset resource.
+ * Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout.
  *
- * @url https://cloud.google.com/bigquery/docs/reference/rest/v2/datasets/update
+ * @url https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query
  */
-module.exports = async (req, res) => {
-  res.sendStatus(501);
-};
+class JobsQueryAction extends BaseAction {
+}
+
+module.exports = JobsQueryAction;
