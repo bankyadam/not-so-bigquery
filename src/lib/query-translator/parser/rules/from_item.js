@@ -22,25 +22,22 @@ module.exports = ($) => {
 
   $.RULE('tableName', () => {
     $.OR([
-      { ALT: () => {
+      {
+        ALT: () => {
           $.CONSUME1(TOKENS.Backtick);
           $.SUBRULE1($.tableIdentifier);
           $.CONSUME2(TOKENS.Backtick);
-      } },
+        }
+      },
       { ALT: () => $.SUBRULE2($.tableIdentifier) }
     ]);
-    $.OPTION3(() => $.SUBRULE3($.tableAlias));
+    $.OPTION3(() => $.SUBRULE3($.asAlias));
   });
 
   $.RULE('tableIdentifier', () => {
     $.AT_LEAST_ONE_SEP({
       SEP: TOKENS.IdentifierQualifier,
       DEF: () => $.CONSUME(TOKENS.Identifier)
-    })
-  });
-
-  $.RULE('tableAlias', () => {
-    $.OPTION(() => $.CONSUME(TOKENS.As));
-    $.CONSUME(TOKENS.Identifier, { LABEL: 'alias'});
+    });
   });
 };

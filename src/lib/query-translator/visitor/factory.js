@@ -81,8 +81,8 @@ module.exports = (parser) => {
 
     tableName(ctx) {
       const tableNameParts = ['`' + this.visit(ctx.tableIdentifier) + '`'];
-      if (ctx.tableAlias) {
-        tableNameParts.push(this.visit(ctx.tableAlias));
+      if (ctx.asAlias) {
+        tableNameParts.push(this.visit(ctx.asAlias));
       }
 
       return tableNameParts.join(' ');
@@ -100,10 +100,6 @@ module.exports = (parser) => {
         default:
           return ctx.Identifier[0].image;
       }
-    }
-
-    tableAlias(ctx) {
-      return `AS ${ctx.alias[0].image}`;
     }
 
     orderByClause(ctx) {
@@ -155,6 +151,10 @@ module.exports = (parser) => {
 
     withItem(ctx) {
       return `${ctx.with_query_name[0].image} AS (${this.visit(ctx.queryExpression)})`;
+    }
+
+    asAlias(ctx) {
+      return `AS ${ctx.alias[0].image}`;
     }
 
     expression(ctx) {
