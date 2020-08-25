@@ -5,6 +5,6 @@ const Identifier = require('./identifier');
 
 module.exports = createToken({
   name: 'Limit',
-  pattern: /LIMIT/,
+  pattern: /LIMIT/i,
   longer_alt: Identifier
 });

@@ -5,6 +5,6 @@ const Identifier = require('./identifier');
 
 module.exports = createToken({
   name: 'GroupBy',
-  pattern: /GROUP BY/,
+  pattern: /GROUP BY/i,
   longer_alt: Identifier
 });

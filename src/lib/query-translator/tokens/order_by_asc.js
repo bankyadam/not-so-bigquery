@@ -5,6 +5,6 @@ const Identifier = require('./identifier');
 
 module.exports = createToken({
   name: 'OrderByAsc',
-  pattern: /ASC/,
+  pattern: /ASC/i,
   longer_alt: Identifier
 });

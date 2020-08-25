@@ -5,6 +5,6 @@ const Identifier = require('./identifier');
 
 module.exports = createToken({
   name: 'Select',
-  pattern: /SELECT/,
+  pattern: /SELECT/i,
   longer_alt: Identifier
 });

@@ -5,6 +5,6 @@ const Identifier = require('./identifier');
 
 module.exports = createToken({
   name: 'From',
-  pattern: /FROM/,
+  pattern: /FROM/i,
   longer_alt: Identifier
 });
