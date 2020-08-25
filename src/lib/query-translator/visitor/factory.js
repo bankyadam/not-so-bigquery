@@ -198,7 +198,13 @@ module.exports = (parser) => {
     }
 
     boolExpression(ctx) {
-      return this.visit(ctx.expression);
+      const expressionParts = [this.visit(ctx.lhs)];
+      if (ctx.operator) {
+        expressionParts.push('=');
+        expressionParts.push(this.visit(ctx.rhs));
+      }
+
+      return expressionParts.join(' ');
     }
   }
 

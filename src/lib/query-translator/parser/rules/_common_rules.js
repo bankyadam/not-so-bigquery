@@ -48,6 +48,10 @@ module.exports = ($) => {
   });
 
   $.RULE('boolExpression', () => {
-    $.SUBRULE($.expression);
+    $.SUBRULE1($.expression, { LABEL: 'lhs' });
+    $.OPTION(() => {
+      $.CONSUME(TOKENS.OperatorEqual, { LABEL: 'operator' });
+      $.SUBRULE2($.expression, { LABEL: 'rhs' });
+    });
   });
 };

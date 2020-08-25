@@ -26,6 +26,7 @@ const lexerDefinition = [
   TOKENS.Backtick,
   TOKENS.Comma,
   TOKENS.IdentifierQualifier,
+  TOKENS.OperatorEqual,
   TOKENS.AtCharacter,
   TOKENS.Identifier,
   TOKENS.Integer
