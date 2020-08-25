@@ -1,0 +1,6 @@
+--INPUT--
+SELECT
+  s.f1.prop1.prop1_1, s.f2.prop1.prop1_2
+FROM `p.d.t` s
+--EXPECT--
+SELECT s.f1.prop1.prop1_1, s.f2.prop1.prop1_2 FROM `p__d.t` AS s

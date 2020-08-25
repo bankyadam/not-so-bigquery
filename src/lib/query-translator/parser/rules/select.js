@@ -44,11 +44,7 @@ module.exports = ($) => {
   });
 
   $.RULE('selectExpression', () => {
-    $.OR([
-      { ALT: () => $.CONSUME(TOKENS.Asterisk) },
-      { ALT: () => $.CONSUME(TOKENS.Integer) },
-      { ALT: () => $.CONSUME(TOKENS.Identifier) }
-    ]);
+    $.SUBRULE($.expression);
   });
 
   require('./from_clause')($);

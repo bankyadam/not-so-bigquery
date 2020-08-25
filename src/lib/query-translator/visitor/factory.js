@@ -61,13 +61,7 @@ module.exports = (parser) => {
     }
 
     selectExpression(ctx) {
-      if (ctx.Asterisk) {
-        return '*';
-      } else if (ctx.Integer) {
-        return ctx.Integer[0].image;
-      } else if (ctx.Identifier) {
-        return ctx.Identifier[0].image;
-      }
+      return this.visit(ctx.expression);
     }
 
     fromClause(ctx) {
@@ -158,7 +152,42 @@ module.exports = (parser) => {
     }
 
     expression(ctx) {
-      return ctx.Identifier[0].image;
+      const expressionParts = [];
+      if (ctx.function) {
+        expressionParts.push(this.visit(ctx.function));
+      } else if (ctx.identifier) {
+        expressionParts.push(this.visit(ctx.identifier));
+      } else if (ctx.namedQueryParameter) {
+        expressionParts.push(this.visit(ctx.namedQueryParameter));
+      } else if (ctx.Asterisk) {
+        expressionParts.push('*');
+      } else if (ctx.Integer) {
+        expressionParts.push(ctx.Integer[0].image);
+      }
+
+      if (ctx.asAlias) {
+        expressionParts.push(this.visit(ctx.asAlias));
+      }
+
+      return expressionParts.join(' ');
+    }
+
+    identifier(ctx) {
+      return ctx.Identifier.map(token => token.image).join('.');
+    }
+
+    function(ctx) {
+      const expressionParts = [
+        ctx.functionName[0].image,
+        '(',
+        ctx.expression.map(token => this.visit(token)).join(', '),
+        ')'
+      ];
+      return expressionParts.join('');
+    }
+
+    namedQueryParameter(ctx) {
+      return `@${ctx.Identifier[0].image}`;
     }
   }
 
