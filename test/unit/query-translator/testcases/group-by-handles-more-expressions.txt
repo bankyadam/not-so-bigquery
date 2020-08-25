@@ -1,4 +1,4 @@
 --INPUT--
 SELECT 1 FROM p.d.t GROUP BY f1, f2
 --EXPECT--
-SELECT 1 FROM p__d.t GROUP BY f1, f2
+SELECT 1 FROM `p__d.t` GROUP BY f1, f2

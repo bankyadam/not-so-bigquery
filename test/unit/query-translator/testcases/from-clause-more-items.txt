@@ -1,4 +1,4 @@
 --INPUT--
 SELECT 1 FROM t1, t2
 --EXPECT--
-SELECT 1 FROM t1, t2
+SELECT 1 FROM `t1`, `t2`

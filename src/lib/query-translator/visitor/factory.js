@@ -80,16 +80,7 @@ module.exports = (parser) => {
     }
 
     tableName(ctx) {
-      const tableNameParts = [];
-      if (ctx.projectId || ctx.datasetId) {
-        let projectId = ctx.projectId && ctx.datasetId ? this.visit(ctx.projectId) : this.defaultProjectId;
-        let datasetId = ctx.projectId && !ctx.datasetId ? this.visit(ctx.projectId) : this.visit(ctx.datasetId);
-        let tableId = this.visit(ctx.tableId);
-        tableNameParts.push(`${projectId}__${datasetId}.${tableId}`);
-      } else {
-        tableNameParts.push(this.visit(ctx.tableId));
-      }
-
+      const tableNameParts = ['`' + this.visit(ctx.tableIdentifier) + '`'];
       if (ctx.tableAlias) {
         tableNameParts.push(this.visit(ctx.tableAlias));
       }
@@ -97,20 +88,22 @@ module.exports = (parser) => {
       return tableNameParts.join(' ');
     }
 
-    projectId(ctx) {
-      return ctx.Identifier[0].image;
-    }
+    tableIdentifier(ctx) {
+      switch (ctx.Identifier.length) {
+        case 3:
+          return `${(ctx.Identifier[0].image)}__${(ctx.Identifier[1].image)}.${(ctx.Identifier[2].image)}`;
 
-    datasetId(ctx) {
-      return ctx.Identifier[0].image;
-    }
+        case 2:
+          return `${(this.defaultProjectId)}__${(ctx.Identifier[0].image)}.${(ctx.Identifier[1].image)}`;
 
-    tableId(ctx) {
-      return ctx.Identifier[0].image;
+        case 1:
+        default:
+          return ctx.Identifier[0].image;
+      }
     }
 
     tableAlias(ctx) {
-      return `AS ${ctx.Identifier[0].image}`;
+      return `AS ${ctx.alias[0].image}`;
     }
 
     orderByClause(ctx) {

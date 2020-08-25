@@ -1,4 +1,4 @@
 --INPUT--
 SELECT * FROM p.d.t ORDER BY fieldname1, fieldname2
 --EXPECT--
-SELECT * FROM p__d.t ORDER BY fieldname1, fieldname2
+SELECT * FROM `p__d.t` ORDER BY fieldname1, fieldname2

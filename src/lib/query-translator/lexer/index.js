@@ -22,6 +22,7 @@ const lexerDefinition = [
   TOKENS.Limit,
   TOKENS.Offset,
   TOKENS.As,
+  TOKENS.Backtick,
   TOKENS.Comma,
   TOKENS.IdentifierQualifier,
   TOKENS.Identifier,

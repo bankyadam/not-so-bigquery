@@ -1,4 +1,4 @@
 --INPUT--
 SELECT 1 FROM dataset.tablename
 --EXPECT--
-SELECT 1 FROM defaultProject__dataset.tablename
+SELECT 1 FROM `defaultProject__dataset.tablename`

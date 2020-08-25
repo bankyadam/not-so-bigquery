@@ -1,4 +1,4 @@
 --INPUT--
 SELECT 1 FROM p.d.t AS alias
 --EXPECT--
-SELECT 1 FROM p__d.t AS alias
+SELECT 1 FROM `p__d.t` AS alias

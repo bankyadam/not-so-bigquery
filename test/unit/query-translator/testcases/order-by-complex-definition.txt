@@ -1,4 +1,4 @@
 --INPUT--
 SELECT * FROM p.d.t ORDER BY fieldname DESC NULLS LAST, fieldname2 NULLS FIRST
 --EXPECT--
-SELECT * FROM p__d.t ORDER BY fieldname DESC NULLS LAST, fieldname2 NULLS FIRST
+SELECT * FROM `p__d.t` ORDER BY fieldname DESC NULLS LAST, fieldname2 NULLS FIRST

@@ -21,28 +21,26 @@ module.exports = ($) => {
   });
 
   $.RULE('tableName', () => {
-    $.OPTION2(() => $.SUBRULE2($.projectId));
-    $.OPTION1(() => $.SUBRULE1($.datasetId));
-    $.SUBRULE($.tableId);
+    $.OR([
+      { ALT: () => {
+          $.CONSUME1(TOKENS.Backtick);
+          $.SUBRULE1($.tableIdentifier);
+          $.CONSUME2(TOKENS.Backtick);
+      } },
+      { ALT: () => $.SUBRULE2($.tableIdentifier) }
+    ]);
     $.OPTION3(() => $.SUBRULE3($.tableAlias));
   });
 
-  $.RULE('projectId', () => {
-    $.CONSUME(TOKENS.Identifier);
-    $.CONSUME(TOKENS.IdentifierQualifier);
-  });
-
-  $.RULE('datasetId', () => {
-    $.CONSUME(TOKENS.Identifier);
-    $.CONSUME(TOKENS.IdentifierQualifier);
-  });
-
-  $.RULE('tableId', () => {
-    $.CONSUME(TOKENS.Identifier);
+  $.RULE('tableIdentifier', () => {
+    $.AT_LEAST_ONE_SEP({
+      SEP: TOKENS.IdentifierQualifier,
+      DEF: () => $.CONSUME(TOKENS.Identifier)
+    })
   });
 
   $.RULE('tableAlias', () => {
     $.OPTION(() => $.CONSUME(TOKENS.As));
-    $.CONSUME(TOKENS.Identifier);
+    $.CONSUME(TOKENS.Identifier, { LABEL: 'alias'});
   });
 };
