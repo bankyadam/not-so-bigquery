@@ -3,5 +3,5 @@ SELECT
   FUNCTION(s.event_time, @timezone AS STRING) AS fieldname
 FROM `p.d.t`
 --EXPECT--
-SELECT FUNCTION(s.event_time, @timezone AS STRING) AS fieldname FROM `p__d.t`
+SELECT FUNCTION(s.event_time, @timezone AS STRING) AS fieldname FROM p__d.t
 

@@ -20,13 +20,11 @@ sent AS (
 	WITH
 	campaigns AS (
 		SELECT DISTINCT campaign_id, program_id
-		FROM `p__d.t`
+		FROM p__d.t
 	)
-
 	SELECT
 	  COUNT(1) AS sentCount
-	FROM `campaigns` AS c
+	FROM campaigns AS c
 	GROUP BY program_id, type, date
 )
-
-SELECT 1 FROM `sent`
+SELECT 1 FROM sent

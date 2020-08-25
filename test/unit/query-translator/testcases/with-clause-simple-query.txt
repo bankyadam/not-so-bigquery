@@ -2,4 +2,5 @@
 WITH one AS (SELECT fieldname FROM tablename)
 SELECT 1
 --EXPECT--
-WITH one AS (SELECT fieldname FROM `tablename`) SELECT 1
+WITH one AS (SELECT fieldname FROM tablename)
+SELECT 1

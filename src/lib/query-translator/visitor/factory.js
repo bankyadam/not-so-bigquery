@@ -74,7 +74,7 @@ module.exports = (parser) => {
     }
 
     tableName(ctx) {
-      const tableNameParts = ['`' + this.visit(ctx.tableIdentifier) + '`'];
+      const tableNameParts = [this.visit(ctx.tableIdentifier)];
       if (ctx.asAlias) {
         tableNameParts.push(this.visit(ctx.asAlias));
       }
