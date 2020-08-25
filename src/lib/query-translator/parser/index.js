@@ -1,5 +1,3 @@
-/* eslint-disable new-cap */
-
 'use strict';
 
 const { CstParser } = require('chevrotain');
@@ -48,9 +46,7 @@ class SelectParser extends CstParser {
     //
     // join_type:
     //     { INNER | CROSS | FULL [OUTER] | LEFT [OUTER] | RIGHT [OUTER] }
-
     require('./rules/select_statement')(this);
-    require('./rules/query_expression')(this);
 
     // COMMON RULES
 

@@ -16,6 +16,9 @@ module.exports = (parser) => {
     queryExpression(ctx) {
       let statementParts = [];
 
+      if (ctx.withClause) {
+        statementParts.push(this.visit(ctx.withClause));
+      }
 
       if (ctx.select) {
         statementParts.push(this.visit(ctx.select));
@@ -150,6 +153,15 @@ module.exports = (parser) => {
     groupByClause(ctx) {
       const expressions = ctx.expression.map(token => this.visit(token));
       return `GROUP BY ${expressions.join(', ')}`;
+    }
+
+    withClause(ctx) {
+      const withItems = ctx.withItem.map(token => this.visit(token));
+      return `WITH ${withItems.join(', ')}`;
+    }
+
+    withItem(ctx) {
+      return `${ctx.with_query_name[0].image} AS (${this.visit(ctx.queryExpression)})`;
     }
 
     expression(ctx) {

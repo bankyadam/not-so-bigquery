@@ -14,6 +14,9 @@ const TOKENS = require('../../tokens');
  */
 module.exports = ($) => {
   $.RULE('queryExpression', () => {
+    $.OPTION1(() => {
+      $.SUBRULE1($.withClause);
+    });
     $.SUBRULE($.select);
     $.OPTION2(() => {
       $.SUBRULE2($.orderByClause);

@@ -52,7 +52,7 @@ describe('Query Translator', function() {
 
     describe('from items', function() {
       it('handles more from items', composeTestCase('from-clause-more-items'));
-    })
+    });
   });
 
   describe('group by clause', function() {
@@ -76,6 +76,11 @@ describe('Query Translator', function() {
   describe('limit clause', function() {
     it('only limit', composeTestCase('limit-clause-only-limit'));
     it('limit with offset', composeTestCase('limit-clause-limit-offset'));
+  });
+
+  describe('with clause', function() {
+    it('handles a WITH with simple query', composeTestCase('with-clause-simple-query'));
+    it('handles a more WITH items', composeTestCase('with-clause-more-items'));
   });
 
   describe('special cases', function() {

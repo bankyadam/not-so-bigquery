@@ -15,7 +15,7 @@ module.exports = ($) => {
     $.AT_LEAST_ONE_SEP({
       SEP: TOKENS.Comma,
       DEF: () => $.SUBRULE($.fromItem)
-    })
+    });
   });
 
   require('./from_item')($);

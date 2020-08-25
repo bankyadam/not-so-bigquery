@@ -1,11 +1,9 @@
 /* eslint-disable new-cap */
-
 'use strict';
 
-// eslint-disable-next-line no-unused-vars
-const TOKENS = require('../../tokens');
-
 /**
+ * @summary FINAL
+ *
  * query_statement:
  *     query_expr
  */
@@ -13,4 +11,6 @@ module.exports = ($) => {
   $.RULE('selectStatement', () => {
     $.SUBRULE($.queryExpression);
   });
+
+  require('./query_expression')($);
 };
