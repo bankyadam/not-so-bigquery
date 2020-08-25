@@ -46,4 +46,8 @@ module.exports = ($) => {
     $.OPTION(() => $.CONSUME(TOKENS.As));
     $.CONSUME(TOKENS.Identifier, { LABEL: 'alias' });
   });
+
+  $.RULE('boolExpression', () => {
+    $.SUBRULE($.expression);
+  });
 };

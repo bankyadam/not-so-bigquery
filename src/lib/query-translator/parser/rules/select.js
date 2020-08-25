@@ -24,6 +24,9 @@ module.exports = ($) => {
     $.OPTION2(() => {
       $.SUBRULE2($.fromClause);
     });
+    $.OPTION4(() => {
+      $.SUBRULE4($.whereClause);
+    });
     $.OPTION3(() => {
       $.SUBRULE3($.groupByClause);
     });
@@ -48,5 +51,6 @@ module.exports = ($) => {
   });
 
   require('./from_clause')($);
+  require('./where_clause')($);
   require('./group_by_clause')($);
 };

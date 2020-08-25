@@ -41,6 +41,9 @@ module.exports = (parser) => {
       if (ctx.fromClause) {
         statementParts.push(this.visit(ctx.fromClause));
       }
+      if (ctx.whereClause) {
+        statementParts.push(this.visit(ctx.whereClause));
+      }
       if (ctx.groupByClause) {
         statementParts.push(this.visit(ctx.groupByClause));
       }
@@ -94,6 +97,10 @@ module.exports = (parser) => {
         default:
           return ctx.Identifier[0].image;
       }
+    }
+
+    whereClause(ctx) {
+      return `WHERE ${this.visit(ctx.boolExpression)}`;
     }
 
     orderByClause(ctx) {
@@ -188,6 +195,10 @@ module.exports = (parser) => {
 
     namedQueryParameter(ctx) {
       return `@${ctx.Identifier[0].image}`;
+    }
+
+    boolExpression(ctx) {
+      return this.visit(ctx.expression);
     }
   }
 

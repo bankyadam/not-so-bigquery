@@ -13,6 +13,7 @@ const lexerDefinition = [
   TOKENS.SelectAll,
   TOKENS.Asterisk,
   TOKENS.From,
+  TOKENS.Where,
   TOKENS.GroupBy,
   TOKENS.OrderBy,
   TOKENS.OrderByAsc,
