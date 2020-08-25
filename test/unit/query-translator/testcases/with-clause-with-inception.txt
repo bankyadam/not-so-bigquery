@@ -1,0 +1,32 @@
+--INPUT--
+WITH
+sent as (
+	WITH
+	campaigns AS (
+		SELECT DISTINCT campaign_id, program_id
+		FROM `p.d.t`
+	)
+
+	SELECT
+	  COUNT(1) as sentCount
+	FROM campaigns c
+	GROUP BY program_id, type, date
+)
+
+SELECT 1 FROM sent
+--EXPECT--
+WITH
+sent AS (
+	WITH
+	campaigns AS (
+		SELECT DISTINCT campaign_id, program_id
+		FROM `p__d.t`
+	)
+
+	SELECT
+	  COUNT(1) AS sentCount
+	FROM `campaigns` AS c
+	GROUP BY program_id, type, date
+)
+
+SELECT 1 FROM `sent`
