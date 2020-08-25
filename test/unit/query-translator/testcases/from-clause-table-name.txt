@@ -1,0 +1,4 @@
+--INPUT--
+SELECT 1 FROM table_name
+--EXPECT--
+SELECT 1 FROM table_name

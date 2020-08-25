@@ -18,7 +18,7 @@ const lexerDefinition = [
   TOKENS.OrderByNullsLast,
   TOKENS.Limit,
   TOKENS.Offset,
-  TOKENS.FromAs,
+  TOKENS.As,
   TOKENS.Comma,
   TOKENS.IdentifierQualifier,
   TOKENS.Identifier,

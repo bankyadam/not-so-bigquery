@@ -4,11 +4,29 @@
 
 const TOKENS = require('../../tokens');
 
+/**
+ * select:
+ *     SELECT [ AS { STRUCT | VALUE } ] [{ ALL | DISTINCT }]
+ *         { [ expression. ]* [ EXCEPT ( column_name [, ...] ) ]
+ *             [ REPLACE ( expression [ AS ] column_name [, ...] ) ]
+ *         | expression [ [ AS ] alias ] } [, ...]
+ *     [ FROM from_item  [, ...] ]
+ *     [ WHERE bool_expression ]
+ *     [ GROUP BY { expression [, ...] | ROLLUP ( expression [, ...] ) } ]
+ *     [ HAVING bool_expression ]
+ *     [ WINDOW named_window_expression AS { named_window | ( [ window_definition ] ) } [, ...] ]
+ */
 module.exports = ($) => {
   $.RULE('select', () => {
     $.CONSUME(TOKENS.Select);
-    $.OPTION(() => $.SUBRULE($.selectModifier));
+    $.OPTION1(() => $.SUBRULE($.selectModifier));
     $.SUBRULE($.selectList);
+    $.OPTION2(() => {
+      $.SUBRULE2($.fromClause);
+    });
+    $.OPTION3(() => {
+      $.SUBRULE3($.groupByClause);
+    });
   });
 
   $.RULE('selectModifier', () => {
@@ -32,4 +50,7 @@ module.exports = ($) => {
       { ALT: () => $.CONSUME(TOKENS.Identifier) }
     ]);
   });
+
+  require('./from_clause')($);
+  require('./group_by_clause')($);
 };

@@ -50,11 +50,7 @@ class SelectParser extends CstParser {
     //     { INNER | CROSS | FULL [OUTER] | LEFT [OUTER] | RIGHT [OUTER] }
 
     require('./rules/select_statement')(this);
-    require('./rules/select')(this);
-    require('./rules/from_clause')(this);
-    require('./rules/group_by_clause')(this);
-    require('./rules/order_by_clause')(this);
-    require('./rules/limit_clause')(this);
+    require('./rules/query_expression')(this);
 
     // COMMON RULES
 

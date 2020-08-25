@@ -42,12 +42,17 @@ describe('Query Translator', function() {
         composeTestCase('from-clause-dataset-project-handling'));
       it('converts project.dataset to project__dataset',
         composeTestCase('from-clause-dataset-project-handling-uses-default'));
+      it('handles table reference if not in dataset/project', composeTestCase('from-clause-table-name'));
     });
 
     describe('table alias', function() {
       it('handles alias', composeTestCase('from-clause-table-alias'));
       it('handles AS alias', composeTestCase('from-clause-table-alias-with-as'));
     });
+
+    describe('from items', function() {
+      it('handles more from items', composeTestCase('from-clause-more-items'));
+    })
   });
 
   describe('group by clause', function() {

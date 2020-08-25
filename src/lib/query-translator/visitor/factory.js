@@ -14,12 +14,11 @@ module.exports = (parser) => {
     }
 
     queryExpression(ctx) {
-      let statementParts = [this.visit(ctx.select)];
-      if (ctx.fromClause) {
-        statementParts.push(this.visit(ctx.fromClause));
-      }
-      if (ctx.groupByClause) {
-        statementParts.push(this.visit(ctx.groupByClause));
+      let statementParts = [];
+
+
+      if (ctx.select) {
+        statementParts.push(this.visit(ctx.select));
       }
       if (ctx.orderByClause) {
         statementParts.push(this.visit(ctx.orderByClause));
@@ -36,6 +35,12 @@ module.exports = (parser) => {
         statementParts.push(this.visit(ctx.selectModifier));
       }
       statementParts.push(this.visit(ctx.selectList));
+      if (ctx.fromClause) {
+        statementParts.push(this.visit(ctx.fromClause));
+      }
+      if (ctx.groupByClause) {
+        statementParts.push(this.visit(ctx.groupByClause));
+      }
       return statementParts.join(' ');
     }
 
@@ -63,15 +68,24 @@ module.exports = (parser) => {
     }
 
     fromClause(ctx) {
-      return `FROM ${this.visit(ctx.tableName)}`;
+      const fromItems = ctx.fromItem.map(token => this.visit(token));
+      return `FROM ${fromItems.join(', ')}`;
+    }
+
+    fromItem(ctx) {
+      return this.visit(ctx.tableName);
     }
 
     tableName(ctx) {
-      let projectId = ctx.projectId && ctx.datasetId ? this.visit(ctx.projectId) : this.defaultProjectId;
-      let datasetId = ctx.projectId && !ctx.datasetId ? this.visit(ctx.projectId) : this.visit(ctx.datasetId);
-      let tableId = this.visit(ctx.tableId);
-
-      const tableNameParts = [`${projectId}__${datasetId}.${tableId}`];
+      const tableNameParts = [];
+      if (ctx.projectId || ctx.datasetId) {
+        let projectId = ctx.projectId && ctx.datasetId ? this.visit(ctx.projectId) : this.defaultProjectId;
+        let datasetId = ctx.projectId && !ctx.datasetId ? this.visit(ctx.projectId) : this.visit(ctx.datasetId);
+        let tableId = this.visit(ctx.tableId);
+        tableNameParts.push(`${projectId}__${datasetId}.${tableId}`);
+      } else {
+        tableNameParts.push(this.visit(ctx.tableId));
+      }
 
       if (ctx.tableAlias) {
         tableNameParts.push(this.visit(ctx.tableAlias));
@@ -120,7 +134,7 @@ module.exports = (parser) => {
     }
 
     limitClause(ctx) {
-      let clause = [`LIMIT ${ctx.Integer[0].image}`];
+      let clause = [`LIMIT ${ctx.count[0].image}`];
 
       if (ctx.offsetClause) {
         clause.push(this.visit(ctx.offsetClause));
@@ -130,7 +144,7 @@ module.exports = (parser) => {
     }
 
     offsetClause(ctx) {
-      return `OFFSET ${ctx.Integer[0].image}`;
+      return `OFFSET ${ctx.skip_rows[0].image}`;
     }
 
     groupByClause(ctx) {

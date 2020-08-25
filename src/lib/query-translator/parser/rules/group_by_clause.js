@@ -4,6 +4,11 @@
 
 const TOKENS = require('../../tokens');
 
+/**
+ * @summary FINAL
+ * 
+ *     [ GROUP BY { expression [, ...] | ROLLUP ( expression [, ...] ) } ]
+ */
 module.exports = ($) => {
   $.RULE('groupByClause', () => {
     $.CONSUME(TOKENS.GroupBy);

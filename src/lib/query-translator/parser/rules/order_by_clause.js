@@ -4,6 +4,11 @@
 
 const TOKENS = require('../../tokens');
 
+/**
+ * @summary FINAL
+ *
+ *     [ ORDER BY expression [{ ASC | DESC }] [, ...] ]
+ */
 module.exports = ($) => {
   $.RULE('orderByClause', () => {
     $.CONSUME(TOKENS.OrderBy);
