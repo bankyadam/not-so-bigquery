@@ -5,13 +5,15 @@ const TOKENS = require('../tokens');
 
 const lexerDefinition = [
   TOKENS.WhiteSpace,
+
+  TOKENS.String,
+  TOKENS.Numeric,
+
+
   TOKENS.With,
-  TOKENS.LeftParenthesis,
-  TOKENS.RightParenthesis,
   TOKENS.Select,
   TOKENS.SelectDistinct,
   TOKENS.SelectAll,
-  TOKENS.Asterisk,
   TOKENS.From,
   TOKENS.Where,
   TOKENS.GroupBy,
@@ -23,13 +25,21 @@ const lexerDefinition = [
   TOKENS.Limit,
   TOKENS.Offset,
   TOKENS.As,
+
   TOKENS.Backtick,
+  TOKENS.Asterisk,
   TOKENS.Comma,
   TOKENS.IdentifierQualifier,
-  TOKENS.OperatorEqual,
   TOKENS.AtCharacter,
-  TOKENS.Identifier,
-  TOKENS.Integer
+  TOKENS.LeftParenthesis,
+  TOKENS.RightParenthesis,
+
+  TOKENS.OperatorComparison,
+  TOKENS.OperatorLogical,
+
+  TOKENS.LiteralConstant,
+
+  TOKENS.Identifier
 ];
 
 module.exports = new Lexer(lexerDefinition);

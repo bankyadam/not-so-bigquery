@@ -1,0 +1,4 @@
+--INPUT--
+SELECT 1 WHERE (1 AND f2 = 1) OR f3 = 1 AND (a = 1 OR (b = 2 AND c = 1))
+--EXPECT--
+SELECT 1 WHERE (1 AND f2 = 1) OR f3 = 1 AND (a = 1 OR (b = 2 AND c = 1))

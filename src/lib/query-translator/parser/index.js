@@ -50,7 +50,8 @@ class SelectParser extends CstParser {
 
     // COMMON RULES
 
-    require('./rules/_common_rules')(this);
+    require('./rules/common_rules/expression')(this);
+    require('./rules/common_rules/bool_expression')(this);
 
     this.performSelfAnalysis();
   }

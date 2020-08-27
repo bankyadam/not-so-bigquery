@@ -1,19 +1,26 @@
 /* eslint-disable new-cap */
-
 'use strict';
 
-const TOKENS = require('../../tokens');
+const TOKENS = require('../../../tokens');
 
 module.exports = ($) => {
   $.RULE('expression', () => {
     $.OR([
+      { ALT: () => $.SUBRULE($.literalValue) },
+      { ALT: () => $.CONSUME(TOKENS.Asterisk) },
       { ALT: () => $.SUBRULE($.function) },
       { ALT: () => $.SUBRULE($.identifier) },
-      { ALT: () => $.SUBRULE($.namedQueryParameter) },
-      { ALT: () => $.CONSUME(TOKENS.Asterisk) },
-      { ALT: () => $.CONSUME(TOKENS.Integer) }
+      { ALT: () => $.SUBRULE($.namedQueryParameter) }
     ]);
     $.OPTION(() => $.SUBRULE($.asAlias));
+  });
+
+  $.RULE('literalValue', () => {
+    $.OR([
+      { ALT: () => $.CONSUME(TOKENS.LiteralConstant) },
+      { ALT: () => $.CONSUME(TOKENS.Numeric) },
+      { ALT: () => $.CONSUME(TOKENS.String) }
+    ]);
   });
 
   $.RULE('function', () => {
@@ -45,13 +52,5 @@ module.exports = ($) => {
   $.RULE('asAlias', () => {
     $.OPTION(() => $.CONSUME(TOKENS.As));
     $.CONSUME(TOKENS.Identifier, { LABEL: 'alias' });
-  });
-
-  $.RULE('boolExpression', () => {
-    $.SUBRULE1($.expression, { LABEL: 'lhs' });
-    $.OPTION(() => {
-      $.CONSUME(TOKENS.OperatorEqual, { LABEL: 'operator' });
-      $.SUBRULE2($.expression, { LABEL: 'rhs' });
-    });
   });
 };

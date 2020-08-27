@@ -1,5 +1,7 @@
 'use strict';
 
+const { zip } = require('lodash');
+
 module.exports = (parser) => {
   const BaseCstVisitorWithDefaults = parser.getBaseCstVisitorConstructorWithDefaults();
 
@@ -100,7 +102,8 @@ module.exports = (parser) => {
     }
 
     whereClause(ctx) {
-      return `WHERE ${this.visit(ctx.boolExpression)}`;
+      const whereItems = ['WHERE', this.visit(ctx.boolExpression)];
+      return whereItems.join(' ');
     }
 
     orderByClause(ctx) {
@@ -127,17 +130,13 @@ module.exports = (parser) => {
     }
 
     limitClause(ctx) {
-      let clause = [`LIMIT ${ctx.count[0].image}`];
+      let clause = [ctx.Limit[0].image];
 
-      if (ctx.offsetClause) {
-        clause.push(this.visit(ctx.offsetClause));
+      if (ctx.Offset) {
+        clause.push(ctx.Offset[0].image);
       }
 
       return clause.join(' ');
-    }
-
-    offsetClause(ctx) {
-      return `OFFSET ${ctx.skip_rows[0].image}`;
     }
 
     groupByClause(ctx) {
@@ -158,26 +157,105 @@ module.exports = (parser) => {
       return `AS ${ctx.alias[0].image}`;
     }
 
-    expression(ctx) {
+    boolExpression(ctx) {
+      return this.visit(ctx.comparisonExpression);
+    }
+
+    comparisonExpression(ctx) {
       const expressionParts = [];
-      if (ctx.function) {
-        expressionParts.push(this.visit(ctx.function));
-      } else if (ctx.identifier) {
-        expressionParts.push(this.visit(ctx.identifier));
-      } else if (ctx.namedQueryParameter) {
-        expressionParts.push(this.visit(ctx.namedQueryParameter));
+      zip(ctx.logicalExpression, ctx.OperatorComparison)
+        .forEach(tokenPair => {
+          expressionParts.push(this.visit(tokenPair[0]));
+          if (tokenPair[1]) {
+            expressionParts.push(tokenPair[1].image);
+          }
+        });
+      return expressionParts.join(' ');
+    }
+
+    logicalExpression(ctx) {
+      const expressionParts = [];
+      zip(ctx.atomicExpression, ctx.OperatorLogical)
+        .forEach(tokenPair => {
+          expressionParts.push(this.visit(tokenPair[0]));
+          if (tokenPair[1]) {
+            expressionParts.push(tokenPair[1].image);
+          }
+        });
+      return expressionParts.join(' ');
+    }
+
+    atomicExpression(ctx) {
+      if (ctx.parenthesisExpression) {
+        return this.visit(ctx.parenthesisExpression);
+      } else if (ctx.expression) {
+        return this.visit(ctx.expression);
+      }
+    }
+
+    parenthesisExpression(ctx) {
+      const expressionParts = [
+        '(',
+        this.visit(ctx.boolExpression),
+        ')'
+      ];
+      return expressionParts.join('');
+    }
+
+    expression(ctx) {
+      const literalParts = [];
+
+      if (ctx.literalValue) {
+        literalParts.push(this.visit(ctx.literalValue));
       } else if (ctx.Asterisk) {
-        expressionParts.push('*');
-      } else if (ctx.Integer) {
-        expressionParts.push(ctx.Integer[0].image);
+        literalParts.push('*');
+      } else if (ctx.function) {
+        literalParts.push(this.visit(ctx.function));
+      } else if (ctx.identifier) {
+        literalParts.push(this.visit(ctx.identifier));
+      } else if (ctx.namedQueryParameter) {
+        literalParts.push(this.visit(ctx.namedQueryParameter));
       }
 
       if (ctx.asAlias) {
-        expressionParts.push(this.visit(ctx.asAlias));
+        literalParts.push(this.visit(ctx.asAlias));
       }
 
-      return expressionParts.join(' ');
+      return literalParts.join(' ');
     }
+
+    literalValue(ctx) {
+      if (ctx.Numeric) {
+        return ctx.Numeric[0].image;
+      } else if (ctx.String) {
+        return ctx.String[0].image;
+      } else if (ctx.LiteralConstant) {
+        return ctx.LiteralConstant[0].image;
+      }
+    }
+
+    // _oldExpression(ctx) {
+    //   const expressionParts = [];
+    //   if (ctx.function) {
+    //     expressionParts.push(this.visit(ctx.function));
+    //   } else if (ctx.identifier) {
+    //     expressionParts.push(this.visit(ctx.identifier));
+    //   } else if (ctx.namedQueryParameter) {
+    //     expressionParts.push(this.visit(ctx.namedQueryParameter));
+    //   } else if (ctx.Asterisk) {
+    //     expressionParts.push('*');
+    //   } else if (ctx.Numeric) {
+    //     expressionParts.push(ctx.Numeric[0].image);
+    //   } else if (ctx.String) {
+    //     expressionParts.push(ctx.String[0].image);
+    //   }
+    //
+    //   if (ctx.asAlias) {
+    //     expressionParts.push(this.visit(ctx.asAlias));
+    //   }
+    //
+    //   return expressionParts.join(' ');
+    // }
 
     identifier(ctx) {
       return ctx.Identifier.map(token => token.image).join('.');
@@ -197,14 +275,12 @@ module.exports = (parser) => {
       return `@${ctx.Identifier[0].image}`;
     }
 
-    boolExpression(ctx) {
-      const expressionParts = [this.visit(ctx.lhs)];
-      if (ctx.operator) {
-        expressionParts.push('=');
-        expressionParts.push(this.visit(ctx.rhs));
+    operator(ctx) {
+      if (ctx.OperatorComparison) {
+        return ctx.OperatorComparison[0].image;
+      } else if (ctx.OperatorLogical) {
+        return ctx.OperatorLogical[0].image;
       }
-
-      return expressionParts.join(' ');
     }
   }
 

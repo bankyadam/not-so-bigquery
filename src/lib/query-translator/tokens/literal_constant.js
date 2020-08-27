@@ -4,7 +4,7 @@ const { createToken } = require('chevrotain');
 const Identifier = require('./identifier');
 
 module.exports = createToken({
-  name: 'Limit',
-  pattern: /LIMIT (0|[1-9]\d*)/i,
+  name: 'LiteralConstant',
+  pattern: /NULL|TRUE|FALSE|CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME/i,
   longer_alt: Identifier
 });
