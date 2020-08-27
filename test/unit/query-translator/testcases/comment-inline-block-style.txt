@@ -1,0 +1,4 @@
+--INPUT--
+SELECT 1 /* this is a comment */ WHERE 2
+--EXPECT--
+SELECT 1 WHERE 2

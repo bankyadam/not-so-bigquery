@@ -1,0 +1,4 @@
+--INPUT--
+SELECT 1 # this is a comment
+--EXPECT--
+SELECT 1

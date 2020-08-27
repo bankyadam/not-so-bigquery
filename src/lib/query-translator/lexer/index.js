@@ -6,9 +6,10 @@ const TOKENS = require('../tokens');
 const lexerDefinition = [
   TOKENS.WhiteSpace,
 
+  TOKENS.Comment,
+
   TOKENS.String,
   TOKENS.Numeric,
-
 
   TOKENS.With,
   TOKENS.Select,

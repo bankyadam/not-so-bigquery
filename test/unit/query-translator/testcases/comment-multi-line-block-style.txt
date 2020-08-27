@@ -1,0 +1,8 @@
+--INPUT--
+SELECT 1
+/*
+this is a
+multi line comment
+*/
+--EXPECT--
+SELECT 1
