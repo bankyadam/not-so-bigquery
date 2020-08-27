@@ -1,0 +1,27 @@
+--INPUT--
+SELECT * FROM (
+	SELECT 1 FROM (
+		SELECT 1 FROM (
+			SELECT 1 FROM (
+				SELECT 1 FROM (
+					SELECT 1 FROM (
+						SELECT 1 FROM (
+							SELECT 1 FROM (
+								SELECT 1 FROM (
+									SELECT 1 FROM (
+										SELECT 1 FROM (
+											SELECT 1 ) ) ) ) ) ) ) ) ) ) )
+--EXPECT--
+SELECT * FROM (
+	SELECT 1 FROM (
+		SELECT 1 FROM (
+			SELECT 1 FROM (
+				SELECT 1 FROM (
+					SELECT 1 FROM (
+						SELECT 1 FROM (
+							SELECT 1 FROM (
+								SELECT 1 FROM (
+									SELECT 1 FROM (
+										SELECT 1 FROM (
+											SELECT 1 ) ) ) ) ) ) ) ) ) ) )
+

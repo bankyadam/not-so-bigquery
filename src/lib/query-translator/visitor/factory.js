@@ -75,7 +75,11 @@ module.exports = (parser) => {
     }
 
     fromItem(ctx) {
-      return this.visit(ctx.tableName);
+      if (ctx.tableName) {
+        return this.visit(ctx.tableName);
+      } else if (ctx.subQuery) {
+        return this.visit(ctx.subQuery);
+      }
     }
 
     tableName(ctx) {
@@ -99,6 +103,15 @@ module.exports = (parser) => {
         default:
           return ctx.Identifier[0].image;
       }
+    }
+
+    subQuery(ctx) {
+      const parts = ['(', this.visit(ctx.queryExpression), ')'];
+      if (ctx.asAlias) {
+        parts.push(this.visit(ctx.asAlias));
+      }
+
+      return parts.join(' ');
     }
 
     whereClause(ctx) {
@@ -234,29 +247,6 @@ module.exports = (parser) => {
       }
     }
 
-    // _oldExpression(ctx) {
-    //   const expressionParts = [];
-    //   if (ctx.function) {
-    //     expressionParts.push(this.visit(ctx.function));
-    //   } else if (ctx.identifier) {
-    //     expressionParts.push(this.visit(ctx.identifier));
-    //   } else if (ctx.namedQueryParameter) {
-    //     expressionParts.push(this.visit(ctx.namedQueryParameter));
-    //   } else if (ctx.Asterisk) {
-    //     expressionParts.push('*');
-    //   } else if (ctx.Numeric) {
-    //     expressionParts.push(ctx.Numeric[0].image);
-    //   } else if (ctx.String) {
-    //     expressionParts.push(ctx.String[0].image);
-    //   }
-    //
-    //   if (ctx.asAlias) {
-    //     expressionParts.push(this.visit(ctx.asAlias));
-    //   }
-    //
-    //   return expressionParts.join(' ');
-    // }
-
     identifier(ctx) {
       return ctx.Identifier.map(token => token.image).join('.');
     }
@@ -273,14 +263,6 @@ module.exports = (parser) => {
 
     namedQueryParameter(ctx) {
       return `@${ctx.Identifier[0].image}`;
-    }
-
-    operator(ctx) {
-      if (ctx.OperatorComparison) {
-        return ctx.OperatorComparison[0].image;
-      } else if (ctx.OperatorLogical) {
-        return ctx.OperatorLogical[0].image;
-      }
     }
   }
 

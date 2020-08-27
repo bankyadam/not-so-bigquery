@@ -48,9 +48,4 @@ module.exports = ($) => {
     $.CONSUME(TOKENS.AtCharacter);
     $.CONSUME(TOKENS.Identifier);
   });
-
-  $.RULE('asAlias', () => {
-    $.OPTION(() => $.CONSUME(TOKENS.As));
-    $.CONSUME(TOKENS.Identifier, { LABEL: 'alias' });
-  });
 };

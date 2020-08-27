@@ -6,18 +6,20 @@ const TOKENS = require('../../tokens');
 
 /**
  * from_item: {
- *     table_name [ [ AS ] alias ] [ FOR SYSTEM_TIME AS OF timestamp_expression ]  |
- *     join |
- *     ( query_expr ) [ [ AS ] alias ] |
- *     field_path |
- *     { UNNEST( array_expression ) | UNNEST( array_path ) | array_path }
- *         [ [ AS ] alias ] [ WITH OFFSET [ [ AS ] alias ] ] |
- *     with_query_name [ [ AS ] alias ]
+ *     table_name [[AS] alias] [ FOR SYSTEM_TIME AS OF timestamp_expression ]  |
+ * !!! join |
+ *     ( query_expr ) [[AS] alias] |
+ * !!! field_path |
+ * !!! { UNNEST( array_expression ) | UNNEST( array_path ) | array_path } [[AS] alias] [ WITH OFFSET [[AS] alias] ] |
+ *     with_query_name [[AS] alias]
  * }
  */
 module.exports = ($) => {
   $.RULE('fromItem', () => {
-    $.SUBRULE($.tableName);
+    $.OR([
+      { ALT: () => $.SUBRULE($.tableName) },
+      { ALT: () => $.SUBRULE($.subQuery) }
+    ]);
   });
 
   $.RULE('tableName', () => {
@@ -38,6 +40,18 @@ module.exports = ($) => {
     $.AT_LEAST_ONE_SEP({
       SEP: TOKENS.IdentifierQualifier,
       DEF: () => $.CONSUME(TOKENS.Identifier)
+    });
+  });
+
+  /**
+   *     ( query_expr ) [ [ AS ] alias ] |
+   */
+  $.RULE('subQuery', () => {
+    $.CONSUME(TOKENS.LeftParenthesis);
+    $.SUBRULE($.queryExpression);
+    $.CONSUME(TOKENS.RightParenthesis);
+    $.OPTION(() => {
+      $.SUBRULE($.asAlias);
     });
   });
 };
