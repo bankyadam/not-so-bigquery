@@ -4,7 +4,7 @@ const { createToken } = require('chevrotain');
 const Identifier = require('./identifier');
 
 module.exports = createToken({
-  name: 'OperatorLogical',
-  pattern: /AND|OR/i,
+  name: 'OperatorBinary',
+  pattern: /IS NOT|IS|AND|OR|<=|>=|<>|!=|<|=|>/i,
   longer_alt: Identifier
 });

@@ -5,21 +5,21 @@ const TOKENS = require('../../../tokens');
 
 module.exports = ($) => {
   $.RULE('boolExpression', () => {
-    $.SUBRULE($.comparisonExpression);
+    $.OR([
+      { ALT: () => $.SUBRULE($.binaryExpression) },
+      { ALT: () => $.SUBRULE($.unaryExpression) }
+    ]);
   });
 
-  $.RULE('comparisonExpression', () => {
-    $.SUBRULE($.logicalExpression);
-    $.MANY(() => {
-      $.CONSUME(TOKENS.OperatorComparison);
-      $.SUBRULE1($.logicalExpression);
-    });
+  $.RULE('unaryExpression', () => {
+    $.CONSUME(TOKENS.OperatorUnary);
+    $.SUBRULE($.atomicExpression);
   });
 
-  $.RULE('logicalExpression', () => {
+  $.RULE('binaryExpression', () => {
     $.SUBRULE($.atomicExpression);
     $.MANY(() => {
-      $.CONSUME(TOKENS.OperatorLogical);
+      $.CONSUME(TOKENS.OperatorBinary);
       $.SUBRULE1($.atomicExpression);
     });
   });

@@ -1,13 +1,11 @@
 'use strict';
 
-const token = require('../../../../src/lib/query-translator/tokens/operator_logical');
+const token = require('../../../../src/lib/query-translator/tokens/operator_unary');
 
-describe('Logical Operators token', function() {
+describe('Unary Operators token', function() {
   [
-    'AND',
-    'OR',
-    'and',
-    'or'
+    'NOT',
+    'not'
   ].forEach(image => {
     it(`identifies '${image}'`, function() {
       const result = token.PATTERN.exec(image);

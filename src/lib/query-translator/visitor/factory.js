@@ -158,12 +158,16 @@ module.exports = (parser) => {
     }
 
     boolExpression(ctx) {
-      return this.visit(ctx.comparisonExpression);
+      if (ctx.binaryExpression) {
+        return this.visit(ctx.binaryExpression);
+      } else if (ctx.unaryExpression) {
+        return this.visit(ctx.unaryExpression);
+      }
     }
 
-    comparisonExpression(ctx) {
+    binaryExpression(ctx) {
       const expressionParts = [];
-      zip(ctx.logicalExpression, ctx.OperatorComparison)
+      zip(ctx.atomicExpression, ctx.OperatorBinary)
         .forEach(tokenPair => {
           expressionParts.push(this.visit(tokenPair[0]));
           if (tokenPair[1]) {
@@ -173,15 +177,11 @@ module.exports = (parser) => {
       return expressionParts.join(' ');
     }
 
-    logicalExpression(ctx) {
-      const expressionParts = [];
-      zip(ctx.atomicExpression, ctx.OperatorLogical)
-        .forEach(tokenPair => {
-          expressionParts.push(this.visit(tokenPair[0]));
-          if (tokenPair[1]) {
-            expressionParts.push(tokenPair[1].image);
-          }
-        });
+    unaryExpression(ctx) {
+      const expressionParts = [
+        ctx.OperatorUnary[0].image,
+        this.visit(ctx.atomicExpression)
+      ];
       return expressionParts.join(' ');
     }
 

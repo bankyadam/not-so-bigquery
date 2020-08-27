@@ -34,8 +34,8 @@ const lexerDefinition = [
   TOKENS.LeftParenthesis,
   TOKENS.RightParenthesis,
 
-  TOKENS.OperatorComparison,
-  TOKENS.OperatorLogical,
+  TOKENS.OperatorUnary,
+  TOKENS.OperatorBinary,
 
   TOKENS.LiteralConstant,
 

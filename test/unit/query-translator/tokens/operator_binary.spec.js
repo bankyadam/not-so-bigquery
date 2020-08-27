@@ -1,9 +1,17 @@
 'use strict';
 
-const token = require('../../../../src/lib/query-translator/tokens/operator_comparison');
+const token = require('../../../../src/lib/query-translator/tokens/operator_binary');
 
-describe('Comparison Operators token', function() {
+describe('Binary Operators token', function() {
   [
+    'AND',
+    'and',
+    'OR',
+    'or',
+    'IS',
+    'is',
+    'IS NOT',
+    'is not',
     '<=',
     '<',
     '=',
