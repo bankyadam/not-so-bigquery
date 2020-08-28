@@ -49,6 +49,9 @@ module.exports = (parser) => {
       if (ctx.groupByClause) {
         statementParts.push(this.visit(ctx.groupByClause));
       }
+      if (ctx.havingClause) {
+        statementParts.push(this.visit(ctx.havingClause));
+      }
       return statementParts.join(' ');
     }
 
@@ -155,6 +158,11 @@ module.exports = (parser) => {
     groupByClause(ctx) {
       const expressions = ctx.expression.map(token => this.visit(token));
       return `GROUP BY ${expressions.join(', ')}`;
+    }
+
+    havingClause(ctx) {
+      const whereItems = ['HAVING', this.visit(ctx.boolExpression)];
+      return whereItems.join(' ');
     }
 
     withClause(ctx) {

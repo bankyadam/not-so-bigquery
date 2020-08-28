@@ -18,6 +18,7 @@ const lexerDefinition = [
   TOKENS.From,
   TOKENS.Where,
   TOKENS.GroupBy,
+  TOKENS.Having,
   TOKENS.OrderBy,
   TOKENS.OrderByAsc,
   TOKENS.OrderByDesc,

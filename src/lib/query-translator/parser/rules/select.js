@@ -22,13 +22,16 @@ module.exports = ($) => {
     $.OPTION1(() => $.SUBRULE($.selectModifier));
     $.SUBRULE($.selectList);
     $.OPTION2(() => {
-      $.SUBRULE2($.fromClause);
+      $.SUBRULE($.fromClause);
     });
     $.OPTION4(() => {
-      $.SUBRULE4($.whereClause);
+      $.SUBRULE($.whereClause);
     });
     $.OPTION3(() => {
-      $.SUBRULE3($.groupByClause);
+      $.SUBRULE($.groupByClause);
+    });
+    $.OPTION5(() => {
+      $.SUBRULE($.havingClause);
     });
   });
 
@@ -53,4 +56,5 @@ module.exports = ($) => {
   require('./from_clause')($);
   require('./where_clause')($);
   require('./group_by_clause')($);
+  require('./having_clause')($);
 };

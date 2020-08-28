@@ -86,6 +86,7 @@ select:
     [ FROM from_item  [, ...] ]
     [ WHERE bool_expression ]
     [ GROUP BY expression [, ...] ]
+    [ HAVING bool_expression ]
 
 set_op:
     UNION { ALL | DISTINCT } | INTERSECT DISTINCT | EXCEPT DISTINCT
