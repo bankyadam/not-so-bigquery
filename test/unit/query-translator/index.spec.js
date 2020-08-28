@@ -6,8 +6,7 @@ const subject = require('../../../src/lib/query-translator');
 
 describe('Query Translator', function() {
   const _getTestCaseData = function(testName) {
-    // eslint-disable-next-line security/detect-non-literal-require
-    const content = require('./testcases/' + testName + '.txt');
+    const content = fs.readFileSync(__dirname + '/testcases/' + testName + '.txt', 'utf8');
     return /^--INPUT--\n([\s\S]+?)\n--EXPECT--\n([\s\S]*?)$/.exec(content);
   };
 
