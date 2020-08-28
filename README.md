@@ -63,7 +63,39 @@ Models and Routines REST APIs to be implemented are not planned.
 
 Since BigQuery uses its own SQL implementation, there can be and there are functionalities that will not work. To
 achieve most of the features that BigQuery provides, Not-So-BigQuery uses its own query parser to translate to a
-PostgreSQL-compatible query.  
+PostgreSQL-compatible query.
+
+#### Supported BigQuery syntax
+
+Link to the full query statement syntax: https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax
+
+```
+query_statement:
+    query_expr
+
+query_expr:
+    [ WITH with_query_name AS ( query_expr ) [, ...] ]
+    select | ( query_expr )
+    [ ORDER BY expression [{ ASC | DESC }] [, ...] ]
+    [ LIMIT count [ OFFSET skip_rows ] ]
+
+select:
+    SELECT [{ ALL | DISTINCT }]
+        { [ expression. ]*
+        | expression [ [ AS ] alias ] } [, ...]
+    [ FROM from_item  [, ...] ]
+    [ WHERE bool_expression ]
+    [ GROUP BY expression [, ...] ]
+
+set_op:
+    UNION { ALL | DISTINCT } | INTERSECT DISTINCT | EXCEPT DISTINCT
+
+from_item: {
+    table_name [ [ AS ] alias ] [ FOR SYSTEM_TIME AS OF timestamp_expression ]  |
+    ( query_expr ) [ [ AS ] alias ] |
+    with_query_name [ [ AS ] alias ]
+}
+``` 
 
 ## Installation
 
