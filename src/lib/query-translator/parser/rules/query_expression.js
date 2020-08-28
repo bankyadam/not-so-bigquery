@@ -17,13 +17,22 @@ module.exports = ($) => {
     $.OPTION1(() => {
       $.SUBRULE1($.withClause);
     });
-    $.SUBRULE($.select);
+    $.OR([
+      { ALT: () => $.SUBRULE($.select) },
+      { ALT: () => $.SUBRULE($.bracketedQueryExpression) }
+    ]);
     $.OPTION2(() => {
       $.SUBRULE2($.orderByClause);
     });
     $.OPTION3(() => {
       $.SUBRULE3($.limitClause);
     });
+  });
+
+  $.RULE('bracketedQueryExpression', () => {
+    $.CONSUME(TOKENS.LeftParenthesis);
+    $.SUBRULE($.queryExpression);
+    $.CONSUME(TOKENS.RightParenthesis);
   });
 
   require('./with_clause')($);

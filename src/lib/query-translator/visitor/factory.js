@@ -25,6 +25,11 @@ module.exports = (parser) => {
       if (ctx.select) {
         statementParts.push(this.visit(ctx.select));
       }
+
+      if (ctx.bracketedQueryExpression) {
+        statementParts.push(this.visit(ctx.bracketedQueryExpression));
+      }
+
       if (ctx.orderByClause) {
         statementParts.push(this.visit(ctx.orderByClause));
       }
@@ -32,6 +37,11 @@ module.exports = (parser) => {
         statementParts.push(this.visit(ctx.limitClause));
       }
       return statementParts.join(' ');
+    }
+
+    bracketedQueryExpression(ctx) {
+      const parts = ['(', this.visit(ctx.queryExpression), ')'];
+      return parts.join('');
     }
 
     select(ctx) {
