@@ -6,15 +6,15 @@ const TOKENS = require('../../tokens');
 
 /**
  * select:
- *     SELECT [ AS { STRUCT | VALUE } ] [{ ALL | DISTINCT }]
- *         { [ expression. ]* [ EXCEPT ( column_name [, ...] ) ]
- *             [ REPLACE ( expression [ AS ] column_name [, ...] ) ]
+ *     SELECT #> [ AS { STRUCT | VALUE } ] <# [{ ALL | DISTINCT }]
+ *         { [ expression. ]* #> [ EXCEPT ( column_name [, ...] ) ] <#
+ *             #> [ REPLACE ( expression [ AS ] column_name [, ...] ) ] <#
  *         | expression [ [ AS ] alias ] } [, ...]
  *     [ FROM from_item  [, ...] ]
  *     [ WHERE bool_expression ]
- *     [ GROUP BY { expression [, ...] | ROLLUP ( expression [, ...] ) } ]
+ *     [ GROUP BY { expression [, ...] | #> ROLLUP ( expression [, ...] ) <# } ]
  *     [ HAVING bool_expression ]
- *     [ WINDOW named_window_expression AS { named_window | ( [ window_definition ] ) } [, ...] ]
+ *     #> [ WINDOW named_window_expression AS { named_window | ( [ window_definition ] ) } [, ...] ] <#
  */
 module.exports = ($) => {
   $.RULE('select', () => {

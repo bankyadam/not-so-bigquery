@@ -8,7 +8,7 @@ const TOKENS = require('../../tokens');
 /**
  * query_expr:
  *     [ WITH with_query_name AS ( query_expr ) [, ...] ]
- *     { select | ( query_expr ) | query_expr set_op query_expr }
+ *     { select | ( query_expr ) #> | query_expr set_op query_expr <# }
  *     [ ORDER BY expression [{ ASC | DESC }] [, ...] ]
  *     [ LIMIT count [ OFFSET skip_rows ] ]
  */

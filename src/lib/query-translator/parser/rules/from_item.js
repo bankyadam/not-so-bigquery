@@ -7,10 +7,10 @@ const TOKENS = require('../../tokens');
 /**
  * from_item: {
  *     table_name [[AS] alias] [ FOR SYSTEM_TIME AS OF timestamp_expression ]  |
- * !!! join |
+ *     #> join | <#
  *     ( query_expr ) [[AS] alias] |
- * !!! field_path |
- * !!! { UNNEST( array_expression ) | UNNEST( array_path ) | array_path } [[AS] alias] [ WITH OFFSET [[AS] alias] ] |
+ *     #> field_path | <#
+ *     #> { UNNEST(array_expression) | UNNEST(array_path) | array_path } [[AS] alias] [ WITH OFFSET [[AS] alias] ] | <#
  *     with_query_name [[AS] alias]
  * }
  */
