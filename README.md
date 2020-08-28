@@ -88,14 +88,19 @@ select:
     [ GROUP BY expression [, ...] ]
     [ HAVING bool_expression ]
 
-set_op:
-    UNION { ALL | DISTINCT } | INTERSECT DISTINCT | EXCEPT DISTINCT
-
 from_item: {
-    table_name [ [ AS ] alias ] [ FOR SYSTEM_TIME AS OF timestamp_expression ]  |
+    table_name [ [ AS ] alias ]
+    join |
     ( query_expr ) [ [ AS ] alias ] |
     with_query_name [ [ AS ] alias ]
 }
+
+join:
+   from_item [ join_type ] JOIN from_item
+   [ ON bool_expression | USING ( join_column [, ...] ) ]
+
+join_type:
+   { INNER | CROSS | FULL [OUTER] | LEFT [OUTER] | RIGHT [OUTER] }
 ``` 
 
 ## Installation

@@ -1,0 +1,4 @@
+--INPUT--
+SELECT 1 FROM p.d.t1 INNER JOIN p.d.t2;
+--EXPECT--
+SELECT 1 FROM p__d.t1 INNER JOIN p__d.t2

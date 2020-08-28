@@ -88,11 +88,51 @@ module.exports = (parser) => {
     }
 
     fromItem(ctx) {
+      const parts = [];
       if (ctx.tableName) {
-        return this.visit(ctx.tableName);
+        parts.push(this.visit(ctx.tableName));
       } else if (ctx.subQuery) {
-        return this.visit(ctx.subQuery);
+        parts.push(this.visit(ctx.subQuery));
       }
+      if (ctx.join) {
+        ctx.join.forEach(token => {
+          parts.push(this.visit(token));
+        });
+      }
+
+      return parts.join(' ');
+    }
+
+    join(ctx) {
+      const parts = [];
+
+      if (ctx.JoinType) {
+        parts.push(ctx.JoinType[0].image);
+      }
+      parts.push('JOIN');
+      parts.push(this.visit(ctx.fromItem));
+      if (ctx.joinOn) {
+        parts.push(this.visit(ctx.joinOn));
+      } else if (ctx.joinUsing) {
+        parts.push(this.visit(ctx.joinUsing));
+      }
+
+      return parts.join(' ');
+    }
+
+    joinOn(ctx) {
+      const parts = ['ON', this.visit(ctx.boolExpression)];
+      return parts.join(' ');
+    }
+
+    joinUsing(ctx) {
+      const parts = ['USING', '(', this.visit(ctx.joinColumns), ')'];
+      return parts.join(' ');
+    }
+
+    joinColumns(ctx) {
+      const columns = ctx.identifier.map(token => this.visit(token));
+      return columns.join(', ');
     }
 
     tableName(ctx) {

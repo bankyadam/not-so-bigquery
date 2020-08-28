@@ -16,6 +16,10 @@ const lexerDefinition = [
   TOKENS.SelectDistinct,
   TOKENS.SelectAll,
   TOKENS.From,
+  TOKENS.JoinType,
+  TOKENS.Join,
+  TOKENS.On,
+  TOKENS.Using,
   TOKENS.Where,
   TOKENS.GroupBy,
   TOKENS.Having,
@@ -29,6 +33,7 @@ const lexerDefinition = [
   TOKENS.As,
 
   TOKENS.Backtick,
+  TOKENS.Semicolon,
   TOKENS.Asterisk,
   TOKENS.Comma,
   TOKENS.IdentifierQualifier,

@@ -7,7 +7,7 @@ const TOKENS = require('../../tokens');
 /**
  * from_item: {
  *     table_name [[AS] alias] [ FOR SYSTEM_TIME AS OF timestamp_expression ]  |
- *     #> join | <#
+ *     join |
  *     ( query_expr ) [[AS] alias] |
  *     #> field_path | <#
  *     #> { UNNEST(array_expression) | UNNEST(array_path) | array_path } [[AS] alias] [ WITH OFFSET [[AS] alias] ] | <#
@@ -20,6 +20,7 @@ module.exports = ($) => {
       { ALT: () => $.SUBRULE($.tableName) },
       { ALT: () => $.SUBRULE($.subQuery) }
     ]);
+    $.OPTION(() => $.MANY(() => $.SUBRULE($.join)));
   });
 
   $.RULE('tableName', () => {
@@ -52,6 +53,45 @@ module.exports = ($) => {
     $.CONSUME(TOKENS.RightParenthesis);
     $.OPTION(() => {
       $.SUBRULE($.asAlias);
+    });
+  });
+
+  /**
+   * join:
+   *    from_item [ join_type ] JOIN from_item
+   *    [ ON bool_expression | USING ( join_column [, ...] ) ]
+   *
+   * join_type:
+   *    { INNER | CROSS | FULL [OUTER] | LEFT [OUTER] | RIGHT [OUTER] }
+   */
+  $.RULE('join', () => {
+    $.OPTION1(() => $.CONSUME(TOKENS.JoinType));
+    $.CONSUME(TOKENS.Join);
+    $.SUBRULE($.fromItem);
+    $.OPTION2(() => {
+      $.OR([
+        { ALT: () => $.SUBRULE($.joinOn) },
+        { ALT: () => $.SUBRULE($.joinUsing) }
+      ]);
+    });
+  });
+
+  $.RULE('joinOn', () => {
+    $.CONSUME(TOKENS.On);
+    $.SUBRULE($.boolExpression);
+  });
+
+  $.RULE('joinUsing', () => {
+    $.CONSUME(TOKENS.Using);
+    $.CONSUME(TOKENS.LeftParenthesis);
+    $.SUBRULE($.joinColumns);
+    $.CONSUME(TOKENS.RightParenthesis);
+  });
+
+  $.RULE('joinColumns', () => {
+    $.AT_LEAST_ONE_SEP({
+      SEP: TOKENS.Colon,
+      DEF: () => $.SUBRULE($.identifier)
     });
   });
 };

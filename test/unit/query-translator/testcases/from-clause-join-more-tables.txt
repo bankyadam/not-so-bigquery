@@ -1,0 +1,10 @@
+--INPUT--
+SELECT 1
+FROM p.d.t1 a
+         LEFT OUTER JOIN p.d.t2 b ON a.f1 = b.f1
+         INNER JOIN p.d.t3 c ON a.f1 = c.f1;
+--EXPECT--
+SELECT 1
+FROM p__d.t1 AS a
+         LEFT OUTER JOIN p__d.t2 AS b ON a.f1 = b.f1
+         INNER JOIN p__d.t3 AS c ON a.f1 = c.f1
