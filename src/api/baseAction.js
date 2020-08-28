@@ -20,7 +20,7 @@ class BaseAction {
   }
 
   _sendResponseWithStatus(statusCode) {
-    this._res.sendStatus(204);
+    this._res.sendStatus(statusCode);
     this._endResponse();
   }
 
