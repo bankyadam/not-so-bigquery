@@ -1,0 +1,6 @@
+--INPUT--
+SELECT
+  CAST(DATE_TRUNC(DATE(s.event_time, @timezone), DAY))
+--EXPECT--
+SELECT
+  CAST(DATE_TRUNC(DATE(s.event_time, @timezone), DAY))
