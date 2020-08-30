@@ -1,0 +1,8 @@
+--INPUT--
+SELECT
+	field1 IS NULL AS f1,
+	field2 IS NOT NULL AS f2
+--EXPECT--
+SELECT
+	field1 IS NULL AS f1,
+	field2 IS NOT NULL AS f2

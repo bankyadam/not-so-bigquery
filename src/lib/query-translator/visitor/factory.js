@@ -78,7 +78,7 @@ module.exports = (parser) => {
     }
 
     selectExpression(ctx) {
-      const parts = [this.visit(ctx.expression)];
+      const parts = [this.visit(ctx.boolExpression)];
       if (ctx.asAlias) {
         parts.push(this.visit(ctx.asAlias));
       }

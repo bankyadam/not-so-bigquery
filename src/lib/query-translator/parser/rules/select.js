@@ -42,7 +42,7 @@ module.exports = ($) => {
   });
 
   $.RULE('selectExpression', () => {
-    $.SUBRULE($.expression);
+    $.SUBRULE($.boolExpression);
     $.OPTION(() => $.SUBRULE($.asAlias));
   });
 
