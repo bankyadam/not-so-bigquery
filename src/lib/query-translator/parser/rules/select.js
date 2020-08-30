@@ -51,6 +51,7 @@ module.exports = ($) => {
 
   $.RULE('selectExpression', () => {
     $.SUBRULE($.expression);
+    $.OPTION(() => $.SUBRULE($.asAlias));
   });
 
   require('./from_clause')($);

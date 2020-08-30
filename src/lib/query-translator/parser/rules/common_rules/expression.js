@@ -12,7 +12,6 @@ module.exports = ($) => {
       { ALT: () => $.SUBRULE($.identifier) },
       { ALT: () => $.SUBRULE($.namedQueryParameter) }
     ]);
-    $.OPTION(() => $.SUBRULE($.asAlias));
   });
 
   $.RULE('literalValue', () => {

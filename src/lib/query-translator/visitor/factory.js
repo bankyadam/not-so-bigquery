@@ -79,7 +79,11 @@ module.exports = (parser) => {
     }
 
     selectExpression(ctx) {
-      return this.visit(ctx.expression);
+      const parts = [this.visit(ctx.expression)];
+      if (ctx.asAlias) {
+        parts.push(this.visit(ctx.asAlias));
+      }
+      return parts.join(' ');
     }
 
     fromClause(ctx) {
