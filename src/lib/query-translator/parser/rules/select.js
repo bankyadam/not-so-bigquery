@@ -21,18 +21,10 @@ module.exports = ($) => {
     $.CONSUME(TOKENS.Select);
     $.OPTION1(() => $.SUBRULE($.selectModifier));
     $.SUBRULE($.selectList);
-    $.OPTION2(() => {
-      $.SUBRULE($.fromClause);
-    });
-    $.OPTION4(() => {
-      $.SUBRULE($.whereClause);
-    });
-    $.OPTION3(() => {
-      $.SUBRULE($.groupByClause);
-    });
-    $.OPTION5(() => {
-      $.SUBRULE($.havingClause);
-    });
+    $.OPTION2(() => $.SUBRULE($.fromClause));
+    $.OPTION4(() => $.SUBRULE($.whereClause));
+    $.OPTION3(() => $.SUBRULE($.groupByClause));
+    $.OPTION5(() => $.SUBRULE($.havingClause));
   });
 
   $.RULE('selectModifier', () => {

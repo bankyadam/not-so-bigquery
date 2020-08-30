@@ -16,32 +16,31 @@ module.exports = (parser) => {
     }
 
     queryExpression(ctx) {
-      let statementParts = [];
-
+      const parts = [];
       if (ctx.withClause) {
-        statementParts.push(this.visit(ctx.withClause));
+        parts.push(this.visit(ctx.withClause));
       }
-
       if (ctx.select) {
-        statementParts.push(this.visit(ctx.select));
+        parts.push(this.visit(ctx.select));
       }
-
       if (ctx.bracketedQueryExpression) {
-        statementParts.push(this.visit(ctx.bracketedQueryExpression));
+        parts.push(this.visit(ctx.bracketedQueryExpression));
       }
-
       if (ctx.orderByClause) {
-        statementParts.push(this.visit(ctx.orderByClause));
+        parts.push(this.visit(ctx.orderByClause));
       }
       if (ctx.limitClause) {
-        statementParts.push(this.visit(ctx.limitClause));
+        parts.push(this.visit(ctx.limitClause));
       }
-      return statementParts.join(' ');
+      return parts.join(' ');
     }
 
     bracketedQueryExpression(ctx) {
-      const parts = ['(', this.visit(ctx.queryExpression), ')'];
-      return parts.join('');
+      return [
+        '(',
+        this.visit(ctx.queryExpression),
+        ')'
+      ].join('');
     }
 
     select(ctx) {
@@ -103,13 +102,11 @@ module.exports = (parser) => {
           parts.push(this.visit(token));
         });
       }
-
       return parts.join(' ');
     }
 
     join(ctx) {
       const parts = [];
-
       if (ctx.JoinType) {
         parts.push(ctx.JoinType[0].image);
       }
@@ -120,18 +117,23 @@ module.exports = (parser) => {
       } else if (ctx.joinUsing) {
         parts.push(this.visit(ctx.joinUsing));
       }
-
       return parts.join(' ');
     }
 
     joinOn(ctx) {
-      const parts = ['ON', this.visit(ctx.boolExpression)];
-      return parts.join(' ');
+      return [
+        'ON',
+        this.visit(ctx.boolExpression)
+      ].join(' ');
     }
 
     joinUsing(ctx) {
-      const parts = ['USING', '(', this.visit(ctx.joinColumns), ')'];
-      return parts.join(' ');
+      return [
+        'USING',
+        '(',
+        this.visit(ctx.joinColumns),
+        ')'
+      ].join(' ');
     }
 
     joinColumns(ctx) {
@@ -140,12 +142,11 @@ module.exports = (parser) => {
     }
 
     tableName(ctx) {
-      const tableNameParts = [this.visit(ctx.tableIdentifier)];
+      const parts = [this.visit(ctx.tableIdentifier)];
       if (ctx.asAlias) {
-        tableNameParts.push(this.visit(ctx.asAlias));
+        parts.push(this.visit(ctx.asAlias));
       }
-
-      return tableNameParts.join(' ');
+      return parts.join(' ');
     }
 
     tableIdentifier(ctx) {
@@ -167,69 +168,85 @@ module.exports = (parser) => {
       if (ctx.asAlias) {
         parts.push(this.visit(ctx.asAlias));
       }
-
       return parts.join(' ');
     }
 
     whereClause(ctx) {
-      const whereItems = ['WHERE', this.visit(ctx.boolExpression)];
-      return whereItems.join(' ');
+      return [
+        'WHERE',
+        this.visit(ctx.boolExpression)
+      ].join(' ');
     }
 
     orderByClause(ctx) {
       const expressions = ctx.orderByItem.map(token => this.visit(token));
-      return `ORDER BY ${expressions.join(', ')}`;
+      return [
+        'ORDER BY',
+        expressions.join(', ')
+      ].join(' ');
     }
 
     orderByItem(ctx) {
-      let expression = [this.visit(ctx.expression)];
-
+      const parts = [this.visit(ctx.expression)];
       if (ctx.OrderByAsc) {
-        expression.push('ASC');
+        parts.push('ASC');
       } else if (ctx.OrderByDesc) {
-        expression.push('DESC');
+        parts.push('DESC');
       }
-
       if (ctx.OrderByNullsFirst) {
-        expression.push('NULLS FIRST');
+        parts.push('NULLS FIRST');
       } else if (ctx.OrderByNullsLast) {
-        expression.push('NULLS LAST');
+        parts.push('NULLS LAST');
       }
-
-      return expression.join(' ');
+      return parts.join(' ');
     }
 
     limitClause(ctx) {
-      let clause = [ctx.Limit[0].image];
-
+      const parts = [ctx.Limit[0].image];
       if (ctx.Offset) {
-        clause.push(ctx.Offset[0].image);
+        parts.push(ctx.Offset[0].image);
       }
-
-      return clause.join(' ');
+      return parts.join(' ');
     }
 
     groupByClause(ctx) {
       const expressions = ctx.expression.map(token => this.visit(token));
-      return `GROUP BY ${expressions.join(', ')}`;
+      return [
+        'GROUP BY',
+        expressions.join(', ')
+      ].join(' ');
     }
 
     havingClause(ctx) {
-      const whereItems = ['HAVING', this.visit(ctx.boolExpression)];
-      return whereItems.join(' ');
+      return [
+        'HAVING',
+        this.visit(ctx.boolExpression)
+      ].join(' ');
     }
 
     withClause(ctx) {
-      const withItems = ctx.withItem.map(token => this.visit(token));
-      return `WITH ${withItems.join(', ')}`;
+      const parts = ctx.withItem.map(token => this.visit(token));
+      return [
+        'WITH',
+        parts.join(', ')
+      ].join(' ');
     }
 
     withItem(ctx) {
-      return `${ctx.with_query_name[0].image} AS (${this.visit(ctx.queryExpression)})`;
+      return [
+        ctx.with_query_name[0].image,
+        'AS',
+        '(',
+        this.visit(ctx.queryExpression),
+        ')'
+      ].join(' ');
     }
 
     asAlias(ctx) {
-      return `AS ${ctx.alias[0].image}`;
+      return [
+        'AS',
+        ctx.alias[0].image
+      ].join(' ');
     }
 
     boolExpression(ctx) {
@@ -253,11 +270,10 @@ module.exports = (parser) => {
     }
 
     unaryExpression(ctx) {
-      const expressionParts = [
+      return [
         ctx.OperatorUnary[0].image,
         this.visit(ctx.atomicExpression)
-      ];
-      return expressionParts.join(' ');
+      ].join(' ');
     }
 
     atomicExpression(ctx) {
@@ -269,34 +285,25 @@ module.exports = (parser) => {
     }
 
     parenthesisExpression(ctx) {
-      const expressionParts = [
+      return [
         '(',
         this.visit(ctx.boolExpression),
         ')'
-      ];
-      return expressionParts.join('');
+      ].join('');
     }
 
     expression(ctx) {
-      const literalParts = [];
-
       if (ctx.literalValue) {
-        literalParts.push(this.visit(ctx.literalValue));
+        return this.visit(ctx.literalValue);
       } else if (ctx.Asterisk) {
-        literalParts.push('*');
+        return '*';
       } else if (ctx.function) {
-        literalParts.push(this.visit(ctx.function));
+        return this.visit(ctx.function);
       } else if (ctx.identifier) {
-        literalParts.push(this.visit(ctx.identifier));
+        return this.visit(ctx.identifier);
       } else if (ctx.namedQueryParameter) {
-        literalParts.push(this.visit(ctx.namedQueryParameter));
+        return this.visit(ctx.namedQueryParameter);
       }
-
-      if (ctx.asAlias) {
-        literalParts.push(this.visit(ctx.asAlias));
-      }
-
-      return literalParts.join(' ');
     }
 
     literalValue(ctx) {
@@ -313,18 +320,20 @@ module.exports = (parser) => {
       return ctx.Identifier.map(token => token.image).join('.');
     }
 
-    function(ctx) {
-      const expressionParts = [
+    ['function'](ctx) {
+      return [
         ctx.functionName[0].image,
         '(',
         ctx.expression.map(token => this.visit(token)).join(', '),
         ')'
-      ];
-      return expressionParts.join('');
+      ].join('');
     }
 
     namedQueryParameter(ctx) {
-      return `@${ctx.Identifier[0].image}`;
+      return [
+        '@',
+        ctx.Identifier[0].image
+      ].join('');
     }
   }
 
