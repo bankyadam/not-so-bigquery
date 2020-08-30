@@ -90,7 +90,7 @@ module.exports = ($) => {
 
   $.RULE('joinColumns', () => {
     $.AT_LEAST_ONE_SEP({
-      SEP: TOKENS.Colon,
+      SEP: TOKENS.Comma,
       DEF: () => $.SUBRULE($.identifier)
     });
   });
