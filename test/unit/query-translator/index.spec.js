@@ -13,12 +13,16 @@ describe('Query Translator', function() {
   const composeTestCase = function(testName) {
     const result = _getTestCaseData(testName);
     it(testName, function() {
-      expect(subject(result[1], 'defaultProject')).to.be.equalIgnoreSpaces(result[2]);
+      expect(subject(result[1], 'defaultProject').toLowerCase())
+        .to.be.equalIgnoreSpaces(result[2].toLowerCase());
     });
   };
 
   fs.readdirSync(__dirname + '/testcases')
     .map(filePath => {
+      if (path.extname(filePath) !== '.txt') {
+        return;
+      }
       const basename = path.basename(filePath, '.txt');
       composeTestCase(basename);
     });
