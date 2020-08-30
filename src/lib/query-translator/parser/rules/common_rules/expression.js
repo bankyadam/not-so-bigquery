@@ -10,6 +10,7 @@ module.exports = ($) => {
       { ALT: () => $.CONSUME(TOKENS.Asterisk) },
       { ALT: () => $.SUBRULE($.function) },
       { ALT: () => $.SUBRULE($.identifier) },
+      { ALT: () => $.SUBRULE($.cast) },
       { ALT: () => $.SUBRULE($.namedQueryParameter) }
     ]);
   });
@@ -46,5 +47,14 @@ module.exports = ($) => {
   $.RULE('namedQueryParameter', () => {
     $.CONSUME(TOKENS.AtCharacter);
     $.CONSUME(TOKENS.Identifier);
+  });
+
+  $.RULE('cast', () => {
+    $.CONSUME(TOKENS.Cast);
+    $.CONSUME(TOKENS.LeftParenthesis);
+    $.SUBRULE($.expression);
+    $.CONSUME(TOKENS.As);
+    $.CONSUME(TOKENS.Identifier);
+    $.CONSUME(TOKENS.RightParenthesis);
   });
 };

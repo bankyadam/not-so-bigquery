@@ -1,0 +1,4 @@
+--INPUT--
+SELECT CAST(field AS STRING) AS field
+--EXPECT--
+SELECT CAST(field AS STRING) AS field

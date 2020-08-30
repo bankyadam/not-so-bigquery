@@ -43,6 +43,7 @@ const lexerDefinition = [
 
   TOKENS.OperatorUnary,
   TOKENS.OperatorBinary,
+  TOKENS.Cast,
 
   TOKENS.LiteralConstant,
 

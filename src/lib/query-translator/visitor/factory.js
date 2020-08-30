@@ -303,6 +303,8 @@ module.exports = (parser) => {
         return this.visit(ctx.identifier);
       } else if (ctx.namedQueryParameter) {
         return this.visit(ctx.namedQueryParameter);
+      } else if (ctx.cast) {
+        return this.visit(ctx.cast);
       }
     }
 
@@ -334,6 +336,17 @@ module.exports = (parser) => {
         '@',
         ctx.Identifier[0].image
       ].join('');
+    }
+
+    cast(ctx) {
+      return [
+        'CAST',
+        '(',
+        this.visit(ctx.expression[0]),
+        'AS',
+        ctx.Identifier[0].image,
+        ')'
+      ].join(' ');
     }
   }
 

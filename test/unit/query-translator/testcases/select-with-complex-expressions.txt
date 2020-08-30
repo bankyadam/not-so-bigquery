@@ -1,12 +1,12 @@
 --INPUT--
 SELECT
-  COALESCE(s.treatments.rti.id, CAST(program_id)),
-  CAST(DATE_TRUNC(DATE(s.event_time, timezone), DAY)),
+  COALESCE(s.t.r.id, CAST(pid AS string)),
+  CAST(DATE_TRUNC(DATE(s.event_time, timezone), DAY) AS DATE),
   COUNT(1)
 FROM `p.d.t` s
 --EXPECT--
 SELECT
-	COALESCE(s.treatments.rti.id, CAST(program_id)),
-	CAST(DATE_TRUNC(DATE(s.event_time, timezone), DAY)),
+	COALESCE(s.t.r.id, CAST(pid AS string)),
+	CAST(DATE_TRUNC(DATE(s.event_time, timezone), DAY) AS DATE),
 	COUNT(1)
 FROM p__d.t AS s
