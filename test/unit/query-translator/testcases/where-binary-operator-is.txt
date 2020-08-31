@@ -1,0 +1,10 @@
+--INPUT--
+SELECT 1 WHERE
+	field1 IS NULL
+	AND
+	field2 IS NOT NULL
+--EXPECT--
+SELECT 1 WHERE
+	field1 IS NULL
+	AND
+	field2 IS NOT NULL

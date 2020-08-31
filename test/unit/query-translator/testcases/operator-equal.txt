@@ -1,4 +1,0 @@
---INPUT--
-SELECT 1 WHERE field = 1
---EXPECT--
-SELECT 1 WHERE field = 1

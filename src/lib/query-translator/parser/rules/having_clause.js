@@ -12,6 +12,6 @@ const TOKENS = require('../../tokens');
 module.exports = ($) => {
   $.RULE('havingClause', () => {
     $.CONSUME(TOKENS.Having);
-    $.SUBRULE($.boolExpression);
+    $.SUBRULE($.expression);
   });
 };

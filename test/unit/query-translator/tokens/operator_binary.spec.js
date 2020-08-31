@@ -4,8 +4,6 @@ const token = require('../../../../src/lib/query-translator/tokens/operator_bina
 
 describe('Binary Operators token', function() {
   [
-    'AND',
-    'and',
     'OR',
     'or',
     'IS',

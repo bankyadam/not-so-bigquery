@@ -1,6 +1,6 @@
 --INPUT--
 SELECT 1 WHERE
-	(f1)
+	field = 1
 --EXPECT--
 SELECT 1 WHERE
-	(f1)
+	field = 1

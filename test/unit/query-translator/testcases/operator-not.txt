@@ -1,4 +1,0 @@
---INPUT--
-SELECT 1 WHERE NOT field
---EXPECT--
-SELECT 1 WHERE NOT field

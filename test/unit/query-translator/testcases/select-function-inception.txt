@@ -1,6 +1,6 @@
 --INPUT--
 SELECT
-  CAST(DATE_TRUNC(DATE(s.datetime_field, @timezone), DAY) AS DATE)
+  CAST(DATE_TRUNC(DATE(f1, @timezone), DAY) as STRING) as date
 --EXPECT--
 SELECT
-  CAST(DATE_TRUNC(DATE(s.datetime_field, @timezone), DAY) AS DATE)
+  CAST(DATE_TRUNC(DATE(f1, @timezone), DAY) as STRING) as date

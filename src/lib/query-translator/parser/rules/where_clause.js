@@ -12,6 +12,6 @@ const TOKENS = require('../../tokens');
 module.exports = ($) => {
   $.RULE('whereClause', () => {
     $.CONSUME(TOKENS.Where);
-    $.SUBRULE($.boolExpression);
+    $.SUBRULE($.expression);
   });
 };

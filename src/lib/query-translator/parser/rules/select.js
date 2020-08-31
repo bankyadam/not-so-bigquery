@@ -37,13 +37,20 @@ module.exports = ($) => {
   $.RULE('selectList', () => {
     $.AT_LEAST_ONE_SEP({
       SEP: TOKENS.Comma,
-      DEF: () => $.SUBRULE($.selectExpression)
+      DEF: () => $.SUBRULE($.resultColumn)
     });
   });
 
-  $.RULE('selectExpression', () => {
-    $.SUBRULE($.boolExpression);
-    $.OPTION(() => $.SUBRULE($.asAlias));
+  $.RULE('resultColumn', () => {
+    $.OR([
+      {
+        ALT: () => {
+          $.SUBRULE($.expression);
+          $.OPTION(() => $.SUBRULE($.asAlias));
+        }
+      },
+      { ALT: () => $.CONSUME1(TOKENS.Asterisk) }
+    ]);
   });
 
   require('./from_clause')($);

@@ -1,4 +1,6 @@
 --INPUT--
-SELECT 1 WHERE (1 AND f2 = 1) OR f3 = 1 AND (a = 1 OR (b = 2 AND c = 1))
+SELECT 1 WHERE
+	(f1 AND f2) OR f3 AND (f4 OR (f5 AND f6))
 --EXPECT--
-SELECT 1 WHERE (1 AND f2 = 1) OR f3 = 1 AND (a = 1 OR (b = 2 AND c = 1))
+SELECT 1 WHERE
+	(f1 AND f2) OR f3 AND (f4 OR (f5 AND f6))

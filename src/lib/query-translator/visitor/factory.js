@@ -73,14 +73,19 @@ module.exports = (parser) => {
     }
 
     selectList(ctx) {
-      const expressions = ctx.selectExpression.map(token => this.visit(token));
+      const expressions = ctx.resultColumn.map(token => this.visit(token));
       return expressions.join(', ');
     }
 
-    selectExpression(ctx) {
-      const parts = [this.visit(ctx.boolExpression)];
-      if (ctx.asAlias) {
-        parts.push(this.visit(ctx.asAlias));
+    resultColumn(ctx) {
+      const parts = [];
+      if (ctx.expression) {
+        parts.push(this.visit(ctx.expression));
+        if (ctx.asAlias) {
+          parts.push(this.visit(ctx.asAlias));
+        }
+      } else if (ctx.Asterisk) {
+        parts.push('*');
       }
       return parts.join(' ');
     }
@@ -123,7 +128,7 @@ module.exports = (parser) => {
     joinOn(ctx) {
       return [
         'ON',
-        this.visit(ctx.boolExpression)
+        this.visit(ctx.expression)
       ].join(' ');
     }
 
@@ -174,7 +179,7 @@ module.exports = (parser) => {
     whereClause(ctx) {
       return [
         'WHERE',
-        this.visit(ctx.boolExpression)
+        this.visit(ctx.expression)
       ].join(' ');
     }
 
@@ -220,7 +225,7 @@ module.exports = (parser) => {
     havingClause(ctx) {
       return [
         'HAVING',
-        this.visit(ctx.boolExpression)
+        this.visit(ctx.expression)
       ].join(' ');
     }
 
@@ -249,62 +254,33 @@ module.exports = (parser) => {
       ].join(' ');
     }
 
-    boolExpression(ctx) {
-      if (ctx.binaryExpression) {
-        return this.visit(ctx.binaryExpression);
-      } else if (ctx.unaryExpression) {
-        return this.visit(ctx.unaryExpression);
+    expression(ctx) {
+      const parts = [this.visit(ctx.atomicExpression)];
+
+      if (ctx.binaryOperatorExpression) {
+        parts.push(this.visit(ctx.binaryOperatorExpression));
       }
-    }
 
-    binaryExpression(ctx) {
-      const expressionParts = [];
-      zip(ctx.atomicExpression, ctx.OperatorBinary)
-        .forEach(tokenPair => {
-          expressionParts.push(this.visit(tokenPair[0]));
-          if (tokenPair[1]) {
-            expressionParts.push(tokenPair[1].image);
-          }
-        });
-      return expressionParts.join(' ');
-    }
-
-    unaryExpression(ctx) {
-      return [
-        ctx.OperatorUnary[0].image,
-        this.visit(ctx.atomicExpression)
-      ].join(' ');
+      return parts.join(' ');
     }
 
     atomicExpression(ctx) {
-      if (ctx.parenthesisExpression) {
-        return this.visit(ctx.parenthesisExpression);
-      } else if (ctx.expression) {
-        return this.visit(ctx.expression);
-      }
-    }
-
-    parenthesisExpression(ctx) {
-      return [
-        '(',
-        this.visit(ctx.boolExpression),
-        ')'
-      ].join('');
-    }
-
-    expression(ctx) {
       if (ctx.literalValue) {
         return this.visit(ctx.literalValue);
-      } else if (ctx.Asterisk) {
-        return '*';
       } else if (ctx.function) {
         return this.visit(ctx.function);
       } else if (ctx.identifier) {
         return this.visit(ctx.identifier);
-      } else if (ctx.namedQueryParameter) {
-        return this.visit(ctx.namedQueryParameter);
+      } else if (ctx.unaryOperatorExpression) {
+        return this.visit(ctx.unaryOperatorExpression);
+      } else if (ctx.parenthesisExpression) {
+        return this.visit(ctx.parenthesisExpression);
       } else if (ctx.cast) {
         return this.visit(ctx.cast);
+      } else if (ctx.namedQueryParameter) {
+        return this.visit(ctx.namedQueryParameter);
+      } else if (ctx.queryExpression) {
+        return ['(', this.visit(ctx.queryExpression), ')'].join('');
       }
     }
 
@@ -323,10 +299,18 @@ module.exports = (parser) => {
     }
 
     ['function'](ctx) {
+      let expressions = '';
+
+      if (ctx.expression) {
+        expressions = ctx.expression.map(token => this.visit(token)).join(', ');
+      } else if (ctx.Asterisk) {
+        expressions = '*';
+      }
+
       return [
         ctx.functionName[0].image,
         '(',
-        ctx.expression.map(token => this.visit(token)).join(', '),
+        expressions,
         ')'
       ].join('');
     }
@@ -335,6 +319,21 @@ module.exports = (parser) => {
       return [
         '@',
         ctx.Identifier[0].image
+      ].join('');
+    }
+
+    unaryOperatorExpression(ctx) {
+      return [
+        'NOT',
+        this.visit(ctx.expression)
+      ].join(' ');
+    }
+
+    parenthesisExpression(ctx) {
+      return [
+        '(',
+        ctx.expression.map(token => this.visit(token)).join(', '),
+        ')'
       ].join('');
     }
 
@@ -347,6 +346,21 @@ module.exports = (parser) => {
         ctx.Identifier[0].image,
         ')'
       ].join(' ');
+    }
+
+    binaryOperatorExpression(ctx) {
+      return [
+        this.visit(ctx.binaryOperator),
+        this.visit(ctx.rhs)
+      ].join(' ');
+    }
+
+    binaryOperator(ctx) {
+      if (ctx.OperatorBinary) {
+        return ctx.OperatorBinary[0].image;
+      } else if (ctx.And) {
+        return 'AND';
+      }
     }
   }
 

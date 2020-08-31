@@ -5,14 +5,56 @@ const TOKENS = require('../../../tokens');
 
 module.exports = ($) => {
   $.RULE('expression', () => {
+    $.SUBRULE($.atomicExpression);
+    $.OPTION2(() => $.SUBRULE($.binaryOperatorExpression));
+  });
+
+  $.RULE('atomicExpression', () => {
+    $.OR({
+      IGNORE_AMBIGUITIES: true,
+      DEF: [
+        { ALT: () => $.SUBRULE($.function) },
+        { ALT: () => $.SUBRULE($.identifier) },
+        { ALT: () => $.SUBRULE($.unaryOperatorExpression) },
+        { ALT: () => $.SUBRULE($.parenthesisExpression) },
+        { ALT: () => $.SUBRULE($.cast) },
+        { ALT: () => $.SUBRULE($.namedQueryParameter) },
+        { ALT: () => $.SUBRULE($.literalValue) },
+        {
+          ALT: () => {
+            $.CONSUME2(TOKENS.LeftParenthesis);
+            $.SUBRULE2($.queryExpression);
+            $.CONSUME2(TOKENS.RightParenthesis);
+          }
+        }
+      ]
+    });
+  });
+
+  $.RULE('unaryOperatorExpression', () => {
+    $.CONSUME(TOKENS.Not);
+    $.SUBRULE($.expression);
+  });
+
+  $.RULE('binaryOperatorExpression', () => {
+    $.SUBRULE($.binaryOperator);
+    $.SUBRULE2($.expression, { LABEL: 'rhs' });
+  });
+
+  $.RULE('binaryOperator', () => {
     $.OR([
-      { ALT: () => $.SUBRULE($.literalValue) },
-      { ALT: () => $.CONSUME(TOKENS.Asterisk) },
-      { ALT: () => $.SUBRULE($.function) },
-      { ALT: () => $.SUBRULE($.identifier) },
-      { ALT: () => $.SUBRULE($.cast) },
-      { ALT: () => $.SUBRULE($.namedQueryParameter) }
+      { ALT: () => $.CONSUME(TOKENS.OperatorBinary) },
+      { ALT: () => $.CONSUME(TOKENS.And) }
     ]);
+  });
+
+  $.RULE('parenthesisExpression', () => {
+    $.CONSUME(TOKENS.LeftParenthesis);
+    $.AT_LEAST_ONE_SEP({
+      SEP: TOKENS.Comma,
+      DEF: () => $.SUBRULE($.expression)
+    });
+    $.CONSUME(TOKENS.RightParenthesis);
   });
 
   $.RULE('literalValue', () => {
@@ -26,9 +68,17 @@ module.exports = ($) => {
   $.RULE('function', () => {
     $.CONSUME(TOKENS.Identifier, { LABEL: 'functionName' });
     $.CONSUME(TOKENS.LeftParenthesis);
-    $.AT_LEAST_ONE_SEP({
-      SEP: TOKENS.Comma,
-      DEF: () => $.SUBRULE($.expression)
+    $.OPTION(() => {
+      $.OR([
+        {
+          ALT: () =>
+            $.AT_LEAST_ONE_SEP({
+              SEP: TOKENS.Comma,
+              DEF: () => $.SUBRULE($.expression)
+            })
+        },
+        { ALT: () => $.CONSUME(TOKENS.Asterisk) }
+      ]);
     });
     $.CONSUME(TOKENS.RightParenthesis);
   });

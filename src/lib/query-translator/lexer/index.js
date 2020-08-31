@@ -41,9 +41,10 @@ const lexerDefinition = [
   TOKENS.LeftParenthesis,
   TOKENS.RightParenthesis,
 
-  TOKENS.OperatorUnary,
   TOKENS.OperatorBinary,
   TOKENS.Cast,
+  TOKENS.Not,
+  TOKENS.And,
 
   TOKENS.LiteralConstant,
 

@@ -78,7 +78,7 @@ module.exports = ($) => {
 
   $.RULE('joinOn', () => {
     $.CONSUME(TOKENS.On);
-    $.SUBRULE($.boolExpression);
+    $.SUBRULE($.expression);
   });
 
   $.RULE('joinUsing', () => {

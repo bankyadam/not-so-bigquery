@@ -1,0 +1,6 @@
+--INPUT--
+SELECT
+  COUNT(*)
+--EXPECT--
+SELECT
+  COUNT(*)

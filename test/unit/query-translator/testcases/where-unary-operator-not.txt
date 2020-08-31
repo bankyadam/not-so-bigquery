@@ -1,6 +1,6 @@
 --INPUT--
 SELECT 1 WHERE
-	(f1)
+	NOT field
 --EXPECT--
 SELECT 1 WHERE
-	(f1)
+	NOT field
