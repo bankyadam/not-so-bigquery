@@ -6,6 +6,7 @@ const TOKENS = require('../../../tokens');
 module.exports = ($) => {
   $.RULE('expression', () => {
     $.SUBRULE($.atomicExpression);
+    $.OPTION1(() => $.SUBRULE($.betweenExpression));
     $.OPTION2(() => $.SUBRULE($.binaryOperatorExpression));
   });
 
@@ -106,5 +107,13 @@ module.exports = ($) => {
     $.CONSUME(TOKENS.As);
     $.CONSUME(TOKENS.Identifier);
     $.CONSUME(TOKENS.RightParenthesis);
+  });
+
+  $.RULE('betweenExpression', () => {
+    $.OPTION(() => $.CONSUME(TOKENS.Not));
+    $.CONSUME(TOKENS.Between);
+    $.SUBRULE2($.atomicExpression, { LABEL: 'rhs_min' });
+    $.CONSUME(TOKENS.And);
+    $.SUBRULE3($.atomicExpression, { LABEL: 'rhs_max' });
   });
 };

@@ -76,6 +76,9 @@ describe('Query Translator', function() {
   it('select-with-named-query-parameter', runExpectation(require('./testcases/select-with-named-query-parameter.txt')));
   it('select-with-qualified-identifiers', runExpectation(require('./testcases/select-with-qualified-identifiers.txt')));
   it('where-binary-operator-and', runExpectation(require('./testcases/where-binary-operator-and.txt')));
+  it('where-binary-operator-between-expressions', runExpectation(require('./testcases/where-binary-operator-between-expressions.txt')));
+  it('where-binary-operator-between-simple', runExpectation(require('./testcases/where-binary-operator-between-simple.txt')));
+  it('where-binary-operator-between-single', runExpectation(require('./testcases/where-binary-operator-between-single.txt')));
   it('where-binary-operator-equal', runExpectation(require('./testcases/where-binary-operator-equal.txt')));
   it('where-binary-operator-is', runExpectation(require('./testcases/where-binary-operator-is.txt')));
   it('where-binary-operator-or', runExpectation(require('./testcases/where-binary-operator-or.txt')));

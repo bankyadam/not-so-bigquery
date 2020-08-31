@@ -43,6 +43,7 @@ const lexerDefinition = [
 
   TOKENS.OperatorBinary,
   TOKENS.Cast,
+  TOKENS.Between,
   TOKENS.Not,
   TOKENS.And,
 

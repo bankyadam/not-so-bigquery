@@ -257,6 +257,10 @@ module.exports = (parser) => {
     expression(ctx) {
       const parts = [this.visit(ctx.atomicExpression)];
 
+      if (ctx.betweenExpression) {
+        parts.push(this.visit(ctx.betweenExpression));
+      }
+
       if (ctx.binaryOperatorExpression) {
         parts.push(this.visit(ctx.binaryOperatorExpression));
       }
@@ -353,6 +357,19 @@ module.exports = (parser) => {
         this.visit(ctx.binaryOperator),
         this.visit(ctx.rhs)
       ].join(' ');
+    }
+
+    betweenExpression(ctx) {
+      const parts = [
+        'BETWEEN',
+        this.visit(ctx.rhs_min),
+        'AND',
+        this.visit(ctx.rhs_max)
+      ];
+      if (ctx.Not) {
+        parts.unshift('NOT');
+      }
+      return parts.join(' ');
     }
 
     binaryOperator(ctx) {
