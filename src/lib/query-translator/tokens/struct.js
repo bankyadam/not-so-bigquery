@@ -5,8 +5,8 @@ const Identifier = require('./identifier');
 const AnyWord = require('./anyword');
 
 module.exports = createToken({
-  name: 'Offset',
-  pattern: /OFFSET (0|[1-9]\d*)/i,
+  name: 'Struct',
+  pattern: /STRUCT/i,
   longer_alt: Identifier,
   categories: [AnyWord]
 });

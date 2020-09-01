@@ -14,11 +14,12 @@ module.exports = ($) => {
     $.OR({
       IGNORE_AMBIGUITIES: true,
       DEF: [
-        { ALT: () => $.SUBRULE($.function) },
-        { ALT: () => $.SUBRULE($.identifier) },
         { ALT: () => $.SUBRULE($.unaryOperatorExpression) },
         { ALT: () => $.SUBRULE($.parenthesisExpression) },
+        { ALT: () => $.SUBRULE($.typelessStruct) },
         { ALT: () => $.SUBRULE($.cast) },
+        { ALT: () => $.SUBRULE($.function) },
+        { ALT: () => $.SUBRULE($.identifier) },
         { ALT: () => $.SUBRULE($.namedQueryParameter) },
         { ALT: () => $.SUBRULE($.literalValue) },
         {
@@ -87,7 +88,7 @@ module.exports = ($) => {
   $.RULE('identifier', () => {
     $.AT_LEAST_ONE_SEP({
       SEP: TOKENS.IdentifierQualifier,
-      DEF: () => $.CONSUME(TOKENS.Identifier)
+      DEF: () => $.CONSUME(TOKENS.AnyWord)
     });
     $.OPTION(() => {
       $.CONSUME(TOKENS.IdentifierQualifier);
@@ -97,7 +98,7 @@ module.exports = ($) => {
 
   $.RULE('namedQueryParameter', () => {
     $.CONSUME(TOKENS.AtCharacter);
-    $.CONSUME(TOKENS.Identifier);
+    $.CONSUME(TOKENS.AnyWord);
   });
 
   $.RULE('cast', () => {
@@ -115,5 +116,20 @@ module.exports = ($) => {
     $.SUBRULE2($.atomicExpression, { LABEL: 'rhs_min' });
     $.CONSUME(TOKENS.And);
     $.SUBRULE3($.atomicExpression, { LABEL: 'rhs_max' });
+  });
+
+  $.RULE('typelessStruct', () => {
+    $.CONSUME(TOKENS.Struct);
+    $.CONSUME(TOKENS.LeftParenthesis);
+    $.MANY_SEP({
+      SEP: TOKENS.Comma,
+      DEF: () => $.SUBRULE($.structItem)
+    });
+    $.CONSUME(TOKENS.RightParenthesis);
+  });
+
+  $.RULE('structItem', () => {
+    $.SUBRULE($.atomicExpression);
+    $.OPTION(() => $.SUBRULE($.asAlias));
   });
 };

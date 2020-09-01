@@ -1,0 +1,162 @@
+--INPUT--
+WITH
+sent as (WITH
+campaigns AS (SELECT DISTINCT campaign_id, program_id
+FROM `ems-strategic-dashboard-test.email_campaigns_with_type_raw.campaigns_with_type_123456789`
+WHERE program_id != 0)
+
+SELECT
+  COALESCE(s.treatments.rti.id, CAST(program_id AS STRING)) as program_id,
+  IF(s.treatments.rti.id is null, 'ac', 'rti') as type,
+  CAST(DATE_TRUNC(DATE(s.event_time, @timezone), DAY) as STRING) as date,
+  COUNT(1) as sent
+FROM `ems-strategic-dashboard-test.email_sends.sends_123456789` s
+FULL OUTER JOIN campaigns USING(campaign_id)
+WHERE DATE(s.event_time, @timezone) BETWEEN DATE(@from) AND DATE(@to)
+  AND (s._PARTITIONTIME > TIMESTAMP(@from) OR s._PARTITIONTIME IS NULL)
+  AND (s.treatments.rti.id is not null OR program_id is not null)
+GROUP BY program_id, type, date),
+opens as (WITH
+campaigns AS (SELECT DISTINCT campaign_id, program_id
+FROM `ems-strategic-dashboard-test.email_campaigns_with_type_raw.campaigns_with_type_123456789`
+WHERE program_id != 0)
+
+SELECT
+  COALESCE(o.send.treatments.rti.id, CAST(program_id AS STRING)) as program_id,
+  IF(o.send.treatments.rti.id is null, 'ac', 'rti') as type,
+  CAST(DATE_TRUNC(DATE(o.event_time, @timezone), DAY) as STRING) as date,
+  COUNT(1) as opens
+FROM `ems-strategic-dashboard-test.email_opens_enhanced.opens_123456789` o
+FULL OUTER JOIN campaigns USING(campaign_id)
+WHERE DATE(o.event_time, @timezone) BETWEEN DATE(@from) AND DATE(@to)
+  AND (o._PARTITIONTIME > TIMESTAMP(@from) OR o._PARTITIONTIME IS NULL)
+  AND (o.send.treatments.rti.id is not null OR program_id is not null)
+GROUP BY program_id, type, date),
+clicks as (WITH
+campaigns AS (SELECT DISTINCT campaign_id, program_id
+FROM `ems-strategic-dashboard-test.email_campaigns_with_type_raw.campaigns_with_type_123456789`
+WHERE program_id != 0)
+
+SELECT
+  COALESCE(c.send.treatments.rti.id, CAST(program_id AS STRING)) as program_id,
+  IF(c.send.treatments.rti.id is null, 'ac', 'rti') as type,
+  CAST(DATE_TRUNC(DATE(c.event_time, @timezone), DAY) as STRING) as date,
+  COUNT(1) as clicks
+FROM `ems-strategic-dashboard-test.email_clicks_enhanced.clicks_123456789` c
+FULL OUTER JOIN campaigns USING(campaign_id)
+WHERE DATE(c.event_time, @timezone) BETWEEN DATE(@from) AND DATE(@to)
+  AND (c._PARTITIONTIME > TIMESTAMP(@from) OR c._PARTITIONTIME IS NULL)
+  AND (c.send.treatments.rti.id is not null OR program_id is not null)
+GROUP BY program_id, type, date),
+purchases as (WITH
+campaigns AS (SELECT DISTINCT campaign_id, program_id
+FROM `ems-strategic-dashboard-test.email_campaigns_with_type_raw.campaigns_with_type_123456789`
+WHERE program_id != 0)
+
+SELECT
+  COALESCE(t.rti.id, CAST(program_id AS STRING)) as program_id,
+  IF(t.rti.id is null, 'ac', 'rti') as type,
+  CAST(DATE_TRUNC(DATE(p.event_time, @timezone), DAY) as STRING) as date,
+  COUNT(1) as purchases,
+  SUM(t.attributed_amount) as revenue
+FROM `ems-attribution-test.attributed_purchases.attributed_purchases_123456789` p
+CROSS JOIN p.treatments t
+FULL OUTER JOIN campaigns USING(campaign_id)
+WHERE DATE(p.event_time, @timezone) BETWEEN DATE(@from) AND DATE(@to)
+  AND (p._PARTITIONTIME > TIMESTAMP(@from) OR p._PARTITIONTIME IS NULL)
+  AND (t.rti.id is not null OR program_id is not null)
+GROUP BY program_id, type, date)
+
+SELECT program_id, type, date, STRUCT(
+  SUM(sent) as sent,
+  SUM(o.opens) as opens,
+  SUM(c.clicks) as clicks,
+  SUM(p.purchases) as purchases,
+  SUM(p.revenue) as revenue
+) as email FROM sent s
+FULL OUTER JOIN opens o USING (program_id, type, date)
+FULL OUTER JOIN clicks c USING (program_id, type, date)
+FULL OUTER JOIN purchases p USING (program_id, type, date)
+WHERE STRUCT(program_id as id, type as type) IN UNNEST (@programs)
+GROUP BY program_id, type, date
+--EXPECT--
+WITH
+sent as (WITH
+campaigns AS (SELECT DISTINCT campaign_id, program_id
+FROM ems-strategic-dashboard-test__email_campaigns_with_type_raw.campaigns_with_type_123456789
+WHERE program_id != 0)
+
+SELECT
+  COALESCE(s.treatments.rti.id, CAST(program_id AS STRING)) as program_id,
+  IF(s.treatments.rti.id is null, 'ac', 'rti') as type,
+  CAST(DATE_TRUNC(DATE(s.event_time, @timezone), DAY) as STRING) as date,
+  COUNT(1) as sent
+FROM ems-strategic-dashboard-test__email_sends.sends_123456789 AS s
+FULL OUTER JOIN campaigns USING(campaign_id)
+WHERE DATE(s.event_time, @timezone) BETWEEN DATE(@from) AND DATE(@to)
+  AND (s._PARTITIONTIME > TIMESTAMP(@from) OR s._PARTITIONTIME IS NULL)
+  AND (s.treatments.rti.id is not null OR program_id is not null)
+GROUP BY program_id, type, date),
+opens as (WITH
+campaigns AS (SELECT DISTINCT campaign_id, program_id
+FROM ems-strategic-dashboard-test__email_campaigns_with_type_raw.campaigns_with_type_123456789
+WHERE program_id != 0)
+
+SELECT
+  COALESCE(o.send.treatments.rti.id, CAST(program_id AS STRING)) as program_id,
+  IF(o.send.treatments.rti.id is null, 'ac', 'rti') as type,
+  CAST(DATE_TRUNC(DATE(o.event_time, @timezone), DAY) as STRING) as date,
+  COUNT(1) as opens
+FROM ems-strategic-dashboard-test__email_opens_enhanced.opens_123456789 AS o
+FULL OUTER JOIN campaigns USING(campaign_id)
+WHERE DATE(o.event_time, @timezone) BETWEEN DATE(@from) AND DATE(@to)
+  AND (o._PARTITIONTIME > TIMESTAMP(@from) OR o._PARTITIONTIME IS NULL)
+  AND (o.send.treatments.rti.id is not null OR program_id is not null)
+GROUP BY program_id, type, date),
+clicks as (WITH
+campaigns AS (SELECT DISTINCT campaign_id, program_id
+FROM ems-strategic-dashboard-test__email_campaigns_with_type_raw.campaigns_with_type_123456789
+WHERE program_id != 0)
+
+SELECT
+  COALESCE(c.send.treatments.rti.id, CAST(program_id AS STRING)) as program_id,
+  IF(c.send.treatments.rti.id is null, 'ac', 'rti') as type,
+  CAST(DATE_TRUNC(DATE(c.event_time, @timezone), DAY) as STRING) as date,
+  COUNT(1) as clicks
+FROM ems-strategic-dashboard-test__email_clicks_enhanced.clicks_123456789 AS c
+FULL OUTER JOIN campaigns USING(campaign_id)
+WHERE DATE(c.event_time, @timezone) BETWEEN DATE(@from) AND DATE(@to)
+  AND (c._PARTITIONTIME > TIMESTAMP(@from) OR c._PARTITIONTIME IS NULL)
+  AND (c.send.treatments.rti.id is not null OR program_id is not null)
+GROUP BY program_id, type, date),
+purchases as (WITH
+campaigns AS (SELECT DISTINCT campaign_id, program_id
+FROM ems-strategic-dashboard-test__email_campaigns_with_type_raw.campaigns_with_type_123456789
+WHERE program_id != 0)
+
+SELECT
+  COALESCE(t.rti.id, CAST(program_id AS STRING)) as program_id,
+  IF(t.rti.id is null, 'ac', 'rti') as type,
+  CAST(DATE_TRUNC(DATE(p.event_time, @timezone), DAY) as STRING) as date,
+  COUNT(1) as purchases,
+  SUM(t.attributed_amount) as revenue
+FROM ems-attribution-test__attributed_purchases.attributed_purchases_123456789 AS p
+CROSS JOIN p.treatments t
+FULL OUTER JOIN campaigns USING(campaign_id)
+WHERE DATE(p.event_time, @timezone) BETWEEN DATE(@from) AND DATE(@to)
+  AND (p._PARTITIONTIME > TIMESTAMP(@from) OR p._PARTITIONTIME IS NULL)
+  AND (t.rti.id is not null OR program_id is not null)
+GROUP BY program_id, type, date)
+
+SELECT program_id, type, date, STRUCT(
+  SUM(sent) as sent,
+  SUM(o.opens) as opens,
+  SUM(c.clicks) as clicks,
+  SUM(p.purchases) as purchases,
+  SUM(p.revenue) as revenue
+) as email FROM sent AS s
+FULL OUTER JOIN opens AS o USING (program_id, type, date)
+FULL OUTER JOIN clicks AS c USING (program_id, type, date)
+FULL OUTER JOIN purchases AS p USING (program_id, type, date)
+WHERE STRUCT(program_id as id, type as type) IN UNNEST (@programs)
+GROUP BY program_id, type, date

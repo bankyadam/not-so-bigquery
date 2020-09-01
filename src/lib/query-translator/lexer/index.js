@@ -49,7 +49,10 @@ const lexerDefinition = [
 
   TOKENS.LiteralConstant,
 
-  TOKENS.Identifier
+  TOKENS.Struct,
+  TOKENS.Identifier,
+
+  TOKENS.AnyWord
 ];
 
 module.exports = new Lexer(lexerDefinition);

@@ -72,6 +72,7 @@ describe('Query Translator', function() {
   it('select-simple-query-with-more-field-names', runExpectation(require('./testcases/select-simple-query-with-more-field-names.txt')));
   it('select-simple-query-with-one-field-name', runExpectation(require('./testcases/select-simple-query-with-one-field-name.txt')));
   it('select-simple-query', runExpectation(require('./testcases/select-simple-query.txt')));
+  it('select-struct', runExpectation(require('./testcases/select-struct.txt')));
   it('select-with-complex-expressions', runExpectation(require('./testcases/select-with-complex-expressions.txt')));
   it('select-with-named-query-parameter', runExpectation(require('./testcases/select-with-named-query-parameter.txt')));
   it('select-with-qualified-identifiers', runExpectation(require('./testcases/select-with-qualified-identifiers.txt')));

@@ -273,6 +273,8 @@ module.exports = (parser) => {
         return this.visit(ctx.literalValue);
       } else if (ctx.function) {
         return this.visit(ctx.function);
+      } else if (ctx.typelessStruct) {
+        return this.visit(ctx.typelessStruct);
       } else if (ctx.identifier) {
         return this.visit(ctx.identifier);
       } else if (ctx.unaryOperatorExpression) {
@@ -299,7 +301,7 @@ module.exports = (parser) => {
     }
 
     identifier(ctx) {
-      return ctx.Identifier.map(token => token.image).join('.');
+      return ctx.AnyWord.map(token => token.image).join('.');
     }
 
     ['function'](ctx) {
@@ -322,7 +324,7 @@ module.exports = (parser) => {
     namedQueryParameter(ctx) {
       return [
         '@',
-        ctx.Identifier[0].image
+        ctx.AnyWord[0].image
       ].join('');
     }
 
@@ -378,6 +380,31 @@ module.exports = (parser) => {
       } else if (ctx.And) {
         return 'AND';
       }
+    }
+
+    typelessStruct(ctx) {
+      const parts = [
+        'STRUCT',
+        '(',
+        ')'];
+
+      if (ctx.structItem) {
+        parts.splice(-1, 0, ctx.structItem.map(token => this.visit(token)).join(', '));
+      }
+
+      return parts.join(' ');
+    }
+
+    structItem(ctx) {
+      const parts = [
+        this.visit(ctx.atomicExpression)
+      ];
+
+      if (ctx.asAlias) {
+        parts.push(this.visit(ctx.asAlias));
+      }
+
+      return parts.join(' ');
     }
   }
 

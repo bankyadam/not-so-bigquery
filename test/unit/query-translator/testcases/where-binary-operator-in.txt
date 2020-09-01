@@ -1,0 +1,12 @@
+--INPUT--
+SELECT 1
+WHERE
+	field IN (1, 2, 3)
+	AND
+	field NOT IN (4, 5)
+--EXPECT--
+SELECT 1
+WHERE
+	field IN (1, 2, 3)
+	AND
+	field NOT IN (4, 5)
