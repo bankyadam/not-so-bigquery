@@ -1,7 +1,5 @@
 'use strict';
 
-const { zip } = require('lodash');
-
 module.exports = (parser) => {
   const BaseCstVisitorWithDefaults = parser.getBaseCstVisitorConstructorWithDefaults();
 
