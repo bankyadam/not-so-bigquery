@@ -6,7 +6,10 @@ const TOKENS = require('../../../tokens');
 module.exports = ($) => {
   $.RULE('expression', () => {
     $.SUBRULE($.atomicExpression);
-    $.OPTION1(() => $.SUBRULE($.betweenExpression));
+    $.OPTION1(() => $.OR([
+      { ALT: () => $.SUBRULE($.betweenExpression) },
+      { ALT: () => $.SUBRULE($.inExpression) }
+    ]));
     $.OPTION2(() => $.SUBRULE($.binaryOperatorExpression));
   });
 
@@ -108,6 +111,12 @@ module.exports = ($) => {
     $.CONSUME(TOKENS.As);
     $.CONSUME(TOKENS.Identifier);
     $.CONSUME(TOKENS.RightParenthesis);
+  });
+
+  $.RULE('inExpression', () => {
+    $.OPTION(() => $.CONSUME(TOKENS.Not));
+    $.CONSUME(TOKENS.In);
+    $.SUBRULE($.expression);
   });
 
   $.RULE('betweenExpression', () => {

@@ -259,6 +259,8 @@ module.exports = (parser) => {
 
       if (ctx.betweenExpression) {
         parts.push(this.visit(ctx.betweenExpression));
+      } else if (ctx.inExpression) {
+        parts.push(this.visit(ctx.inExpression));
       }
 
       if (ctx.binaryOperatorExpression) {
@@ -367,6 +369,17 @@ module.exports = (parser) => {
         this.visit(ctx.rhs_min),
         'AND',
         this.visit(ctx.rhs_max)
+      ];
+      if (ctx.Not) {
+        parts.unshift('NOT');
+      }
+      return parts.join(' ');
+    }
+
+    inExpression(ctx) {
+      const parts = [
+        'IN',
+        this.visit(ctx.expression)
       ];
       if (ctx.Not) {
         parts.unshift('NOT');

@@ -19,6 +19,7 @@ const lexerDefinition = [
   TOKENS.JoinType,
   TOKENS.Join,
   TOKENS.On,
+  TOKENS.In,
   TOKENS.Using,
   TOKENS.Where,
   TOKENS.GroupBy,

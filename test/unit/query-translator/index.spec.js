@@ -81,6 +81,7 @@ describe('Query Translator', function() {
   it('where-binary-operator-between-simple', runExpectation(require('./testcases/where-binary-operator-between-simple.txt')));
   it('where-binary-operator-between-single', runExpectation(require('./testcases/where-binary-operator-between-single.txt')));
   it('where-binary-operator-equal', runExpectation(require('./testcases/where-binary-operator-equal.txt')));
+  it('where-binary-operator-in', runExpectation(require('./testcases/where-binary-operator-in.txt')));
   it('where-binary-operator-is', runExpectation(require('./testcases/where-binary-operator-is.txt')));
   it('where-binary-operator-or', runExpectation(require('./testcases/where-binary-operator-or.txt')));
   it('where-grouping-complex', runExpectation(require('./testcases/where-grouping-complex.txt')));
