@@ -63,6 +63,7 @@ describe('Query Translator', function() {
   it('select-all', runExpectation(require('./testcases/select-all.txt')));
   it('select-binary-operator-is', runExpectation(require('./testcases/select-binary-operator-is.txt')));
   it('select-distinct', runExpectation(require('./testcases/select-distinct.txt')));
+  it('select-from-alias-reference', runExpectation(require('./testcases/select-from-alias-reference.txt')));
   it('select-function-empty', runExpectation(require('./testcases/select-function-empty.txt')));
   it('select-function-inception', runExpectation(require('./testcases/select-function-inception.txt')));
   it('select-function-with-asterisk', runExpectation(require('./testcases/select-function-with-asterisk.txt')));

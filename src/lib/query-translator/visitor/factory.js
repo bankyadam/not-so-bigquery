@@ -6,7 +6,29 @@ module.exports = (parser) => {
   class Visitor extends BaseCstVisitorWithDefaults {
     constructor() {
       super();
+
+      this._currentLevel = -1;
+      this._aliases = [];
+
       this.validateVisitor();
+    }
+
+    _increaseLevel() {
+      this._currentLevel++;
+      this._aliases[this._currentLevel] = [];
+    }
+
+    _decreaseLevel() {
+      delete this._aliases[this._currentLevel];
+      this._currentLevel--;
+    }
+
+    _addAlias(aliasName) {
+      this._aliases[this._currentLevel].push(aliasName);
+    }
+
+    _isAliasExists(aliasName) {
+      return this._aliases[this._currentLevel].indexOf(aliasName) !== -1;
     }
 
     selectStatement(ctx) {
@@ -14,6 +36,7 @@ module.exports = (parser) => {
     }
 
     queryExpression(ctx) {
+      this._increaseLevel();
       const parts = [];
       if (ctx.withClause) {
         parts.push(this.visit(ctx.withClause));
@@ -30,6 +53,7 @@ module.exports = (parser) => {
       if (ctx.limitClause) {
         parts.push(this.visit(ctx.limitClause));
       }
+      this._decreaseLevel();
       return parts.join(' ');
     }
 
@@ -147,18 +171,28 @@ module.exports = (parser) => {
     tableName(ctx) {
       const parts = [this.visit(ctx.tableIdentifier)];
       if (ctx.asAlias) {
-        parts.push(this.visit(ctx.asAlias));
+        parts.push(this.visit(ctx.asAlias, true));
       }
       return parts.join(' ');
     }
 
     tableIdentifier(ctx) {
       switch (ctx.Identifier.length) {
-        case 3:
-          return `${(ctx.Identifier[0].image)}__${(ctx.Identifier[1].image)}.${(ctx.Identifier[2].image)}`;
+        case 3: {
+          const project = ctx.Identifier[0].image;
+          const dataset = ctx.Identifier[1].image;
+          const table = ctx.Identifier[2].image;
+          return `${project}__${dataset}.${table}`;
+        }
 
-        case 2:
-          return `${(this.defaultProjectId)}__${(ctx.Identifier[0].image)}.${(ctx.Identifier[1].image)}`;
+        case 2: {
+          const dataset = ctx.Identifier[0].image;
+          const table = ctx.Identifier[1].image;
+          if (this._isAliasExists(dataset)) {
+            return `${dataset}.${table}`;
+          }
+          return `${this.defaultProjectId}__${dataset}.${table}`;
+        }
 
         case 1:
         default:
@@ -245,7 +279,10 @@ module.exports = (parser) => {
       ].join(' ');
     }
 
-    asAlias(ctx) {
+    asAlias(ctx, addAlias) {
+      if (addAlias) {
+        this._addAlias(ctx.alias[0].image);
+      }
       return [
         'AS',
         ctx.alias[0].image
