@@ -84,9 +84,9 @@ select:
         { [ expression. ]*
         | expression [ [ AS ] alias ] } [, ...]
     [ FROM from_item  [, ...] ]
-    [ WHERE bool_expression ]
+    [ WHERE expression ]
     [ GROUP BY expression [, ...] ]
-    [ HAVING bool_expression ]
+    [ HAVING expression ]
 
 from_item: {
     table_name [ [ AS ] alias ]
@@ -97,10 +97,34 @@ from_item: {
 
 join:
    from_item [ join_type ] JOIN from_item
-   [ ON bool_expression | USING ( join_column [, ...] ) ]
+   [ ON expression | USING ( join_column [, ...] ) ]
 
 join_type:
    { INNER | CROSS | FULL [OUTER] | LEFT [OUTER] | RIGHT [OUTER] }
+
+expression:
+    literal_value |
+    [ [ [ [ project_name . ] dataset_name . ] table_name . ] column_name ] |
+    unary_operator expression |
+    expression binary_operator expression |
+    function_name ( [ expression [, ...] | * ] ) |
+    ( expression [, ...] ) |
+    CAST ( expression AS type_name ) |
+    expression IS [ NOT ] NULL | 
+    expression IS [ NOT ] expression |
+    expression [ NOT ] IN ( { expression | select } )
+
+literal_value:
+    numeric_literal |
+    string_literal |
+    NULL | TRUE | FALSE | CURRENT_TIME | CURRENT_DATE | CURRENT_TIMESTAMP
+
+unary_operator:
+    NOT
+
+binary_operator:
+    AND | OR |
+    < | <= | > | >= | = | <> | != 
 ``` 
 
 ## Installation
