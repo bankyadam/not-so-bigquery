@@ -101,7 +101,11 @@ join:
 
 join_type:
    { INNER | CROSS | FULL [OUTER] | LEFT [OUTER] | RIGHT [OUTER] }
+```
 
+Where the `expression` is the following:
+
+```
 expression:
     literal_value |
     [ [ [ [ project_name . ] dataset_name . ] table_name . ] column_name ] |
