@@ -1,0 +1,1653 @@
+
+<!-- This is a generated file -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+  body {
+    background-color: hsl(30, 20%, 95%)
+  }
+</style>
+
+
+<link rel='stylesheet' href='https://unpkg.com/chevrotain@7.0.1/diagrams/diagrams.css'>
+
+<script src='https://unpkg.com/chevrotain@7.0.1/diagrams/vendor/railroad-diagrams.js'></script>
+<script src='https://unpkg.com/chevrotain@7.0.1/diagrams/src/diagrams_builder.js'></script>
+<script src='https://unpkg.com/chevrotain@7.0.1/diagrams/src/diagrams_behavior.js'></script>
+<script src='https://unpkg.com/chevrotain@7.0.1/diagrams/src/main.js'></script>
+
+<div id="diagrams" align="center"></div>    
+
+<script>
+    window.serializedGrammar = [
+  {
+    "type": "Rule",
+    "name": "selectStatement",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "NonTerminal",
+        "name": "queryExpression",
+        "idx": 0
+      },
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "Semicolon",
+            "label": "Semicolon",
+            "idx": 0,
+            "pattern": ";"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "queryExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Option",
+        "idx": 1,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "withClause",
+            "idx": 1
+          }
+        ]
+      },
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "select",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "bracketedQueryExpression",
+                "idx": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Option",
+        "idx": 2,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "orderByClause",
+            "idx": 2
+          }
+        ]
+      },
+      {
+        "type": "Option",
+        "idx": 3,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "limitClause",
+            "idx": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "bracketedQueryExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "LeftParenthesis",
+        "label": "LeftParenthesis",
+        "idx": 0,
+        "pattern": "\\("
+      },
+      {
+        "type": "NonTerminal",
+        "name": "queryExpression",
+        "idx": 0
+      },
+      {
+        "type": "Terminal",
+        "name": "RightParenthesis",
+        "label": "RightParenthesis",
+        "idx": 0,
+        "pattern": "\\)"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "withClause",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "With",
+        "label": "With",
+        "idx": 0,
+        "pattern": "WITH"
+      },
+      {
+        "type": "RepetitionMandatoryWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "Comma",
+          "label": "Comma",
+          "idx": 1,
+          "pattern": ","
+        },
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "withItem",
+            "idx": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "withItem",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Identifier",
+        "label": "Identifier",
+        "idx": 0,
+        "pattern": "[a-z_][a-z0-9_~\\-]*|`[\\S ]+`"
+      },
+      {
+        "type": "Terminal",
+        "name": "As",
+        "label": "As",
+        "idx": 0,
+        "pattern": "AS"
+      },
+      {
+        "type": "Terminal",
+        "name": "LeftParenthesis",
+        "label": "LeftParenthesis",
+        "idx": 0,
+        "pattern": "\\("
+      },
+      {
+        "type": "NonTerminal",
+        "name": "queryExpression",
+        "idx": 0
+      },
+      {
+        "type": "Terminal",
+        "name": "RightParenthesis",
+        "label": "RightParenthesis",
+        "idx": 0,
+        "pattern": "\\)"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "select",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Select",
+        "label": "Select",
+        "idx": 0,
+        "pattern": "SELECT"
+      },
+      {
+        "type": "Option",
+        "idx": 1,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "selectModifier",
+            "idx": 0
+          }
+        ]
+      },
+      {
+        "type": "NonTerminal",
+        "name": "selectList",
+        "idx": 0
+      },
+      {
+        "type": "Option",
+        "idx": 2,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "fromClause",
+            "idx": 0
+          }
+        ]
+      },
+      {
+        "type": "Option",
+        "idx": 4,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "whereClause",
+            "idx": 0
+          }
+        ]
+      },
+      {
+        "type": "Option",
+        "idx": 3,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "groupByClause",
+            "idx": 0
+          }
+        ]
+      },
+      {
+        "type": "Option",
+        "idx": 5,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "havingClause",
+            "idx": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "selectModifier",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "SelectDistinct",
+                "label": "SelectDistinct",
+                "idx": 0,
+                "pattern": "DISTINCT"
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "SelectAll",
+                "label": "SelectAll",
+                "idx": 0,
+                "pattern": "ALL"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "selectList",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "RepetitionMandatoryWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "Comma",
+          "label": "Comma",
+          "idx": 1,
+          "pattern": ","
+        },
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "resultColumn",
+            "idx": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "resultColumn",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "expression",
+                "idx": 0
+              },
+              {
+                "type": "Option",
+                "idx": 0,
+                "definition": [
+                  {
+                    "type": "NonTerminal",
+                    "name": "asAlias",
+                    "idx": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Asterisk",
+                "label": "Asterisk",
+                "idx": 1,
+                "pattern": "\\*"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "fromClause",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "From",
+        "label": "From",
+        "idx": 0,
+        "pattern": "FROM"
+      },
+      {
+        "type": "RepetitionMandatoryWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "Comma",
+          "label": "Comma",
+          "idx": 1,
+          "pattern": ","
+        },
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "fromItem",
+            "idx": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "fromItem",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "tableName",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "subQuery",
+                "idx": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Repetition",
+            "idx": 0,
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "join",
+                "idx": 0
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "tableName",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Backtick",
+                "label": "Backtick",
+                "idx": 1,
+                "pattern": "`"
+              },
+              {
+                "type": "NonTerminal",
+                "name": "tableIdentifier",
+                "idx": 1
+              },
+              {
+                "type": "Terminal",
+                "name": "Backtick",
+                "label": "Backtick",
+                "idx": 2,
+                "pattern": "`"
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "tableIdentifier",
+                "idx": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Option",
+        "idx": 3,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "asAlias",
+            "idx": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "tableIdentifier",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "RepetitionMandatoryWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "IdentifierQualifier",
+          "label": "IdentifierQualifier",
+          "idx": 1,
+          "pattern": "\\."
+        },
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "Identifier",
+            "label": "Identifier",
+            "idx": 0,
+            "pattern": "[a-z_][a-z0-9_~\\-]*|`[\\S ]+`"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "subQuery",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "LeftParenthesis",
+        "label": "LeftParenthesis",
+        "idx": 0,
+        "pattern": "\\("
+      },
+      {
+        "type": "NonTerminal",
+        "name": "queryExpression",
+        "idx": 0
+      },
+      {
+        "type": "Terminal",
+        "name": "RightParenthesis",
+        "label": "RightParenthesis",
+        "idx": 0,
+        "pattern": "\\)"
+      },
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "asAlias",
+            "idx": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "join",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Option",
+        "idx": 1,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "JoinType",
+            "label": "JoinType",
+            "idx": 0,
+            "pattern": "INNER|CROSS|(FULL|LEFT|RIGHT)( OUTER)?"
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "Join",
+        "label": "Join",
+        "idx": 0,
+        "pattern": "JOIN"
+      },
+      {
+        "type": "NonTerminal",
+        "name": "fromItem",
+        "idx": 0
+      },
+      {
+        "type": "Option",
+        "idx": 2,
+        "definition": [
+          {
+            "type": "Alternation",
+            "idx": 0,
+            "definition": [
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "NonTerminal",
+                    "name": "joinOn",
+                    "idx": 0
+                  }
+                ]
+              },
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "NonTerminal",
+                    "name": "joinUsing",
+                    "idx": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "joinOn",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "On",
+        "label": "On",
+        "idx": 0,
+        "pattern": "ON"
+      },
+      {
+        "type": "NonTerminal",
+        "name": "expression",
+        "idx": 0
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "joinUsing",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Using",
+        "label": "Using",
+        "idx": 0,
+        "pattern": "USING"
+      },
+      {
+        "type": "Terminal",
+        "name": "LeftParenthesis",
+        "label": "LeftParenthesis",
+        "idx": 0,
+        "pattern": "\\("
+      },
+      {
+        "type": "NonTerminal",
+        "name": "joinColumns",
+        "idx": 0
+      },
+      {
+        "type": "Terminal",
+        "name": "RightParenthesis",
+        "label": "RightParenthesis",
+        "idx": 0,
+        "pattern": "\\)"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "joinColumns",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "RepetitionMandatoryWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "Comma",
+          "label": "Comma",
+          "idx": 1,
+          "pattern": ","
+        },
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "identifier",
+            "idx": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "whereClause",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Where",
+        "label": "Where",
+        "idx": 0,
+        "pattern": "WHERE"
+      },
+      {
+        "type": "NonTerminal",
+        "name": "expression",
+        "idx": 0
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "groupByClause",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "GroupBy",
+        "label": "GroupBy",
+        "idx": 0,
+        "pattern": "GROUP BY"
+      },
+      {
+        "type": "RepetitionMandatoryWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "Comma",
+          "label": "Comma",
+          "idx": 1,
+          "pattern": ","
+        },
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "expression",
+            "idx": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "havingClause",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Having",
+        "label": "Having",
+        "idx": 0,
+        "pattern": "HAVING"
+      },
+      {
+        "type": "NonTerminal",
+        "name": "expression",
+        "idx": 0
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "orderByClause",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "OrderBy",
+        "label": "OrderBy",
+        "idx": 0,
+        "pattern": "ORDER BY"
+      },
+      {
+        "type": "RepetitionMandatoryWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "Comma",
+          "label": "Comma",
+          "idx": 1,
+          "pattern": ","
+        },
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "orderByItem",
+            "idx": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "orderByItem",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "NonTerminal",
+        "name": "expression",
+        "idx": 0
+      },
+      {
+        "type": "Option",
+        "idx": 1,
+        "definition": [
+          {
+            "type": "Alternation",
+            "idx": 1,
+            "definition": [
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "Terminal",
+                    "name": "OrderByAsc",
+                    "label": "OrderByAsc",
+                    "idx": 0,
+                    "pattern": "ASC"
+                  }
+                ]
+              },
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "Terminal",
+                    "name": "OrderByDesc",
+                    "label": "OrderByDesc",
+                    "idx": 0,
+                    "pattern": "DESC"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Option",
+        "idx": 2,
+        "definition": [
+          {
+            "type": "Alternation",
+            "idx": 2,
+            "definition": [
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "Terminal",
+                    "name": "OrderByNullsFirst",
+                    "label": "OrderByNullsFirst",
+                    "idx": 0,
+                    "pattern": "NULLS FIRST"
+                  }
+                ]
+              },
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "Terminal",
+                    "name": "OrderByNullsLast",
+                    "label": "OrderByNullsLast",
+                    "idx": 0,
+                    "pattern": "NULLS LAST"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "limitClause",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Limit",
+        "label": "Limit",
+        "idx": 0,
+        "pattern": "LIMIT (0|[1-9]\\d*)"
+      },
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "Offset",
+            "label": "Offset",
+            "idx": 0,
+            "pattern": "OFFSET (0|[1-9]\\d*)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "asAlias",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "As",
+            "label": "As",
+            "idx": 0,
+            "pattern": "AS"
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "Identifier",
+        "label": "Identifier",
+        "idx": 0,
+        "pattern": "[a-z_][a-z0-9_~\\-]*|`[\\S ]+`"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "expression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "NonTerminal",
+        "name": "atomicExpression",
+        "idx": 0
+      },
+      {
+        "type": "Option",
+        "idx": 1,
+        "definition": [
+          {
+            "type": "Alternation",
+            "idx": 0,
+            "definition": [
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "NonTerminal",
+                    "name": "betweenExpression",
+                    "idx": 0
+                  }
+                ]
+              },
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "NonTerminal",
+                    "name": "inExpression",
+                    "idx": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Option",
+        "idx": 2,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "binaryOperatorExpression",
+            "idx": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "atomicExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "unaryOperatorExpression",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "parenthesisExpression",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "typelessStruct",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "cast",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "function",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "identifier",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "namedQueryParameter",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "literalValue",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "LeftParenthesis",
+                "label": "LeftParenthesis",
+                "idx": 2,
+                "pattern": "\\("
+              },
+              {
+                "type": "NonTerminal",
+                "name": "queryExpression",
+                "idx": 2
+              },
+              {
+                "type": "Terminal",
+                "name": "RightParenthesis",
+                "label": "RightParenthesis",
+                "idx": 2,
+                "pattern": "\\)"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "unaryOperatorExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Not",
+        "label": "Not",
+        "idx": 0,
+        "pattern": "NOT"
+      },
+      {
+        "type": "NonTerminal",
+        "name": "expression",
+        "idx": 0
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "binaryOperatorExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "NonTerminal",
+        "name": "binaryOperator",
+        "idx": 0
+      },
+      {
+        "type": "NonTerminal",
+        "name": "expression",
+        "idx": 2
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "binaryOperator",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "OperatorBinary",
+                "label": "OperatorBinary",
+                "idx": 0,
+                "pattern": "IS NOT|IS|OR|<=|>=|<>|!=|<|=|>"
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "And",
+                "label": "And",
+                "idx": 0,
+                "pattern": "AND"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "parenthesisExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "LeftParenthesis",
+        "label": "LeftParenthesis",
+        "idx": 0,
+        "pattern": "\\("
+      },
+      {
+        "type": "RepetitionMandatoryWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "Comma",
+          "label": "Comma",
+          "idx": 1,
+          "pattern": ","
+        },
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "expression",
+            "idx": 0
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "RightParenthesis",
+        "label": "RightParenthesis",
+        "idx": 0,
+        "pattern": "\\)"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "literalValue",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Alternation",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "LiteralConstant",
+                "label": "LiteralConstant",
+                "idx": 0,
+                "pattern": "NULL|TRUE|FALSE|CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME"
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "Numeric",
+                "label": "Numeric",
+                "idx": 0,
+                "pattern": "(?:[-+]?)((?:\\d+)(?:(\\.\\d*)?)|(?:\\.\\d+))(e(?:[-+]?)\\d+)?"
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "Terminal",
+                "name": "String",
+                "label": "String",
+                "idx": 0,
+                "pattern": "(?:('''|\"\"\")[\\n\\s\\S]+\\1)|(?:((?<![\\\\])['\"])(?:.(?!(?<![\\\\])\\2))*.?\\2)"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "function",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Identifier",
+        "label": "Identifier",
+        "idx": 0,
+        "pattern": "[a-z_][a-z0-9_~\\-]*|`[\\S ]+`"
+      },
+      {
+        "type": "Terminal",
+        "name": "LeftParenthesis",
+        "label": "LeftParenthesis",
+        "idx": 0,
+        "pattern": "\\("
+      },
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Alternation",
+            "idx": 0,
+            "definition": [
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "RepetitionMandatoryWithSeparator",
+                    "idx": 0,
+                    "separator": {
+                      "type": "Terminal",
+                      "name": "Comma",
+                      "label": "Comma",
+                      "idx": 1,
+                      "pattern": ","
+                    },
+                    "definition": [
+                      {
+                        "type": "NonTerminal",
+                        "name": "expression",
+                        "idx": 0
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "Alternative",
+                "definition": [
+                  {
+                    "type": "Terminal",
+                    "name": "Asterisk",
+                    "label": "Asterisk",
+                    "idx": 0,
+                    "pattern": "\\*"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "RightParenthesis",
+        "label": "RightParenthesis",
+        "idx": 0,
+        "pattern": "\\)"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "identifier",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "RepetitionMandatoryWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "IdentifierQualifier",
+          "label": "IdentifierQualifier",
+          "idx": 1,
+          "pattern": "\\."
+        },
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "AnyWord",
+            "label": "AnyWord",
+            "idx": 0,
+            "pattern": "NOT_APPLICABLE"
+          }
+        ]
+      },
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "IdentifierQualifier",
+            "label": "IdentifierQualifier",
+            "idx": 0,
+            "pattern": "\\."
+          },
+          {
+            "type": "Terminal",
+            "name": "Asterisk",
+            "label": "Asterisk",
+            "idx": 0,
+            "pattern": "\\*"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "namedQueryParameter",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "AtCharacter",
+        "label": "AtCharacter",
+        "idx": 0,
+        "pattern": "@"
+      },
+      {
+        "type": "Terminal",
+        "name": "AnyWord",
+        "label": "AnyWord",
+        "idx": 0,
+        "pattern": "NOT_APPLICABLE"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "cast",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Cast",
+        "label": "Cast",
+        "idx": 0,
+        "pattern": "CAST"
+      },
+      {
+        "type": "Terminal",
+        "name": "LeftParenthesis",
+        "label": "LeftParenthesis",
+        "idx": 0,
+        "pattern": "\\("
+      },
+      {
+        "type": "NonTerminal",
+        "name": "expression",
+        "idx": 0
+      },
+      {
+        "type": "Terminal",
+        "name": "As",
+        "label": "As",
+        "idx": 0,
+        "pattern": "AS"
+      },
+      {
+        "type": "Terminal",
+        "name": "Identifier",
+        "label": "Identifier",
+        "idx": 0,
+        "pattern": "[a-z_][a-z0-9_~\\-]*|`[\\S ]+`"
+      },
+      {
+        "type": "Terminal",
+        "name": "RightParenthesis",
+        "label": "RightParenthesis",
+        "idx": 0,
+        "pattern": "\\)"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "inExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "Not",
+            "label": "Not",
+            "idx": 0,
+            "pattern": "NOT"
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "In",
+        "label": "In",
+        "idx": 0,
+        "pattern": "IN"
+      },
+      {
+        "type": "NonTerminal",
+        "name": "expression",
+        "idx": 0
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "betweenExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "Terminal",
+            "name": "Not",
+            "label": "Not",
+            "idx": 0,
+            "pattern": "NOT"
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "Between",
+        "label": "Between",
+        "idx": 0,
+        "pattern": "BETWEEN"
+      },
+      {
+        "type": "NonTerminal",
+        "name": "atomicExpression",
+        "idx": 2
+      },
+      {
+        "type": "Terminal",
+        "name": "And",
+        "label": "And",
+        "idx": 0,
+        "pattern": "AND"
+      },
+      {
+        "type": "NonTerminal",
+        "name": "atomicExpression",
+        "idx": 3
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "typelessStruct",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Struct",
+        "label": "Struct",
+        "idx": 0,
+        "pattern": "STRUCT"
+      },
+      {
+        "type": "Terminal",
+        "name": "LeftParenthesis",
+        "label": "LeftParenthesis",
+        "idx": 0,
+        "pattern": "\\("
+      },
+      {
+        "type": "RepetitionWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "Comma",
+          "label": "Comma",
+          "idx": 1,
+          "pattern": ","
+        },
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "structItem",
+            "idx": 0
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "RightParenthesis",
+        "label": "RightParenthesis",
+        "idx": 0,
+        "pattern": "\\)"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "structItem",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "NonTerminal",
+        "name": "atomicExpression",
+        "idx": 0
+      },
+      {
+        "type": "Option",
+        "idx": 0,
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "asAlias",
+            "idx": 0
+          }
+        ]
+      }
+    ]
+  }
+];
+</script>
+
+<script>
+    var diagramsDiv = document.getElementById("diagrams");
+    main.drawDiagramsFromSerializedGrammar(serializedGrammar, diagramsDiv);
+</script>
