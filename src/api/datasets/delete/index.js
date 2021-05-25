@@ -16,7 +16,7 @@ class DatasetsGetAction extends BaseDatasetAction {
     await this._datasetShouldExist();
 
     await this._dataset.delete(this._req.query.deleteContents === 'true');
-    this._sendResponseWithStatus(204);
+    return {};
   }
 }
 
