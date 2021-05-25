@@ -1,0 +1,18 @@
+--SQL--
+SELECT
+    EXTRACT(DAYOFWEEK FROM DATE '2013-12-25') AS dayofweek,
+    EXTRACT(DAY FROM DATE '2013-12-25') AS day,
+    EXTRACT(DAYOFYEAR FROM DATE '2013-12-25') AS dayofyear,
+    EXTRACT(WEEK FROM DATE '2013-12-25') AS week,
+    EXTRACT(ISOWEEK FROM DATE '2013-12-25') AS isoweek,
+    EXTRACT(MONTH FROM DATE '2013-12-25') AS month,
+    EXTRACT(QUARTER FROM DATE '2013-12-25') AS quarter,
+    EXTRACT(YEAR FROM DATE '2013-12-25') AS year,
+    EXTRACT(ISOYEAR FROM DATE '2013-12-25') AS isoyear;
+
+--RESULT--
++----+-----------+-----------+---------+---------+-------+---------+------+------+
+|day | dayofweek | dayofyear | isoweek | isoyear | month | quarter | week | year |
++----+-----------+-----------+---------+---------+-------+---------+------+------+
+| 25 |         3 |       359 |      52 |    2013 |    12 |       4 |   52 | 2013 |
++----+-----------+-----------+---------+---------+-------+---------+------+------+

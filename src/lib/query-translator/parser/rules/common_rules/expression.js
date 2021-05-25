@@ -21,6 +21,7 @@ module.exports = ($) => {
         { ALT: () => $.SUBRULE($.parenthesisExpression) },
         { ALT: () => $.SUBRULE($.typelessStruct) },
         { ALT: () => $.SUBRULE($.cast) },
+        { ALT: () => $.SUBRULE($.extract) },
         { ALT: () => $.SUBRULE($.function) },
         { ALT: () => $.SUBRULE($.identifier) },
         { ALT: () => $.SUBRULE($.namedQueryParameter) },
@@ -120,6 +121,16 @@ module.exports = ($) => {
     $.SUBRULE($.expression);
     $.CONSUME(TOKENS.As);
     $.CONSUME(TOKENS.Identifier);
+    $.CONSUME(TOKENS.RightParenthesis);
+  });
+
+  $.RULE('extract', () => {
+    $.CONSUME(TOKENS.Extract);
+    $.CONSUME(TOKENS.LeftParenthesis);
+    $.CONSUME1(TOKENS.Identifier);
+    $.CONSUME(TOKENS.From);
+    $.CONSUME2(TOKENS.Identifier);
+    $.SUBRULE($.expression);
     $.CONSUME(TOKENS.RightParenthesis);
   });
 

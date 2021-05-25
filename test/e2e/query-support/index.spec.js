@@ -29,4 +29,5 @@ describe('SQL Function support', function() {
   it('cast numeric string to int64', runTestCase(require('./testcases/cast-numeric-string-to-int64.txt')));
   it.skip('cast hex string to int64', runTestCase(require('./testcases/cast-hex-string-to-int64.txt')));
   it('current_date without timezone', runTestCase(require('./testcases/current_date-without-tz.txt')));
+  it('extract day', runTestCase(require('./testcases/extract-day.txt')));
 });

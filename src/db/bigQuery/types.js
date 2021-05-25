@@ -14,6 +14,18 @@ module.exports.BIGQUERY_TYPES = {
   'DATETIME': 'TIMESTAMP WITH TIME ZONE'
 };
 
+module.exports.BIGQUERY_DATE_PARTS = {
+  'DAYOFWEEK': 'DOW',
+  'DAY': 'DAY',
+  'DAYOFYEAR': 'DOY',
+  'WEEK': 'WEEK',
+  'ISOWEEK': 'WEEK',
+  'MONTH': 'MONTH',
+  'QUARTER': 'QUARTER',
+  'YEAR': 'YEAR',
+  'ISOYEAR': 'ISOYEAR'
+};
+
 module.exports.POSTGRES_TYPES = {
   'TEXT': 'STRING',
   'BIGINT': 'INTEGER',

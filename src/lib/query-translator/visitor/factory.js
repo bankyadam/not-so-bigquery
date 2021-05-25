@@ -1,6 +1,6 @@
 'use strict';
 
-const { BIGQUERY_TYPES } = require('../../../db/bigQuery/types');
+const { BIGQUERY_TYPES, BIGQUERY_DATE_PARTS } = require('../../../db/bigQuery/types');
 const FUNCTION_HANDLERS = require('../functions');
 
 module.exports = (parser) => {
@@ -325,6 +325,8 @@ module.exports = (parser) => {
         return this.visit(ctx.parenthesisExpression);
       } else if (ctx.cast) {
         return this.visit(ctx.cast);
+      } else if (ctx.extract) {
+        return this.visit(ctx.extract);
       } else if (ctx.namedQueryParameter) {
         return this.visit(ctx.namedQueryParameter);
       } else if (ctx.queryExpression) {
@@ -400,6 +402,18 @@ module.exports = (parser) => {
         this.visit(ctx.expression[0]),
         'AS',
         BIGQUERY_TYPES[ctx.Identifier[0].image.toUpperCase()],
+        ')'
+      ].join(' ');
+    }
+
+    extract(ctx) {
+      return [
+        'EXTRACT',
+        '(',
+        BIGQUERY_DATE_PARTS[ctx.Identifier[0].image],
+        'FROM',
+        ctx.Identifier[1].image,
+        this.visit(ctx.expression[0]),
         ')'
       ].join(' ');
     }
