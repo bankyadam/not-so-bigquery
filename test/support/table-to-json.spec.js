@@ -114,5 +114,13 @@ describe('Table to JSON converter', function() {
 `;
       expect(convert(input)).to.be.eql([{ data: 1.123 }]);
     });
+
+    it('supports date', function() {
+      const input = `
+| data |
+| 2021-01-01  |
+`;
+      expect(convert(input)).to.be.eql([{ data: '2021-01-01' }]);
+    });
   });
 });

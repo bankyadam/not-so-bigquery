@@ -23,11 +23,6 @@ function cast(value) {
     return false;
   }
 
-  const numeric = parseFloat(value);
-  if (!isNaN(numeric)) {
-    return numeric;
-  }
-
   try {
     return JSON.parse(value);
   } catch (e) {
