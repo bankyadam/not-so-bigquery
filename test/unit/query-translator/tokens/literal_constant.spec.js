@@ -9,13 +9,7 @@ describe('Literal constants token', function() {
     'TRUE',
     'true',
     'FALSE',
-    'false',
-    'CURRENT_TIMESTAMP',
-    'current_timestamp',
-    'CURRENT_DATE',
-    'current_date',
-    'CURRENT_TIME',
-    'current_time'
+    'false'
   ].forEach(image => {
     it(`identifies '${image}'`, function() {
       const result = token.PATTERN.exec(image);
