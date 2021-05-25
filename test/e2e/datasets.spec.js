@@ -6,7 +6,7 @@ const { DATASET_NAME } = require('./common/config')();
 const bqReal = require('./common/connection-real');
 const bqFake = require('./common/connection-fake');
 
-const cleanupDatasets = require('./common/cleanup-datasets');
+const cleanupDatasets = require('./common/commands/cleanup-datasets');
 
 describe('Datasets', function() {
   after(async function() {
@@ -65,7 +65,6 @@ describe('Datasets', function() {
       'headers.x-frame-options',
       'headers.x-xss-protection'
     ];
-    expect(fakeDeleteDatasetResult[0]).to.be.eql(realDeleteDatasetResult[0]);
     expect(pick(fakeDeleteDatasetResult[1], deleteDatasetAttributes))
       .to.be.eql(pick(realDeleteDatasetResult[1], deleteDatasetAttributes));
   });

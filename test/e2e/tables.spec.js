@@ -22,7 +22,7 @@ const complexSchema = {
   ]
 };
 
-const cleanupDatasets = require('./common/cleanup-datasets');
+const cleanupDatasets = require('./common/commands/cleanup-datasets');
 
 describe('Tables', function() {
   let datasetReal;

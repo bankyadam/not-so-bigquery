@@ -13,7 +13,7 @@ const schema = {
   ]
 };
 
-const cleanupDatasets = require('./common/cleanup-datasets');
+const cleanupDatasets = require('./common/commands/cleanup-datasets');
 
 describe('Querying', function() {
   before(async function() {

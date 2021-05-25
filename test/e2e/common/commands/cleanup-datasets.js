@@ -1,7 +1,7 @@
 'use strict';
 
-const bqReal = require('./connection-real');
-const bqFake = require('./connection-fake');
+const bqReal = require('../connection-real');
+const bqFake = require('../connection-fake');
 
 module.exports = async function cleanUp(dataasetId) {
   try {
