@@ -1,0 +1,4 @@
+--INPUT--
+SELECT [true, false]
+--EXPECT--
+SELECT [true, false]

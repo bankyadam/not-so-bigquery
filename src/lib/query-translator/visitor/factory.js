@@ -1,5 +1,7 @@
 'use strict';
 
+const { BIGQUERY_TYPES } = require('../../../db/bigQuery/types');
+
 module.exports = (parser) => {
   const BaseCstVisitorWithDefaults = parser.getBaseCstVisitorConstructorWithDefaults();
 
@@ -308,6 +310,8 @@ module.exports = (parser) => {
     atomicExpression(ctx) {
       if (ctx.literalValue) {
         return this.visit(ctx.literalValue);
+      } else if (ctx.array) {
+        return this.visit(ctx.array);
       } else if (ctx.function) {
         return this.visit(ctx.function);
       } else if (ctx.typelessStruct) {
@@ -335,6 +339,10 @@ module.exports = (parser) => {
       } else if (ctx.LiteralConstant) {
         return ctx.LiteralConstant[0].image;
       }
+    }
+
+    array(ctx) {
+      return ['[', ctx.literalValue.map(token => this.visit(token)).join(','), ']'].join('');
     }
 
     identifier(ctx) {
@@ -386,7 +394,7 @@ module.exports = (parser) => {
         '(',
         this.visit(ctx.expression[0]),
         'AS',
-        ctx.Identifier[0].image,
+        BIGQUERY_TYPES[ctx.Identifier[0].image.toUpperCase()],
         ')'
       ].join(' ');
     }

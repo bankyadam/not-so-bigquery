@@ -25,6 +25,7 @@ module.exports = ($) => {
         { ALT: () => $.SUBRULE($.identifier) },
         { ALT: () => $.SUBRULE($.namedQueryParameter) },
         { ALT: () => $.SUBRULE($.literalValue) },
+        { ALT: () => $.SUBRULE($.array) },
         {
           ALT: () => {
             $.CONSUME2(TOKENS.LeftParenthesis);
@@ -68,6 +69,15 @@ module.exports = ($) => {
       { ALT: () => $.CONSUME(TOKENS.Numeric) },
       { ALT: () => $.CONSUME(TOKENS.String) }
     ]);
+  });
+
+  $.RULE('array', () => {
+    $.CONSUME(TOKENS.LeftSquareBracket);
+    $.AT_LEAST_ONE_SEP({
+      SEP: TOKENS.Comma,
+      DEF: () => $.SUBRULE($.literalValue)
+    });
+    $.CONSUME(TOKENS.RightSquareBracket);
   });
 
   $.RULE('function', () => {

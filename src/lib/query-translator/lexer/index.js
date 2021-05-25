@@ -41,6 +41,8 @@ const lexerDefinition = [
   TOKENS.AtCharacter,
   TOKENS.LeftParenthesis,
   TOKENS.RightParenthesis,
+  TOKENS.LeftSquareBracket,
+  TOKENS.RightSquareBracket,
 
   TOKENS.OperatorBinary,
   TOKENS.Cast,
