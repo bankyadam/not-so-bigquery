@@ -18,7 +18,7 @@ services:
     restart: always
 
   postgres:
-    image: library/postgres:12.3-alpine
+    image: clkao/postgres-plv8:10-2
     volumes:
       - ./tmp/postgres-not-so-bigquery/data:/var/lib/postgresql/data
       - ./docker/postgres/init_db:/docker-entrypoint-initdb.d
