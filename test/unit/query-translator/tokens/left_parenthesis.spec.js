@@ -1,10 +1,10 @@
 'use strict';
 
-const token = require('../../../../src/lib/query-translator/tokens/right-parenthesis');
+const token = require('../../../../src/lib/query-translator/tokens/left-parenthesis');
 
-describe(') token', function() {
+describe('( token', function() {
   [
-    ')'
+    '('
   ].forEach(image => {
     it(`identifies '${image}'`, function() {
       const result = token.PATTERN.exec(image);
