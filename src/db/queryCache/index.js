@@ -86,7 +86,7 @@ module.exports = class QueryCache {
       query: this._query,
       data: this._queryData
     });
-    const hash = crypto.createHash('sha256');
+    const hash = crypto.createHash('sha1');
     hash.update(stringToHash);
     return hash.digest('hex');
   }
