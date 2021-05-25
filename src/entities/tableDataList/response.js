@@ -23,10 +23,10 @@ module.exports = class TableDataListResponseObject extends BaseEntityResponse {
   }
 
   _convertData() {
-    return this._data.map(row => {
-      return {
-        f: map(row, v => ({ v: v.toString() }))
-      };
-    });
+    return this._data.map(row => ({
+      f: map(row, value => ({
+        v: value.toString()
+      }))
+    }));
   }
 };
