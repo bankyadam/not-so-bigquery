@@ -1,0 +1,9 @@
+--SQL--
+SELECT CURRENT_DATE() as the_date;
+
+--RESULT--
++----------------+
+| the_date       |
++----------------+
+| {CURRENT_DATE} |
++----------------+

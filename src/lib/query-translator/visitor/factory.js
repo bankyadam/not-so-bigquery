@@ -1,6 +1,7 @@
 'use strict';
 
 const { BIGQUERY_TYPES } = require('../../../db/bigQuery/types');
+const FUNCTION_HANDLERS = require('../functions');
 
 module.exports = (parser) => {
   const BaseCstVisitorWithDefaults = parser.getBaseCstVisitorConstructorWithDefaults();
@@ -350,6 +351,10 @@ module.exports = (parser) => {
     }
 
     ['function'](ctx) {
+      if (FUNCTION_HANDLERS[ctx.functionName[0].image.toUpperCase()]) {
+        return FUNCTION_HANDLERS[ctx.functionName[0].image.toUpperCase()](ctx);
+      }
+
       let expressions = '';
 
       if (ctx.expression) {

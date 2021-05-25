@@ -6,7 +6,7 @@ const AnyWord = require('./anyword');
 
 module.exports = createToken({
   name: 'LiteralConstant',
-  pattern: /NULL|TRUE|FALSE|CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME/i,
+  pattern: /NULL|TRUE|FALSE/i,
   longer_alt: Identifier,
   categories: [AnyWord]
 });
