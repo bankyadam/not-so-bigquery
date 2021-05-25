@@ -3,4 +3,4 @@ SELECT
   CAST(DATE_TRUNC(DATE(f1, @timezone), DAY) as STRING) as date
 --EXPECT--
 SELECT
-  CAST(DATE_TRUNC(DATE(f1, @timezone), DAY) as STRING) as date
+  CAST(DATE_TRUNC(DATE(f1, @timezone), DAY) as TEXT) as date

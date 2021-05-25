@@ -1,4 +1,4 @@
 --INPUT--
 SELECT CAST(field AS STRING) AS field
 --EXPECT--
-SELECT CAST(field AS STRING) AS field
+SELECT CAST(field AS TEXT) AS field

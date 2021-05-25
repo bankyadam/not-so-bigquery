@@ -6,7 +6,7 @@ SELECT
 FROM `p.d.t` s
 --EXPECT--
 SELECT
-	COALESCE(s.t.r.id, CAST(pid AS string)),
+	COALESCE(s.t.r.id, CAST(pid AS TEXT)),
 	CAST(DATE_TRUNC(DATE(s.event_time, timezone), DAY) AS DATE),
 	COUNT(1)
 FROM p__d.t AS s
