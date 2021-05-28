@@ -26,6 +26,13 @@ module.exports.BIGQUERY_DATE_PARTS = {
   'ISOYEAR': 'ISOYEAR'
 };
 
+module.exports.BIGQUERY_DATE_TYPES = {
+  'DATE': 'DATE',
+  'DATETIME': 'TIMESTAMP',
+  'TIME': 'TIME',
+  'TIMESTAMP': 'TIMESTAMP'
+};
+
 module.exports.POSTGRES_TYPES = {
   'TEXT': 'STRING',
   'BIGINT': 'INTEGER',

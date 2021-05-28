@@ -14,6 +14,7 @@ describe('Query Translator', function() {
     it('comment-single-line-c-style', runExpectation(require('./testcases/syntax/comment-single-line-c-style.txt')));
     it('comment-single-line-sql-style', runExpectation(require('./testcases/syntax/comment-single-line-sql-style.txt')));
     it('expression-cast', runExpectation(require('./testcases/syntax/expression-cast.txt')));
+    it('expression-date_expression', runExpectation(require('./testcases/syntax/expression-date_expression.txt')));
     it('expression-comma-separated-list', runExpectation(require('./testcases/syntax/expression-comma-separated-list.txt')));
     it('expression-array-of-integers', runExpectation(require('./testcases/syntax/expression-array-of-integers.txt')));
     it('expression-array-of-strings', runExpectation(require('./testcases/syntax/expression-array-of-strings.txt')));

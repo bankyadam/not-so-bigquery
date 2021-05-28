@@ -19,6 +19,7 @@ module.exports = ($) => {
       DEF: [
         { ALT: () => $.SUBRULE($.unaryOperatorExpression) },
         { ALT: () => $.SUBRULE($.parenthesisExpression) },
+        { ALT: () => $.SUBRULE($.dateExpression) },
         { ALT: () => $.SUBRULE($.typelessStruct) },
         { ALT: () => $.SUBRULE($.cast) },
         { ALT: () => $.SUBRULE($.extract) },
@@ -62,6 +63,11 @@ module.exports = ($) => {
       DEF: () => $.SUBRULE($.expression)
     });
     $.CONSUME(TOKENS.RightParenthesis);
+  });
+
+  $.RULE('dateExpression', () => {
+    $.CONSUME(TOKENS.Identifier, { LABEL: 'dateType' });
+    $.CONSUME(TOKENS.String);
   });
 
   $.RULE('literalValue', () => {
@@ -129,7 +135,6 @@ module.exports = ($) => {
     $.CONSUME(TOKENS.LeftParenthesis);
     $.CONSUME1(TOKENS.Identifier);
     $.CONSUME(TOKENS.From);
-    $.CONSUME2(TOKENS.Identifier);
     $.SUBRULE($.expression);
     $.CONSUME(TOKENS.RightParenthesis);
   });
