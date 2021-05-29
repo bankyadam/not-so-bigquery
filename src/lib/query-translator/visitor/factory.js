@@ -344,10 +344,25 @@ module.exports = (parser) => {
       if (ctx.Numeric) {
         return ctx.Numeric[0].image;
       } else if (ctx.String) {
-        return ctx.String[0].image;
+        return this._convertString(ctx.String[0].image);
       } else if (ctx.LiteralConstant) {
         return ctx.LiteralConstant[0].image;
       }
+    }
+
+    _convertString(string) {
+      if (string[0] === "'") { return string; }
+      if (string.indexOf('"""') === 0) {
+        return string.replace(/^"""|"""$/g, "'''");
+      }
+      return [
+        "'",
+        string
+          .replace(/^"|"$/g, '')
+          .replace(/\\"/g, '"')
+          .replace(/'/g, "\\'"),
+        "'"
+      ].join('');
     }
 
     array(ctx) {
@@ -404,7 +419,7 @@ module.exports = (parser) => {
     dateExpression(ctx) {
       return [
         BIGQUERY_DATE_TYPES[ctx.dateType[0].image.toUpperCase()],
-        ctx.String[0].image
+        this._convertString(ctx.String[0].image)
       ].join(' ');
     }
 

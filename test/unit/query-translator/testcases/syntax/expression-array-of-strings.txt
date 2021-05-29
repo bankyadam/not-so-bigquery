@@ -1,4 +1,4 @@
 --INPUT--
 SELECT ["foo", "bar"]
 --EXPECT--
-SELECT ["foo", "bar"]
+SELECT ['foo', 'bar']
