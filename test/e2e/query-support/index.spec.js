@@ -1,5 +1,6 @@
 'use strict';
 const fs = require('fs');
+const { mapValues } = require('lodash');
 
 const bq = require('../common/connection-fake');
 const convertTable = require('../../support/table-to-json');
@@ -20,7 +21,13 @@ describe('SQL Function support', function() {
   const runTestCase = function(content) {
     return async () => {
       const result = _getTestCaseData(content);
-      const [data] = await bq.query(result[1]);
+      let [data] = await bq.query(result[1]);
+      data = data.map(row => {
+        return mapValues(row, value => {
+          if (value.value) { return value.value; }
+          return value;
+        });
+      });
       const expectedData = convertTable(prepareTable(result[2]));
       expect(data).to.be.eql(expectedData);
     };
@@ -30,4 +37,7 @@ describe('SQL Function support', function() {
   it.skip('cast hex string to int64', runTestCase(require('./testcases/cast-hex-string-to-int64.txt')));
   it('current_date without timezone', runTestCase(require('./testcases/current_date-without-tz.txt')));
   it('extract day', runTestCase(require('./testcases/extract-day.txt')));
+
+  it('date_types', runTestCase(require('./testcases/date_types.txt')));
+  it.skip('date_types_not_supported', runTestCase(require('./testcases/date_types_not_supported.txt')));
 });

@@ -24,8 +24,8 @@ class TablesDataAction extends BaseTableAction {
     const pageToken = this._req.query.pageToken || null;
     // const selectedFields = this._req.query.selectedFields
 
-    const { totalRows, data, nextPageToken } = await this._table.getData({ maxResults, pageToken });
-    return new TableDataListResponseObject(data, totalRows, nextPageToken);
+    const { data, totalRows, nextPageToken, fields } = await this._table.getData({ maxResults, pageToken });
+    return new TableDataListResponseObject(data, totalRows, nextPageToken, fields);
   }
 }
 

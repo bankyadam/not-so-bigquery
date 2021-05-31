@@ -161,14 +161,15 @@ module.exports = class Table {
   async getData(options) {
     const query = `SELECT * FROM ${this._pgTableReference}`;
 
-    const { data, totalRows, nextPageToken } = await pageResult(
+    const { data, totalRows, nextPageToken, fields } = await pageResult(
       this._db, query, null, options.maxResults, options.pageToken
     );
 
     return {
       data,
       totalRows,
-      nextPageToken
+      nextPageToken,
+      fields
     };
   }
 };
