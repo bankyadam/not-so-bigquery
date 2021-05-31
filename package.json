@@ -5,7 +5,7 @@
   "main": "src/application.js",
   "scripts": {
     "start": "node src/application",
-    "start:dev": "onchange -i -k 'src/**/*.js' -- npm run start",
+    "start:dev": "npx nodemon npm run start",
     "test:unit": "mocha 'src/**/*.spec.js' 'test/unit/**/*.spec.js'",
     "test:e2e": "mocha 'test/e2e/**/*.spec.js'",
     "style": "eslint --ext .js src test"
@@ -24,15 +24,15 @@
     "xregexp": "5.0.2"
   },
   "devDependencies": {
-    "chai": "4.2.0",
+    "chai": "4.3.4",
     "chai-string": "1.5.0",
-    "dotenv": "8.2.0",
-    "eslint": "7.7.0",
+    "dotenv": "10.0.0",
+    "eslint": "7.27.0",
     "eslint-config-emarsys": "5.1.0",
     "eslint-plugin-require-path-exists": "1.1.9",
-    "mocha": "8.1.3",
-    "onchange": "7.0.2",
-    "sinon": "9.0.3",
-    "sinon-chai": "3.5.0"
+    "mocha": "8.4.0",
+    "nodemon": "2.0.7",
+    "sinon": "11.1.1",
+    "sinon-chai": "3.7.0"
   }
 }
