@@ -9,12 +9,12 @@
 </style>
 
 
-<link rel='stylesheet' href='https://unpkg.com/chevrotain@7.0.1/diagrams/diagrams.css'>
+<link rel='stylesheet' href='https://unpkg.com/chevrotain@9.0.1/diagrams/diagrams.css'>
 
-<script src='https://unpkg.com/chevrotain@7.0.1/diagrams/vendor/railroad-diagrams.js'></script>
-<script src='https://unpkg.com/chevrotain@7.0.1/diagrams/src/diagrams_builder.js'></script>
-<script src='https://unpkg.com/chevrotain@7.0.1/diagrams/src/diagrams_behavior.js'></script>
-<script src='https://unpkg.com/chevrotain@7.0.1/diagrams/src/main.js'></script>
+<script src='https://unpkg.com/chevrotain@9.0.1/diagrams/vendor/railroad-diagrams.js'></script>
+<script src='https://unpkg.com/chevrotain@9.0.1/diagrams/src/diagrams_builder.js'></script>
+<script src='https://unpkg.com/chevrotain@9.0.1/diagrams/src/diagrams_behavior.js'></script>
+<script src='https://unpkg.com/chevrotain@9.0.1/diagrams/src/main.js'></script>
 
 <div id="diagrams" align="center"></div>    
 
@@ -1065,6 +1065,16 @@
             "definition": [
               {
                 "type": "NonTerminal",
+                "name": "dateExpression",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
                 "name": "typelessStruct",
                 "idx": 0
               }
@@ -1076,6 +1086,16 @@
               {
                 "type": "NonTerminal",
                 "name": "cast",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "extract",
                 "idx": 0
               }
             ]
@@ -1116,6 +1136,16 @@
               {
                 "type": "NonTerminal",
                 "name": "literalValue",
+                "idx": 0
+              }
+            ]
+          },
+          {
+            "type": "Alternative",
+            "definition": [
+              {
+                "type": "NonTerminal",
+                "name": "array",
                 "idx": 0
               }
             ]
@@ -1262,6 +1292,27 @@
   },
   {
     "type": "Rule",
+    "name": "dateExpression",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Identifier",
+        "label": "Identifier",
+        "idx": 0,
+        "pattern": "[a-z_][a-z0-9_~\\-]*|`[\\S ]+`"
+      },
+      {
+        "type": "Terminal",
+        "name": "String",
+        "label": "String",
+        "idx": 0,
+        "pattern": "(?:('''|\"\"\")[\\n\\s\\S]+\\1)|(?:((?<![\\\\])['\"])(?:.(?!(?<![\\\\])\\2))*.?\\2)"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
     "name": "literalValue",
     "orgText": "",
     "definition": [
@@ -1277,7 +1328,7 @@
                 "name": "LiteralConstant",
                 "label": "LiteralConstant",
                 "idx": 0,
-                "pattern": "NULL|TRUE|FALSE|CURRENT_TIMESTAMP|CURRENT_DATE|CURRENT_TIME"
+                "pattern": "NULL|TRUE|FALSE"
               }
             ]
           },
@@ -1306,6 +1357,45 @@
             ]
           }
         ]
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "array",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "LeftSquareBracket",
+        "label": "LeftSquareBracket",
+        "idx": 0,
+        "pattern": "\\["
+      },
+      {
+        "type": "RepetitionMandatoryWithSeparator",
+        "idx": 0,
+        "separator": {
+          "type": "Terminal",
+          "name": "Comma",
+          "label": "Comma",
+          "idx": 1,
+          "pattern": ","
+        },
+        "definition": [
+          {
+            "type": "NonTerminal",
+            "name": "literalValue",
+            "idx": 0
+          }
+        ]
+      },
+      {
+        "type": "Terminal",
+        "name": "RightSquareBracket",
+        "label": "RightSquareBracket",
+        "idx": 0,
+        "pattern": "\\]"
       }
     ]
   },
@@ -1489,6 +1579,53 @@
         "label": "Identifier",
         "idx": 0,
         "pattern": "[a-z_][a-z0-9_~\\-]*|`[\\S ]+`"
+      },
+      {
+        "type": "Terminal",
+        "name": "RightParenthesis",
+        "label": "RightParenthesis",
+        "idx": 0,
+        "pattern": "\\)"
+      }
+    ]
+  },
+  {
+    "type": "Rule",
+    "name": "extract",
+    "orgText": "",
+    "definition": [
+      {
+        "type": "Terminal",
+        "name": "Extract",
+        "label": "Extract",
+        "idx": 0,
+        "pattern": "EXTRACT"
+      },
+      {
+        "type": "Terminal",
+        "name": "LeftParenthesis",
+        "label": "LeftParenthesis",
+        "idx": 0,
+        "pattern": "\\("
+      },
+      {
+        "type": "Terminal",
+        "name": "Identifier",
+        "label": "Identifier",
+        "idx": 1,
+        "pattern": "[a-z_][a-z0-9_~\\-]*|`[\\S ]+`"
+      },
+      {
+        "type": "Terminal",
+        "name": "From",
+        "label": "From",
+        "idx": 0,
+        "pattern": "FROM"
+      },
+      {
+        "type": "NonTerminal",
+        "name": "expression",
+        "idx": 0
       },
       {
         "type": "Terminal",
