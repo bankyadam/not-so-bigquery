@@ -27,5 +27,5 @@ const cert = fs.readFileSync(__dirname + '/../docker/app/cert/cert.pem');
 const https = require('https');
 const server = https.createServer({ key, cert }, app);
 server.listen(port, hostname, () => {
-  console.log(`Example app listening at https://localhost:${port}`);
+  console.log(`App listening at https://localhost:${port}`);
 });
