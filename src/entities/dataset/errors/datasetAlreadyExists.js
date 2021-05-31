@@ -3,7 +3,7 @@
 const BaseError = require('../../baseError');
 const DatasetReference = require('../reference');
 
-module.exports = class DatasetNotFoundError extends BaseError {
+module.exports = class DatasetAlreadyExistsError extends BaseError {
   constructor(projectId, datasetId) {
     super();
     this.datasetReference = new DatasetReference(projectId, datasetId);
