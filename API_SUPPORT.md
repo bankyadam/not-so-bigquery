@@ -7,8 +7,8 @@ Currently implemented REST API endpoints:
 #### Projects
 |     | METHOD | URI | Comment |
 | --- | ------ | --- | ------- |
-|     | GET    | /bigquery/v2/projects/{projectId}/serviceAccount |         |
-|     | GET    | /bigquery/v2/projects |         |
+| ❌ | GET    | /bigquery/v2/projects/{projectId}/serviceAccount |         |
+| ❌ | GET    | /bigquery/v2/projects |         |
 
 
 #### Datasets
@@ -18,8 +18,8 @@ Currently implemented REST API endpoints:
 | ✅ | GET    | /bigquery/v2/projects/{projectId}/datasets/{datasetId} |         |
 | ✅ | POST   | /bigquery/v2/projects/{projectId}/datasets |         |
 | ✅ | GET    | /bigquery/v2/projects/{projectId}/datasets |         |
-|     | PATCH  | /bigquery/v2/projects/{projectId}/datasets/{datasetId} |         |
-|     | PUT    | /bigquery/v2/projects/{projectId}/datasets/{datasetId} |         |
+| ❌ | PATCH  | /bigquery/v2/projects/{projectId}/datasets/{datasetId} |         |
+| ❌ | PUT    | /bigquery/v2/projects/{projectId}/datasets/{datasetId} |         |
 
 
 #### Tables
@@ -27,24 +27,24 @@ Currently implemented REST API endpoints:
 | --- | ------ | --- | ------- |
 | ✅ | DELETE | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId} |         |
 | ✅ | GET    | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId} |         |
-|     | POST   | /bigquery/v2/{resource=projects/*/datasets/*/tables/*}:getIamPolicy |         |
+| ❌ | POST   | /bigquery/v2/{resource=projects/*/datasets/*/tables/*}:getIamPolicy |         |
 | ✅ | POST   | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables |         |
 | ✅ | GET    | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables |         |
-|     | PATCH  | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId} |         |
-|     | POST   | /bigquery/v2/{resource=projects/*/datasets/*/tables/*}:setIamPolicy |         |
-|     | POST   | /bigquery/v2/{resource=projects/*/datasets/*/tables/*}:testIamPermissions |         |
-|     | PUT    | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId} |         |
+| ❌ | PATCH  | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId} |         |
+| ❌ | POST   | /bigquery/v2/{resource=projects/*/datasets/*/tables/*}:setIamPolicy |         |
+| ❌ | POST   | /bigquery/v2/{resource=projects/*/datasets/*/tables/*}:testIamPermissions |         |
+| ❌ | PUT    | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId} |         |
 
 
 #### Jobs
 |     | METHOD | URI | Comment |
 | --- | ------ | --- | ------- |
-|     | POST   | /bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel |         |
-|     | GET    | /bigquery/v2/projects/{projectId}/jobs/{jobId} |         |
+| ❌ | POST   | /bigquery/v2/projects/{projectId}/jobs/{jobId}/cancel |         |
+| ❌ | GET    | /bigquery/v2/projects/{projectId}/jobs/{jobId} |         |
 | ✅ | GET    | /bigquery/v2/projects/{projectId}/queries/{jobId} |         |
 | ✅ | POST   | /bigquery/v2/projects/{projectId}/jobs |         |
-|     | GET    | /bigquery/v2/projects/{projectId}/jobs |         |
-|     | POST   | /bigquery/v2/projects/{projectId}/queries |         |
+| ❌ | GET    | /bigquery/v2/projects/{projectId}/jobs |         |
+| ❌ | POST   | /bigquery/v2/projects/{projectId}/queries |         |
 
 
 #### Tabledata
