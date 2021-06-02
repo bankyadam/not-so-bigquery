@@ -1,9 +1,18 @@
 'use strict';
 
+const BaseEntityResponseObject = require('../baseEntityResponse');
 const DatasetListResponseObject = require('./response');
 const DatasetResponseObject = require('../dataset/response');
 
 describe('DatasetListResponseObject', function() {
+  it('extends BaseEntityResponseObject', function() {
+    expect(new DatasetListResponseObject).to.be.instanceof(BaseEntityResponseObject);
+  });
+
+  it('has proper TYPE set', function() {
+    expect(new DatasetListResponseObject).to.have.property('TYPE').that.eql('datasetList');
+  });
+
   it('returns empty dataset', function() {
     const response = new DatasetListResponseObject('projectId', []);
     expect(response.compose()).to.have.property('datasets').that.is.an('array').and.lengthOf(0);

@@ -1,9 +1,9 @@
 'use strict';
 
-const BaseEntityResponse = require('../baseEntityResponse');
+const BaseEntityResponseObject = require('../baseEntityResponse');
 const JobReference = require('./reference');
 
-module.exports = class JobResponseObject extends BaseEntityResponse {
+module.exports = class JobResponseObject extends BaseEntityResponseObject {
   constructor(projectId, jobId, location, configuration, state) {
     super();
     this.projectId = projectId;

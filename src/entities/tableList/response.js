@@ -1,14 +1,14 @@
 'use strict';
 
-const BaseEntityResponse = require('../baseEntityResponse');
+const BaseEntityResponseObject = require('../baseEntityResponse');
 const TableResponseObject = require('../table/response');
 
-module.exports = class TableListResponseObject extends BaseEntityResponse {
-  constructor(projectId, datasetId, tables) {
+module.exports = class TableListResponseObject extends BaseEntityResponseObject {
+  constructor(projectId, datasetId, tableIds) {
     super();
     this.projectId = projectId;
     this.datasetId = datasetId;
-    this.tables = tables || [];
+    this.tableIds = tableIds || [];
   }
 
   get TYPE() { return 'tableList'; };
@@ -18,6 +18,6 @@ module.exports = class TableListResponseObject extends BaseEntityResponse {
   }
 
   _tables() {
-    return this.tables.map(tableId => new TableResponseObject(this.projectId, this.datasetId, tableId));
+    return this.tableIds.map(tableId => new TableResponseObject(this.projectId, this.datasetId, tableId));
   }
 };

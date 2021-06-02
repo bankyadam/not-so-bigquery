@@ -1,10 +1,11 @@
 'use strict';
 
-const BaseEntityResponse = require('../baseEntityResponse');
+const BaseEntityResponseObject = require('../baseEntityResponse');
 const { map } = require('lodash');
 
-module.exports = class TableDataListResponseObject extends BaseEntityResponse {
+module.exports = class TableDataListResponseObject extends BaseEntityResponseObject {
   constructor(data, totalRows, pageToken, fields) {
+    fields = fields || [];
     super();
     this._totalRows = totalRows;
     this._data = data;

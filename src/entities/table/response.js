@@ -1,9 +1,9 @@
 'use strict';
 
-const BaseEntityResponse = require('../baseEntityResponse');
+const BaseEntityResponseObject = require('../baseEntityResponse');
 const TableReference = require('./reference');
 
-module.exports = class TableResponseObject extends BaseEntityResponse {
+module.exports = class TableResponseObject extends BaseEntityResponseObject {
   constructor(projectId, datasetId, tableId, fields) {
     super();
     this.projectId = projectId;

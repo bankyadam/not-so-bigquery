@@ -1,8 +1,17 @@
 'use strict';
 
+const BaseEntityResponseObject = require('../baseEntityResponse');
 const TableDataListResponse = require('./response');
 
 describe('TableDataListResponse', function() {
+  it('extends BaseEntityResponseObject', function() {
+    expect(new TableDataListResponse).to.be.instanceof(BaseEntityResponseObject);
+  });
+
+  it('has proper TYPE set', function() {
+    expect(new TableDataListResponse).to.have.property('TYPE').that.eql('tableDataList');
+  });
+
   it('empty data', function() {
     const subject = new TableDataListResponse([], 0, null, []);
     expect(subject.compose()).to.be.eql({

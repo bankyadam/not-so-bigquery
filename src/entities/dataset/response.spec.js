@@ -1,12 +1,21 @@
 'use strict';
 
+const BaseEntityResponseObject = require('../baseEntityResponse');
 const DatasetResponse = require('./response');
 const DatasetReference = require('./reference');
+const datasetResponse = new DatasetResponse('projectId', 'datasetId');
+const reference = new DatasetReference('projectId', 'datasetId');
 
 describe('DatasetResponse', function() {
+  it('extends BaseEntityResponseObject', function() {
+    expect(new DatasetResponse).to.be.instanceof(BaseEntityResponseObject);
+  });
+
+  it('has proper TYPE set', function() {
+    expect(new DatasetResponse).to.have.property('TYPE').that.eql('dataset');
+  });
+
   it('compose the proper object', function() {
-    const datasetResponse = new DatasetResponse('projectId', 'datasetId');
-    const reference = new DatasetReference('projectId', 'datasetId');
     const composite = datasetResponse.compose();
 
     expect(composite).to.have.property('id').that.eql(reference.ID);

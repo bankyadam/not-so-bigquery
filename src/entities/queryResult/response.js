@@ -5,6 +5,7 @@ const JobReference = require('../job/reference');
 
 module.exports = class JobResponseObject extends TableDataListResponseObject {
   constructor(projectId, jobId, location, data, totalRows, pageToken, fields) {
+    fields = fields || [];
     super(data, totalRows, pageToken, fields);
     this.projectId = projectId;
     this.jobId = jobId;
