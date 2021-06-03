@@ -1,12 +1,10 @@
---SQL--
+--INPUT--
 SELECT
   DATE(2016, 12, 25) as date_ymd,
   DATE(DATETIME "2016-12-25 23:59:59") as date_dt,
-  DATE(TIMESTAMP "2016-12-25 05:30:00+07", "America/Los_Angeles") as date_tstz;
-
---RESULT--
-+------------+------------+------------+
-| date_ymd   | date_dt    | date_tstz  |
-+------------+------------+------------+
-| 2016-12-25 | 2016-12-25 | 2016-12-24 |
-+------------+------------+------------+
+  DATE(TIMESTAMP "2016-12-25 05:30:00+07", "America/Los_Angeles") as date_tstz
+--EXPECT--
+SELECT
+  '2016-12-25'::DATE AS date_ymd,
+  (TIMESTAMP WITH TIME ZONE '2016-12-25 23:59:59')::DATE AS date_dt,
+  (TIMESTAMP WITH TIME ZONE '2016-12-25 05:30:00+07' AT TIME ZONE 'America/Los_Angeles')::DATE AS date_tstz

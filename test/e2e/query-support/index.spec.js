@@ -6,7 +6,7 @@ const bq = require('../common/connection-fake');
 const convertTable = require('../../support/table-to-json');
 const prepareTable = function(tableData) {
   return tableData
-    .replace(/\{CURRENT_DATE\}/g, (new Date).toISOString().substr(0, 10));
+    .replace(/{CURRENT_DATE}/g, (new Date).toISOString().substr(0, 10));
 };
 
 require.extensions['.txt'] = function(module, filename) {
@@ -40,4 +40,6 @@ describe('SQL Function support', function() {
 
   it('date_types', runTestCase(require('./testcases/date_types.txt')));
   it.skip('date_types_not_supported', runTestCase(require('./testcases/date_types_not_supported.txt')));
+
+  it('date', runTestCase(require('./testcases/date.txt')));
 });

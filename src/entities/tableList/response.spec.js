@@ -15,7 +15,6 @@ describe('TableListResponse', function() {
 
   it('empty data', function() {
     const subject = new TableListResponse('projectId', 'datasetId', null);
-    console.log(subject.compose());
     expect(subject.compose()).to.be.eql({ tables: [] });
   });
 

@@ -17,5 +17,9 @@ describe('Query Translator', function() {
     describe('extract', function() {
       it('day', runExpectation(require('./testcases/functions/extract-day-from-date.txt')));
     });
+
+    describe('date', function() {
+      it('date', runExpectation(require('./testcases/functions/date.txt')));
+    });
   });
 });

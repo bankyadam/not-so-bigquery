@@ -375,7 +375,7 @@ module.exports = (parser) => {
 
     ['function'](ctx) {
       if (FUNCTION_HANDLERS[ctx.functionName[0].image.toUpperCase()]) {
-        return FUNCTION_HANDLERS[ctx.functionName[0].image.toUpperCase()](ctx);
+        return FUNCTION_HANDLERS[ctx.functionName[0].image.toUpperCase()].call(this, ctx);
       }
 
       let expressions = '';

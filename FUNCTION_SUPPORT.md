@@ -237,7 +237,7 @@
 |---|---|
 | ✅ | CURRENT_DATE |
 | ✅ | EXTRACT |
-| ❌ | DATE |
+| ✅ | DATE |
 | ❌ | DATE_ADD |
 | ❌ | DATE_SUB |
 | ❌ | DATE_DIFF |
