@@ -2,9 +2,7 @@
 const runExpectation = require('./run-expectation');
 
 describe('Query Translator', function() {
-
   describe('function support', function() {
-
     describe('cast', function() {
       it('cast to int64', runExpectation(require('./testcases/functions/cast-int64.txt')));
     });
@@ -20,6 +18,10 @@ describe('Query Translator', function() {
 
     describe('date', function() {
       it('date', runExpectation(require('./testcases/functions/date.txt')));
+    });
+
+    describe('date_add', function() {
+      it('date_add', runExpectation(require('./testcases/functions/date_add.txt')));
     });
   });
 });

@@ -337,6 +337,8 @@ module.exports = (parser) => {
         return ['(', this.visit(ctx.queryExpression), ')'].join('');
       } else if (ctx.dateExpression) {
         return this.visit(ctx.dateExpression);
+      } else if (ctx.intervalExpression) {
+        return this.visit(ctx.intervalExpression);
       }
     }
 
@@ -420,6 +422,16 @@ module.exports = (parser) => {
       return [
         BIGQUERY_DATE_TYPES[ctx.dateType[0].image.toUpperCase()],
         this._convertString(ctx.String[0].image)
+      ].join(' ');
+    }
+
+    intervalExpression(ctx) {
+      return [
+        'INTERVAL',
+        ctx.atomicExpression[0].children.hasOwnProperty('literalValue') ?
+          ["'", this.visit(ctx.atomicExpression), "'"].join('') :
+          this.visit(ctx.atomicExpression),
+        ctx.datePart[0].image.toUpperCase()
       ].join(' ');
     }
 

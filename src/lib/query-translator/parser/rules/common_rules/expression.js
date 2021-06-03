@@ -20,6 +20,7 @@ module.exports = ($) => {
         { ALT: () => $.SUBRULE($.unaryOperatorExpression) },
         { ALT: () => $.SUBRULE($.parenthesisExpression) },
         { ALT: () => $.SUBRULE($.dateExpression) },
+        { ALT: () => $.SUBRULE($.intervalExpression) },
         { ALT: () => $.SUBRULE($.typelessStruct) },
         { ALT: () => $.SUBRULE($.cast) },
         { ALT: () => $.SUBRULE($.extract) },
@@ -68,6 +69,12 @@ module.exports = ($) => {
   $.RULE('dateExpression', () => {
     $.CONSUME(TOKENS.Identifier, { LABEL: 'dateType' });
     $.CONSUME(TOKENS.String);
+  });
+
+  $.RULE('intervalExpression', () => {
+    $.CONSUME(TOKENS.Interval);
+    $.SUBRULE($.atomicExpression);
+    $.CONSUME(TOKENS.Identifier, { LABEL: 'datePart' });
   });
 
   $.RULE('literalValue', () => {
