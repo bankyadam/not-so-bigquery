@@ -23,5 +23,9 @@ describe('Query Translator', function() {
     describe('date_add', function() {
       it('date_add', runExpectation(require('./testcases/functions/date_add.txt')));
     });
+
+    describe('date_sub', function() {
+      it('date_sub', runExpectation(require('./testcases/functions/date_sub.txt')));
+    });
   });
 });

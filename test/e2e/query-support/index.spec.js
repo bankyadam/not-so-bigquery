@@ -51,5 +51,6 @@ describe('SQL Function support', function() {
     it('date', runTestCase(require('./testcases/date.txt')));
 
     it('date_add', runTestCase(require('./testcases/date_add.txt')));
+    it('date_sub', runTestCase(require('./testcases/date_sub.txt')));
   });
 });

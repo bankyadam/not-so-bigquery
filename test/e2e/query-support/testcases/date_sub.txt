@@ -1,0 +1,9 @@
+--SQL--
+SELECT DATE_SUB(DATE "2008-12-25", INTERVAL 5 DAY) as five_days_before;
+
+--RESULT--
++--------------------+
+| five_days_before   |
++--------------------+
+| 2008-12-20         |
++--------------------+
