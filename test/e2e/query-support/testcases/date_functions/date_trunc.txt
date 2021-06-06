@@ -1,0 +1,16 @@
+--SQL--
+SELECT
+    DATE_TRUNC(DATE "2021-05-09", ISOYEAR) as trunc_isoyear,
+    DATE_TRUNC(DATE "2021-05-09", YEAR) as trunc_year,
+    DATE_TRUNC(DATE "2021-05-09", QUARTER) as trunc_quarter,
+    DATE_TRUNC(DATE "2021-05-01", MONTH) as trunc_month,
+    DATE_TRUNC(DATE "2021-05-01", ISOWEEK) as trunc_isoweek,
+    DATE_TRUNC(DATE "2021-05-01", WEEK) as trunc_week,
+    DATE_TRUNC(DATE "2021-05-01", DAY) as trunc_day;
+
+--RESULT--
++---------------+---------------+---------------+---------------+---------------+---------------+--------------+
+| trunc_isoyear | trunc_year    | trunc_quarter | trunc_month   | trunc_isoweek | trunc_week    | trunc_day    |
++---------------+---------------+---------------+---------------+---------------+---------------+--------------+
+| 2021-01-04    | 2021-01-01    | 2021-04-01    | 2021-05-01    | 2021-04-26    | 2021-04-25    | 2021-05-01   |
++---------------+---------------+---------------+---------------+---------------+---------------+--------------+

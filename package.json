@@ -21,6 +21,7 @@
     "express-async-router": "0.1.15",
     "lodash": "4.17.21",
     "pg": "8.6.0",
+    "sprintf-js": "1.0.3",
     "xregexp": "5.0.2"
   },
   "devDependencies": {

@@ -241,7 +241,7 @@
 | ✅ | DATE_ADD |
 | ✅ | DATE_SUB |
 | ⚠️ | DATE_DIFF (ISOWEEK, QUARTER, ISOWEEK and WEEK(<WEEKDAY>) is not supported) |
-| ❌ | DATE_TRUNC |
+| ⚠️ | DATE_TRUNC (WEEK(<WEEKDAY>) is not supported) |
 | ❌ | DATE_FROM_UNIX_DATE |
 | ❌ | FORMAT_DATE |
 | ❌ | LAST_DAY |
