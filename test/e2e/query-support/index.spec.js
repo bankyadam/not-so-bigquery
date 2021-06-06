@@ -33,25 +33,26 @@ describe('SQL Function support', function() {
     };
   };
 
+  /* eslint-disable max-len */
   context('Conversion functions', function() {
-    it('cast numeric string to int64', runTestCase(require('./testcases/cast-numeric-string-to-int64.txt')));
-    it.skip('cast hex string to int64', runTestCase(require('./testcases/cast-hex-string-to-int64.txt')));
+    it('cast numeric string to int64', runTestCase(require('./testcases/conversion_functions/cast-numeric-string-to-int64.txt')));
+    it.skip('cast hex string to int64', runTestCase(require('./testcases/conversion_functions/cast-hex-string-to-int64.txt')));
   });
 
   context('Data types', function() {
-    it('date_types', runTestCase(require('./testcases/date_types.txt')));
-    it.skip('date_types_not_supported', runTestCase(require('./testcases/date_types_not_supported.txt')));
+    it('date_types', runTestCase(require('./testcases/data_types/date_types.txt')));
+    it.skip('date_types_not_supported', runTestCase(require('./testcases/data_types/date_types_not_supported.txt')));
   });
 
   context('Date functions', function() {
-    it('current_date without timezone', runTestCase(require('./testcases/current_date-without-tz.txt')));
+    it('current_date without timezone', runTestCase(require('./testcases/date_functions/current_date-without-tz.txt')));
 
-    it('extract day', runTestCase(require('./testcases/extract-day.txt')));
+    it('extract day', runTestCase(require('./testcases/date_functions/extract-day.txt')));
 
-    it('date', runTestCase(require('./testcases/date.txt')));
+    it('date', runTestCase(require('./testcases/date_functions/date.txt')));
 
-    it('date_add', runTestCase(require('./testcases/date_add.txt')));
-    it('date_sub', runTestCase(require('./testcases/date_sub.txt')));
-    it('date_diff', runTestCase(require('./testcases/date_diff.txt')));
+    it('date_add', runTestCase(require('./testcases/date_functions/date_add.txt')));
+    it('date_sub', runTestCase(require('./testcases/date_functions/date_sub.txt')));
+    it('date_diff', runTestCase(require('./testcases/date_functions/date_diff.txt')));
   });
 });

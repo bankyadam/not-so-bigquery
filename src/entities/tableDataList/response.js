@@ -52,6 +52,9 @@ module.exports = class TableDataListResponseObject extends BaseEntityResponseObj
       case 'TEXT':
         return value.toString();
 
+      case 'INTEGER':
+        return parseInt(value, 10);
+
       default:
         console.log('Unhandled type', value, type);
         return value.toString();
