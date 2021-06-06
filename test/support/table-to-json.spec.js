@@ -23,7 +23,7 @@ describe('Table to JSON converter', function() {
 +-------+-------+-------+-------+-------+
 `;
     expect(convert(input)).to.be
-      .eql([{ first: 'data', foo: 123, bar: false, baz: null, header_name: 'value' }]);
+      .eql([{ first: 'data', foo: '123', bar: false, baz: null, header_name: 'value' }]);
   });
 
   it('multi line', function() {
@@ -39,10 +39,10 @@ describe('Table to JSON converter', function() {
 `;
     expect(convert(input)).to.be
       .eql([
-        { number: 1 },
-        { number: 2 },
-        { number: 3 },
-        { number: 4 }
+        { number: '1' },
+        { number: '2' },
+        { number: '3' },
+        { number: '4' }
       ]);
   });
 
@@ -112,7 +112,7 @@ describe('Table to JSON converter', function() {
 | data |
 | 1.123  |
 `;
-      expect(convert(input)).to.be.eql([{ data: 1.123 }]);
+      expect(convert(input)).to.be.eql([{ data: '1.123' }]);
     });
 
     it('supports date', function() {

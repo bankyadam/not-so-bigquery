@@ -1,0 +1,13 @@
+--SQL--
+SELECT
+    DATE_DIFF(DATE "2021-05-09", DATE "2020-02-18", YEAR) as diff_year,
+    DATE_DIFF(DATE "2021-05-01", DATE "2021-02-01", MONTH) as diff_month,
+    DATE_DIFF(DATE "2021-05-01", DATE "2021-05-09", WEEK) as diff_week,
+    DATE_DIFF(DATE "2021-05-01", DATE "2021-05-02", DAY) as diff_day;
+
+--RESULT--
++-------------+-------------+-------------+-------------+
+| diff_year   | diff_month  | diff_week   | diff_day    |
++-------------+-------------+-------------+-------------+
+| 1           | 3           | 1           | 1           |
++-------------+-------------+-------------+-------------+

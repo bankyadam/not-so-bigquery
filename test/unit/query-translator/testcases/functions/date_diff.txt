@@ -1,0 +1,4 @@
+--INPUT--
+SELECT DATE_DIFF(DATE '2010-07-07', DATE '2008-12-25', DAY) as days_diff
+--EXPECT--
+SELECT DATE_DIFF('day', DATE '2010-07-07', DATE '2008-12-25') as days_diff

@@ -27,5 +27,9 @@ describe('Query Translator', function() {
     describe('date_sub', function() {
       it('date_sub', runExpectation(require('./testcases/functions/date_sub.txt')));
     });
+
+    describe('date_diff', function() {
+      it('date_diff', runExpectation(require('./testcases/functions/date_diff.txt')));
+    });
   });
 });

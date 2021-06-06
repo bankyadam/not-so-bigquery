@@ -238,9 +238,9 @@
 | ✅ | CURRENT_DATE |
 | ✅ | EXTRACT |
 | ✅ | DATE |
-| ❌ | DATE_ADD |
-| ❌ | DATE_SUB |
-| ❌ | DATE_DIFF |
+| ✅ | DATE_ADD |
+| ✅ | DATE_SUB |
+| ⚠️ | DATE_DIFF (ISOWEEK, QUARTER, ISOWEEK and WEEK(<WEEKDAY>) is not supported) |
 | ❌ | DATE_TRUNC |
 | ❌ | DATE_FROM_UNIX_DATE |
 | ❌ | FORMAT_DATE |

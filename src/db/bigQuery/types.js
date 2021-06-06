@@ -35,6 +35,7 @@ module.exports.BIGQUERY_DATE_TYPES = {
 
 module.exports.POSTGRES_TYPES = {
   'TEXT': 'STRING',
+  'INTEGER': 'INTEGER',
   'BIGINT': 'INTEGER',
   'BOOLEAN': 'BOOLEAN',
   'DOUBLE PRECISION': 'FLOAT',
