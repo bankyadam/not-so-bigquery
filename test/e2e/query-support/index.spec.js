@@ -55,5 +55,6 @@ describe('SQL Function support', function() {
     it('date_sub', runTestCase(require('./testcases/date_functions/date_sub.txt')));
     it('date_diff', runTestCase(require('./testcases/date_functions/date_diff.txt')));
     it('date_trunc', runTestCase(require('./testcases/date_functions/date_trunc.txt')));
+    it('format_date', runTestCase(require('./testcases/date_functions/format_date.txt')));
   });
 });

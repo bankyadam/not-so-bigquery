@@ -122,5 +122,13 @@ describe('Table to JSON converter', function() {
 `;
       expect(convert(input)).to.be.eql([{ data: '2021-01-01' }]);
     });
+
+    it('forces string', function() {
+      const input = `
+| int! |
+| 123  |
+`;
+      expect(convert(input)).to.be.eql([{ int: '123' }]);
+    });
   });
 });

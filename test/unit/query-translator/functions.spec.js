@@ -35,5 +35,9 @@ describe('Query Translator', function() {
     describe('date_trunc', function() {
       it('date_trunc', runExpectation(require('./testcases/functions/date_trunc.txt')));
     });
+
+    describe('format_date', function() {
+      it('format_date', runExpectation(require('./testcases/functions/format_date.txt')));
+    });
   });
 });

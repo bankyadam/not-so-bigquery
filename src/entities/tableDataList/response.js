@@ -50,6 +50,7 @@ module.exports = class TableDataListResponseObject extends BaseEntityResponseObj
 
       case 'TIME':
       case 'TEXT':
+      case 'STRING':
         return value.toString();
 
       case 'INTEGER':

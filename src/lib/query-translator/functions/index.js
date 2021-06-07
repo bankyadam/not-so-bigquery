@@ -9,5 +9,6 @@ module.exports = {
   DATE_ADD: function(ctx) { return dateAdd.call(this, ctx, dateAdd.OPERATION_ADD); },
   DATE_SUB: function(ctx) { return dateAdd.call(this, ctx, dateAdd.OPERATION_SUB); },
   DATE_DIFF: require('./date_diff'),
-  DATE_TRUNC: require('./date_trunc')
+  DATE_TRUNC: require('./date_trunc'),
+  FORMAT_DATE: require('./format_date')
 };
