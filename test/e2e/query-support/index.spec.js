@@ -69,5 +69,6 @@ describe('SQL Function support', function() {
         expect(currentData[0].the_time).to.match(/^\d{2}:\d{2}:\d{2}.\d{6}$/);
       }
     ));
+    it('time', runTestCase(require('./testcases/time_functions/time.txt')));
   });
 });

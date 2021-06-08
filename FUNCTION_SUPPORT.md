@@ -266,7 +266,7 @@
 |  | function |
 |---|---|
 | ⚠️ | CURRENT_TIME (no timezone support) |
-| ❌ | TIME |
+| ✅ | TIME |
 | ❌ | EXTRACT |
 | ❌ | TIME_ADD |
 | ❌ | TIME_SUB |

@@ -1,0 +1,12 @@
+--SQL--
+SELECT
+  TIME(15, 30, 00) as time_hms,
+  TIME(DATETIME "2008-12-25 15:30:00.000000") as time_dt,
+  TIME(TIMESTAMP "2008-12-25 15:30:00+08", "America/Los_Angeles") as time_tstz;
+
+--RESULT--
++----------+----------+-----------+
+| time_hms | time_dt  | time_tstz |
++----------+----------+-----------+
+| 15:30:00 | 15:30:00 | 23:30:00  |
++----------+----------+-----------+
