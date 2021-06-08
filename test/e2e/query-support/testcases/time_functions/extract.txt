@@ -1,0 +1,14 @@
+--SQL--
+SELECT
+    EXTRACT(MICROSECOND FROM TIME "15:30:00.123456") as microsecond,
+    EXTRACT(MILLISECOND FROM TIME "15:30:00.123") as millisecond,
+    EXTRACT(SECOND FROM TIME "15:30:00") as second,
+    EXTRACT(MINUTE FROM TIME "15:30:00") as minute,
+    EXTRACT(HOUR FROM TIME "15:30:00") as hour;
+
+--RESULT--
++-------------+-------------+--------+--------+------+
+| microsecond | millisecond | second | minute | hour |
++-------------+-------------+--------+--------+------+
+| 123456      | 123         | 0      | 30     | 15   |
++-------------+-------------+--------+--------+------+

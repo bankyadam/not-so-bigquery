@@ -70,5 +70,6 @@ describe('SQL Function support', function() {
       }
     ));
     it('time', runTestCase(require('./testcases/time_functions/time.txt')));
+    it('extract', runTestCase(require('./testcases/time_functions/extract.txt')));
   });
 });
