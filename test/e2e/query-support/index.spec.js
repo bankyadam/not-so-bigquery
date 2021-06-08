@@ -18,7 +18,10 @@ describe('SQL Function support', function() {
     return /^--SQL--\n([\s\S]+?)\n--RESULT--\n([\s\S]*?)$/.exec(content);
   };
 
-  const runTestCase = function(content) {
+  const runTestCase = function(content, expectation) {
+    expectation = expectation || function(currentData, expectedData) {
+      expect(currentData).to.be.eql(expectedData);
+    };
     return async () => {
       const result = _getTestCaseData(content);
       let [data] = await bq.query(result[1]);
@@ -29,7 +32,7 @@ describe('SQL Function support', function() {
         });
       });
       const expectedData = convertTable(prepareTable(result[2]));
-      expect(data).to.be.eql(expectedData);
+      expectation(data, expectedData);
     };
   };
 
@@ -56,5 +59,15 @@ describe('SQL Function support', function() {
     it('date_diff', runTestCase(require('./testcases/date_functions/date_diff.txt')));
     it('date_trunc', runTestCase(require('./testcases/date_functions/date_trunc.txt')));
     it('format_date', runTestCase(require('./testcases/date_functions/format_date.txt')));
+  });
+
+  context('Time functions', function() {
+    it('current_time', runTestCase(
+      require('./testcases/time_functions/current_time.txt'),
+      // eslint-disable-next-line no-unused-vars
+      function(currentData, expectedData) {
+        expect(currentData[0].the_time).to.match(/^\d{2}:\d{2}:\d{2}.\d{6}$/);
+      }
+    ));
   });
 });
