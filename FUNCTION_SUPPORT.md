@@ -235,7 +235,7 @@
 ## Date functions
 |  | function |
 |---|---|
-| ✅ | CURRENT_DATE |
+| ⚠️ | CURRENT_DATE (no timezone support) |
 | ✅ | EXTRACT |
 | ✅ | DATE |
 | ✅ | DATE_ADD |
