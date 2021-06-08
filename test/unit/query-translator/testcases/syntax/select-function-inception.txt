@@ -1,6 +1,4 @@
 --INPUT--
-SELECT
-  CAST(DATE_TRUNC(DATE(f1, @timezone), DAY) as STRING) as date
+SELECT CAST(DATE_TRUNC(DATE(f1, @timezone), DAY) as STRING) as date
 --EXPECT--
-SELECT
-  CAST(DATE_TRUNC((f1 AT TIME ZONE @timezone)::DATE, DAY) as TEXT) as date
+SELECT CAST(DATE_TRUNC('DAY', (f1 AT TIME ZONE @timezone)::DATE)::DATE AS text) AS date

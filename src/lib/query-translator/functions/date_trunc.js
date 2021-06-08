@@ -11,8 +11,12 @@ module.exports = function(ctx) {
       sql = 'TO_DATE(TO_CHAR(DATE_TRUNC(\'YEAR\', %1$s) + INTERVAL \'1 WEEK\', \'iyyy-iw\'), \'iyyy-iw\')';
       break;
 
+    case 'ISOWEEK':
+      sql = 'DATE_TRUNC(\'WEEK\', %1$s)::DATE';
+      break;
+
     case 'WEEK':
-      sql = '(DATE_TRUNC(\'%2$s\', %1$s) - INTERVAL \'1 DAY\')::DATE';
+      sql = '(DATE_TRUNC(\'WEEK\', %1$s) - INTERVAL \'1 DAY\')::DATE';
       break;
 
     default:
