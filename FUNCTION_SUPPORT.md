@@ -6,7 +6,7 @@
 | ❌ | ANY_VALUE |
 | ❌ | ARRAY_AGG |
 | ❌ | ARRAY_CONCAT_AGG |
-| ❌ | AVG |
+| ✅ | AVG |
 | ❌ | BIT_AND |
 | ❌ | BIT_OR |
 | ❌ | BIT_XOR |
