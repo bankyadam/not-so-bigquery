@@ -56,6 +56,7 @@ describe('Query Translator', function() {
     it('select-function-empty', runExpectation(require('./testcases/syntax/select-function-empty.txt')));
     it('select-function-inception', runExpectation(require('./testcases/syntax/select-function-inception.txt')));
     it('select-function-with-asterisk', runExpectation(require('./testcases/syntax/select-function-with-asterisk.txt')));
+    it('select-function-with-distinct', runExpectation(require('./testcases/syntax/select-function-with-distinct.txt')));
     it('select-literals', runExpectation(require('./testcases/syntax/select-literals.txt')));
     it('select-simple-query-with-asterisk', runExpectation(require('./testcases/syntax/select-simple-query-with-asterisk.txt')));
     it('select-simple-query-with-mixed-expressions', runExpectation(require('./testcases/syntax/select-simple-query-with-mixed-expressions.txt')));

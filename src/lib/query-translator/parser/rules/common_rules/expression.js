@@ -97,7 +97,10 @@ module.exports = ($) => {
   $.RULE('function', () => {
     $.CONSUME(TOKENS.Identifier, { LABEL: 'functionName' });
     $.CONSUME(TOKENS.LeftParenthesis);
-    $.OPTION(() => {
+    $.OPTION1(() => {
+      $.OPTION2(() => {
+        $.CONSUME(TOKENS.SelectDistinct);
+      });
       $.OR([
         {
           ALT: () =>

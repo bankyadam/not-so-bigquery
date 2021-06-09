@@ -22,6 +22,11 @@ describe('SQL Function support', function() {
     it.skip('date_types_not_supported', runTestCase(require('./testcases/data_types/date_types_not_supported.txt')));
   });
 
+  context('Aggregator functions', function() {
+    it('avg', runTestCase(require('./testcases/aggregate_functions/avg.txt')));
+    it('avg_distinct', runTestCase(require('./testcases/aggregate_functions/avg_distinct.txt')));
+  });
+
   context('Date functions', function() {
     it('current_date without timezone', runTestCase(require('./testcases/date_functions/current_date-without-tz.txt')));
 

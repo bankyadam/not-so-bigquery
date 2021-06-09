@@ -1,0 +1,10 @@
+--SQL--
+SELECT AVG(x) as avg
+FROM UNNEST([1, 2, 3, 4, 5]) AS x
+
+--RESULT--
++-----+
+| avg |
++-----+
+| 3   |
++-----+

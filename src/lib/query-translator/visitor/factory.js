@@ -390,20 +390,21 @@ module.exports = (parser) => {
         return FUNCTION_HANDLERS[ctx.functionName[0].image.toUpperCase()].call(this, ctx);
       }
 
-      let expressions = '';
+      let expressions = [];
 
       if (ctx.expression) {
-        expressions = ctx.expression.map(token => this.visit(token)).join(', ');
+        expressions = ctx.expression.map(token => this.visit(token));
       } else if (ctx.Asterisk) {
-        expressions = '*';
+        expressions = ['*'];
       }
 
       return [
         ctx.functionName[0].image,
         '(',
-        expressions,
+        ctx.SelectDistinct ? 'DISTINCT' : '',
+        expressions.join(','),
         ')'
-      ].join('');
+      ].join(' ');
     }
 
     namedQueryParameter(ctx) {
