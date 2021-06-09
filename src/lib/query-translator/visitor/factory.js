@@ -247,10 +247,10 @@ module.exports = (parser) => {
       } else if (ctx.OrderByDesc) {
         parts.push('DESC');
       }
-      if (ctx.OrderByNullsFirst) {
-        parts.push('NULLS FIRST');
-      } else if (ctx.OrderByNullsLast) {
+      if (ctx.OrderByNullsLast) {
         parts.push('NULLS LAST');
+      } else {
+        parts.push('NULLS FIRST');
       }
       return parts.join(' ');
     }
