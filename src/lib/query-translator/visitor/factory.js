@@ -130,6 +130,8 @@ module.exports = (parser) => {
         parts.push(this.visit(ctx.tableName));
       } else if (ctx.subQuery) {
         parts.push(this.visit(ctx.subQuery));
+      } else if (ctx.unnest) {
+        parts.push(this.visit(ctx.unnest));
       }
       if (ctx.join) {
         ctx.join.forEach(token => {
@@ -209,6 +211,14 @@ module.exports = (parser) => {
 
     subQuery(ctx) {
       const parts = ['(', this.visit(ctx.queryExpression), ')'];
+      if (ctx.asAlias) {
+        parts.push(this.visit(ctx.asAlias));
+      }
+      return parts.join(' ');
+    }
+
+    unnest(ctx) {
+      const parts = ['UNNEST(', this.visit(ctx.array), ')'];
       if (ctx.asAlias) {
         parts.push(this.visit(ctx.asAlias));
       }
@@ -368,7 +378,7 @@ module.exports = (parser) => {
     }
 
     array(ctx) {
-      return ['[', ctx.literalValue.map(token => this.visit(token)).join(','), ']'].join('');
+      return ['ARRAY[', ctx.literalValue.map(token => this.visit(token)).join(','), ']'].join('');
     }
 
     identifier(ctx) {

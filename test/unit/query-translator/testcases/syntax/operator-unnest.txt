@@ -1,0 +1,5 @@
+--INPUT--
+SELECT t FROM UNNEST([1, 2, 3, 4, 5]) AS t
+--EXPECT--
+SELECT t FROM UNNEST(ARRAY[1, 2, 3, 4, 5]) AS t
+

@@ -2,7 +2,7 @@
 const subject = require('../../../src/lib/query-translator');
 
 const _getTestCaseData = function(content) {
-  return /^--INPUT--\n([\s\S]+?)\n--EXPECT--\n([\s\S]*?)$/.exec(content);
+  return /^--INPUT--\n([\s\S]+?);?\n--EXPECT--\n([\s\S]*?);?\s*$/.exec(content);
 };
 
 module.exports = function(content) {

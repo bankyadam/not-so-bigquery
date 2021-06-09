@@ -22,6 +22,7 @@ const lexerDefinition = [
   TOKENS.On,
   TOKENS.In,
   TOKENS.Using,
+  TOKENS.Unnest,
   TOKENS.Where,
   TOKENS.GroupBy,
   TOKENS.Having,

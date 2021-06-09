@@ -10,7 +10,7 @@ const TOKENS = require('../../tokens');
  *     join |
  *     ( query_expr ) [[AS] alias] |
  *     #> field_path | <#
- *     #> { UNNEST(array_expression) | UNNEST(array_path) | array_path } [[AS] alias] [ WITH OFFSET [[AS] alias] ] | <#
+ *     { UNNEST(array_expression) | UNNEST(array_path) | array_path } [[AS] alias] [ WITH OFFSET [[AS] alias] ] |
  *     with_query_name [[AS] alias]
  * }
  */
@@ -18,7 +18,8 @@ module.exports = ($) => {
   $.RULE('fromItem', () => {
     $.OR([
       { ALT: () => $.SUBRULE($.tableName) },
-      { ALT: () => $.SUBRULE($.subQuery) }
+      { ALT: () => $.SUBRULE($.subQuery) },
+      { ALT: () => $.SUBRULE($.unnest) }
     ]);
     $.OPTION(() => $.MANY(() => $.SUBRULE($.join)));
   });
@@ -41,6 +42,25 @@ module.exports = ($) => {
     $.AT_LEAST_ONE_SEP({
       SEP: TOKENS.IdentifierQualifier,
       DEF: () => $.CONSUME(TOKENS.Identifier)
+    });
+  });
+
+  /**
+   *     {
+   *        UNNEST(array_expression) |
+   *        #> UNNEST(array_path) | <#
+   *        #> array_path <#
+   *     }
+   *     [[AS] alias]
+   *     #> [ WITH OFFSET [[AS] alias] ] <#
+   */
+  $.RULE('unnest', () => {
+    $.CONSUME(TOKENS.Unnest);
+    $.CONSUME(TOKENS.LeftParenthesis);
+    $.SUBRULE($.array);
+    $.CONSUME(TOKENS.RightParenthesis);
+    $.OPTION1(() => {
+      $.SUBRULE($.asAlias);
     });
   });
 

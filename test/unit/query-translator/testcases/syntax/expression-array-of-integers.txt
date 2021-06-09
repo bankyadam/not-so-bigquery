@@ -1,4 +1,4 @@
 --INPUT--
 SELECT [1, 2, 3]
 --EXPECT--
-SELECT [1, 2, 3]
+SELECT ARRAY[1, 2, 3]

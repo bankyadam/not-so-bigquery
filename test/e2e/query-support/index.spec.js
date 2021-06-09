@@ -1,45 +1,20 @@
 'use strict';
 const fs = require('fs');
-const { mapValues } = require('lodash');
-
-const bq = require('../common/connection-fake');
-const convertTable = require('../../support/table-to-json');
-const prepareTable = function(tableData) {
-  return tableData
-    .replace(/{CURRENT_DATE}/g, (new Date).toISOString().substr(0, 10));
-};
+const runTestCase = require('./runTestCase');
 
 require.extensions['.txt'] = function(module, filename) {
   module.exports = fs.readFileSync(filename, 'utf8');
 };
 
 describe('SQL Function support', function() {
-  const _getTestCaseData = function(content) {
-    return /^--SQL--\n([\s\S]+?)\n--RESULT--\n([\s\S]*?)$/.exec(content);
-  };
-
-  const runTestCase = function(content, expectation) {
-    expectation = expectation || function(currentData, expectedData) {
-      expect(currentData).to.be.eql(expectedData);
-    };
-    return async () => {
-      const result = _getTestCaseData(content);
-      let [data] = await bq.query(result[1]);
-      data = data.map(row => {
-        return mapValues(row, value => {
-          if (value.value) { return value.value; }
-          return value;
-        });
-      });
-      const expectedData = convertTable(prepareTable(result[2]));
-      expectation(data, expectedData);
-    };
-  };
-
   /* eslint-disable max-len */
   context('Conversion functions', function() {
     it('cast numeric string to int64', runTestCase(require('./testcases/conversion_functions/cast-numeric-string-to-int64.txt')));
     it.skip('cast hex string to int64', runTestCase(require('./testcases/conversion_functions/cast-hex-string-to-int64.txt')));
+  });
+
+  context('Operators', function() {
+    it('unnest', runTestCase(require('./testcases/operators/unnest.txt')));
   });
 
   context('Data types', function() {

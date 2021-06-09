@@ -1,4 +1,4 @@
 --INPUT--
 SELECT [true, false]
 --EXPECT--
-SELECT [true, false]
+SELECT ARRAY[true, false]

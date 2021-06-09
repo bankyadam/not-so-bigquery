@@ -38,6 +38,7 @@ describe('Query Translator', function() {
     it('having-simple', runExpectation(require('./testcases/syntax/having-simple.txt')));
     it('limit-clause-limit-offset', runExpectation(require('./testcases/syntax/limit-clause-limit-offset.txt')));
     it('limit-clause-only-limit', runExpectation(require('./testcases/syntax/limit-clause-only-limit.txt')));
+    it('operator-unnest', runExpectation(require('./testcases/syntax/operator-unnest.txt')));
     it('order-by-complex-definition', runExpectation(require('./testcases/syntax/order-by-complex-definition.txt')));
     it('order-by-handles-field-asc', runExpectation(require('./testcases/syntax/order-by-handles-field-asc.txt')));
     it('order-by-handles-field-desc', runExpectation(require('./testcases/syntax/order-by-handles-field-desc.txt')));
