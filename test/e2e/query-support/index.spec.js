@@ -27,6 +27,7 @@ describe('SQL Function support', function() {
     it('avg_distinct', runTestCase(require('./testcases/aggregate_functions/avg_distinct.txt')));
     it('avg_window', runTestCase(require('./testcases/aggregate_functions/avg_window.txt')));
     it('bit_and', runTestCase(require('./testcases/aggregate_functions/bit_and.txt')));
+    it('bit_or', runTestCase(require('./testcases/aggregate_functions/bit_or.txt')));
   });
 
   context('Date functions', function() {
