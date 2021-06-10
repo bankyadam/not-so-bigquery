@@ -1,5 +1,7 @@
 'use strict';
 
+const { hexToDec } = require('hex2dec');
+
 const {
   BIGQUERY_TYPES,
   BIGQUERY_DATE_PARTS,
@@ -355,6 +357,8 @@ module.exports = (parser) => {
     literalValue(ctx) {
       if (ctx.Numeric) {
         return ctx.Numeric[0].image;
+      } else if (ctx.NumericHex) {
+        return hexToDec(ctx.NumericHex[0].image);
       } else if (ctx.String) {
         return this._convertString(ctx.String[0].image);
       } else if (ctx.LiteralConstant) {

@@ -81,6 +81,7 @@ module.exports = ($) => {
     $.OR([
       { ALT: () => $.CONSUME(TOKENS.LiteralConstant) },
       { ALT: () => $.CONSUME(TOKENS.Numeric) },
+      { ALT: () => $.CONSUME(TOKENS.NumericHex) },
       { ALT: () => $.CONSUME(TOKENS.String) }
     ]);
   });

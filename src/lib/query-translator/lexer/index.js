@@ -10,6 +10,7 @@ const lexerDefinition = [
 
   TOKENS.String,
   TOKENS.Numeric,
+  TOKENS.NumericHex,
   TOKENS.Interval,
 
   TOKENS.With,

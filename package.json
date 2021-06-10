@@ -19,6 +19,7 @@
     "etag": "1.8.1",
     "express": "4.17.1",
     "express-async-router": "0.1.15",
+    "hex2dec": "1.1.2",
     "lodash": "4.17.21",
     "pg": "8.6.0",
     "sprintf-js": "1.1.2",

@@ -1,0 +1,5 @@
+--INPUT--
+SELECT 0xF001 AS hex
+
+--EXPECT--
+SELECT 61441 AS hex

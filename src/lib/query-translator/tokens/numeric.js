@@ -2,6 +2,7 @@
 
 const { createToken } = require('chevrotain');
 const { addFragment, buildPattern } = require('../../regexp-builder');
+const NumericHex = require('./numeric_hex');
 
 addFragment('PlusMinus', '[-+]?');
 addFragment('IntegerPart', '\\d+');
@@ -16,5 +17,6 @@ const pattern = buildPattern(
 
 module.exports = createToken({
   name: 'Numeric',
-  pattern
+  pattern,
+  longer_alt: NumericHex
 });
