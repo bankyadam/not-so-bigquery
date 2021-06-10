@@ -25,6 +25,7 @@ describe('SQL Function support', function() {
   context('Aggregator functions', function() {
     it('avg', runTestCase(require('./testcases/aggregate_functions/avg.txt')));
     it('avg_distinct', runTestCase(require('./testcases/aggregate_functions/avg_distinct.txt')));
+    it('avg_window', runTestCase(require('./testcases/aggregate_functions/avg_window.txt')));
   });
 
   context('Date functions', function() {

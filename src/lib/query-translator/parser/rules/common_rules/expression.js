@@ -113,6 +113,7 @@ module.exports = ($) => {
       ]);
     });
     $.CONSUME(TOKENS.RightParenthesis);
+    $.OPTION(() => $.SUBRULE($.windowSpecification));
   });
 
   $.RULE('identifier', () => {

@@ -22,7 +22,7 @@ module.exports = function(content, expectation) {
     let [data] = await bq.query(result[1]);
     data = data.map(row => {
       return mapValues(row, value => {
-        if (value.value) { return value.value; }
+        if (value !== null && value.value) { return value.value; }
         return value;
       });
     });

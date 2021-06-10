@@ -81,6 +81,7 @@ describe('Query Translator', function() {
     it('where-simple', runExpectation(require('./testcases/syntax/where-simple.txt')));
     it('where-unary-operator-not', runExpectation(require('./testcases/syntax/where-unary-operator-not.txt')));
     it('whitespace-handling', runExpectation(require('./testcases/syntax/whitespace-handling.txt')));
+    it('window-specification', runExpectation(require('./testcases/syntax/window-specification.txt')));
     it('with-clause-more-items', runExpectation(require('./testcases/syntax/with-clause-more-items.txt')));
     it('with-clause-simple-query', runExpectation(require('./testcases/syntax/with-clause-simple-query.txt')));
     it('with-clause-with-inception', runExpectation(require('./testcases/syntax/with-clause-with-inception.txt')));

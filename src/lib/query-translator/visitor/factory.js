@@ -398,13 +398,19 @@ module.exports = (parser) => {
         expressions = ['*'];
       }
 
-      return [
+      const parts = [
         ctx.functionName[0].image,
         '(',
         ctx.SelectDistinct ? 'DISTINCT' : '',
         expressions.join(','),
         ')'
-      ].join(' ');
+      ];
+
+      if (ctx.windowSpecification) {
+        parts.push(this.visit(ctx.windowSpecification));
+      }
+
+      return parts.join(' ');
     }
 
     namedQueryParameter(ctx) {
@@ -530,6 +536,108 @@ module.exports = (parser) => {
       }
 
       return parts.join(' ');
+    }
+
+    windowSpecification(ctx) {
+      const parts = ['OVER', '('];
+
+      if (ctx.partitionBy) {
+        parts.push(this.visit(ctx.partitionBy));
+      }
+
+      if (ctx.orderByClause) {
+        parts.push(this.visit(ctx.orderByClause));
+      }
+
+      if (ctx.frameClause) {
+        parts.push(this.visit(ctx.frameClause));
+      }
+
+      parts.push(')');
+
+
+      return parts.join(' ');
+    }
+
+    partitionBy(ctx) {
+      return [
+        'PARTITION BY',
+        ctx.atomicExpression.map(atomicExpression => this.visit(atomicExpression)).join(', ')
+      ].join(' ');
+    }
+
+    frameClause(ctx) {
+      const parts = [ctx.RowsRange[0].image];
+
+      if (ctx.frame) {
+        parts.push(this.visit(ctx.frame));
+      }
+
+      if (ctx.frameBetween) {
+        parts.push(this.visit(ctx.frameBetween));
+      }
+
+      return parts.join(' ');
+    }
+
+    frameBetween(ctx) {
+      return [
+        ctx.Between[0].image,
+        this.visit(ctx.frameBegin),
+        ctx.And[0].image,
+        this.visit(ctx.frameEnd)
+      ].join(' ');
+    }
+
+    frame(ctx) {
+      if (ctx.numericPreceding) {
+        return this.visit(ctx.numericPreceding);
+      }
+
+      if (ctx.unboundedPreceding) {
+        return this.visit(ctx.unboundedPreceding);
+
+      }
+
+      if (ctx.CurrentRow) {
+        return ctx.CurrentRow[0].image;
+      }
+
+      if (ctx.numericFollowing) {
+        return this.visit(ctx.numericFollowing);
+      }
+
+      if (ctx.unboundedFollowing) {
+        return this.visit(ctx.unboundedFollowing);
+      }
+    }
+
+    numericPreceding(ctx) {
+      return [
+        ctx.Numeric[0].image,
+        ctx.Preceding[0].image
+      ].join(' ');
+    }
+
+    unboundedPreceding(ctx) {
+      return [
+        ctx.Unbounded[0].image,
+        ctx.Preceding[0].image
+      ].join(' ');
+    }
+
+    numericFollowing(ctx) {
+      return [
+        ctx.Numeric[0].image,
+        ctx.Following[0].image
+      ].join(' ');
+    }
+
+    unboundedFollowing(ctx) {
+      return [
+        ctx.Unbounded[0].image,
+        ctx.Following[0].image
+      ].join(' ');
     }
   }
 
