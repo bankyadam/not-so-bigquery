@@ -14,8 +14,8 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ❌ | ARRAY_AGG |
 | ❌ | ARRAY_CONCAT_AGG |
 | ✅ | AVG |
-| ❌ | BIT_AND |
-| ❌ | BIT_OR |
+| ✅ | BIT_AND |
+| ✅ | BIT_OR |
 | ❌ | BIT_XOR |
 | ✅ | COUNT |
 | ❌ | COUNTIF |
