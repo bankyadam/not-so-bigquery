@@ -1,6 +1,13 @@
 # Function support
 
 ## Aggregate functions
+There is currently a limitation in the backing PostgreSQL (_DISTINCT is not implemented for window functions_),
+so you can not write such query:
+```SQL
+SELECT COUNT(DISTINCT x) OVER (…)
+```
+
+
 |  | function |
 |---|---|
 | ❌ | ANY_VALUE |
@@ -10,7 +17,7 @@
 | ❌ | BIT_AND |
 | ❌ | BIT_OR |
 | ❌ | BIT_XOR |
-| ❌ | COUNT |
+| ✅ | COUNT |
 | ❌ | COUNTIF |
 | ❌ | LOGICAL_AND |
 | ❌ | LOGICAL_OR |

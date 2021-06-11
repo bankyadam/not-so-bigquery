@@ -13,10 +13,16 @@ const _getTestCaseData = function(content) {
   return /^--SQL--\n([\s\S]+?)\n--RESULT--\n([\s\S]*?)$/.exec(content);
 };
 
+const DEFAULT = function(currentData, expectedData) {
+  expect(currentData).to.be.eql(expectedData);
+};
+
+const NOT_ORDERED = function(currentData, expectedData) {
+  expect(currentData).to.have.deep.members(expectedData);
+};
+
 module.exports = function(content, expectation) {
-  expectation = expectation || function(currentData, expectedData) {
-    expect(currentData).to.be.eql(expectedData);
-  };
+  expectation = expectation || DEFAULT;
   return async () => {
     const result = _getTestCaseData(content);
     let [data] = await bq.query(result[1]);
@@ -30,3 +36,5 @@ module.exports = function(content, expectation) {
     expectation(data, expectedData);
   };
 };
+
+module.exports.EXPECTATIONS = { DEFAULT, NOT_ORDERED };

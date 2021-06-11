@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('fs');
 const runTestCase = require('./runTestCase');
+const { NOT_ORDERED } = runTestCase.EXPECTATIONS;
 
 require.extensions['.txt'] = function(module, filename) {
   module.exports = fs.readFileSync(filename, 'utf8');
@@ -23,11 +24,20 @@ describe('SQL Function support', function() {
   });
 
   context('Aggregator functions', function() {
-    it('avg', runTestCase(require('./testcases/aggregate_functions/avg.txt')));
-    it('avg_distinct', runTestCase(require('./testcases/aggregate_functions/avg_distinct.txt')));
-    it('avg_window', runTestCase(require('./testcases/aggregate_functions/avg_window.txt')));
+    describe('avg', function() {
+      it('simple', runTestCase(require('./testcases/aggregate_functions/avg.txt')));
+      it('distinct', runTestCase(require('./testcases/aggregate_functions/avg_distinct.txt')));
+      it('window', runTestCase(require('./testcases/aggregate_functions/avg_window.txt')));
+    });
+
     it('bit_and', runTestCase(require('./testcases/aggregate_functions/bit_and.txt')));
     it('bit_or', runTestCase(require('./testcases/aggregate_functions/bit_or.txt')));
+
+    describe('count', function() {
+      it('distinct', runTestCase(require('./testcases/aggregate_functions/count_distinct.txt')));
+      it('null', runTestCase(require('./testcases/aggregate_functions/count_null.txt'), NOT_ORDERED));
+      it.skip('window', runTestCase(require('./testcases/aggregate_functions/count_window.txt')));
+    });
   });
 
   context('Date functions', function() {
