@@ -21,8 +21,8 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ✅ | COUNTIF|
 | ✅ | LOGICAL_AND |
 | ✅ | LOGICAL_OR |
-| ❌ | MAX |
-| ❌ | MIN |
+| ✅ | MAX |
+| ✅ | MIN |
 | ❌ | STRING_AGG |
 | ❌ | SUM |
 

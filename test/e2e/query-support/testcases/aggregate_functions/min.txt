@@ -1,0 +1,10 @@
+--SQL--
+SELECT MIN(x) AS min
+FROM UNNEST([8, 37, 4, 55]) AS x;
+
+--RESULT--
++-----+
+| min |
++-----+
+| 4   |
++-----+

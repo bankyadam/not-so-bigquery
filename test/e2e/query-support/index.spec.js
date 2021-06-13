@@ -46,6 +46,16 @@ describe('SQL Function support', function() {
 
     it('logical_and', runTestCase(require('./testcases/aggregate_functions/logical_and.txt')));
     it('logical_or', runTestCase(require('./testcases/aggregate_functions/logical_or.txt')));
+
+    describe('max', function() {
+      it('simple', runTestCase(require('./testcases/aggregate_functions/max.txt')));
+      it('window function', runTestCase(require('./testcases/aggregate_functions/max_window.txt'), NOT_ORDERED));
+    });
+
+    describe('min', function() {
+      it('simple', runTestCase(require('./testcases/aggregate_functions/min.txt')));
+      it('window function', runTestCase(require('./testcases/aggregate_functions/min_window.txt'), NOT_ORDERED));
+    });
   });
 
   context('Date functions', function() {

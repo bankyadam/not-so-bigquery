@@ -1,0 +1,10 @@
+--SQL--
+SELECT MAX(x) AS max
+FROM UNNEST([8, 37, 4, 55]) AS x;
+
+--RESULT--
++-----+
+| max |
++-----+
+| 55  |
++-----+
