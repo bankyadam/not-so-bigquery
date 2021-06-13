@@ -2,8 +2,8 @@
 const { reduce } = require('lodash');
 
 module.exports = function(ctx) {
-  const template = this.visit(ctx.expression[0]);
-  const dateExpression = this.visit(ctx.expression[1]);
+  const template = this.visit(ctx.functionParameter[0]);
+  const dateExpression = this.visit(ctx.functionParameter[1]);
   return [
     'REGEXP_REPLACE(',
     'TO_CHAR(',

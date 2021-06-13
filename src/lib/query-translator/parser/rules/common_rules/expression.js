@@ -107,7 +107,7 @@ module.exports = ($) => {
           ALT: () =>
             $.AT_LEAST_ONE_SEP({
               SEP: TOKENS.Comma,
-              DEF: () => $.SUBRULE($.expression)
+              DEF: () => $.SUBRULE($.functionParameter)
             })
         },
         { ALT: () => $.CONSUME(TOKENS.Asterisk) }
@@ -115,6 +115,12 @@ module.exports = ($) => {
     });
     $.CONSUME(TOKENS.RightParenthesis);
     $.OPTION(() => $.SUBRULE($.windowSpecification));
+  });
+
+  $.RULE('functionParameter', () => {
+    $.SUBRULE($.expression);
+    $.OPTION1(() => $.SUBRULE($.orderByClause));
+    $.OPTION2(() => $.SUBRULE($.limitClause));
   });
 
   $.RULE('identifier', () => {

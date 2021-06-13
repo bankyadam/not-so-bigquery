@@ -11,6 +11,7 @@ const TOKENS = require('../../tokens');
 module.exports = ($) => {
   $.RULE('limitClause', () => {
     $.CONSUME(TOKENS.Limit);
+    $.CONSUME(TOKENS.Numeric);
     $.OPTION(() => $.CONSUME(TOKENS.Offset));
   });
 };

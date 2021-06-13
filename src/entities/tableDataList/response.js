@@ -37,6 +37,10 @@ module.exports = class TableDataListResponseObject extends BaseEntityResponseObj
   }
 
   _convertValue(value, type) {
+    if (value === null) {
+      return null;
+    }
+
     switch (type) {
       case 'TIMESTAMP':
         return (Date.parse(value) / 1000)

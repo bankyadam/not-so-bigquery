@@ -1,15 +1,15 @@
 'use strict';
 
 module.exports = function(ctx) {
-  switch (ctx.expression.length) {
+  switch (ctx.functionParameter.length) {
     case 3:
       return [
         '\'',
-        this.visit(ctx.expression[0]),
+        this.visit(ctx.functionParameter[0]),
         '-',
-        this.visit(ctx.expression[1]),
+        this.visit(ctx.functionParameter[1]),
         '-',
-        this.visit(ctx.expression[2]),
+        this.visit(ctx.functionParameter[2]),
         '\'',
         '::DATE'
       ].join('');
@@ -17,16 +17,16 @@ module.exports = function(ctx) {
     case 2:
       return [
         '(',
-        this.visit(ctx.expression[0]),
+        this.visit(ctx.functionParameter[0]),
         ' ',
         'AT TIME ZONE',
         ' ',
-        this.visit(ctx.expression[1]),
+        this.visit(ctx.functionParameter[1]),
         ')',
         '::DATE'
       ].join('');
 
     case 1:
-      return ['(', this.visit(ctx.expression[0]), ')', '::DATE'].join('');
+      return ['(', this.visit(ctx.functionParameter[0]), ')', '::DATE'].join('');
   }
 };

@@ -258,7 +258,10 @@ module.exports = (parser) => {
     }
 
     limitClause(ctx) {
-      const parts = [ctx.Limit[0].image];
+      const parts = [
+        ctx.Limit[0].image,
+        ctx.Numeric[0].image
+      ];
       if (ctx.Offset) {
         parts.push(ctx.Offset[0].image);
       }
@@ -394,19 +397,19 @@ module.exports = (parser) => {
         return FUNCTION_HANDLERS[ctx.functionName[0].image.toUpperCase()].call(this, ctx);
       }
 
-      let expressions = [];
+      let parameters = [];
 
-      if (ctx.expression) {
-        expressions = ctx.expression.map(token => this.visit(token));
+      if (ctx.functionParameter) {
+        parameters = ctx.functionParameter.map(token => this.visit(token));
       } else if (ctx.Asterisk) {
-        expressions = ['*'];
+        parameters = ['*'];
       }
 
       const parts = [
         ctx.functionName[0].image,
         '(',
         ctx.SelectDistinct ? 'DISTINCT' : '',
-        expressions.join(','),
+        parameters.join(','),
         ')'
       ];
 
@@ -414,6 +417,17 @@ module.exports = (parser) => {
         parts.push(this.visit(ctx.windowSpecification));
       }
 
+      return parts.join(' ');
+    }
+
+    functionParameter(ctx) {
+      const parts = [this.visit(ctx.expression[0])];
+      if (ctx.orderByClause) {
+        parts.push(this.visit(ctx.orderByClause[0]));
+      }
+      if (ctx.limitClause) {
+        parts.push(this.visit(ctx.limitClause[0]));
+      }
       return parts.join(' ');
     }
 

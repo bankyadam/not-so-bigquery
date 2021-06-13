@@ -19,5 +19,6 @@ module.exports = {
 
   COUNTIF: require('./aggregate/countif'),
   LOGICAL_AND: require('./aggregate/logical_and'),
-  LOGICAL_OR: require('./aggregate/logical_or')
+  LOGICAL_OR: require('./aggregate/logical_or'),
+  STRING_AGG: require('./aggregate/string_agg')
 };
