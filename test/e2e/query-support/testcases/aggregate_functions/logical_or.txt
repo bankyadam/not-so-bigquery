@@ -1,0 +1,9 @@
+--SQL--
+SELECT LOGICAL_OR(x) AS logical_or FROM UNNEST([true, false, true]) AS x;
+
+--RESULT--
++------------+
+| logical_or |
++------------+
+| true       |
++------------+

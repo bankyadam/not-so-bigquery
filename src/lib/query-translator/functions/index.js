@@ -17,5 +17,7 @@ module.exports = {
   TIME: require('./time/time'),
   TIME_DIFF: require('./time/time_diff'),
 
-  COUNTIF: require('./aggregate/countif')
+  COUNTIF: require('./aggregate/countif'),
+  LOGICAL_AND: require('./aggregate/logical_and'),
+  LOGICAL_OR: require('./aggregate/logical_or')
 };
