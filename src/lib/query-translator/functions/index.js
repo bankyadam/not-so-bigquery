@@ -15,5 +15,7 @@ module.exports = {
   // eslint-disable-next-line no-unused-vars
   CURRENT_TIME: function(ctx) { return 'TO_CHAR(CURRENT_TIMESTAMP, \'HH24:MI:SS.US\')'; },
   TIME: require('./time/time'),
-  TIME_DIFF: require('./time/time_diff')
+  TIME_DIFF: require('./time/time_diff'),
+
+  COUNTIF: require('./aggregate/countif')
 };

@@ -18,7 +18,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ✅ | BIT_OR |
 | ❌ | BIT_XOR |
 | ✅ | COUNT |
-| ❌ | COUNTIF |
+| ✅ | COUNTIF|
 | ❌ | LOGICAL_AND |
 | ❌ | LOGICAL_OR |
 | ❌ | MAX |

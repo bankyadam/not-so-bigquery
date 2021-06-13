@@ -38,6 +38,11 @@ describe('SQL Function support', function() {
       it('null', runTestCase(require('./testcases/aggregate_functions/count_null.txt'), NOT_ORDERED));
       it.skip('window', runTestCase(require('./testcases/aggregate_functions/count_window.txt')));
     });
+
+    describe('countif', function() {
+      it('simple', runTestCase(require('./testcases/aggregate_functions/countif.txt')));
+      it.skip('window function', runTestCase(require('./testcases/aggregate_functions/countif_window.txt')));
+    });
   });
 
   context('Date functions', function() {

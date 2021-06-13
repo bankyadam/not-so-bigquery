@@ -7,6 +7,10 @@ describe('Query Translator', function() {
       it('cast to int64', runExpectation(require('./testcases/functions/cast-int64.txt')));
     });
 
+    describe('aggregate functions', function() {
+      it('countif', runExpectation(require('./testcases/functions/countif.txt')));
+    });
+
     describe('date functions', function() {
       it('current_date() without timezone', runExpectation(require('./testcases/functions/date/current_date.txt')));
       it.skip('current_date() with timezone');
