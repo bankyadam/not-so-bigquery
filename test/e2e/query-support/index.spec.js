@@ -96,4 +96,8 @@ describe('SQL Function support', function() {
     it('extract', runTestCase(require('./testcases/time_functions/extract.txt')));
     it('time_diff', runTestCase(require('./testcases/time_functions/time_diff.txt')));
   });
+
+  context('JSON functions', function() {
+    it('to_json_string', runTestCase(require('./testcases/json_functions/to_json_string.txt')));
+  });
 });
