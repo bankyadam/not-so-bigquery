@@ -53,7 +53,10 @@ module.exports = class Db {
     const fields = [];
 
     const result = await this._db.query(`
-        SELECT COLUMN_NAME AS field_name, IS_NULLABLE, DATA_TYPE
+        SELECT
+            COLUMN_NAME AS field_name,
+            CASE WHEN DATA_TYPE = 'ARRAY' THEN 'REPEATED' ELSE 'NULLABLE' END AS mode,
+            udt_name AS DATA_TYPE
         FROM information_schema.COLUMNS
         WHERE TABLE_SCHEMA = $1
           AND TABLE_NAME = $2
@@ -62,14 +65,23 @@ module.exports = class Db {
     const fieldsData = result.rows;
 
     fieldsData.forEach(fieldData => {
+      const normalizedFieldType = this._normalizeFieldType(fieldData.data_type);
+      const fieldType = POSTGRES_TYPES[normalizedFieldType];
+      if (!fieldType) {
+        console.error('Unknown field data type', fieldData.data_type, normalizedFieldType);
+      }
       const field = {
-        mode: fieldData.is_nullable ? 'NULLABLE' : '',
+        mode: fieldData.mode,
         name: fieldData.field_name,
-        type: POSTGRES_TYPES[fieldData.data_type.toUpperCase()]
+        type: fieldType
       };
       fields.push(field);
     });
 
     return fields;
+  }
+
+  _normalizeFieldType(fieldType) {
+    return fieldType.replace(/^_+/, '').toUpperCase();
   }
 };

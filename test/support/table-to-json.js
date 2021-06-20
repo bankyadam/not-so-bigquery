@@ -1,25 +1,40 @@
 'use strict';
 
 const { zipObject } = require('lodash');
+const TYPES = {
+  STRING: 'string',
+  ARRAY: 'array',
+  UNKNOWN: 'unknown'
+};
 
 module.exports = function(input) {
   const rows = input.split('\n').filter(row => row[0] === '|');
   const data = rows.map(row => row.split(/\s*\|\s*/).slice(1, -1));
-  const headers = data.shift();
-  const forceString = headers.map((header, index) => {
-    const force = header.substr(-1) === '!';
-    if (force) {
-      headers[index] = header.substr(0, header.length - 1);
+  const headers = [];
+  const headerTypes = [];
+
+  const addHeader = function(name, type) {
+    headers.push(name);
+    headerTypes.push(type);
+  };
+
+  data.shift().forEach(headerName => {
+    let matches;
+    if (matches = /(.+)\[]$/.exec(headerName)) {
+      addHeader(matches[1], TYPES.ARRAY);
+    } else if (matches = /(.+)\!$/.exec(headerName)) {
+      addHeader(matches[1], TYPES.STRING);
+    } else {
+      addHeader(headerName, TYPES.UNKNOWN);
     }
-    return force;
   });
 
   return data.map(row => zipObject(headers, row.map(function(value, index) {
-    return cast(value, forceString[index]);
+    return cast(value, headerTypes[index]);
   })));
 };
 
-const cast = function(value, forceString) {
+const cast = function(value, type) {
   if (value === 'NULL') {
     return null;
   }
@@ -32,8 +47,12 @@ const cast = function(value, forceString) {
     return false;
   }
 
-  if (forceString) {
+  if (type === TYPES.STRING) {
     return value.toString();
+  }
+
+  if (type === TYPES.ARRAY) {
+    return JSON.parse(value).map(cast);
   }
 
   try {

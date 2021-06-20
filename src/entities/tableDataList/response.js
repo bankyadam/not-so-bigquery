@@ -13,7 +13,7 @@ module.exports = class TableDataListResponseObject extends BaseEntityResponseObj
     this._fields = {};
 
     fields.forEach(field => {
-      this._fields[field.name] = field.type;
+      this._fields[field.name] = field;
     });
   }
 
@@ -30,9 +30,12 @@ module.exports = class TableDataListResponseObject extends BaseEntityResponseObj
 
   _convertData() {
     return this._data.map(row => ({
-      f: map(row, (value, name) => ({
-        v: this._convertValue(value, this._fields[name])
-      }))
+      f: map(row, (value, name) => {
+        if (this._fields[name].mode === 'REPEATED') {
+          return { v: value.map(v => ({ v: this._convertValue(v, this._fields[name].type) })) };
+        }
+        return { v: this._convertValue(value, this._fields[name].type) };
+      })
     }));
   }
 
@@ -42,6 +45,9 @@ module.exports = class TableDataListResponseObject extends BaseEntityResponseObj
     }
 
     switch (type) {
+      case 'BOOLEAN':
+        return JSON.stringify(value);
+
       case 'TIMESTAMP':
         return (Date.parse(value) / 1000)
           .toExponential()
@@ -62,6 +68,12 @@ module.exports = class TableDataListResponseObject extends BaseEntityResponseObj
 
       case 'FLOAT':
         return parseFloat(value);
+
+      case 'JSON':
+        return JSON.stringify(value);
+
+      case 'ARRAY':
+        return JSON.stringify(value);
 
       default:
         console.log('Unhandled type', value, type);
