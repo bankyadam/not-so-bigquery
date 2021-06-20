@@ -20,13 +20,20 @@ module.exports = function(input) {
 
   data.shift().forEach(headerName => {
     let matches;
-    if (matches = /(.+)\[]$/.exec(headerName)) {
+
+    matches = /(.+)\[]$/.exec(headerName);
+    if (matches) {
       addHeader(matches[1], TYPES.ARRAY);
-    } else if (matches = /(.+)\!$/.exec(headerName)) {
-      addHeader(matches[1], TYPES.STRING);
-    } else {
-      addHeader(headerName, TYPES.UNKNOWN);
+      return;
     }
+
+    matches = /(.+)\!$/.exec(headerName);
+    if (matches) {
+      addHeader(matches[1], TYPES.STRING);
+      return;
+    }
+
+    addHeader(headerName, TYPES.UNKNOWN);
   });
 
   return data.map(row => zipObject(headers, row.map(function(value, index) {
@@ -55,9 +62,19 @@ const cast = function(value, type) {
     return JSON.parse(value).map(cast);
   }
 
-  try {
-    return JSON.parse(value);
-  } catch (e) {
-    return value;
+  // eslint-disable-next-line eqeqeq
+  if (parseFloat(value) == value) {
+    return parseFloat(value);
   }
+
+  // eslint-disable-next-line eqeqeq
+  if (parseInt(value, 10) == value) {
+    return parseInt(value, 10);
+  }
+
+  if (['false', 'true'].includes(value)) {
+    return JSON.parse(value);
+  }
+
+  return value;
 };

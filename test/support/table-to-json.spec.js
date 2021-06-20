@@ -107,7 +107,7 @@ describe('Table to JSON converter', function() {
       expect(convert(input)).to.be.eql([{ data: false }]);
     });
 
-    it('supports number', function() {
+    it('supports number (float)', function() {
       const input = `
 | data |
 | 1.123  |
