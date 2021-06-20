@@ -14,6 +14,7 @@ const lexerDefinition = [
   TOKENS.Interval,
 
   TOKENS.With,
+  TOKENS.SetOperator,
   TOKENS.Select,
   TOKENS.SelectDistinct,
   TOKENS.SelectAll,

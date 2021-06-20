@@ -1,0 +1,27 @@
+--SQL--
+(
+    (
+    WITH
+        a AS (SELECT 1 as col),
+        b AS (SELECT 2 as col)
+    SELECT * FROM a UNION ALL SELECT * FROM b
+    )
+    UNION ALL
+    (
+    WITH
+        c AS (SELECT 3 as col),
+        d AS (SELECT 4 as col)
+    SELECT * FROm c UNION ALL SELECT * FROM d
+    )
+)
+EXCEPT DISTINCT
+SELECT 1
+
+--RESULT--
++-----+
+| col |
++-----+
+|   2 |
+|   3 |
+|   4 |
++-----+

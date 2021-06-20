@@ -62,6 +62,10 @@ module.exports = (parser) => {
       if (ctx.limitClause) {
         parts.push(this.visit(ctx.limitClause));
       }
+      if (ctx.SetOperator) {
+        parts.push(ctx.SetOperator[0].image);
+        parts.push(this.visit(ctx.rightSide));
+      }
       this._decreaseLevel();
       return parts.join(' ');
     }

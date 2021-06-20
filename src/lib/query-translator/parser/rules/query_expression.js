@@ -27,6 +27,10 @@ module.exports = ($) => {
     $.OPTION3(() => {
       $.SUBRULE3($.limitClause);
     });
+    $.OPTION4(() => {
+      $.CONSUME(TOKENS.SetOperator);
+      $.SUBRULE($.queryExpression, { LABEL: 'rightSide' });
+    });
   });
 
   $.RULE('bracketedQueryExpression', () => {

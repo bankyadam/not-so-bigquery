@@ -9,6 +9,8 @@ require.extensions['.txt'] = function(module, filename) {
 
 describe('SQL Function support', function() {
   /* eslint-disable max-len */
+  it('set operator', runTestCase(require('./testcases/set-operator.txt'), NOT_ORDERED));
+
   context('Conversion functions', function() {
     it('cast numeric string to int64', runTestCase(require('./testcases/conversion_functions/cast-numeric-string-to-int64.txt')));
     it.skip('cast hex string to int64', runTestCase(require('./testcases/conversion_functions/cast-hex-string-to-int64.txt')));
