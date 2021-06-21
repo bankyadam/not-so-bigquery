@@ -8,7 +8,7 @@ describe('Query Translator', function() {
     });
 
     describe('aggregate functions', function() {
-      it('countif', runExpectation(require('./testcases/functions/countif.txt')));
+      it('countif', runExpectation(require('./testcases/functions/aggregate/countif.txt')));
     });
 
     describe('date functions', function() {

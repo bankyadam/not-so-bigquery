@@ -403,8 +403,8 @@ module.exports = (parser) => {
 
       let parameters = [];
 
-      if (ctx.functionParameter) {
-        parameters = ctx.functionParameter.map(token => this.visit(token));
+      if (ctx.expression) {
+        parameters = ctx.expression.map(token => this.visit(token));
       } else if (ctx.Asterisk) {
         parameters = ['*'];
       }
@@ -413,25 +413,22 @@ module.exports = (parser) => {
         ctx.functionName[0].image,
         '(',
         ctx.SelectDistinct ? 'DISTINCT' : '',
-        parameters.join(','),
-        ')'
+        parameters.join(',')
       ];
 
-      if (ctx.windowSpecification) {
-        parts.push(this.visit(ctx.windowSpecification));
-      }
-
-      return parts.join(' ');
-    }
-
-    functionParameter(ctx) {
-      const parts = [this.visit(ctx.expression[0])];
       if (ctx.orderByClause) {
         parts.push(this.visit(ctx.orderByClause[0]));
       }
       if (ctx.limitClause) {
         parts.push(this.visit(ctx.limitClause[0]));
       }
+
+      parts.push(')');
+
+      if (ctx.windowSpecification) {
+        parts.push(this.visit(ctx.windowSpecification));
+      }
+
       return parts.join(' ');
     }
 

@@ -1,39 +1,32 @@
 'use strict';
 
+const { sprintf } = require('sprintf-js');
+
 module.exports = function(ctx) {
-  const value = this.visit(ctx.functionParameter[0]);
+  let sql = 'STRING_AGG(%(distinct)s %(value)s, %(delimiter)s %(orderBy)s) %(window)s';
+  const distinct = ctx.SelectDistinct ? 'DISTINCT' : '';
+  const value = this.visit(ctx.expression[0]);
+
   let delimiter = '\',\'';
+  if (ctx.expression[1]) {
+    delimiter = this.visit(ctx.expression[1]);
+  }
+
+  let orderByClause = '';
+  if (ctx.orderByClause) {
+    orderByClause = this.visit(ctx.orderByClause[0]);
+  }
+
   let windowSpecification = '';
   if (ctx.windowSpecification) {
     windowSpecification = this.visit(ctx.windowSpecification);
   }
 
-  if (ctx.functionParameter[1]) {
-    if (ctx.functionParameter[1].children.limitClause) {
-      delimiter = this.visit(ctx.functionParameter[1].children.expression[0]);
-      const limit = ctx.functionParameter[1].children.limitClause[0].children.Numeric[0].image;
-      const orderByClause = ctx.functionParameter[1].children.orderByClause ?
-        this.visit(ctx.functionParameter[1].children.orderByClause[0]) :
-        '';
-      return [
-        'ARRAY_TO_STRING(',
-        '(ARRAY_AGG(',
-        ctx.SelectDistinct ? 'DISTINCT' : '',
-        value,
-        orderByClause,
-        '))',
-        '[0:', limit, '],',
-        delimiter,
-        ')',
-        windowSpecification
-      ].join(' ');
-    }
-
-    delimiter = this.visit(ctx.functionParameter[1]);
+  let limit = '';
+  if (ctx.limitClause) {
+    limit = ctx.limitClause[0].children.Numeric[0].image;
+    sql = 'ARRAY_TO_STRING((ARRAY_AGG(%(distinct)s %(value)s %(orderBy)s))[0:%(limit)d], %(delimiter)s) %(window)s';
   }
 
-  return [
-    'STRING_AGG(', ctx.SelectDistinct ? 'DISTINCT' : '', value, ',', delimiter, ')',
-    windowSpecification
-  ].join(' ');
+  return sprintf(sql, { distinct, value, orderBy: orderByClause, limit, delimiter, window: windowSpecification });
 };

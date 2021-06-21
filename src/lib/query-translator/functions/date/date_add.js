@@ -3,11 +3,11 @@
 module.exports = function(ctx, operand) {
   return [
     '(',
-    this.visit(ctx.functionParameter[0]),
+    this.visit(ctx.expression[0]),
     ' ',
     operand,
     ' ',
-    this.visit(ctx.functionParameter[1]),
+    this.visit(ctx.expression[1]),
     ')',
     '::DATE'
   ].join('');

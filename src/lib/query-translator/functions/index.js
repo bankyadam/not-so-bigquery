@@ -21,6 +21,7 @@ module.exports = {
   LOGICAL_AND: require('./aggregate/logical_and'),
   LOGICAL_OR: require('./aggregate/logical_or'),
   STRING_AGG: require('./aggregate/string_agg'),
+  ARRAY_AGG: require('./aggregate/array_agg'),
 
   TO_JSON_STRING: require('./json/to_json_string')
 };

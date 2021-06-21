@@ -2,8 +2,8 @@
 const { sprintf } = require('sprintf-js');
 
 module.exports = function(ctx) {
-  const datePart = this.visit(ctx.functionParameter[1]).toUpperCase();
-  const dateExpression = this.visit(ctx.functionParameter[0]);
+  const datePart = this.visit(ctx.expression[1]).toUpperCase();
+  const dateExpression = this.visit(ctx.expression[0]);
   let sql = '';
 
   switch (datePart) {
