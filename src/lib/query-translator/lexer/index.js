@@ -36,6 +36,7 @@ const lexerDefinition = [
   TOKENS.Limit,
   TOKENS.Offset,
   TOKENS.As,
+  TOKENS.IgnoreRespectNulls,
 
   TOKENS.Backtick,
   TOKENS.Semicolon,

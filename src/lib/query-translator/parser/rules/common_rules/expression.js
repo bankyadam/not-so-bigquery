@@ -112,8 +112,9 @@ module.exports = ($) => {
         },
         { ALT: () => $.CONSUME(TOKENS.Asterisk) }
       ]);
-      $.OPTION3(() => $.SUBRULE($.orderByClause));
-      $.OPTION4(() => $.SUBRULE($.limitClause));
+      $.OPTION3(() => $.CONSUME(TOKENS.IgnoreRespectNulls));
+      $.OPTION4(() => $.SUBRULE($.orderByClause));
+      $.OPTION5(() => $.SUBRULE($.limitClause));
     });
     $.CONSUME(TOKENS.RightParenthesis);
     $.OPTION6(() => $.SUBRULE($.windowSpecification));
