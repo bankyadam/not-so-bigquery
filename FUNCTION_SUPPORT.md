@@ -11,7 +11,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 |  | function |
 |---|---|
 | ❌ | ANY_VALUE |
-| ❌ | ARRAY_AGG |
+| ✅ | ARRAY_AGG |
 | ❌ | ARRAY_CONCAT_AGG |
 | ✅ | AVG |
 | ✅ | BIT_AND |
@@ -214,7 +214,6 @@ SELECT COUNT(DISTINCT x) OVER (…)
 ## JSON functions
 |  | function |
 |---|---|
-| ❌ | Function overview |
 | ❌ | JSON_EXTRACT |
 | ❌ | JSON_QUERY |
 | ❌ | JSON_EXTRACT_SCALAR |
@@ -223,7 +222,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ❌ | JSON_QUERY_ARRAY |
 | ❌ | JSON_EXTRACT_STRING_ARRAY |
 | ❌ | JSON_VALUE_ARRAY |
-| ❌ | TO_JSON_STRING |
+| ✅ | TO_JSON_STRING |
 
 ## Array functions
 |  | function |
