@@ -27,56 +27,56 @@ describe('SQL Function support', function() {
 
   context('Aggregator functions', function() {
     describe('avg', function() {
-      it('simple', runTestCase(require('./testcases/aggregate_functions/avg.txt')));
-      it('distinct', runTestCase(require('./testcases/aggregate_functions/avg_distinct.txt')));
-      it('window', runTestCase(require('./testcases/aggregate_functions/avg_window.txt')));
+      it('simple', runTestCase(require('./testcases/aggregate_functions/avg/avg.txt')));
+      it('distinct', runTestCase(require('./testcases/aggregate_functions/avg/avg_distinct.txt')));
+      it('window', runTestCase(require('./testcases/aggregate_functions/avg/avg_window.txt')));
     });
 
     it('bit_and', runTestCase(require('./testcases/aggregate_functions/bit_and.txt')));
     it('bit_or', runTestCase(require('./testcases/aggregate_functions/bit_or.txt')));
 
     describe('count', function() {
-      it('distinct', runTestCase(require('./testcases/aggregate_functions/count_distinct.txt')));
-      it('null', runTestCase(require('./testcases/aggregate_functions/count_null.txt'), NOT_ORDERED));
-      it.skip('window', runTestCase(require('./testcases/aggregate_functions/count_window.txt')));
+      it('distinct', runTestCase(require('./testcases/aggregate_functions/count/count_distinct.txt')));
+      it('null', runTestCase(require('./testcases/aggregate_functions/count/count_null.txt'), NOT_ORDERED));
+      it.skip('window', runTestCase(require('./testcases/aggregate_functions/count/count_window.txt')));
     });
 
     describe('countif', function() {
-      it('simple', runTestCase(require('./testcases/aggregate_functions/countif.txt')));
-      it.skip('window function', runTestCase(require('./testcases/aggregate_functions/countif_window.txt')));
+      it('simple', runTestCase(require('./testcases/aggregate_functions/countif/countif.txt')));
+      it.skip('window function', runTestCase(require('./testcases/aggregate_functions/countif/countif_window.txt')));
     });
 
     it('logical_and', runTestCase(require('./testcases/aggregate_functions/logical_and.txt')));
     it('logical_or', runTestCase(require('./testcases/aggregate_functions/logical_or.txt')));
 
     describe('max', function() {
-      it('simple', runTestCase(require('./testcases/aggregate_functions/max.txt')));
-      it('window function', runTestCase(require('./testcases/aggregate_functions/max_window.txt'), NOT_ORDERED));
+      it('simple', runTestCase(require('./testcases/aggregate_functions/max/max.txt')));
+      it('window function', runTestCase(require('./testcases/aggregate_functions/max/max_window.txt'), NOT_ORDERED));
     });
 
     describe('min', function() {
-      it('simple', runTestCase(require('./testcases/aggregate_functions/min.txt')));
-      it('window function', runTestCase(require('./testcases/aggregate_functions/min_window.txt'), NOT_ORDERED));
+      it('simple', runTestCase(require('./testcases/aggregate_functions/min/min.txt')));
+      it('window function', runTestCase(require('./testcases/aggregate_functions/min/min_window.txt'), NOT_ORDERED));
     });
 
     describe('string_agg', function() {
-      it('no delimiter', runTestCase(require('./testcases/aggregate_functions/string_agg-no_delimiter.txt')));
-      it('with delimiter', runTestCase(require('./testcases/aggregate_functions/string_agg-with_delimiter.txt')));
-      it('distinct', runTestCase(require('./testcases/aggregate_functions/string_agg-distinct.txt')));
-      it('order by', runTestCase(require('./testcases/aggregate_functions/string_agg-order_by.txt')));
-      it('limit', runTestCase(require('./testcases/aggregate_functions/string_agg-limit.txt')));
-      it('order by with limit', runTestCase(require('./testcases/aggregate_functions/string_agg-order_by_with_limit.txt')));
-      it('window', runTestCase(require('./testcases/aggregate_functions/string_agg-window.txt')));
+      it('no delimiter', runTestCase(require('./testcases/aggregate_functions/string_agg/string_agg-no_delimiter.txt')));
+      it('with delimiter', runTestCase(require('./testcases/aggregate_functions/string_agg/string_agg-with_delimiter.txt')));
+      it('distinct', runTestCase(require('./testcases/aggregate_functions/string_agg/string_agg-distinct.txt')));
+      it('order by', runTestCase(require('./testcases/aggregate_functions/string_agg/string_agg-order_by.txt')));
+      it('limit', runTestCase(require('./testcases/aggregate_functions/string_agg/string_agg-limit.txt')));
+      it('order by with limit', runTestCase(require('./testcases/aggregate_functions/string_agg/string_agg-order_by_with_limit.txt')));
+      it('window', runTestCase(require('./testcases/aggregate_functions/string_agg/string_agg-window.txt')));
     });
 
     describe('array_agg', function() {
-      it('simple', runTestCase(require('./testcases/aggregate_functions/array_agg.txt')));
-      it('distinct', runTestCase(require('./testcases/aggregate_functions/array_agg-distinct.txt')));
-      it('ignore nulls', runTestCase(require('./testcases/aggregate_functions/array_agg-ignore-nulls.txt')));
-      it('order by', runTestCase(require('./testcases/aggregate_functions/array_agg-order_by.txt')));
-      it('limit', runTestCase(require('./testcases/aggregate_functions/array_agg-limit.txt')));
-      it('complex', runTestCase(require('./testcases/aggregate_functions/array_agg-complex.txt')));
-      it('window', runTestCase(require('./testcases/aggregate_functions/array_agg-window.txt'), NOT_ORDERED));
+      it('simple', runTestCase(require('./testcases/aggregate_functions/array_agg/array_agg.txt')));
+      it('distinct', runTestCase(require('./testcases/aggregate_functions/array_agg/array_agg-distinct.txt')));
+      it('ignore nulls', runTestCase(require('./testcases/aggregate_functions/array_agg/array_agg-ignore-nulls.txt')));
+      it('order by', runTestCase(require('./testcases/aggregate_functions/array_agg/array_agg-order_by.txt')));
+      it('limit', runTestCase(require('./testcases/aggregate_functions/array_agg/array_agg-limit.txt')));
+      it('complex', runTestCase(require('./testcases/aggregate_functions/array_agg/array_agg-complex.txt')));
+      it('window', runTestCase(require('./testcases/aggregate_functions/array_agg/array_agg-window.txt'), NOT_ORDERED));
     });
   });
 
