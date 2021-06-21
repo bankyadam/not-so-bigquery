@@ -10,7 +10,7 @@ module.exports = (query, projectId) => {
   const selectStatement = parser.selectStatement();
 
   if (parser.errors.length > 0) {
-    console.dir(parser.errors, { depth: 100 });
+    console.dir(parser.errors, { depth: 10 });
   }
   visitor.defaultProjectId = projectId;
   return visitor.visit(selectStatement);

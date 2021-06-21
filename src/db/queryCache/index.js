@@ -31,7 +31,7 @@ module.exports = class QueryCache {
     this._queryId = this._consolidateQueryId(queryId || this._generateQueryId());
 
     if (!(await this._isCacheExists())) {
-      console.log('Cache not exists', this._queryId);
+      console.info('Cache not exists', this._queryId);
       await this._createCacheTableByQuery();
     }
 
@@ -111,11 +111,11 @@ module.exports = class QueryCache {
   }
 
   async _createCacheTableByQuery() {
-    console.log('Dropping table…', this._queryId);
+    console.info('Dropping table…', this._queryId);
     await this._db.query(`DROP TABLE IF EXISTS ${this._pgCacheTablePath}`);
-    console.log('Creating table by query result…', this._queryId);
+    console.info('Creating table by query result…', this._queryId);
     await this._db.query(`CREATE TABLE ${this._pgCacheTablePath} AS ${this._query}`, this._queryData);
-    console.log('Registering cache table…', this._queryId);
+    console.info('Registering cache table…', this._queryId);
     await this._db.query(`
         INSERT INTO
             ${CACHE_SCHEMA_NAME}.${CACHE_CATALOG_TABLE_NAME}

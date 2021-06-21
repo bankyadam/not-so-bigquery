@@ -76,7 +76,7 @@ module.exports = class TableDataListResponseObject extends BaseEntityResponseObj
         return JSON.stringify(value);
 
       default:
-        console.log('Unhandled type', value, type);
+        console.error('Unhandled type', value, type);
         return value.toString();
     }
   }

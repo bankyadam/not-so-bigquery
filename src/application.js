@@ -17,7 +17,7 @@ app.get('/', (_req, res) => {
 app.use('/bigquery/v2', require('./api/v2'));
 
 app.all('*', (req, res) => {
-  console.log('unhandled route', req.method, req.originalUrl);
+  console.error('unhandled route', req.method, req.originalUrl);
   res.status(404);
 });
 
