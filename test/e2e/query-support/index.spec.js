@@ -68,6 +68,16 @@ describe('SQL Function support', function() {
       it('order by with limit', runTestCase(require('./testcases/aggregate_functions/string_agg-order_by_with_limit.txt')));
       it('window', runTestCase(require('./testcases/aggregate_functions/string_agg-window.txt')));
     });
+
+    describe('array_agg', function() {
+      it('simple', runTestCase(require('./testcases/aggregate_functions/array_agg.txt')));
+      it('distinct', runTestCase(require('./testcases/aggregate_functions/array_agg-distinct.txt')));
+      it('ignore nulls', runTestCase(require('./testcases/aggregate_functions/array_agg-ignore-nulls.txt')));
+      it('order by', runTestCase(require('./testcases/aggregate_functions/array_agg-order_by.txt')));
+      it('limit', runTestCase(require('./testcases/aggregate_functions/array_agg-limit.txt')));
+      it('complex', runTestCase(require('./testcases/aggregate_functions/array_agg-complex.txt')));
+      it('window', runTestCase(require('./testcases/aggregate_functions/array_agg-window.txt'), NOT_ORDERED));
+    });
   });
 
   context('Date functions', function() {

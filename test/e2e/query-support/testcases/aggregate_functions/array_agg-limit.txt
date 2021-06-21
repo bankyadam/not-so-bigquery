@@ -1,0 +1,10 @@
+--SQL--
+SELECT TO_JSON_STRING(ARRAY_AGG(x LIMIT 5)) AS array_agg
+FROM UNNEST([2, 1, -2, 3, -2, 1, 2]) AS x;
+
+--RESULT--
++---------------+
+| array_agg     |
++---------------+
+| [2,1,-2,3,-2] |
++---------------+
