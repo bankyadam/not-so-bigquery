@@ -24,7 +24,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ✅ | MAX |
 | ✅ | MIN |
 | ✅ | STRING_AGG |
-| ❌ | SUM |
+| ✅ | SUM |
 
 ## Statistical aggregate functions
 |  | function |
