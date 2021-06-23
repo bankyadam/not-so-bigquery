@@ -389,7 +389,11 @@ module.exports = (parser) => {
     }
 
     array(ctx) {
-      return ['ARRAY[', ctx.literalValue.map(token => this.visit(token)).join(','), ']'].join('');
+      if (ctx.literalValue) {
+        return ['ARRAY[', ctx.literalValue.map(token => this.visit(token)).join(','), ']'].join('');
+      }
+
+      return 'ARRAY[]::INT8[]';
     }
 
     identifier(ctx) {

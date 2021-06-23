@@ -88,7 +88,7 @@ module.exports = ($) => {
 
   $.RULE('array', () => {
     $.CONSUME(TOKENS.LeftSquareBracket);
-    $.AT_LEAST_ONE_SEP({
+    $.MANY_SEP({
       SEP: TOKENS.Comma,
       DEF: () => $.SUBRULE($.literalValue)
     });
