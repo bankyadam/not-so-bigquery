@@ -10,7 +10,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 
 |  | function |
 |---|---|
-| ❌ | ANY_VALUE |
+| ✅ | ANY_VALUE |
 | ✅ | ARRAY_AGG |
 | ❌ | ARRAY_CONCAT_AGG |
 | ✅ | AVG |

@@ -86,6 +86,11 @@ describe('SQL Function support', function() {
       it.skip('distinct with window', runTestCase(require('./testcases/aggregate_functions/sum/sum-distinct_window.txt')));
       it('null', runTestCase(require('./testcases/aggregate_functions/sum/sum-null.txt')));
     });
+
+    describe('any_value', function() {
+      it('simple', runTestCase(require('./testcases/aggregate_functions/any_value/any_value.txt')));
+      it('window', runTestCase(require('./testcases/aggregate_functions/any_value/any_value-window.txt'), NOT_ORDERED));
+    });
   });
 
   context('Date functions', function() {
