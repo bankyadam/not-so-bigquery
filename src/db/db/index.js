@@ -4,6 +4,7 @@ const { Client } = require('pg');
 const { POSTGRES_TYPES } = require('../bigQuery/types');
 const RETRY_TIME = 1500;
 const MAX_RETRY_COUNT = 5;
+const DB_SYSTEM_STARTING_UP = '57P03';
 
 module.exports = class Db {
   constructor(connectionString) {
@@ -26,6 +27,9 @@ module.exports = class Db {
 
   _onConnectionFail(e) {
     if (this._retryCount++ < MAX_RETRY_COUNT) {
+      if (e.code === DB_SYSTEM_STARTING_UP) {
+        this._retryCount--;
+      }
       setTimeout(this._connect.bind(this), RETRY_TIME);
       return;
     }
