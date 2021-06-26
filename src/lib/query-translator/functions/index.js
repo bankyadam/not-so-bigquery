@@ -17,6 +17,10 @@ module.exports = {
   TIME: require('./time/time'),
   TIME_DIFF: require('./time/time_diff'),
 
+  // eslint-disable-next-line no-unused-vars
+  CURRENT_TIMESTAMP: function(ctx) { return 'CURRENT_TIMESTAMP'; },
+  TIMESTAMP: require('./timestamp/timestamp'),
+
   COUNTIF: require('./aggregate/countif'),
   LOGICAL_AND: require('./aggregate/logical_and'),
   LOGICAL_OR: require('./aggregate/logical_or'),

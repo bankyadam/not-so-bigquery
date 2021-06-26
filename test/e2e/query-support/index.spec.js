@@ -1,5 +1,7 @@
 'use strict';
 const fs = require('fs');
+const moment = require('moment-timezone');
+
 const runTestCase = require('./runTestCase');
 const { NOT_ORDERED } = runTestCase.EXPECTATIONS;
 
@@ -118,6 +120,19 @@ describe('SQL Function support', function() {
     it('time', runTestCase(require('./testcases/time_functions/time.txt')));
     it('extract', runTestCase(require('./testcases/time_functions/extract.txt')));
     it('time_diff', runTestCase(require('./testcases/time_functions/time_diff.txt')));
+  });
+
+  context('Timestamp functions', function() {
+    it('current_timestamp', runTestCase(
+      require('./testcases/timestamp_functions/current_timestamp.txt'),
+      // eslint-disable-next-line no-unused-vars
+      function(currentData, expectedData) {
+        const patternForNowTimestamp = moment().utc().format('YYYY-MM-DD[T]HH:mm:[\\d{2}\\.\\d+Z]');
+        expect(currentData[0].now).to.match(new RegExp(patternForNowTimestamp));
+      }
+    ));
+
+    it('timestamp', runTestCase(require('./testcases/timestamp_functions/timestamp.txt')));
   });
 
   context('JSON functions', function() {
