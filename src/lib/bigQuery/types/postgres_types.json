@@ -1,0 +1,13 @@
+{
+  "JSONB": "JSON",
+  "TEXT": "STRING",
+  "INT4": "INTEGER",
+  "INT8": "INTEGER",
+  "BOOL": "BOOLEAN",
+  "FLOAT8": "FLOAT",
+  "TIME": "TIME",
+  "DATE": "DATE",
+  "TIMESTAMPTZ": "TIMESTAMP",
+  "TIMESTAMP": "TIMESTAMP",
+  "NUMERIC": "FLOAT"
+}
