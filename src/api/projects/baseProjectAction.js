@@ -2,12 +2,12 @@
 
 const BaseJsonAction = require('../baseJsonAction');
 
-const { BigQueryProject: { create: createProject } } = require('../../db');
+const Project = require('../../lib/bigQuery/project');
 
 class BaseProjectAction extends BaseJsonAction {
   constructor(req, res) {
     super(req, res);
-    this._db = createProject(this._projectId);
+    this._project = new Project(this._projectId);
   }
 
   get _projectId() {

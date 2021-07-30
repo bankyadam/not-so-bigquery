@@ -2,9 +2,9 @@
   "name": "not-so-bigquery",
   "version": "1.0.0",
   "description": "An emulator for the Google BigQuery, that can be run locally, backed by PostgreSQL.",
-  "main": "src/application.js",
+  "main": "src/init.js",
   "scripts": {
-    "start": "node src/application",
+    "start": "node src/init",
     "start:dev": "npx nodemon npm run start",
     "test:unit": "mocha 'src/**/*.spec.js' 'test/unit/**/*.spec.js'",
     "test:e2e": "mocha 'test/e2e/**/*.spec.js'",

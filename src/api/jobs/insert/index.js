@@ -1,7 +1,8 @@
 'use strict';
 
 const BaseJsonResponse = require('../../baseJsonAction');
-const { QueryCache, BigQueryProject } = require('../../../db');
+const QueryCache = require('../../../lib/db/queryCache');
+const Project = require('../../../lib/bigQuery/project');
 const queryTranslator = require('../../../lib/query-translator');
 const JobResponseObject = require('../../../entities/job/response');
 const JOB_STATUS = require('../../../entities/job/enums/status');
@@ -35,8 +36,8 @@ class JobsInsertAction extends BaseJsonResponse {
     const projectId = this._req.params.projectId;
 
     const bqQuery = configuration.query.query;
-    const pgQuery = queryTranslator(bqQuery, new BigQueryProject(null, projectId).internalId);
-    const queryCache = QueryCache.create();
+    const pgQuery = queryTranslator(bqQuery, new Project(projectId).internalId);
+    const queryCache = new QueryCache();
     await queryCache.run(pgQuery, null, jobReference.jobId);
 
     return new JobResponseObject(projectId, jobReference.jobId, jobReference.location, configuration, JOB_STATUS.DONE);

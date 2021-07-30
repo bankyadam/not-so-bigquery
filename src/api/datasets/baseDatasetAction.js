@@ -8,7 +8,7 @@ const DatasetAlreadyExistsError = require('../../entities/dataset/errors/dataset
 class BaseDatasetAction extends BaseProjectAction {
   constructor(req, res) {
     super(req, res);
-    this._dataset = this._db.dataset(this._datasetId);
+    this._dataset = this._project.dataset(this._datasetId);
   }
 
   get _datasetId() {

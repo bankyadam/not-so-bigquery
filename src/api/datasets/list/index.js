@@ -13,7 +13,7 @@ const DatasetListResponseObject = require('../../../entities/datasetList/respons
  */
 class DatasetsListAction extends BaseDatasetAction {
   async perform() {
-    const datasets = await this._db.getDatasets();
+    const datasets = await this._project.getDatasets();
     return new DatasetListResponseObject(this._projectId, datasets);
   }
 }

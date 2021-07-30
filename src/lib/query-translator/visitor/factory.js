@@ -6,7 +6,7 @@ const {
   BIGQUERY_TYPES,
   BIGQUERY_DATE_PARTS,
   BIGQUERY_DATE_TYPES
-} = require('../../../db/bigQuery/types');
+} = require('../../bigQuery/types');
 const FUNCTION_HANDLERS = require('../functions');
 
 module.exports = (parser) => {

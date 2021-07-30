@@ -1,7 +1,7 @@
 'use strict';
 
 const BaseJsonResponse = require('../../baseJsonAction');
-const { pageResult } = require('../../../db');
+const pageResult = require('../../../lib/db/pageResult');
 const QueryResultResponseObject = require('../../../entities/queryResult/response');
 
 /**

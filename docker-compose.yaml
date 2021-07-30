@@ -18,11 +18,13 @@ services:
     restart: always
 
   postgres:
-    image: clkao/postgres-plv8:10-2
+    image: postgres
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
     volumes:
       - ./tmp/postgres-not-so-bigquery/data:/var/lib/postgresql/data
       - ./docker/postgres/init_db:/docker-entrypoint-initdb.d
     ports:
       - 5532:5432
-    environment:
-      - POSTGRES_PASSWORD=password
+    command: ["postgres", "-c", "log_min_messages=DEBUG5", "-c", "client_min_messages=DEBUG5"]
