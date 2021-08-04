@@ -3,7 +3,9 @@
 const express = require('express');
 
 const app = express();
-app.use(express.json());
+
+app.use(express.json({limit: '50mb'}));
+
 app.use(require('./middlewares/headers'));
 app.use(require('./middlewares/log-requests'));
 app.get('/', (_req, res) => {
