@@ -1,6 +1,6 @@
 # Not-So-BigQuery
 
-An emulator for the Google BigQuery, that can be run locally, backed by PostgreSQL.
+An emulator for Google BigQuery, that can be run locally, backed by PostgreSQL.
 
 ## Compatibility
 
@@ -83,34 +83,38 @@ unary_operator:
 binary_operator:
     AND | OR |
     < | <= | > | >= | = | <> | != 
-``` 
-
-## Installation
-
-### From source
-
-Download the source to your local computer and start with `docker-compose`:
-```shell script
-docker-compose up -d
 ```
 
-This will start the Not-So-BigQuery in a container and will expose it's port to your `localhost:8080`.
+## Usage from source
 
-After this, you can configure your library to use `http://localhost:8080/` as the `apiEndpoint` to reach Google BigQuery API.
+### To run the app
+
+```bash
+docker-compose up app
+```
+
+This will start Not-So-BigQuery in a container, and expose port 5443 on your host.
+
+After this, you can configure your library to use `http://localhost:5443/` as the API endpoint to reach BigQuery.
 
 ### NodeJS
 
 ```javascript
-const bq = new BigQuery({ apiEndpoint: 'localhost:5550' });
+const bq = new BigQuery({ apiEndpoint: 'localhost:5443' });
+```
+
+### Ruby
+
+```ruby
+bigquery = Google::Cloud::Bigquery.new(endpoint: 'http://localhost:5443/')
 ```
 
 ### To clear the storage
 
-```
+```bash
 docker-compose rm -fs postgres && docker volume rm -f not-so-bigquery_db-data
 ```
 
 ## Contributions
 
 Contributions greatly appreciated.
-
