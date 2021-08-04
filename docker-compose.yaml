@@ -10,6 +10,7 @@ services:
     environment:
       NODE_ENV: development
       PORT: "8080"
+      HTTPS: ~
       HOSTNAME: 0.0.0.0
       POSTGRES_HOST: postgres
       POSTGRES_USER: postgres

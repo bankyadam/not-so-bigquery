@@ -96,7 +96,7 @@ docker-compose up -d
 
 This will start the Not-So-BigQuery in a container and will expose it's port to your `localhost:8080`.
 
-After this, you can configure your library to use `localhost:8080` as the `apiEndpoint` to reach Google BigQuery API.
+After this, you can configure your library to use `http://localhost:8080/` as the `apiEndpoint` to reach Google BigQuery API.
 
 ### NodeJS
 

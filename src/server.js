@@ -11,9 +11,20 @@ const getCertificate = function() {
   return { key, cert };
 };
 
-module.exports = function(port, hostname) {
+const listenHttps = (port, hostname, callback) => {
   const server = https.createServer(Object.assign({}, getCertificate()), app);
-  server.listen(port, hostname, () => {
-    console.log(`App listening at https://localhost:${port}`);
-  });
+  server.listen(port, hostname, callback);
+}
+
+const listenHttp = (port, hostname, callback) => {
+  app.listen(port, callback)
+}
+
+const isHttps = (process.env.HTTPS == 'true')
+const listenFn = isHttps ? listenHttps : listenHttp;
+
+module.exports = function(port, hostname) {
+  listenFn(port, hostname, () => {
+    console.log(`App listening at http${isHttps ? 's' : ''}://localhost:${port}`)
+  })
 };
