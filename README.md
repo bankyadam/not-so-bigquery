@@ -99,8 +99,15 @@ This will start the Not-So-BigQuery in a container and will expose it's port to 
 After this, you can configure your library to use `localhost:8080` as the `apiEndpoint` to reach Google BigQuery API.
 
 ### NodeJS
+
 ```javascript
 const bq = new BigQuery({ apiEndpoint: 'localhost:5550' });
+```
+
+### To clear the storage
+
+```
+docker-compose rm -fs postgres && docker volume rm -f not-so-bigquery_db-data
 ```
 
 ## Contributions
