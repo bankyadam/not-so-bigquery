@@ -8,6 +8,7 @@ const {
   BIGQUERY_DATE_TYPES
 } = require('../../bigQuery/types');
 const FUNCTION_HANDLERS = require('../functions');
+const reservedWords = require('../../bigQuery/reserved_words.json');
 
 module.exports = (parser) => {
   const BaseCstVisitorWithDefaults = parser.getBaseCstVisitorConstructorWithDefaults();
@@ -197,21 +198,21 @@ module.exports = (parser) => {
           const project = ctx.Identifier[0].image;
           const dataset = ctx.Identifier[1].image;
           const table = ctx.Identifier[2].image;
-          return `${project}__${dataset}.${table}`;
+          return `"${project}__${dataset}"."${table}"`;
         }
 
         case 2: {
           const dataset = ctx.Identifier[0].image;
           const table = ctx.Identifier[1].image;
           if (this._isAliasExists(dataset)) {
-            return `${dataset}.${table}`;
+            return `"${dataset}"."${table}"`;
           }
-          return `${this.defaultProjectId}__${dataset}.${table}`;
+          return `"${this.defaultProjectId}__${dataset}"."${table}"`;
         }
 
         case 1:
         default:
-          return ctx.Identifier[0].image;
+          return `"${ctx.Identifier[0].image}"`;
       }
     }
 
@@ -273,11 +274,16 @@ module.exports = (parser) => {
     }
 
     groupByClause(ctx) {
-      const expressions = ctx.expression.map(token => this.visit(token));
+      const expressions = ctx.groupByExpression.map(token => this.visit(token));
       return [
         'GROUP BY',
         expressions.join(', ')
       ].join(' ');
+    }
+
+    groupByExpression(ctx) {
+      if (ctx.Numeric) { return ctx.Numeric[0].image; }
+      if (ctx.identifier) { return this.visit(ctx.identifier[0]); }
     }
 
     havingClause(ctx) {
@@ -297,7 +303,7 @@ module.exports = (parser) => {
 
     withItem(ctx) {
       return [
-        ctx.with_query_name[0].image,
+        `"${ctx.with_query_name[0].image}"`,
         'AS',
         '(',
         this.visit(ctx.queryExpression),
@@ -311,7 +317,7 @@ module.exports = (parser) => {
       }
       return [
         'AS',
-        ctx.alias[0].image
+        `"${ctx.alias[0].image}"`
       ].join(' ');
     }
 
@@ -397,7 +403,14 @@ module.exports = (parser) => {
     }
 
     identifier(ctx) {
-      return ctx.AnyWord.map(token => token.image).join('.');
+      return ctx.AnyWord.map(token => this._anyWord(token)).join('.');
+    }
+
+    _anyWord(token) {
+      if (reservedWords.includes(token.image.toUpperCase())) {
+        return token.image;
+      }
+      return `"${token.image}"`;
     }
 
     ['function'](ctx) {

@@ -14,9 +14,14 @@ module.exports = ($) => {
     $.CONSUME(TOKENS.GroupBy);
     $.AT_LEAST_ONE_SEP({
       SEP: TOKENS.Comma,
-      DEF: () => {
-        $.SUBRULE($.expression);
-      }
+      DEF: () => $.SUBRULE($.groupByExpression)
     });
+  });
+
+  $.RULE('groupByExpression', () => {
+    $.OR([
+      { ALT: () => $.CONSUME(TOKENS.Numeric) },
+      { ALT: () => $.SUBRULE($.identifier) }
+    ]);
   });
 };

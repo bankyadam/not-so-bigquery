@@ -1,12 +1,10 @@
 --INPUT--
 SELECT
   COALESCE(s.t.r.id, CAST(pid AS string)),
-  CAST(DATE_TRUNC(DATE(s.event_time, timezone), DAY) AS DATE),
+  CAST(DATE_TRUNC(DATE(s.event_time, 'timezone'), DAY) AS DATE),
   COUNT(1)
-FROM `p.d.t` s
 --EXPECT--
 SELECT
-	COALESCE(s.t.r.id, CAST(pid AS TEXT)),
-	CAST(DATE_TRUNC('DAY', (s.event_time AT TIME ZONE timezone)::DATE)::DATE AS DATE),
+	COALESCE("s"."t"."r"."id", CAST("pid" AS TEXT)),
+	CAST(DATE_TRUNC('DAY', ("s"."event_time" AT TIME ZONE 'timezone')::DATE)::DATE AS DATE),
 	COUNT(1)
-FROM p__d.t AS s

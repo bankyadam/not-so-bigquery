@@ -8,9 +8,9 @@ SELECT
 	STRUCT(str_col AS abc) AS col_alias
 --EXPECT--
 SELECT
-	STRUCT() AS empty,
-	STRUCT(1,2,3) AS numbers,
-	STRUCT('abc') AS string,
-	STRUCT(1, t.str_col) AS mixed,
-	STRUCT(1 AS a, 'abc' AS b) AS named,
-	STRUCT(str_col AS abc) AS col_alias
+	STRUCT() AS "empty",
+	STRUCT(1,2,3) AS "numbers",
+	STRUCT('abc') AS "string",
+	STRUCT(1, "t"."str_col") AS "mixed",
+	STRUCT(1 AS "a", 'abc' AS "b") AS "named",
+	STRUCT("str_col" AS "abc") AS "col_alias"

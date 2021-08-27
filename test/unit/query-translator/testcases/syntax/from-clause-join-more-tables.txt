@@ -5,6 +5,6 @@ FROM p.d.t1 a
          INNER JOIN p.d.t3 c ON 2;
 --EXPECT--
 SELECT 1
-FROM p__d.t1 AS a
-         LEFT OUTER JOIN p__d.t2 AS b ON 1
-         INNER JOIN p__d.t3 AS c ON 2
+FROM "p__d"."t1" AS "a"
+         LEFT OUTER JOIN "p__d"."t2" AS "b" ON 1
+         INNER JOIN "p__d"."t3" AS "c" ON 2

@@ -1,9 +1,7 @@
 --INPUT--
 SELECT
 	FUNCTION(s.event_time, @from) AS fieldname
-FROM `p.d.t`
 --EXPECT--
 SELECT
-	FUNCTION(s.event_time, @from) AS fieldname
-FROM p__d.t
+	FUNCTION("s"."event_time", @from) AS "fieldname"
 

@@ -3,4 +3,4 @@ SELECT 1 WHERE
 	(f1 AND f2) OR f3 AND (f4 OR (f5 AND f6))
 --EXPECT--
 SELECT 1 WHERE
-	(f1 AND f2) OR f3 AND (f4 OR (f5 AND f6))
+	("f1" AND "f2") OR "f3" AND ("f4" OR ("f5" AND "f6"))

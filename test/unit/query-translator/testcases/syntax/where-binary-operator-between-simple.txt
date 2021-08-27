@@ -1,10 +1,10 @@
 --INPUT--
-SELECT 1 FROM p.d.t WHERE
+SELECT 1 WHERE
 	field1 BETWEEN a AND b
 	AND
 	field2 NOT BETWEEN c AND d
 --EXPECT--
-SELECT 1 FROM p__d.t WHERE
-	field1 BETWEEN a AND b
+SELECT 1 WHERE
+	"field1" BETWEEN "a" AND "b"
 	AND
-	field2 NOT BETWEEN c AND d
+	"field2" NOT BETWEEN "c" AND "d"

@@ -25,9 +25,9 @@ module.exports = ($) => {
         { ALT: () => $.SUBRULE($.cast) },
         { ALT: () => $.SUBRULE($.extract) },
         { ALT: () => $.SUBRULE($.function) },
+        { ALT: () => $.SUBRULE($.literalValue) },
         { ALT: () => $.SUBRULE($.identifier) },
         { ALT: () => $.SUBRULE($.namedQueryParameter) },
-        { ALT: () => $.SUBRULE($.literalValue) },
         { ALT: () => $.SUBRULE($.array) },
         {
           ALT: () => {

@@ -1,4 +1,4 @@
 --INPUT--
 SELECT 1 FROM p.d.t1 JOIN p.d.t2;
 --EXPECT--
-SELECT 1 FROM p__d.t1 JOIN p__d.t2
+SELECT 1 FROM "p__d"."t1" JOIN "p__d"."t2"

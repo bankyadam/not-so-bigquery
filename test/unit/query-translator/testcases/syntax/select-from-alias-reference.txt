@@ -1,8 +1,8 @@
 --INPUT--
 SELECT 1
-FROM p.d.t AS t
+FROM t AS t
 CROSS JOIN t.struct_field AS s
 --EXPECT--
 SELECT 1
-FROM p__d.t AS t
-CROSS JOIN t.struct_field AS s
+FROM "t" AS "t"
+CROSS JOIN "t"."struct_field" AS "s"

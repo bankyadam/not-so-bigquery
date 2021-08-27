@@ -1,4 +1,0 @@
---INPUT--
-SELECT 1 FROM p.d.t GROUP BY fieldname
---EXPECT--
-SELECT 1 FROM p__d.t GROUP BY fieldname

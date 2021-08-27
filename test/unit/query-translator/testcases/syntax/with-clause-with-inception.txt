@@ -1,30 +1,23 @@
 --INPUT--
 WITH
-sent as (
+foo as (
 	WITH
-	campaigns AS (
-		SELECT DISTINCT campaign_id, program_id
-		FROM `p.d.t`
+	bar AS (
+		SELECT 1
 	)
 
-	SELECT
-	  COUNT(1) as sentCount
-	FROM campaigns c
-	GROUP BY program_id, type, date
+	SELECT 1
 )
 
-SELECT 1 FROM sent
+SELECT 1 FROM foo
 --EXPECT--
 WITH
-sent AS (
+"foo" AS (
 	WITH
-	campaigns AS (
-		SELECT DISTINCT campaign_id, program_id
-		FROM p__d.t
+	"bar" AS (
+		SELECT 1
 	)
-	SELECT
-	  COUNT(1) AS sentCount
-	FROM campaigns AS c
-	GROUP BY program_id, type, date
+
+	SELECT 1
 )
-SELECT 1 FROM sent
+SELECT 1 FROM "foo"

@@ -1,9 +1,9 @@
 --INPUT--
 WITH one AS (
 	WITH zero AS (SELECT 0)
-	SELECT fieldname FROM tablename
+	SELECT 1
 )
 SELECT 1
 --EXPECT--
-WITH one AS (WITH zero AS (SELECT 0) SELECT fieldname FROM tablename)
+WITH "one" AS (WITH "zero" AS (SELECT 0) SELECT 1)
 SELECT 1

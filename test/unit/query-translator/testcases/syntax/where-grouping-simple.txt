@@ -3,4 +3,4 @@ SELECT 1 WHERE
 	(f1)
 --EXPECT--
 SELECT 1 WHERE
-	(f1)
+	("f1")

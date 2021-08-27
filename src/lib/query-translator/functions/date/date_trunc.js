@@ -2,7 +2,9 @@
 const { sprintf } = require('sprintf-js');
 
 module.exports = function(ctx) {
-  const datePart = this.visit(ctx.expression[1]).toUpperCase();
+  // Can't use .visit(), because this is not an expression, but a literal
+  const datePart = ctx.expression[1].children.atomicExpression[0]
+    .children.identifier[0].children.AnyWord[0].image.toUpperCase();
   const dateExpression = this.visit(ctx.expression[0]);
   let sql = '';
 

@@ -1,10 +1,10 @@
 --INPUT--
 WITH
-one AS (SELECT fieldname FROM tablename),
-two AS (SELECT f2 FROM t2)
+one AS (SELECT 1),
+two AS (SELECT 2)
 SELECT 1
 --EXPECT--
 WITH
-one AS (SELECT fieldname FROM tablename),
-two AS (SELECT f2 FROM t2)
+"one" AS (SELECT 1),
+"two" AS (SELECT 2)
 SELECT 1

@@ -1,6 +1,6 @@
 --INPUT--
-WITH one AS (SELECT fieldname FROM tablename)
+WITH one AS (SELECT 1)
 SELECT 1
 --EXPECT--
-WITH one AS (SELECT fieldname FROM tablename)
+WITH "one" AS (SELECT 1)
 SELECT 1

@@ -3,4 +3,4 @@ SELECT 1 WHERE
 	f1 OR f2
 --EXPECT--
 SELECT 1 WHERE
-	f1 OR f2
+	"f1" OR "f2"

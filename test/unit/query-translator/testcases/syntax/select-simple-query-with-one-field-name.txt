@@ -1,4 +1,4 @@
 --INPUT--
 SELECT field_name
 --EXPECT--
-SELECT field_name
+SELECT "field_name"

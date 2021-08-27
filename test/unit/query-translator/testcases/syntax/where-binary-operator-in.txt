@@ -7,6 +7,6 @@ WHERE
 --EXPECT--
 SELECT 1
 WHERE
-	field IN (1, 2, 3)
+	"field" IN (1, 2, 3)
 	AND
-	field NOT IN (4, 5)
+	"field" NOT IN (4, 5)

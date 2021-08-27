@@ -35,7 +35,8 @@ describe('Query Translator', function() {
     it('from-clause-table-alias-with-as', runExpectation(require('./testcases/syntax/from-clause-table-alias-with-as.txt')));
     it('from-clause-table-alias', runExpectation(require('./testcases/syntax/from-clause-table-alias.txt')));
     it('from-clause-table-name', runExpectation(require('./testcases/syntax/from-clause-table-name.txt')));
-    it('group-by-handles-an-expression', runExpectation(require('./testcases/syntax/group-by-handles-an-expression.txt')));
+    it('group-by-handles-an-identifier', runExpectation(require('./testcases/syntax/group-by-handles-an-identifier.txt')));
+    it('group-by-handles-a-column-index', runExpectation(require('./testcases/syntax/group-by-handles-a-column-index.txt')));
     it('group-by-handles-more-expressions', runExpectation(require('./testcases/syntax/group-by-handles-more-expressions.txt')));
     it('having-simple', runExpectation(require('./testcases/syntax/having-simple.txt')));
     it('limit-clause-limit-offset', runExpectation(require('./testcases/syntax/limit-clause-limit-offset.txt')));
