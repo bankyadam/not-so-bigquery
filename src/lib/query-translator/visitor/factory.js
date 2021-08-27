@@ -352,6 +352,8 @@ module.exports = (parser) => {
         return this.visit(ctx.unaryOperatorExpression);
       } else if (ctx.parenthesisExpression) {
         return this.visit(ctx.parenthesisExpression);
+      } else if (ctx.case) {
+        return this.visit(ctx.case);
       } else if (ctx.cast) {
         return this.visit(ctx.cast);
       } else if (ctx.extract) {
@@ -496,6 +498,38 @@ module.exports = (parser) => {
         'AS',
         BIGQUERY_TYPES[ctx.Identifier[0].image.toUpperCase()],
         ')'
+      ].join(' ');
+    }
+
+    case(ctx) {
+      const parts = [
+        'CASE',
+        ctx.caseWhenExpression.map(token => this.visit(token)).join(' ')
+      ];
+
+      if (ctx.Else) {
+        parts.push(
+          'ELSE',
+          this.visit(ctx.result[0])
+        );
+      }
+      parts.push('END');
+      return parts.join(' ');
+    }
+
+    caseWhenExpression(ctx) {
+      return [
+        'WHEN',
+        this.visit(ctx.expression[0]),
+        'THEN',
+        this.visit(ctx.result[0])
+      ].join(' ');
+    }
+
+    caseElseExpression(ctx) {
+      return [
+        'ELSE',
+        this.visit(ctx.result[0])
       ].join(' ');
     }
 

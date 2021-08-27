@@ -134,4 +134,8 @@ describe('SQL Function support', function() {
   context('JSON functions', function() {
     it('to_json_string', runTestCase('testcases/json_functions/to_json_string.txt'));
   });
+
+  context('Conditional expressions', function() {
+    it('case', runTestCase('testcases/conditional_expressions/case/1.txt'));
+  });
 });

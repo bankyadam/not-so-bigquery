@@ -50,6 +50,11 @@ const lexerDefinition = [
   TOKENS.RightSquareBracket,
 
   TOKENS.OperatorBinary,
+  TOKENS.Case,
+  TOKENS.When,
+  TOKENS.Then,
+  TOKENS.Else,
+  TOKENS.End,
   TOKENS.Cast,
   TOKENS.Extract,
   TOKENS.Over,

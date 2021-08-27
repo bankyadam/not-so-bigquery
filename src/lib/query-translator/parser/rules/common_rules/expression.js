@@ -22,6 +22,7 @@ module.exports = ($) => {
         { ALT: () => $.SUBRULE($.dateExpression) },
         { ALT: () => $.SUBRULE($.intervalExpression) },
         { ALT: () => $.SUBRULE($.typelessStruct) },
+        { ALT: () => $.SUBRULE($.case) },
         { ALT: () => $.SUBRULE($.cast) },
         { ALT: () => $.SUBRULE($.extract) },
         { ALT: () => $.SUBRULE($.function) },
@@ -181,5 +182,24 @@ module.exports = ($) => {
   $.RULE('structItem', () => {
     $.SUBRULE($.atomicExpression);
     $.OPTION(() => $.SUBRULE($.asAlias));
+  });
+
+  $.RULE('case', () => {
+    $.CONSUME(TOKENS.Case);
+    $.AT_LEAST_ONE(() => {
+      $.SUBRULE($.caseWhenExpression);
+    });
+    $.OPTION(() => {
+      $.CONSUME(TOKENS.Else);
+      $.SUBRULE($.atomicExpression, { LABEL: 'result' });
+    }, { LABEL: 'caseElseExpression' });
+    $.CONSUME(TOKENS.End);
+  });
+
+  $.RULE('caseWhenExpression', () => {
+    $.CONSUME(TOKENS.When);
+    $.SUBRULE($.expression);
+    $.CONSUME(TOKENS.Then);
+    $.SUBRULE($.atomicExpression, { LABEL: 'result' });
   });
 };

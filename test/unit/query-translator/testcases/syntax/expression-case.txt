@@ -1,0 +1,18 @@
+--INPUT--
+SELECT A, B,
+  CASE
+    WHEN C > 60 THEN 'red'
+    WHEN D > 30 THEN 'blue'
+    ELSE 'green'
+  END
+  AS result
+FROM Numbers
+--EXPECT--
+SELECT "A", "B",
+  CASE
+    WHEN "C" > 60 THEN 'red'
+    WHEN "D" > 30 THEN 'blue'
+    ELSE 'green'
+  END
+  AS "result"
+FROM "Numbers"
