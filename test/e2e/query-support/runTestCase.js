@@ -26,11 +26,11 @@ const NOT_ORDERED = function(currentData, expectedData) {
   expect(currentData).to.have.deep.members(expectedData);
 };
 
-module.exports = function(content, expectation) {
+module.exports = (baseFolder) => function(content, expectation) {
   expectation = expectation || DEFAULT;
   return async () => {
     // eslint-disable-next-line security/detect-non-literal-require
-    const result = _getTestCaseData(require(content));
+    const result = _getTestCaseData(require(`${baseFolder}/${content}`));
     let [data] = await bq.query(result[1]);
     data = data.map(row => {
       return mapValues(row, value => {
