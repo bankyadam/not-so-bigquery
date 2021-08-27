@@ -50,7 +50,7 @@ Currently implemented REST API endpoints:
 #### Tabledata
 |     | METHOD | URI | Comment |
 | --- | ------ | --- | ------- |
-| ✅ | POST   | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll | Unsupported feature are listed in the [source](src/api/tables/insertAll/index.js) |
-| ✅ | GET    | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data | Unsupported feature are listed in the [source](src/api/tables/data/index.js) |
+| ✅ | POST   | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll | Unsupported feature are listed in the [source](../src/api/tables/insertAll/index.js) |
+| ✅ | GET    | /bigquery/v2/projects/{projectId}/datasets/{datasetId}/tables/{tableId}/data | Unsupported feature are listed in the [source](../src/api/tables/data/index.js) |
 
 Models and Routines REST APIs to be implemented are not planned.

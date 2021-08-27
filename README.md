@@ -6,11 +6,11 @@ An emulator for the Google BigQuery, that can be run locally, backed by PostgreS
 
 ### API Endpoints
 
-More info [here](API_SUPPORT.md).
+More info [here](docs/API_SUPPORT.md).
 
 ### Functions
 
-More info [here](FUNCTION_SUPPORT.md).
+More info [here](docs/FUNCTION_SUPPORT.md).
 
 ### SQL Compatibility
 
