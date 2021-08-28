@@ -1,8 +1,11 @@
 'use strict';
 
+const MINUTES = 60000;
+
 const { Client } = require('pg');
 const { POSTGRES_TYPES } = require('../../bigQuery/types');
 const RETRY_TIME = 1500;
+const PING_TIME = 1 * MINUTES;
 const MAX_RETRY_COUNT = 5;
 
 const DB_CONNECTION_TERMINATED = '57P01';
@@ -12,10 +15,12 @@ module.exports = class Db {
   constructor(connectionString) {
     this._connectionString = connectionString;
     this._retryCount = 0;
+    this._ping = null;
     this._connect();
   }
 
   _reconnect() {
+    this._endPing();
     this._retryCount = 0;
     this._connect();
   }
@@ -29,6 +34,7 @@ module.exports = class Db {
 
   _onConnectionSuccess() {
     this._retryCount = 0;
+    this._startPing();
     console.info('Connection to DB was successful');
     this._db.on('error', this._onClientError.bind(this));
   }
@@ -52,6 +58,22 @@ module.exports = class Db {
       this._reconnect();
       return;
     }
+
+    throw e;
+  }
+
+  _startPing() {
+    if (this._ping) { return; }
+
+    this._ping = setInterval(() => {
+      this.query('SELECT 1');
+    }, PING_TIME);
+  }
+
+  _endPing() {
+    if (!this._ping) { return; }
+    clearInterval(this._ping);
+    this._ping = null;
   }
 
   async query(query, values) {
@@ -61,6 +83,7 @@ module.exports = class Db {
 
   _onQueryError(error) {
     console.dir(error);
+    this._endPing();
     throw error;
   }
 
