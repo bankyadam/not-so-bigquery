@@ -89,9 +89,9 @@ binary_operator:
 
 ### From source
 
-Download the source to your local computer and start with `docker-compose`:
+Download the source to your local computer and start with Docker Compose:
 ```shell script
-docker-compose up -d
+docker compose up -d
 ```
 
 This will start the Not-So-BigQuery in a container and will expose it's port to your `localhost:8080`.
