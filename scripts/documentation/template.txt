@@ -1,0 +1,10 @@
+'use strict';
+const moment = require('moment-timezone');
+
+const runTestCaseFactory = require('../../test/e2e/query-support/runTestCase');
+const runTestCase = runTestCaseFactory(__dirname);
+const { NOT_ORDERED } = runTestCaseFactory.EXPECTATIONS;
+
+describe('SQL Function support', function() {
+[[CONTENT]]
+});

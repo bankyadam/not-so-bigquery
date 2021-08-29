@@ -204,20 +204,20 @@ dom.window.document.querySelector('h2').parentElement
     }
   });
 
-const spec = ['describe(\'SQL Function support\', function() {'];
+const spec = [];
 examples.persist()
   .forEach(group => {
-    spec.push(`context('${group.name} functions', function() {`);
+    spec.push(`  context('${group.name} functions', function() {`);
     group.functions.forEach(func => {
-      spec.push(`describe('${func.name.toUpperCase()}', function() {`);
-
+      spec.push(`    describe('${func.name.toUpperCase()}', function() {`);
       func.files.forEach((file, index) => {
-        spec.push(`it('example-${index + 1}', runTestCase('${file}'));`);
+        spec.push(`      it('example-${index + 1}', runTestCase('${file}'));`);
       });
-      spec.push('});');
+      spec.push('    });');
     });
-    spec.push('});');
+    spec.push('  });');
   });
-spec.push('});');
 
-fs.writeFileSync('index-generated.spec.js', spec.join('\n'), { encoding: 'utf8' });
+const template = fs.readFileSync(`${__dirname}/template.txt`).toString('utf8');
+const content = template.replace('[[CONTENT]]', spec.join('\n'));
+fs.writeFileSync('index-generated.spec.js', content, { encoding: 'utf8' });
