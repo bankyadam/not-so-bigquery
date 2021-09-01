@@ -1,0 +1,5 @@
+FROM clkao/postgres-plv8:10-2
+
+COPY docker/postgres/disable_ipv6/etc/sysctl.conf /tmp/
+
+RUN cat /tmp/sysctl.conf >> /etc/sysctl.conf
