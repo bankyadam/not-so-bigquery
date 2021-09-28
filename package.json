@@ -14,29 +14,31 @@
   "author": "Adam Banky <banky.adam@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@google-cloud/bigquery": "5.7.0",
-    "chevrotain": "9.0.2",
+    "@google-cloud/bigquery": "5.9.1",
+    "chevrotain": "9.1.0",
     "etag": "1.8.1",
     "express": "4.17.1",
     "express-async-router": "0.1.15",
     "hex2dec": "1.1.2",
     "lodash": "4.17.21",
-    "pg": "8.6.0",
+    "pg": "8.7.1",
     "sprintf-js": "1.1.2",
-    "xregexp": "5.0.2"
+    "xregexp": "5.1.0"
   },
   "devDependencies": {
     "chai": "4.3.4",
     "chai-string": "1.5.0",
     "dotenv": "10.0.0",
-    "eslint": "7.31.0",
-    "eslint-config-emarsys": "5.1.0",
+    "eslint": "8.0.1",
+    "eslint-plugin-no-only-tests": "2.6.0",
+    "eslint-plugin-security": "1.4.0",
     "eslint-plugin-require-path-exists": "1.1.9",
-    "jsdom": "16.6.0",
-    "mocha": "9.0.3",
+    "jsdom": "18.0.0",
+    "mocha": "9.1.3",
     "moment-timezone": "0.5.33",
-    "nodemon": "2.0.12",
-    "sinon": "11.1.1",
+    "nodemon": "2.0.13",
+    "nyc": "15.1.0",
+    "sinon": "11.1.2",
     "sinon-chai": "3.7.0"
   }
 }
