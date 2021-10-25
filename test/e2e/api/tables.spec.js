@@ -1,8 +1,8 @@
 'use strict';
 
 const { pick } = require('lodash');
-const commands = require('../support/commands');
-const { DATASET_NAME, TABLE_NAME } = require('../support/config')();
+const commands = require('../_common/commands');
+const { DATASET_NAME, TABLE_NAME } = require('../_common/config')();
 const { schema } = require('./examples/schemas/tables');
 
 describe('Tables', function() {

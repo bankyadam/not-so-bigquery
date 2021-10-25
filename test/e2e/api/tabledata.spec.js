@@ -1,8 +1,8 @@
 'use strict';
 
 const { sortBy, omit, map } = require('lodash');
-const { DATASET_NAME, TABLE_NAME } = require('../support/config')();
-const commands = require('../support/commands');
+const { DATASET_NAME, TABLE_NAME } = require('../_common/config')();
+const commands = require('../_common/commands');
 const { schema, generator: tableRowGenerator } = require('./examples/schemas/tabledata');
 
 describe('TableData', function() {

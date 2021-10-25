@@ -46,7 +46,7 @@ describe('Table to JSON converter', function() {
       ]);
   });
 
-  it('support empty cell', function() {
+  it('_common empty cell', function() {
     const input = `
 +-------+
 | empty |

@@ -1,8 +1,8 @@
 'use strict';
 
 const { pick } = require('lodash');
-const commands = require('../support/commands');
-const { DATASET_NAME } = require('../support/config')();
+const commands = require('../_common/commands');
+const { DATASET_NAME } = require('../_common/config')();
 
 describe('Datasets', function() {
   after(async function() {

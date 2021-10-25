@@ -1,11 +1,11 @@
 'use strict';
 const moment = require('moment-timezone');
 
-const runTestCaseFactory = require('./runTestCase');
+const runTestCaseFactory = require('../_common/run-test-case');
 const runTestCase = runTestCaseFactory(__dirname);
 const { NOT_ORDERED } = runTestCaseFactory.EXPECTATIONS;
 
-describe('SQL Function support', function() {
+describe('SQL Function _common', function() {
   /* eslint-disable max-len */
   it('set operator', runTestCase('testcases/set-operator.txt', NOT_ORDERED));
 

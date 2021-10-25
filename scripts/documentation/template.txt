@@ -1,10 +1,12 @@
 'use strict';
 const moment = require('moment-timezone');
 
-const runTestCaseFactory = require('../../test/e2e/query-support/runTestCase');
+const runTestCaseFactory = require('../../test/e2e/_common/run-test-case');
 const runTestCase = runTestCaseFactory(__dirname);
 const { NOT_ORDERED } = runTestCaseFactory.EXPECTATIONS;
 
 describe('SQL Function support', function() {
+  this.timeout(700);
+
 [[CONTENT]]
 });

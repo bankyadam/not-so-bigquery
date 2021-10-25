@@ -1,14 +1,9 @@
 'use strict';
 
-require.extensions['.txt'] = function(module, filename) {
-  module.exports = fs.readFileSync(filename, 'utf8');
-};
-
-const fs = require('fs');
 const { mapValues } = require('lodash');
 
-const bq = require('../support/connection-fake');
-const convertTable = require('../../unit/support/table-to-json');
+const bq = require('./connection-fake');
+const convertTable = require('../../_common/table-to-json');
 const prepareTable = function(tableData) {
   return tableData
     .replace(/{CURRENT_DATE}/g, (new Date).toISOString().substr(0, 10));
