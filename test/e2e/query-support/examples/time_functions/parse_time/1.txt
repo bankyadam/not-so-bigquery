@@ -1,0 +1,9 @@
+--SQL--
+SELECT PARSE_TIME("%H", "15") as parsed_time;
+
+--RESULT--
++-------------+
+| parsed_time |
++-------------+
+| 15:00:00    |
++-------------+

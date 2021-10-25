@@ -1,0 +1,20 @@
+--SQL--
+SELECT
+  x,
+  COUNTIF(x<0) OVER (ORDER BY ABS(x) ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING) AS num_negative
+FROM UNNEST([5, -2, 3, 6, -10, NULL, -7, 4, 0]) AS x;
+
+--RESULT--
++------+--------------+
+| x    | num_negative |
++------+--------------+
+| NULL | 0            |
+| 0    | 1            |
+| -2   | 1            |
+| 3    | 1            |
+| 4    | 0            |
+| 5    | 0            |
+| 6    | 1            |
+| -7   | 2            |
+| -10  | 2            |
++------+--------------+

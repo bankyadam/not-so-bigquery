@@ -1,0 +1,10 @@
+--SQL--
+SELECT TIMESTAMP_SECONDS(1230219000) AS timestamp_value;
+
+-- Results may differ, depending upon the environment and time zone where this query was executed.
+--RESULT--
++-------------------------+
+| timestamp_value         |
++-------------------------+
+| 2008-12-25 15:30:00 UTC |
++-------------------------+

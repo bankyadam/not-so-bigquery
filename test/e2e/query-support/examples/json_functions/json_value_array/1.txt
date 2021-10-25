@@ -1,0 +1,10 @@
+--SQL--
+SELECT JSON_QUERY_ARRAY('["apples","oranges"]') AS json_array,
+       JSON_VALUE_ARRAY('["apples","oranges"]') AS string_array;
+
+--RESULT--
++-----------------------+-------------------+
+| json_array            | string_array      |
++-----------------------+-------------------+
+| ["apples", "oranges"] | [apples, oranges] |
++-----------------------+-------------------+

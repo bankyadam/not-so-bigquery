@@ -1,0 +1,14 @@
+--SQL--
+SELECT
+  fruit,
+  ANY_VALUE(fruit) OVER (ORDER BY LENGTH(fruit) ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS any_value
+FROM UNNEST(["apple", "banana", "pear"]) as fruit;
+
+--RESULT--
++--------+-----------+
+| fruit  | any_value |
++--------+-----------+
+| pear   | pear      |
+| apple  | apple      |
+| banana | banana     |
++--------+-----------+

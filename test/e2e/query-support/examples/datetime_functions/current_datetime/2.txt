@@ -1,0 +1,10 @@
+--SQL--
+WITH t AS (SELECT 'column value' AS `current_datetime`)
+SELECT current_datetime() as now, t.current_datetime FROM t;
+
+--RESULT--
++----------------------------+------------------+
+| now                        | current_datetime |
++----------------------------+------------------+
+| 2016-05-19T10:38:47.046465 | column value     |
++----------------------------+------------------+

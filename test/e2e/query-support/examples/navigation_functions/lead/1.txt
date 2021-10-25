@@ -1,0 +1,36 @@
+--SQL--
+WITH finishers AS
+ (SELECT 'Sophia Liu' as name,
+  TIMESTAMP '2016-10-18 2:51:45' as finish_time,
+  'F30-34' as division
+  UNION ALL SELECT 'Lisa Stelzner', TIMESTAMP '2016-10-18 2:54:11', 'F35-39'
+  UNION ALL SELECT 'Nikki Leith', TIMESTAMP '2016-10-18 2:59:01', 'F30-34'
+  UNION ALL SELECT 'Lauren Matthews', TIMESTAMP '2016-10-18 3:01:17', 'F35-39'
+  UNION ALL SELECT 'Desiree Berry', TIMESTAMP '2016-10-18 3:05:42', 'F35-39'
+  UNION ALL SELECT 'Suzy Slane', TIMESTAMP '2016-10-18 3:06:24', 'F35-39'
+  UNION ALL SELECT 'Jen Edwards', TIMESTAMP '2016-10-18 3:06:36', 'F30-34'
+  UNION ALL SELECT 'Meghan Lederer', TIMESTAMP '2016-10-18 3:07:41', 'F30-34'
+  UNION ALL SELECT 'Carly Forte', TIMESTAMP '2016-10-18 3:08:58', 'F25-29'
+  UNION ALL SELECT 'Lauren Reasoner', TIMESTAMP '2016-10-18 3:10:14', 'F30-34')
+SELECT name,
+  finish_time,
+  division,
+  LEAD(name)
+    OVER (PARTITION BY division ORDER BY finish_time ASC) AS followed_by
+FROM finishers;
+
+--RESULT--
++-----------------+-------------+----------+-----------------+
+| name            | finish_time | division | followed_by     |
++-----------------+-------------+----------+-----------------+
+| Carly Forte     | 03:08:58    | F25-29   | NULL            |
+| Sophia Liu      | 02:51:45    | F30-34   | Nikki Leith     |
+| Nikki Leith     | 02:59:01    | F30-34   | Jen Edwards     |
+| Jen Edwards     | 03:06:36    | F30-34   | Meghan Lederer  |
+| Meghan Lederer  | 03:07:41    | F30-34   | Lauren Reasoner |
+| Lauren Reasoner | 03:10:14    | F30-34   | NULL            |
+| Lisa Stelzner   | 02:54:11    | F35-39   | Lauren Matthews |
+| Lauren Matthews | 03:01:17    | F35-39   | Desiree Berry   |
+| Desiree Berry   | 03:05:42    | F35-39   | Suzy Slane      |
+| Suzy Slane      | 03:06:24    | F35-39   | NULL            |
++-----------------+-------------+----------+-----------------+

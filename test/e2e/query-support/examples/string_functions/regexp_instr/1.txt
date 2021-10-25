@@ -1,0 +1,18 @@
+--SQL--
+WITH example AS (
+  SELECT 'ab@gmail.com' AS source_value, '@[^.]*' AS regexp UNION ALL
+  SELECT 'ab@mail.com', '@[^.]*' UNION ALL
+  SELECT 'abc@gmail.com', '@[^.]*' UNION ALL
+  SELECT 'abc.com', '@[^.]*')
+SELECT source_value, regexp, REGEXP_INSTR(source_value, regexp) AS instr
+FROM example;
+
+--RESULT--
++---------------+--------+-------+
+| source_value  | regexp | instr |
++---------------+--------+-------+
+| ab@gmail.com  | @[^.]* | 3     |
+| ab@mail.com   | @[^.]* | 3     |
+| abc@gmail.com | @[^.]* | 4     |
+| abc.com       | @[^.]* | 0     |
++---------------+--------+-------+

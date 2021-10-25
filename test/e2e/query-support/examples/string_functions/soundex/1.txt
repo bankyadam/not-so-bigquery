@@ -1,0 +1,27 @@
+--SQL--
+WITH example AS (
+  SELECT 'Ashcraft' AS value UNION ALL
+  SELECT 'Raven' AS value UNION ALL
+  SELECT 'Ribbon' AS value UNION ALL
+  SELECT 'apple' AS value UNION ALL
+  SELECT 'Hello world!' AS value UNION ALL
+  SELECT '  H3##!@llo w00orld!' AS value UNION ALL
+  SELECT '#1' AS value UNION ALL
+  SELECT NULL AS value
+)
+SELECT value, SOUNDEX(value) AS soundex
+FROM example;
+
+--RESULT--
++----------------------+---------+
+| value                | soundex |
++----------------------+---------+
+| Ashcraft             | A261    |
+| Raven                | R150    |
+| Ribbon               | R150    |
+| apple                | a140    |
+| Hello world!         | H464    |
+|   H3##!@llo w00orld! | H464    |
+| #1                   |         |
+| NULL                 | NULL    |
++----------------------+---------+

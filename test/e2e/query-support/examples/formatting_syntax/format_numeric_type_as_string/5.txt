@@ -1,0 +1,11 @@
+--SQL--
+SELECT
+  CAST(12 AS STRING FORMAT '$99') as a,
+  CAST(-12 AS STRING FORMAT '$99') as b;
+
+--RESULT--
++------+------+
+|  a   |  b   |
++------+------+
+|  $12 | -$12 |
++------+------+

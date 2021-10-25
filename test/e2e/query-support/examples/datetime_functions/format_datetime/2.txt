@@ -1,0 +1,11 @@
+--SQL--
+SELECT
+  FORMAT_DATETIME("%b-%d-%Y", DATETIME "2008-12-25 15:30:00")
+  AS formatted;
+
+--RESULT--
++-------------+
+| formatted   |
++-------------+
+| Dec-25-2008 |
++-------------+

@@ -1,0 +1,29 @@
+--SQL--
+
+-- This example shows how a string with a decimal point is parsed.
+SELECT PARSE_NUMERIC("123.45") AS parsed
+
+--RESULT--
++--------+
+| parsed |
++--------+
+| 123.45 |
++--------+
+
+-- This example shows how a string with an exponent is parsed.
+SELECT PARSE_NUMERIC("12.34E27") as parsed
+
++-------------------------------+
+| parsed                        |
++-------------------------------+
+| 12340000000000000000000000000 |
++-------------------------------+
+
+-- This example shows the rounding when digits after the decimal point exceeds 9.
+SELECT PARSE_NUMERIC("1.0123456789") as parsed
+
++-------------+
+| parsed      |
++-------------+
+| 1.012345679 |
++-------------+

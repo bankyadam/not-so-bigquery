@@ -1,0 +1,31 @@
+--SQL--
+-- An error is returned if you provide an invalid JSONPath.
+SELECT JSON_QUERY_ARRAY('["foo","bar","baz"]','INVALID_JSONPath') AS result;
+
+-- If the JSONPath does not refer to an array, then NULL is returned.
+SELECT JSON_QUERY_ARRAY('{"a":"foo"}','$.a') AS result;
+
+--RESULT--
++--------+
+| result |
++--------+
+| NULL   |
++--------+
+
+-- If a key that does not exist is specified, then the result is NULL.
+SELECT JSON_QUERY_ARRAY('{"a":"foo"}','$.b') AS result;
+
++--------+
+| result |
++--------+
+| NULL   |
++--------+
+
+-- Empty arrays in JSON-formatted strings are supported.
+SELECT JSON_QUERY_ARRAY('{"a":"foo","b":[]}','$.b') AS result;
+
++--------+
+| result |
++--------+
+| []     |
++--------+

@@ -1,0 +1,26 @@
+--SQL--
+SELECT ST_CENTROID_AGG(points) AS st_centroid_agg,
+ST_CENTROID(ST_UNION_AGG(points)) AS centroid_of_union
+FROM UNNEST([ST_GEOGPOINT(1, 5),
+             ST_GEOGPOINT(1, 2),
+             ST_GEOGPOINT(1, -1),
+             ST_GEOGPOINT(1, -1)]) points;
+
+--RESULT--
++---------------------------+-------------------+
+| st_centroid_agg           | centroid_of_union |
++---------------------------+-------------------+
+| POINT(1 1.24961422620969) | POINT(1 2)        |
++---------------------------+-------------------+
+
+SELECT ST_CENTROID_AGG(points) AS st_centroid_agg
+FROM UNNEST([ST_GEOGPOINT(50, 26),
+             ST_GEOGPOINT(34, 33.3),
+             ST_GEOGFROMTEXT('LINESTRING(0 -1, 0 1)')
+             ST_GEOGFROMTEXT('LINESTRING(0 1, 0 3)')]) points;
+
++-----------------+
+| st_centroid_agg |
++-----------------+
+| POINT(0 1)      |
++-----------------+

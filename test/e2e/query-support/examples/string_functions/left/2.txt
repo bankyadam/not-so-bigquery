@@ -1,0 +1,20 @@
+--SQL--
+WITH examples AS
+(SELECT b'apple' as example
+UNION ALL
+SELECT b'banana' as example
+UNION ALL
+SELECT b'\xab\xcd\xef\xaa\xbb' as example
+)
+SELECT example, LEFT(example, 3) AS left_example
+FROM examples;
+
+-- Note that the result of LEFT is of type BYTES, displayed as a base64-encoded string.
+--RESULT--
++----------+--------------+
+| example  | left_example |
++----------+--------------+
+| YXBwbGU= | YXBw         |
+| YmFuYW5h | YmFu         |
+| q83vqrs= | q83v         |
++----------+--------------+

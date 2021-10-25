@@ -1,0 +1,16 @@
+--SQL--
+WITH items AS
+  (SELECT ["coffee", "tea", "milk" ] as list
+  UNION ALL
+  SELECT ["cake", "pie", NULL] as list)
+
+SELECT ARRAY_TO_STRING(list, '--') AS text
+FROM items;
+
+--RESULT--
++--------------------------------+
+| text                           |
++--------------------------------+
+| coffee--tea--milk              |
+| cake--pie                      |
++--------------------------------+

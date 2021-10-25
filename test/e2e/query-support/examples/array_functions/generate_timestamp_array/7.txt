@@ -1,0 +1,24 @@
+--SQL--
+SELECT GENERATE_TIMESTAMP_ARRAY(start_timestamp, end_timestamp, INTERVAL 1 HOUR)
+  AS timestamp_array
+FROM
+  (SELECT
+    TIMESTAMP '2016-10-05 00:00:00' AS start_timestamp,
+    TIMESTAMP '2016-10-05 02:00:00' AS end_timestamp
+   UNION ALL
+   SELECT
+    TIMESTAMP '2016-10-05 12:00:00' AS start_timestamp,
+    TIMESTAMP '2016-10-05 14:00:00' AS end_timestamp
+   UNION ALL
+   SELECT
+    TIMESTAMP '2016-10-05 23:59:00' AS start_timestamp,
+    TIMESTAMP '2016-10-06 01:59:00' AS end_timestamp);
+
+--RESULT--
++--------------------------------------------------------------------------+
+| timestamp_array                                                          |
++--------------------------------------------------------------------------+
+| [2016-10-05 00:00:00+00, 2016-10-05 01:00:00+00, 2016-10-05 02:00:00+00] |
+| [2016-10-05 12:00:00+00, 2016-10-05 13:00:00+00, 2016-10-05 14:00:00+00] |
+| [2016-10-05 23:59:00+00, 2016-10-06 00:59:00+00, 2016-10-06 01:59:00+00] |
++--------------------------------------------------------------------------+

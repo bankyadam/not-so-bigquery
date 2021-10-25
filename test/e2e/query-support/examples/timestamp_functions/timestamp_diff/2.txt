@@ -1,0 +1,9 @@
+--SQL--
+SELECT TIMESTAMP_DIFF(TIMESTAMP "2018-08-14", TIMESTAMP "2018-10-14", DAY);
+
+--RESULT--
++---------------+
+| negative_diff |
++---------------+
+| -61           |
++---------------+

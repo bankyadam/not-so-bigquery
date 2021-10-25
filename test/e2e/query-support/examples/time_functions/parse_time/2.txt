@@ -1,0 +1,9 @@
+--SQL--
+SELECT PARSE_TIME('%I:%M:%S %p', '2:23:38 PM') AS parsed_time
+
+--RESULT--
++-------------+
+| parsed_time |
++-------------+
+| 14:23:38    |
++-------------+

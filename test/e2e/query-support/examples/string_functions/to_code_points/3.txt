@@ -1,0 +1,9 @@
+--SQL--
+SELECT TO_CODE_POINTS(b'Ā') AS b_result, TO_CODE_POINTS('Ā') AS s_result;
+
+--RESULT--
++------------+----------+
+| b_result   | s_result |
++------------+----------+
+| [196, 128] | [256]    |
++------------+----------+

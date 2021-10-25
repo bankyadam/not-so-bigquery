@@ -1,0 +1,12 @@
+--SQL--
+SELECT
+ datetime AS original,
+ DATETIME_TRUNC(datetime, WEEK(MONDAY)) AS truncated
+FROM (SELECT DATETIME(TIMESTAMP "2017-11-05 00:00:00+00", "UTC") AS datetime);
+
+--RESULT--
++---------------------+---------------------+
+| original            | truncated           |
++---------------------+---------------------+
+| 2017-11-05T00:00:00 | 2017-10-30T00:00:00 |
++---------------------+---------------------+

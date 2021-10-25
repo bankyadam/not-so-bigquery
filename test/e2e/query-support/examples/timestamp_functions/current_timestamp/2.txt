@@ -1,0 +1,10 @@
+--SQL--
+WITH t AS (SELECT 'column value' AS `current_timestamp`)
+SELECT current_timestamp() AS now, t.current_timestamp FROM t;
+
+--RESULT--
++--------------------------------+-------------------+
+| now                            | current_timestamp |
++--------------------------------+-------------------+
+| 2020-06-02 23:57:12.120174 UTC | column value      |
++--------------------------------+-------------------+

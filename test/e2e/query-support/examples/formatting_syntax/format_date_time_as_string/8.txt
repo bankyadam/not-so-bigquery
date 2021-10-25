@@ -1,0 +1,9 @@
+--SQL--
+SELECT CAST(TIME '21:30:25.16' AS STRING FORMAT 'FF2') AS date_time_to_string;
+
+--RESULT--
++---------------------+
+| date_time_to_string |
++---------------------+
+| 16                  |
++---------------------+

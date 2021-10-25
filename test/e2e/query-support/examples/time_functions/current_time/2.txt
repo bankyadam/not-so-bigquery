@@ -1,0 +1,10 @@
+--SQL--
+WITH t AS (SELECT 'column value' AS `current_time`)
+SELECT current_time() as now, t.current_time FROM t;
+
+--RESULT--
++----------------+--------------+
+| now            | current_time |
++----------------+--------------+
+| {CURRENT_TIME} | column value |
++----------------+--------------+

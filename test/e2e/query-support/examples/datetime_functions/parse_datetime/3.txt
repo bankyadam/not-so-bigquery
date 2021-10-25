@@ -1,0 +1,10 @@
+--SQL--
+SELECT PARSE_DATETIME('%A, %B %e, %Y','Wednesday, December 19, 2018')
+  AS datetime;
+
+--RESULT--
++---------------------+
+| datetime            |
++---------------------+
+| 2018-12-19T00:00:00 |
++---------------------+

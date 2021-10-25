@@ -1,0 +1,15 @@
+--SQL--
+WITH Input AS (
+  SELECT b'\x00\x01\x02\x03\xAA\xEE\xEF\xFF' AS byte_str UNION ALL
+  SELECT b'foobar'
+)
+SELECT byte_str, TO_HEX(byte_str) AS hex_str
+FROM Input;
+
+--RESULT--
++----------------------------------+------------------+
+| byte_string                      | hex_string       |
++----------------------------------+------------------+
+| \x00\x01\x02\x03\xaa\xee\xef\xff | 00010203aaeeefff |
+| foobar                           | 666f6f626172     |
++----------------------------------+------------------+

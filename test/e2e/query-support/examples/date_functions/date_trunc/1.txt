@@ -1,0 +1,9 @@
+--SQL--
+SELECT DATE_TRUNC(DATE '2008-12-25', MONTH) as month;
+
+--RESULT--
++------------+
+| month      |
++------------+
+| 2008-12-01 |
++------------+

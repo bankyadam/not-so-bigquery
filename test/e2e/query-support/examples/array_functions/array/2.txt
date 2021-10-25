@@ -1,0 +1,12 @@
+--SQL--
+SELECT
+  ARRAY
+    (SELECT AS STRUCT 1, 2, 3
+     UNION ALL SELECT AS STRUCT 4, 5, 6) AS new_array;
+
+--RESULT--
++------------------------+
+| new_array              |
++------------------------+
+| [{1, 2, 3}, {4, 5, 6}] |
++------------------------+

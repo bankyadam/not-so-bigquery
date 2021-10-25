@@ -1,0 +1,10 @@
+--SQL--
+SELECT CAST(TIME '21:30:00' AS STRING FORMAT 'AM') AS date_time_to_string;
+SELECT CAST(TIME '21:30:00' AS STRING FORMAT 'PM') AS date_time_to_string;
+
+--RESULT--
++---------------------+
+| date_time_to_string |
++---------------------+
+| PM                  |
++---------------------+

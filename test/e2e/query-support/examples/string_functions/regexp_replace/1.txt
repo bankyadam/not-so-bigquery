@@ -1,0 +1,18 @@
+--SQL--
+WITH markdown AS
+  (SELECT "# Heading" as heading
+  UNION ALL
+  SELECT "# Another heading" as heading)
+
+SELECT
+  REGEXP_REPLACE(heading, r"^# ([a-zA-Z0-9\s]+$)", "<h1>\\1</h1>")
+  AS html
+FROM markdown;
+
+--RESULT--
++--------------------------+
+| html                     |
++--------------------------+
+| <h1>Heading</h1>         |
+| <h1>Another heading</h1> |
++--------------------------+

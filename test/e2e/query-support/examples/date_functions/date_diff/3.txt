@@ -1,0 +1,11 @@
+--SQL--
+SELECT
+  DATE_DIFF('2017-12-30', '2014-12-30', YEAR) AS year_diff,
+  DATE_DIFF('2017-12-30', '2014-12-30', ISOYEAR) AS isoyear_diff;
+
+--RESULT--
++-----------+--------------+
+| year_diff | isoyear_diff |
++-----------+--------------+
+| 3         | 2            |
++-----------+--------------+

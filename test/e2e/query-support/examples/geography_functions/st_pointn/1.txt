@@ -1,0 +1,14 @@
+--SQL--
+WITH linestring AS (
+    SELECT ST_GeogFromText('linestring(1 1, 2 1, 3 2, 3 3)') g
+)
+SELECT ST_PointN(g, 1) AS first, ST_PointN(g, -1) AS last,
+    ST_PointN(g, 2) AS second, ST_PointN(g, -2) AS second_to_last
+FROM linestring;
+
+--RESULT--
++--------------+--------------+--------------+----------------+
+| first        | last         | second       | second_to_last |
++--------------+--------------+--------------+----------------+
+| POINT(1 1)   | POINT(3 3)   | POINT(2 1)   | POINT(3 2)     |
++--------------+--------------+--------------+----------------+

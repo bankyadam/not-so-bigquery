@@ -1,0 +1,19 @@
+--SQL--
+WITH items AS
+  (SELECT ["apples", "bananas", "pears", "grapes"] as list
+  UNION ALL
+  SELECT ["coffee", "tea", "milk" ] as list
+  UNION ALL
+  SELECT ["cake", "pie"] as list)
+
+SELECT list, list[OFFSET(1)] as offset_1, list[ORDINAL(1)] as ordinal_1
+FROM items;
+
+--RESULT--
++----------------------------------+-----------+-----------+
+| list                             | offset_1  | ordinal_1 |
++----------------------------------+-----------+-----------+
+| [apples, bananas, pears, grapes] | bananas   | apples    |
+| [coffee, tea, milk]              | tea       | coffee    |
+| [cake, pie]                      | pie       | cake      |
++----------------------------------+-----------+-----------+

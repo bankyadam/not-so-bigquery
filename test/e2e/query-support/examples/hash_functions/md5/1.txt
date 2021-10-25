@@ -1,0 +1,10 @@
+--SQL--
+SELECT MD5("Hello World") as md5;
+
+-- Note that the result of MD5 is of type BYTES, displayed as a base64-encoded string.
+--RESULT--
++--------------------------+
+| md5                      |
++--------------------------+
+| sQqNsWTgdUEFt6mb5y4/5Q== |
++--------------------------+

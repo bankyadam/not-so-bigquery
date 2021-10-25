@@ -1,0 +1,20 @@
+--SQL--
+SELECT
+  x,
+  SUM(DISTINCT x) OVER (PARTITION BY MOD(x, 3)) AS sum
+FROM UNNEST([1, 2, 3, 4, 5, 4, 3, 2, 1]) AS x;
+
+--RESULT--
++---+-----+
+| x | sum |
++---+-----+
+| 3 | 3   |
+| 3 | 3   |
+| 1 | 5   |
+| 4 | 5   |
+| 4 | 5   |
+| 1 | 5   |
+| 2 | 7   |
+| 5 | 7   |
+| 2 | 7   |
++---+-----+

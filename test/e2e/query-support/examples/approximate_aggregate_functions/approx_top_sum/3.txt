@@ -1,0 +1,10 @@
+--SQL--
+SELECT APPROX_TOP_SUM(x, weight, 2) AS approx_top_sum FROM
+UNNEST([STRUCT("apple" AS x, 0 AS weight), (NULL, 2)]);
+
+--RESULT--
++-------------------------+
+| approx_top_sum          |
++-------------------------+
+| [{NULL, 2}, {apple, 0}] |
++-------------------------+

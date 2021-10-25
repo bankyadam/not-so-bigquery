@@ -1,0 +1,12 @@
+--SQL--
+SELECT
+  DATETIME_DIFF('2017-12-18', '2017-12-17', WEEK) AS week_diff,
+  DATETIME_DIFF('2017-12-18', '2017-12-17', WEEK(MONDAY)) AS week_weekday_diff,
+  DATETIME_DIFF('2017-12-18', '2017-12-17', ISOWEEK) AS isoweek_diff;
+
+--RESULT--
++-----------+-------------------+--------------+
+| week_diff | week_weekday_diff | isoweek_diff |
++-----------+-------------------+--------------+
+| 0         | 1                 | 1            |
++-----------+-------------------+--------------+

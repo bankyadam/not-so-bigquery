@@ -1,0 +1,9 @@
+--SQL--
+SELECT COALESCE('A', 'B', 'C') as result
+
+--RESULT--
++--------+
+| result |
++--------+
+| A      |
++--------+

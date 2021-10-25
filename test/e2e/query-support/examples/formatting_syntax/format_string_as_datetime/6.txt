@@ -1,0 +1,9 @@
+--SQL--
+SELECT CAST('01:05:07.16' AS TIME FORMAT 'HH24:MI:SS.FF1') AS string_to_date_time
+
+--RESULT--
++---------------------+
+| string_to_date_time |
++---------------------+
+| 01:05:07.2          |
++---------------------+

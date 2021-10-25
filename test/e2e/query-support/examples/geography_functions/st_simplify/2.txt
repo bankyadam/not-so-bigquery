@@ -1,0 +1,20 @@
+--SQL--
+WITH example AS
+ (SELECT
+    ST_GEOGFROMTEXT('POLYGON((0 0, 0.1 0, 0.1 0.1, 0 0))') AS polygon,
+    t AS tolerance
+  FROM UNNEST([1000, 10000, 100000]) AS t)
+SELECT
+  polygon AS original_triangle,
+  tolerance AS tolerance_meters,
+  ST_SIMPLIFY(polygon, tolerance) AS simplified_result
+FROM example
+
+--RESULT--
++-------------------------------------+------------------+-------------------------------------+
+|          original_triangle          | tolerance_meters |          simplified_result          |
++-------------------------------------+------------------+-------------------------------------+
+| POLYGON((0 0, 0.1 0, 0.1 0.1, 0 0)) |             1000 | POLYGON((0 0, 0.1 0, 0.1 0.1, 0 0)) |
+| POLYGON((0 0, 0.1 0, 0.1 0.1, 0 0)) |            10000 |            LINESTRING(0 0, 0.1 0.1) |
+| POLYGON((0 0, 0.1 0, 0.1 0.1, 0 0)) |           100000 |                          POINT(0 0) |
++-------------------------------------+------------------+-------------------------------------+

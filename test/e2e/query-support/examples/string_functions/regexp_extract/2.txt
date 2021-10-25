@@ -1,0 +1,21 @@
+--SQL--
+WITH email_addresses AS
+  (SELECT "foo@example.com" as email
+  UNION ALL
+  SELECT "bar@example.org" as email
+  UNION ALL
+  SELECT "baz@example.net" as email)
+
+SELECT
+  REGEXP_EXTRACT(email, r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.([a-zA-Z0-9-.]+$)")
+  AS top_level_domain
+FROM email_addresses;
+
+--RESULT--
++------------------+
+| top_level_domain |
++------------------+
+| com              |
+| org              |
+| net              |
++------------------+

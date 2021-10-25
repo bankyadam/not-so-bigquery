@@ -1,0 +1,21 @@
+--SQL--
+SELECT JSON_QUERY('{ "name" : "Jakob", "age" : "6" }', '$.name') AS json_name,
+  JSON_VALUE('{ "name" : "Jakob", "age" : "6" }', '$.name') AS scalar_name,
+  JSON_QUERY('{ "name" : "Jakob", "age" : "6" }', '$.age') AS json_age,
+  JSON_VALUE('{ "name" : "Jakob", "age" : "6" }', '$.age') AS scalar_age;
+
+--RESULT--
++-----------+-------------+----------+------------+
+| json_name | scalar_name | json_age | scalar_age |
++-----------+-------------+----------+------------+
+| "Jakob"   | Jakob       | "6"      | 6          |
++-----------+-------------+----------+------------+
+
+SELECT JSON_QUERY('{"fruits": ["apple", "banana"]}', '$.fruits') AS json_query,
+  JSON_VALUE('{"fruits": ["apple", "banana"]}', '$.fruits') AS json_value;
+
++--------------------+------------+
+| json_query         | json_value |
++--------------------+------------+
+| ["apple","banana"] | NULL       |
++--------------------+------------+

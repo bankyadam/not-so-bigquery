@@ -1,0 +1,16 @@
+--SQL--
+WITH example AS (
+  SELECT ST_GeogFromText('GEOMETRYCOLLECTION(POINT(0 0), LINESTRING(1 2, 2 1))') AS geography)
+SELECT
+  geography AS original_geography,
+  ST_DUMP(geography, 1) AS dumped_geographies
+FROM example
+
+--RESULT--
++-------------------------------------+------------------------------+
+|         original_geographies        |      dumped_geographies      |
++-------------------------------------+------------------------------+
+| GEOMETRYCOLLECTION(POINT(0 0),      | [LINESTRING(1 2, 2 1)]       |
+|   LINESTRING(1 2, 2 1))             |                              |
++-------------------------------------+------------------------------+
+

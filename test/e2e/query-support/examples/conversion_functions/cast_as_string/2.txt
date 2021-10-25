@@ -1,0 +1,9 @@
+--SQL--
+SELECT CAST(CURRENT_DATE() AS STRING FORMAT 'DAY') AS current_day
+
+--RESULT--
++-------------+
+| current_day |
++-------------+
+| MONDAY      |
++-------------+

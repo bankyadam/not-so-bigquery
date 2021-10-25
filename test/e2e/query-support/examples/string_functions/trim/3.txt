@@ -1,0 +1,23 @@
+--SQL--
+WITH items AS
+  (SELECT "xxxapplexxx" as item
+  UNION ALL
+  SELECT "yyybananayyy" as item
+  UNION ALL
+  SELECT "zzzorangezzz" as item
+  UNION ALL
+  SELECT "xyzpearxyz" as item)
+
+SELECT
+  TRIM(item, "xyz") as example
+FROM items;
+
+--RESULT--
++---------+
+| example |
++---------+
+| apple   |
+| banana  |
+| orange  |
+| pear    |
++---------+

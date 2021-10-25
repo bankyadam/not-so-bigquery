@@ -1,0 +1,22 @@
+--SQL--
+-- Doesn't strip the double quotes
+SELECT JSON_EXTRACT_ARRAY('["apples","oranges","grapes"]', '$') AS string_array;
+
+--RESULT--
++---------------------------------+
+| string_array                    |
++---------------------------------+
+| ["apples", "oranges", "grapes"] |
++---------------------------------+
+
+-- Strips the double quotes
+SELECT ARRAY(
+  SELECT JSON_EXTRACT_SCALAR(string_element, '$')
+  FROM UNNEST(JSON_EXTRACT_ARRAY('["apples","oranges","grapes"]','$')) AS string_element
+) AS string_array;
+
++---------------------------+
+| string_array              |
++---------------------------+
+| [apples, oranges, grapes] |
++---------------------------+

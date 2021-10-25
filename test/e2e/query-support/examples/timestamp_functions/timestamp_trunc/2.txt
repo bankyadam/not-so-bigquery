@@ -1,0 +1,14 @@
+--SQL--
+SELECT
+  timestamp_value AS timestamp_value,
+  TIMESTAMP_TRUNC(timestamp_value, WEEK(MONDAY), "UTC") AS utc_truncated,
+  TIMESTAMP_TRUNC(timestamp_value, WEEK(MONDAY), "Pacific/Auckland") AS nzdt_truncated
+FROM (SELECT TIMESTAMP("2017-11-06 00:00:00+12") AS timestamp_value);
+
+-- Results may differ, depending upon the environment and time zone where this query was executed.
+--RESULT--
++-------------------------+-------------------------+-------------------------+
+| timestamp_value         | utc_truncated           | nzdt_truncated          |
++-------------------------+-------------------------+-------------------------+
+| 2017-11-05 12:00:00 UTC | 2017-10-30 00:00:00 UTC | 2017-11-05 11:00:00 UTC |
++-------------------------+-------------------------+-------------------------+

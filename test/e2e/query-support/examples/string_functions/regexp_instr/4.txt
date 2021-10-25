@@ -1,0 +1,17 @@
+--SQL--
+WITH example AS (
+  SELECT 'a@gmail.com' AS source_value, '@[^.]*' AS regexp,
+         1 AS position, 1 AS occurrence, 0 AS o_position UNION ALL
+  SELECT 'a@gmail.com', '@[^.]*', 1, 1, 1)
+SELECT
+  source_value, regexp, position, occurrence, o_position,
+  REGEXP_INSTR(source_value, regexp, position, occurrence, o_position) AS instr
+FROM example;
+
+--RESULT--
++--------------+--------+----------+------------+------------+-------+
+| source_value | regexp | position | occurrence | o_position | instr |
++--------------+--------+----------+------------+------------+-------+
+| a@gmail.com  | @[^.]* | 1        | 1          | 0          | 2     |
+| a@gmail.com  | @[^.]* | 1        | 1          | 1          | 8     |
++--------------+--------+----------+------------+------------+-------+

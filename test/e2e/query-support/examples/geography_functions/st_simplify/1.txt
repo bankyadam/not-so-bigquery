@@ -1,0 +1,14 @@
+--SQL--
+WITH example AS
+ (SELECT ST_GEOGFROMTEXT('LINESTRING(0 0, 0.05 0, 0.1 0, 0.15 0, 2 0)') AS line)
+SELECT
+   line AS original_line,
+   ST_SIMPLIFY(line, 1) AS simplified_line
+FROM example;
+
+--RESULT--
++---------------------------------------------+----------------------+
+|                original_line                |   simplified_line    |
++---------------------------------------------+----------------------+
+| LINESTRING(0 0, 0.05 0, 0.1 0, 0.15 0, 2 0) | LINESTRING(0 0, 2 0) |
++---------------------------------------------+----------------------+

@@ -1,0 +1,10 @@
+--SQL--
+SELECT SESSION_USER() as user;
+
+--RESULT--
++----------------------+
+| user                 |
++----------------------+
+| jdoe@example.com     |
++----------------------+
+

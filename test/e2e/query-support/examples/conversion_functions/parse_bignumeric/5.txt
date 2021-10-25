@@ -1,0 +1,9 @@
+--SQL--
+SELECT PARSE_BIGNUMERIC(".1234  ") as parsed;
+
+--RESULT--
++--------+
+| parsed |
++--------+
+| 0.1234 |
++--------+

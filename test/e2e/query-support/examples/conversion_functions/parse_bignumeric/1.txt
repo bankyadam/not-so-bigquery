@@ -1,0 +1,29 @@
+--SQL--
+
+-- This example shows how a string with a decimal point is parsed.
+SELECT PARSE_BIGNUMERIC("123.45") AS parsed
+
+--RESULT--
++--------+
+| parsed |
++--------+
+| 123.45 |
++--------+
+
+-- This example shows how a string with an exponent is parsed.
+SELECT PARSE_BIGNUMERIC("123.456E37") AS parsed
+
++-----------------------------------------+
+| parsed                                  |
++-----------------------------------------+
+| 123400000000000000000000000000000000000 |
++-----------------------------------------+
+
+-- This example shows the rounding when digits after the decimal point exceeds 38.
+SELECT PARSE_BIGNUMERIC("1.123456789012345678901234567890123456789") as parsed
+
++------------------------------------------+
+| parsed                                   |
++------------------------------------------+
+| 1.12345678901234567890123456789012345679 |
++------------------------------------------+

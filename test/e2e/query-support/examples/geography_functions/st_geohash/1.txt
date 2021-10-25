@@ -1,0 +1,9 @@
+--SQL--
+SELECT ST_GEOHASH(ST_GEOGPOINT(-122.35, 47.62), 10) geohash
+
+--RESULT--
++--------------+
+| geohash      |
++--------------+
+| c22yzugqw7   |
++--------------+

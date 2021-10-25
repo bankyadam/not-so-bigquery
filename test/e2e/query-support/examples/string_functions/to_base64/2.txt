@@ -1,0 +1,9 @@
+--SQL--
+SELECT REPLACE(REPLACE(TO_BASE64(b"\377\340"), "+", "-"), "/", "_") as websafe_base64;
+
+--RESULT--
++----------------+
+| websafe_base64 |
++----------------+
+| _-A=           |
++----------------+

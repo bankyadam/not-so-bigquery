@@ -1,0 +1,19 @@
+--SQL--
+WITH examples AS
+(SELECT 'apple' as example
+UNION ALL
+SELECT 'banana' as example
+UNION ALL
+SELECT 'абвгд' as example
+)
+SELECT example, LEFT(example, 3) AS left_example
+FROM examples;
+
+--RESULT--
++---------+--------------+
+| example | left_example |
++---------+--------------+
+| apple   | app          |
+| banana  | ban          |
+| абвгд   | абв          |
++---------+--------------+

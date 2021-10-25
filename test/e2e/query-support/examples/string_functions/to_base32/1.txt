@@ -1,0 +1,9 @@
+--SQL--
+SELECT TO_BASE32(b'abcde\xFF') AS base32_string;
+
+--RESULT--
++------------------+
+| base32_string    |
++------------------+
+| MFRGGZDF74====== |
++------------------+

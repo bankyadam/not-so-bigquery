@@ -1,0 +1,9 @@
+--SQL--
+SELECT CAST(b'\x48\x65\x6c\x6c\x6f' AS STRING FORMAT 'ASCII') AS bytes_to_string;
+
+--RESULT--
++-----------------+
+| bytes_to_string |
++-----------------+
+| Hello           |
++-----------------+

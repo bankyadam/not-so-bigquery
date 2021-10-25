@@ -1,0 +1,23 @@
+--SQL--
+WITH example AS (
+  SELECT ST_GeogFromText('POINT(0 0)') AS geography
+  UNION ALL
+  SELECT ST_GeogFromText('MULTIPOINT(0 0, 1 1)') AS geography
+  UNION ALL
+  SELECT ST_GeogFromText('GEOMETRYCOLLECTION(POINT(0 0), LINESTRING(1 2, 2 1))'))
+SELECT
+  geography AS original_geography,
+  ST_DUMP(geography) AS dumped_geographies
+FROM example
+
+--RESULT--
++-------------------------------------+-------------------------------+
+|         original_geographies        |      dumped_geographies       |
++-------------------------------------+-------------------------------+
+| POINT(0 0)                          | [POINT(0 0)]                  |
++-------------------------------------+-------------------------------+
+| MULTIPOINT(0 0, 1 1)                | [POINT(0 0), POINT(1 1)]      |
++-------------------------------------+-------------------------------+
+| GEOMETRYCOLLECTION(POINT(0 0),      | [POINT(0 0),                  |
+|   LINESTRING(1 2, 2 1))             |   LINESTRING(1 2, 2 1)]       |
++-------------------------------------+-------------------------------+

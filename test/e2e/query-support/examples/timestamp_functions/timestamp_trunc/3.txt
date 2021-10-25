@@ -1,0 +1,12 @@
+--SQL--
+SELECT
+  TIMESTAMP_TRUNC("2015-06-15 00:00:00+00", ISOYEAR) AS isoyear_boundary,
+  EXTRACT(ISOYEAR FROM TIMESTAMP "2015-06-15 00:00:00+00") AS isoyear_number;
+
+-- Results may differ, depending upon the environment and time zone where this query was executed.
+--RESULT--
++-------------------------+----------------+
+| isoyear_boundary        | isoyear_number |
++-------------------------+----------------+
+| 2014-12-29 00:00:00 UTC | 2015           |
++-------------------------+----------------+

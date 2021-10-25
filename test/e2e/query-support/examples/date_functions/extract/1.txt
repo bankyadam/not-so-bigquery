@@ -1,0 +1,9 @@
+--SQL--
+SELECT EXTRACT(DAY FROM DATE '2013-12-25') as the_day;
+
+--RESULT--
++---------+
+| the_day |
++---------+
+| 25      |
++---------+

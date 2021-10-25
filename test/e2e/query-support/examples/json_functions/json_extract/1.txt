@@ -1,0 +1,16 @@
+--SQL--
+SELECT JSON_EXTRACT(json_text, '$') AS json_text_string
+FROM UNNEST([
+  '{"class" : {"students" : [{"name" : "Jane"}]}}',
+  '{"class" : {"students" : []}}',
+  '{"class" : {"students" : [{"name" : "John"}, {"name": "Jamie"}]}}'
+  ]) AS json_text;
+
+--RESULT--
++-----------------------------------------------------------+
+| json_text_string                                          |
++-----------------------------------------------------------+
+| {"class":{"students":[{"name":"Jane"}]}}                  |
+| {"class":{"students":[]}}                                 |
+| {"class":{"students":[{"name":"John"},{"name":"Jamie"}]}} |
++-----------------------------------------------------------+

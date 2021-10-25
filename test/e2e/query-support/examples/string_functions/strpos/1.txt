@@ -1,0 +1,27 @@
+--SQL--
+WITH email_addresses AS
+  (SELECT
+    "foo@example.com" AS email_address
+  UNION ALL
+  SELECT
+    "foobar@example.com" AS email_address
+  UNION ALL
+  SELECT
+    "foobarbaz@example.com" AS email_address
+  UNION ALL
+  SELECT
+    "quxexample.com" AS email_address)
+
+SELECT
+  STRPOS(email_address, "@") AS example
+FROM email_addresses;
+
+--RESULT--
++---------+
+| example |
++---------+
+|       4 |
+|       7 |
+|      10 |
+|       0 |
++---------+

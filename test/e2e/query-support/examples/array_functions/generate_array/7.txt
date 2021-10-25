@@ -1,0 +1,12 @@
+--SQL--
+SELECT GENERATE_ARRAY(start, 5) AS example_array
+FROM UNNEST([3, 4, 5]) AS start;
+
+--RESULT--
++---------------+
+| example_array |
++---------------+
+| [3, 4, 5]     |
+| [4, 5]        |
+| [5]           |
++---------------+

@@ -1,0 +1,30 @@
+--SQL--
+WITH Timestamps AS (
+  SELECT TIMESTAMP("2005-01-03 12:34:56+00") AS timestamp_value UNION ALL
+  SELECT TIMESTAMP("2007-12-31 12:00:00+00") UNION ALL
+  SELECT TIMESTAMP("2009-01-01 12:00:00+00") UNION ALL
+  SELECT TIMESTAMP("2009-12-31 12:00:00+00") UNION ALL
+  SELECT TIMESTAMP("2017-01-02 12:00:00+00") UNION ALL
+  SELECT TIMESTAMP("2017-05-26 12:00:00+00")
+)
+SELECT
+  timestamp_value,
+  EXTRACT(ISOYEAR FROM timestamp_value) AS isoyear,
+  EXTRACT(ISOWEEK FROM timestamp_value) AS isoweek,
+  EXTRACT(YEAR FROM timestamp_value) AS year,
+  EXTRACT(WEEK FROM timestamp_value) AS week
+FROM Timestamps
+ORDER BY timestamp_value;
+
+-- Results may differ, depending upon the environment and time zone where this query was executed.
+--RESULT--
++-------------------------+---------+---------+------+------+
+| timestamp_value         | isoyear | isoweek | year | week |
++-------------------------+---------+---------+------+------+
+| 2005-01-03 12:34:56 UTC | 2005    | 1       | 2005 | 1    |
+| 2007-12-31 12:00:00 UTC | 2008    | 1       | 2007 | 52   |
+| 2009-01-01 12:00:00 UTC | 2009    | 1       | 2009 | 0    |
+| 2009-12-31 12:00:00 UTC | 2009    | 53      | 2009 | 52   |
+| 2017-01-02 12:00:00 UTC | 2017    | 1       | 2017 | 1    |
+| 2017-05-26 12:00:00 UTC | 2017    | 21      | 2017 | 21   |
++-------------------------+---------+---------+------+------+

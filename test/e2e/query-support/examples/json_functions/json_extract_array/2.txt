@@ -1,0 +1,14 @@
+--SQL--
+SELECT ARRAY(
+  SELECT CAST(integer_element AS INT64)
+  FROM UNNEST(
+    JSON_EXTRACT_ARRAY('[1,2,3]','$')
+  ) AS integer_element
+) AS integer_array;
+
+--RESULT--
++---------------+
+| integer_array |
++---------------+
+| [1, 2, 3]     |
++---------------+

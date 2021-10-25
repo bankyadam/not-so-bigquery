@@ -1,0 +1,19 @@
+--SQL--
+WITH examples AS
+(SELECT 'apple' as example
+UNION ALL
+SELECT 'banana' as example
+UNION ALL
+SELECT 'абвгд' as example
+)
+SELECT example, RIGHT(example, 3) AS right_example
+FROM examples;
+
+--RESULT--
++---------+---------------+
+| example | right_example |
++---------+---------------+
+| apple   | ple           |
+| banana  | ana           |
+| абвгд   | вгд           |
++---------+---------------+

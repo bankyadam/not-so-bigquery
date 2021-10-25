@@ -1,0 +1,14 @@
+--SQL--
+WITH polygon AS (SELECT 'Polygon((0 0, 0 2, 2 2, 2 0, 0 0))' AS p)
+SELECT
+  ST_CONTAINS(ST_GEOGFROMTEXT(p), ST_GEOGPOINT(1, 1)) AS fromtext_default,
+  ST_CONTAINS(ST_GEOGFROMTEXT(p, FALSE), ST_GEOGPOINT(1, 1)) AS non_oriented,
+  ST_CONTAINS(ST_GEOGFROMTEXT(p, TRUE),  ST_GEOGPOINT(1, 1)) AS oriented
+FROM polygon;
+
+--RESULT--
++-------------------+---------------+-----------+
+| fromtext_default  | non_oriented  | oriented  |
++-------------------+---------------+-----------+
+| true              | true          | false     |
++-------------------+---------------+-----------+

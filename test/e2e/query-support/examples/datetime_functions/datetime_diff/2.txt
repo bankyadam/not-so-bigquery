@@ -1,0 +1,13 @@
+--SQL--
+SELECT
+  DATETIME_DIFF(DATETIME '2017-10-15 00:00:00',
+    DATETIME '2017-10-14 00:00:00', DAY) as days_diff,
+  DATETIME_DIFF(DATETIME '2017-10-15 00:00:00',
+    DATETIME '2017-10-14 00:00:00', WEEK) as weeks_diff;
+
+--RESULT--
++-----------+------------+
+| days_diff | weeks_diff |
++-----------+------------+
+| 1         | 1          |
++-----------+------------+

@@ -1,0 +1,14 @@
+--SQL--
+WITH data AS (
+  SELECT 'polygon((0 -1, 2 1, 2 -1, 0 1))' wkt)
+SELECT
+  SAFE.ST_GeogFromText(wkt) as geom,
+  SAFE.ST_GeogFromText(wkt, make_valid => TRUE) as valid_geom
+FROM data
+
+--RESULT--
++------+-----------------------------------------------------------------+
+| geom | valid_geom                                                      |
++------+-----------------------------------------------------------------+
+| NULL | MULTIPOLYGON(((0 -1, 1 0, 0 1, 0 -1)), ((1 0, 2 -1, 2 1, 1 0))) |
++------+-----------------------------------------------------------------+

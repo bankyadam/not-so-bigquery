@@ -1,0 +1,9 @@
+--SQL--
+SELECT DATE_FROM_UNIX_DATE(14238) as date_from_epoch;
+
+--RESULT--
++-----------------+
+| date_from_epoch |
++-----------------+
+| 2008-12-25      |
++-----------------+

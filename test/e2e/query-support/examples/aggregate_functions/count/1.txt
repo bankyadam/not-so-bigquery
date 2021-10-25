@@ -1,0 +1,12 @@
+--SQL--
+SELECT
+  COUNT(*) AS count_star,
+  COUNT(DISTINCT x) AS count_dist_x
+FROM UNNEST([1, 4, 4, 5]) AS x;
+
+--RESULT--
++------------+--------------+
+| count_star | count_dist_x |
++------------+--------------+
+| 4          | 3            |
++------------+--------------+

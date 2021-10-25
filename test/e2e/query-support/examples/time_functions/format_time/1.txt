@@ -1,0 +1,9 @@
+--SQL--
+SELECT FORMAT_TIME("%R", TIME "15:30:00") as formatted_time;
+
+--RESULT--
++----------------+
+| formatted_time |
++----------------+
+| 15:30          |
++----------------+

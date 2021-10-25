@@ -1,0 +1,17 @@
+--SQL--
+
+WITH example AS
+  (SELECT "абвгд" AS characters)
+
+SELECT
+  characters,
+  LENGTH(characters) AS string_example,
+  LENGTH(CAST(characters AS BYTES)) AS bytes_example
+FROM example;
+
+--RESULT--
++------------+----------------+---------------+
+| characters | string_example | bytes_example |
++------------+----------------+---------------+
+| абвгд      |              5 |            10 |
++------------+----------------+---------------+

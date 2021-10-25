@@ -1,0 +1,18 @@
+--SQL--
+SELECT JSON_QUERY(json_text, '$.class.students[1].name') AS second_student_name
+FROM UNNEST([
+  '{"class" : {"students" : [{"name" : "Jane"}]}}',
+  '{"class" : {"students" : []}}',
+  '{"class" : {"students" : [{"name" : "John"}, {"name" : null}]}}',
+  '{"class" : {"students" : [{"name" : "John"}, {"name": "Jamie"}]}}'
+  ]) AS json_text;
+
+--RESULT--
++-------------------+
+| second_student    |
++-------------------+
+| NULL              |
+| NULL              |
+| NULL              |
+| "Jamie"           |
++-------------------+

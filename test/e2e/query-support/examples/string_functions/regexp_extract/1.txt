@@ -1,0 +1,21 @@
+--SQL--
+WITH email_addresses AS
+  (SELECT "foo@example.com" as email
+  UNION ALL
+  SELECT "bar@example.org" as email
+  UNION ALL
+  SELECT "baz@example.net" as email)
+
+SELECT
+  REGEXP_EXTRACT(email, r"^[a-zA-Z0-9_.+-]+")
+  AS user_name
+FROM email_addresses;
+
+--RESULT--
++-----------+
+| user_name |
++-----------+
+| foo       |
+| bar       |
+| baz       |
++-----------+

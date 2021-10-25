@@ -1,0 +1,9 @@
+--SQL--
+SELECT LAST_DAY(DATETIME '2008-11-25 15:30:00', YEAR) AS last_day
+
+--RESULT--
++------------+
+| last_day   |
++------------+
+| 2008-12-31 |
++------------+

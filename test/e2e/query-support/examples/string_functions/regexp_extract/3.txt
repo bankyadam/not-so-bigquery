@@ -1,0 +1,34 @@
+--SQL--
+WITH example AS
+(SELECT 'Hello Helloo and Hellooo' AS value, 'H?ello+' AS regex, 1 as position,
+1 AS occurrence UNION ALL
+SELECT 'Hello Helloo and Hellooo', 'H?ello+', 1, 2 UNION ALL
+SELECT 'Hello Helloo and Hellooo', 'H?ello+', 1, 3 UNION ALL
+SELECT 'Hello Helloo and Hellooo', 'H?ello+', 1, 4 UNION ALL
+SELECT 'Hello Helloo and Hellooo', 'H?ello+', 2, 1 UNION ALL
+SELECT 'Hello Helloo and Hellooo', 'H?ello+', 3, 1 UNION ALL
+SELECT 'Hello Helloo and Hellooo', 'H?ello+', 3, 2 UNION ALL
+SELECT 'Hello Helloo and Hellooo', 'H?ello+', 3, 3 UNION ALL
+SELECT 'Hello Helloo and Hellooo', 'H?ello+', 20, 1 UNION ALL
+SELECT 'cats&dogs&rabbits' ,'\\w+&', 1, 2 UNION ALL
+SELECT 'cats&dogs&rabbits', '\\w+&', 2, 3
+)
+SELECT value, regex, position, occurrence, REGEXP_EXTRACT(value, regex,
+position, occurrence) AS regexp_value FROM example;
+
+--RESULT--
++--------------------------+---------+----------+------------+--------------+
+| value                    | regex   | position | occurrence | regexp_value |
++--------------------------+---------+----------+------------+--------------+
+| Hello Helloo and Hellooo | H?ello+ | 1        | 1          | Hello        |
+| Hello Helloo and Hellooo | H?ello+ | 1        | 2          | Helloo       |
+| Hello Helloo and Hellooo | H?ello+ | 1        | 3          | Hellooo      |
+| Hello Helloo and Hellooo | H?ello+ | 1        | 4          | NULL         |
+| Hello Helloo and Hellooo | H?ello+ | 2        | 1          | ello         |
+| Hello Helloo and Hellooo | H?ello+ | 3        | 1          | Helloo       |
+| Hello Helloo and Hellooo | H?ello+ | 3        | 2          | Hellooo      |
+| Hello Helloo and Hellooo | H?ello+ | 3        | 3          | NULL         |
+| Hello Helloo and Hellooo | H?ello+ | 20       | 1          | NULL         |
+| cats&dogs&rabbits        | \w+&    | 1        | 2          | dogs&        |
+| cats&dogs&rabbits        | \w+&    | 2        | 3          | NULL         |
++--------------------------+---------+----------+------------+--------------+

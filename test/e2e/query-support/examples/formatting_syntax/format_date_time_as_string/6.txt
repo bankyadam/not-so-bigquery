@@ -1,0 +1,9 @@
+--SQL--
+SELECT CAST(TIME '21:30:00' AS STRING FORMAT 'MI') AS date_time_to_string;
+
+--RESULT--
++---------------------+
+| date_time_to_string |
++---------------------+
+| 30                  |
++---------------------+

@@ -1,0 +1,13 @@
+--SQL--
+SELECT entry FROM entry_table WHERE entry IS NULL
+
+-- a => 'a' IS NULL => FALSE
+-- b => 'b' IS NULL => FALSE
+-- NULL => NULL IS NULL => TRUE
+
+--RESULT--
++-------+
+| entry |
++-------+
+| NULL  |
++-------+

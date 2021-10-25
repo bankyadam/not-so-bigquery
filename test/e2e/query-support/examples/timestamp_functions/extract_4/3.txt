@@ -1,0 +1,15 @@
+--SQL--
+WITH table AS (SELECT TIMESTAMP("2017-11-05 00:00:00+00") AS timestamp_value)
+SELECT
+  timestamp_value,
+  EXTRACT(WEEK(SUNDAY) FROM timestamp_value) AS week_sunday,
+  EXTRACT(WEEK(MONDAY) FROM timestamp_value) AS week_monday
+FROM table;
+
+-- Results may differ, depending upon the environment and time zone where this query was executed.
+--RESULT--
++-------------------------+-------------+---------------+
+| timestamp_value         | week_sunday | week_monday   |
++-------------------------+-------------+---------------+
+| 2017-11-05 00:00:00 UTC | 45          | 44            |
++-------------------------+-------------+---------------+

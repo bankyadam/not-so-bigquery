@@ -1,0 +1,9 @@
+--SQL--
+SELECT CURRENT_TIME() as now;
+
+--RESULT--
++----------------+
+| now            |
++----------------+
+| {CURRENT_TIME} |
++----------------+

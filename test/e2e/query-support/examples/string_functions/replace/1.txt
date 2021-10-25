@@ -1,0 +1,20 @@
+--SQL--
+WITH desserts AS
+  (SELECT "apple pie" as dessert
+  UNION ALL
+  SELECT "blackberry pie" as dessert
+  UNION ALL
+  SELECT "cherry pie" as dessert)
+
+SELECT
+  REPLACE (dessert, "pie", "cobbler") as example
+FROM desserts;
+
+--RESULT--
++--------------------+
+| example            |
++--------------------+
+| apple cobbler      |
+| blackberry cobbler |
+| cherry cobbler     |
++--------------------+

@@ -1,0 +1,10 @@
+--SQL--
+SELECT TO_JSON_STRING(ARRAY_AGG(DISTINCT x IGNORE NULLS ORDER BY x LIMIT 2)) AS array_agg
+FROM UNNEST([NULL, 1, -2, 3, -2, 1, NULL]) AS x;
+
+--RESULT--
++-----------+
+| array_agg |
++-----------+
+| [-2,1]    |
++-----------+

@@ -1,0 +1,9 @@
+--SQL--
+SELECT NULLIF(0, 0) as result
+
+--RESULT--
++--------+
+| result |
++--------+
+| NULL   |
++--------+

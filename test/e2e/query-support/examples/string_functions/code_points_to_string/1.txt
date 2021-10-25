@@ -1,0 +1,9 @@
+--SQL--
+SELECT CODE_POINTS_TO_STRING([65, 255, 513, 1024]) AS string;
+
+--RESULT--
++--------+
+| string |
++--------+
+| AÿȁЀ   |
++--------+

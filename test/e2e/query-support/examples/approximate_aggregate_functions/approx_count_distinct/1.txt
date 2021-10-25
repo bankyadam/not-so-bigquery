@@ -1,0 +1,10 @@
+--SQL--
+SELECT APPROX_COUNT_DISTINCT(x) as approx_distinct
+FROM UNNEST([0, 1, 1, 2, 3, 5]) as x;
+
+--RESULT--
++-----------------+
+| approx_distinct |
++-----------------+
+| 5               |
++-----------------+

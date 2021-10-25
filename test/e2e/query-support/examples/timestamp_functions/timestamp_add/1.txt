@@ -1,0 +1,12 @@
+--SQL--
+SELECT
+  TIMESTAMP("2008-12-25 15:30:00+00") AS original,
+  TIMESTAMP_ADD(TIMESTAMP "2008-12-25 15:30:00+00", INTERVAL 10 MINUTE) AS later;
+
+-- Results may differ, depending upon the environment and time zone where this query was executed.
+--RESULT--
++-------------------------+-------------------------+
+| original                | later                   |
++-------------------------+-------------------------+
+| 2008-12-25 15:30:00 UTC | 2008-12-25 15:40:00 UTC |
++-------------------------+-------------------------+

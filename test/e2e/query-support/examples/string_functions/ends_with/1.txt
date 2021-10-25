@@ -1,0 +1,20 @@
+--SQL--
+WITH items AS
+  (SELECT "apple" as item
+  UNION ALL
+  SELECT "banana" as item
+  UNION ALL
+  SELECT "orange" as item)
+
+SELECT
+  ENDS_WITH(item, "e") as example
+FROM items;
+
+--RESULT--
++---------+
+| example |
++---------+
+|    True |
+|   False |
+|    True |
++---------+

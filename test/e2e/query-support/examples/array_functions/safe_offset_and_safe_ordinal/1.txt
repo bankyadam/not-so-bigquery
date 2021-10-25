@@ -1,0 +1,21 @@
+--SQL--
+WITH items AS
+  (SELECT ["apples", "bananas", "pears", "grapes"] as list
+  UNION ALL
+  SELECT ["coffee", "tea", "milk" ] as list
+  UNION ALL
+  SELECT ["cake", "pie"] as list)
+
+SELECT list,
+  list[SAFE_OFFSET(3)] as safe_offset_3,
+  list[SAFE_ORDINAL(3)] as safe_ordinal_3
+FROM items;
+
+--RESULT--
++----------------------------------+---------------+----------------+
+| list                             | safe_offset_3 | safe_ordinal_3 |
++----------------------------------+---------------+----------------+
+| [apples, bananas, pears, grapes] | grapes        | pears          |
+| [coffee, tea, milk]              | NULL          | milk           |
+| [cake, pie]                      | NULL          | NULL           |
++----------------------------------+---------------+----------------+

@@ -1,0 +1,10 @@
+--SQL--
+SELECT PARSE_TIMESTAMP("%c", "Thu Dec 25 07:30:00 2008") AS parsed;
+
+-- Results may differ, depending upon the environment and time zone where this query was executed.
+--RESULT--
++-------------------------+
+| parsed                  |
++-------------------------+
+| 2008-12-25 07:30:00 UTC |
++-------------------------+

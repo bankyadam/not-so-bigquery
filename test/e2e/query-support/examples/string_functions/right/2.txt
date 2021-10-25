@@ -1,0 +1,20 @@
+--SQL--
+WITH examples AS
+(SELECT b'apple' as example
+UNION ALL
+SELECT b'banana' as example
+UNION ALL
+SELECT b'\xab\xcd\xef\xaa\xbb' as example
+)
+SELECT example, RIGHT(example, 3) AS right_example
+FROM examples;
+
+-- Note that the result of RIGHT is of type BYTES, displayed as a base64-encoded string.
+--RESULT--
++----------+---------------+
+| example  | right_example |
++----------+---------------+
+| YXBwbGU= | cGxl          |
+| YmFuYW5h | YW5h          |
+| q83vqrs= | 76q7          |
++----------+---------------+

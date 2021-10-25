@@ -1,0 +1,9 @@
+--SQL--
+SELECT CAST(12.5 AS STRING FORMAT '99.99') as a;
+
+--RESULT--
++--------+
+|   a    |
++--------+
+|  12.50 |
++--------+

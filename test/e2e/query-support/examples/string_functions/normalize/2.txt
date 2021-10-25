@@ -1,0 +1,23 @@
+--SQL--
+WITH EquivalentNames AS (
+  SELECT name
+  FROM UNNEST([
+      'Jane\u2004Doe',
+      'John\u2004Smith',
+      'Jane\u2005Doe',
+      'Jane\u2006Doe',
+      'John Smith']) AS name
+)
+SELECT
+  NORMALIZE(name, NFKC) AS normalized_name,
+  COUNT(*) AS name_count
+FROM EquivalentNames
+GROUP BY 1;
+
+--RESULT--
++-----------------+------------+
+| normalized_name | name_count |
++-----------------+------------+
+| John Smith      | 2          |
+| Jane Doe        | 3          |
++-----------------+------------+

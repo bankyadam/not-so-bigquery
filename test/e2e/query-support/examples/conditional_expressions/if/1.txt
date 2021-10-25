@@ -1,0 +1,18 @@
+--SQL--
+WITH Numbers AS
+ (SELECT 10 as A, 20 as B UNION ALL
+  SELECT 50, 30 UNION ALL
+  SELECT 60, 60)
+SELECT
+  A, B,
+  IF( A<B, 'true', 'false') as result
+FROM Numbers
+
+--RESULT--
++------------------+
+| A  | B  | result |
++------------------+
+| 10 | 20 | true   |
+| 50 | 30 | false  |
+| 60 | 60 | false  |
++------------------+

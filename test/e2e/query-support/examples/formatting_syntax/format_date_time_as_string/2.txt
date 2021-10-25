@@ -1,0 +1,9 @@
+--SQL--
+SELECT CAST(DATE '2018-01-30' AS STRING FORMAT 'MONTH') AS date_time_to_string;
+
+--RESULT--
++---------------------+
+| date_time_to_string |
++---------------------+
+| JANUARY             |
++---------------------+

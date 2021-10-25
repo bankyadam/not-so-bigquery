@@ -1,0 +1,10 @@
+--SQL--
+-- Strips the double quotes
+SELECT JSON_VALUE_ARRAY('["foo","bar","baz"]','$') AS string_array;
+
+--RESULT--
++-----------------+
+| string_array    |
++-----------------+
+| [foo, bar, baz] |
++-----------------+

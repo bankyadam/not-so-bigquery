@@ -1,0 +1,9 @@
+--SQL--
+SELECT PARSE_NUMERIC("  -  12.34 ") as parsed;
+
+--RESULT--
++--------+
+| parsed |
++--------+
+| -12.34 |
++--------+

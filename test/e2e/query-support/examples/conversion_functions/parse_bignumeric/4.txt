@@ -1,0 +1,9 @@
+--SQL--
+SELECT PARSE_BIGNUMERIC("  1,2,,3,.45 + ") as parsed;
+
+--RESULT--
++--------+
+| parsed |
++--------+
+| 123.45 |
++--------+

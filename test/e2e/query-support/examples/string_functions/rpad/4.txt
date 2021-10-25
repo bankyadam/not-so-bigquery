@@ -1,0 +1,20 @@
+--SQL--
+SELECT
+  TO_JSON_STRING(t) AS t,
+  len,
+  TO_JSON_STRING(pattern) AS pattern,
+  TO_JSON_STRING(RPAD(t, len, pattern)) AS RPAD
+FROM UNNEST([
+  STRUCT(b'abc' AS t, 8 AS len, b'def' AS pattern),
+  (b'abc', 5, b'-'),
+  (b'\xab\xcd\xef', 5, b'\x00')
+]);
+
+--RESULT--
++-----------------+-----+---------+-------------------------+
+| t               | len | pattern | RPAD                    |
+|-----------------|-----|---------|-------------------------|
+| b"abc"          | 8   | b"def"  | b"abcdefde"             |
+| b"abc"          | 5   | b"-"    | b"abc--"                |
+| b"\xab\xcd\xef" | 5   | b"\x00" | b"\xab\xcd\xef\x00\x00" |
++-----------------+-----+---------+-------------------------+

@@ -1,0 +1,10 @@
+--SQL--
+SELECT TO_JSON_STRING(APPROX_QUANTILES(x, 2 RESPECT NULLS)) AS approx_quantiles
+FROM UNNEST([NULL, NULL, 1, 1, 1, 4, 5, 6, 7, 8, 9, 10]) AS x;
+
+--RESULT--
++------------------+
+| approx_quantiles |
++------------------+
+| [NULL, 4, 10]    |
++------------------+

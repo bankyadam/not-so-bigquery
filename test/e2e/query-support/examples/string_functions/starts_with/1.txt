@@ -1,0 +1,20 @@
+--SQL--
+WITH items AS
+  (SELECT "foo" as item
+  UNION ALL
+  SELECT "bar" as item
+  UNION ALL
+  SELECT "baz" as item)
+
+SELECT
+  STARTS_WITH(item, "b") as example
+FROM items;
+
+--RESULT--
++---------+
+| example |
++---------+
+|   False |
+|    True |
+|    True |
++---------+

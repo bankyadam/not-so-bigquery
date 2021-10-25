@@ -1,0 +1,15 @@
+--SQL--
+SELECT
+  ST_GEOGPOINT(i, i) AS p,
+  ST_COVERS(ST_GEOGFROMTEXT('POLYGON((1 1, 20 1, 10 20, 1 1))'),
+            ST_GEOGPOINT(i, i)) AS `covers`
+FROM UNNEST([0, 1, 10]) AS i;
+
+--RESULT--
++--------------+--------+
+| p            | covers |
++--------------+--------+
+| POINT(0 0)   | false  |
+| POINT(1 1)   | true   |
+| POINT(10 10) | true   |
++--------------+--------+

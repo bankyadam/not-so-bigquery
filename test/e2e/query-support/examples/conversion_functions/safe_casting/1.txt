@@ -1,0 +1,9 @@
+--SQL--
+SELECT SAFE_CAST("apple" AS INT64) AS not_a_number;
+
+--RESULT--
++--------------+
+| not_a_number |
++--------------+
+| NULL         |
++--------------+

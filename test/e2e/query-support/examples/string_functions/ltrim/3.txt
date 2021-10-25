@@ -1,0 +1,14 @@
+--SQL--
+SELECT
+  LTRIM(item, "xyz") as example
+FROM items;
+
+--RESULT--
++-----------+
+| example   |
++-----------+
+| applexxx  |
+| bananayyy |
+| orangezzz |
+| pearxyz   |
++-----------+

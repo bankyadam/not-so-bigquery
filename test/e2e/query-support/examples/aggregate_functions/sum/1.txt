@@ -1,0 +1,10 @@
+--SQL--
+SELECT SUM(x) AS sum
+FROM UNNEST([1, 2, 3, 4, 5, 4, 3, 2, 1]) AS x;
+
+--RESULT--
++-----+
+| sum |
++-----+
+| 25  |
++-----+

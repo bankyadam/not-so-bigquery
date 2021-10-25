@@ -1,0 +1,28 @@
+--SQL--
+
+With Employees AS
+  (SELECT
+    "John" AS first_name,
+    "Doe" AS last_name
+  UNION ALL
+  SELECT
+    "Jane" AS first_name,
+    "Smith" AS last_name
+  UNION ALL
+  SELECT
+    "Joe" AS first_name,
+    "Jackson" AS last_name)
+
+SELECT
+  CONCAT(first_name, " ", last_name)
+  AS full_name
+FROM Employees;
+
+--RESULT--
++---------------------+
+| full_name           |
++---------------------+
+| John Doe            |
+| Jane Smith          |
+| Joe Jackson         |
++---------------------+

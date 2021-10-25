@@ -1,0 +1,9 @@
+--SQL--
+SELECT GENERATE_DATE_ARRAY('2016-10-05', NULL) AS example;
+
+--RESULT--
++---------+
+| example |
++---------+
+| NULL    |
++---------+

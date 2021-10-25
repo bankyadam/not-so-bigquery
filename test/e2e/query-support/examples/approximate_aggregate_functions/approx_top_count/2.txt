@@ -1,0 +1,10 @@
+--SQL--
+SELECT APPROX_TOP_COUNT(x, 2) as approx_top_count
+FROM UNNEST([NULL, "pear", "pear", "pear", "apple", NULL]) as x;
+
+--RESULT--
++------------------------+
+| approx_top_count       |
++------------------------+
+| [{pear, 3}, {NULL, 2}] |
++------------------------+

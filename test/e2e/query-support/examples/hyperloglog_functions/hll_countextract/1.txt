@@ -1,0 +1,26 @@
+--SQL--
+SELECT
+  flavor,
+  country,
+  HLL_COUNT.EXTRACT(respondents_hll) AS num_respondents
+FROM (
+  SELECT
+    HLL_COUNT.INIT(respondent) AS respondents_hll,
+    flavor,
+    country
+  FROM UNNEST([
+    STRUCT(1 AS respondent, "Vanilla" AS flavor, "CH" AS country),
+    (1, "Chocolate", "CH"),
+    (2, "Chocolate", "US"),
+    (2, "Strawberry", "US")])
+  GROUP BY flavor, country);
+
+--RESULT--
++------------+---------+-----------------+
+| flavor     | country | num_respondents |
++------------+---------+-----------------+
+| Vanilla    | CH      | 1               |
+| Chocolate  | CH      | 1               |
+| Chocolate  | US      | 1               |
+| Strawberry | US      | 1               |
++------------+---------+-----------------+

@@ -1,0 +1,15 @@
+--SQL--
+SELECT
+  ST_GEOGPOINT(i, i) AS p,
+  ST_CONTAINS(ST_GEOGFROMTEXT('POLYGON((1 1, 20 1, 10 20, 1 1))'),
+              ST_GEOGPOINT(i, i)) AS `contains`
+FROM UNNEST([0, 1, 10]) AS i;
+
+--RESULT--
++--------------+----------+
+| p            | contains |
++--------------+----------+
+| POINT(0 0)   | false    |
+| POINT(1 1)   | false    |
+| POINT(10 10) | true     |
++--------------+----------+

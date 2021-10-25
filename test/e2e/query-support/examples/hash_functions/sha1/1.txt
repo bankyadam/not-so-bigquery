@@ -1,0 +1,10 @@
+--SQL--
+SELECT SHA1("Hello World") as sha1;
+
+-- Note that the result of SHA1 is of type BYTES, displayed as a base64-encoded string.
+--RESULT--
++------------------------------+
+| sha1                         |
++------------------------------+
+| Ck1VqNd45QIvq3AZd8XYQLvEhtA= |
++------------------------------+

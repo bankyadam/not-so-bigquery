@@ -1,0 +1,9 @@
+--SQL--
+SELECT DATE_ADD(DATE "2008-12-25", INTERVAL 5 DAY) as five_days_later;
+
+--RESULT--
++--------------------+
+| five_days_later    |
++--------------------+
+| 2008-12-30         |
++--------------------+

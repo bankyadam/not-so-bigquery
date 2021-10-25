@@ -1,0 +1,11 @@
+--SQL--
+SELECT word, TO_CODE_POINTS(word) AS bytes_value_as_integer
+FROM UNNEST([b'\x00\x01\x10\xff', b'\x66\x6f\x6f']) AS word;
+
+--RESULT--
++------------------+------------------------+
+| word             | bytes_value_as_integer |
++------------------+------------------------+
+| \x00\x01\x10\xff | [0, 1, 16, 255]        |
+| foo              | [102, 111, 111]        |
++------------------+------------------------+

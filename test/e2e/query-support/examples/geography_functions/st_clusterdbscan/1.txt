@@ -1,0 +1,19 @@
+--SQL--
+WITH Geos as
+  (SELECT 1 as row_id, st_geogfromtext('point empty') as geo UNION ALL
+    SELECT 2, st_geogfromtext('multipoint(1 1, 2 2, 4 4, 5 2)') UNION ALL
+    SELECT 3, st_geogfromtext('point(14 15)') UNION ALL
+    SELECT 4, st_geogfromtext('linestring(40 1, 42 34, 44 39)') UNION ALL
+    SELECT 5, st_geogfromtext('polygon((40 2, 40 1, 41 2, 40 2))'))
+SELECT row_id, geo, ST_CLUSTERDBSCAN(geo, 1e5, 1) OVER () AS cluster_num FROM
+Geos ORDER BY row_id
+--RESULT--
++--------+-----------------------------------+-------------+
+| row_id |                geo                | cluster_num |
++--------+-----------------------------------+-------------+
+|      1 |          GEOMETRYCOLLECTION EMPTY |        NULL |
+|      2 |    MULTIPOINT(1 1, 2 2, 5 2, 4 4) |           0 |
+|      3 |                      POINT(14 15) |           1 |
+|      4 |    LINESTRING(40 1, 42 34, 44 39) |           2 |
+|      5 | POLYGON((40 2, 40 1, 41 2, 40 2)) |           2 |
++--------+-----------------------------------+-------------+

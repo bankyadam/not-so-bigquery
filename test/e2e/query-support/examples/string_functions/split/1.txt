@@ -1,0 +1,19 @@
+--SQL--
+WITH letters AS
+  (SELECT "" as letter_group
+  UNION ALL
+  SELECT "a" as letter_group
+  UNION ALL
+  SELECT "b c d" as letter_group)
+
+SELECT SPLIT(letter_group, " ") as example
+FROM letters;
+
+--RESULT--
++----------------------+
+| example              |
++----------------------+
+| []                   |
+| [a]                  |
+| [b, c, d]            |
++----------------------+

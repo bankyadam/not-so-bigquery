@@ -1,0 +1,20 @@
+--SQL--
+WITH items AS
+  (SELECT "***apple***" as item
+  UNION ALL
+  SELECT "***banana***" as item
+  UNION ALL
+  SELECT "***orange***" as item)
+
+SELECT
+  RTRIM(item, "*") as example
+FROM items;
+
+--RESULT--
++-----------+
+| example   |
++-----------+
+| ***apple  |
+| ***banana |
+| ***orange |
++-----------+

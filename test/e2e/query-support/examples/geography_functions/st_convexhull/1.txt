@@ -1,0 +1,18 @@
+--SQL--
+WITH Geographies AS
+ (SELECT ST_GEOGFROMTEXT('POINT(1 1)') AS g UNION ALL
+  SELECT ST_GEOGFROMTEXT('LINESTRING(1 1, 2 2)') AS g UNION ALL
+  SELECT ST_GEOGFROMTEXT('MULTIPOINT(2 11, 4 12, 0 15, 1 9, 1 12)') AS g)
+SELECT
+  g AS input_geography,
+  ST_CONVEXHULL(g) AS convex_hull
+FROM Geographies;
+
+--RESULT--
++-----------------------------------------+--------------------------------------------------------+
+|             input_geography             |                      convex_hull                       |
++-----------------------------------------+--------------------------------------------------------+
+|                              POINT(1 1) |                             POINT(0.999999999999943 1) |
+|                    LINESTRING(1 1, 2 2) | LINESTRING(2 2, 1.49988573656168 1.5000570914792, 1 1) |
+| MULTIPOINT(1 9, 4 12, 2 11, 1 12, 0 15) |                        POLYGON((1 9, 4 12, 0 15, 1 9)) |
++-----------------------------------------+--------------------------------------------------------+

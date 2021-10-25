@@ -1,0 +1,21 @@
+--SQL--
+SELECT JSON_EXTRACT('{ "name" : "Jakob", "age" : "6" }', '$.name') AS json_name,
+  JSON_EXTRACT_SCALAR('{ "name" : "Jakob", "age" : "6" }', '$.name') AS scalar_name,
+  JSON_EXTRACT('{ "name" : "Jakob", "age" : "6" }', '$.age') AS json_age,
+  JSON_EXTRACT_SCALAR('{ "name" : "Jakob", "age" : "6" }', '$.age') AS scalar_age;
+
+--RESULT--
++-----------+-------------+----------+------------+
+| json_name | scalar_name | json_age | scalar_age |
++-----------+-------------+----------+------------+
+| "Jakob"   | Jakob       | "6"      | 6          |
++-----------+-------------+----------+------------+
+
+SELECT JSON_EXTRACT('{"fruits": ["apple", "banana"]}', '$.fruits') AS json_extract,
+  JSON_EXTRACT_SCALAR('{"fruits": ["apple", "banana"]}', '$.fruits') AS json_extract_scalar;
+
++--------------------+---------------------+
+| json_extract       | json_extract_scalar |
++--------------------+---------------------+
+| ["apple","banana"] | NULL                |
++--------------------+---------------------+

@@ -1,0 +1,9 @@
+--SQL--
+SELECT JSON_VALUE('{"a.b": {"c": "world"}}', '$."a.b".c') AS hello;
+
+--RESULT--
++-------+
+| hello |
++-------+
+| world |
++-------+

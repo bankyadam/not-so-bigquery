@@ -1,0 +1,11 @@
+--SQL--
+SELECT
+  DATETIME(2008, 12, 25, 05, 30, 00) as datetime_ymdhms,
+  DATETIME(TIMESTAMP "2008-12-25 05:30:00+00", "America/Los_Angeles") as datetime_tstz;
+
+--RESULT--
++---------------------+---------------------+
+| datetime_ymdhms     | datetime_tstz       |
++---------------------+---------------------+
+| 2008-12-25T05:30:00 | 2008-12-24T21:30:00 |
++---------------------+---------------------+

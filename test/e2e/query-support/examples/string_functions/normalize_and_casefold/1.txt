@@ -1,0 +1,13 @@
+--SQL--
+SELECT
+  a, b,
+  NORMALIZE(a) = NORMALIZE(b) as normalized,
+  NORMALIZE_AND_CASEFOLD(a) = NORMALIZE_AND_CASEFOLD(b) as normalized_with_case_folding
+FROM (SELECT 'The red barn' AS a, 'The Red Barn' AS b);
+
+--RESULT--
++--------------+--------------+------------+------------------------------+
+| a            | b            | normalized | normalized_with_case_folding |
++--------------+--------------+------------+------------------------------+
+| The red barn | The Red Barn | false      | true                         |
++--------------+--------------+------------+------------------------------+

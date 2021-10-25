@@ -1,0 +1,9 @@
+--SQL--
+SELECT GENERATE_ARRAY(1, 5) AS example_array;
+
+--RESULT--
++-----------------+
+| example_array   |
++-----------------+
+| [1, 2, 3, 4, 5] |
++-----------------+

@@ -1,0 +1,24 @@
+--SQL--
+WITH Numbers AS
+ (SELECT 90 as A, 2 as B UNION ALL
+  SELECT 50, 8 UNION ALL
+  SELECT 60, 6 UNION ALL
+  SELECT 50, 10)
+SELECT A, B,
+  CASE A
+    WHEN 90 THEN 'red'
+    WHEN 50 THEN 'blue'
+    ELSE 'green'
+  END
+  AS result
+FROM Numbers
+
+--RESULT--
++------------------+
+| A  | B  | result |
++------------------+
+| 90 | 2  | red    |
+| 50 | 8  | blue   |
+| 60 | 6  | green  |
+| 50 | 10 | blue   |
++------------------+

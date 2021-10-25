@@ -1,0 +1,9 @@
+--SQL--
+SELECT IFNULL(NULL, 0) as result
+
+--RESULT--
++--------+
+| result |
++--------+
+| 0      |
++--------+

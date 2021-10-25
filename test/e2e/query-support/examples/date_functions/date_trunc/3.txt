@@ -1,0 +1,11 @@
+--SQL--
+SELECT
+  DATE_TRUNC('2015-06-15', ISOYEAR) AS isoyear_boundary,
+  EXTRACT(ISOYEAR FROM DATE '2015-06-15') AS isoyear_number;
+
+--RESULT--
++------------------+----------------+
+| isoyear_boundary | isoyear_number |
++------------------+----------------+
+| 2014-12-29       | 2015           |
++------------------+----------------+

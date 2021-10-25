@@ -1,0 +1,22 @@
+--SQL--
+WITH students AS
+(
+  SELECT 9 AS age UNION ALL
+  SELECT 20 AS age UNION ALL
+  SELECT 25 AS age UNION ALL
+  SELECT 31 AS age UNION ALL
+  SELECT 32 AS age UNION ALL
+  SELECT 33 AS age
+)
+SELECT RANGE_BUCKET(age, [10, 20, 30]) AS age_group, COUNT(*) AS count
+FROM students
+GROUP BY 1
+
+--RESULT--
++--------------+-------+
+| age_group    | count |
++--------------+-------+
+| 0            | 1     |
+| 2            | 2     |
+| 3            | 3     |
++--------------+-------+

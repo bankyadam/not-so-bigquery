@@ -1,0 +1,10 @@
+--SQL--
+SELECT date AS original, DATE_TRUNC(date, WEEK(MONDAY)) AS truncated
+FROM (SELECT DATE('2017-11-05') AS date);
+
+--RESULT--
++------------+------------+
+| original   | truncated  |
++------------+------------+
+| 2017-11-05 | 2017-10-30 |
++------------+------------+

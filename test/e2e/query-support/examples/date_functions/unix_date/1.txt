@@ -1,0 +1,9 @@
+--SQL--
+SELECT UNIX_DATE(DATE "2008-12-25") as days_from_epoch;
+
+--RESULT--
++-----------------+
+| days_from_epoch |
++-----------------+
+| 14238           |
++-----------------+

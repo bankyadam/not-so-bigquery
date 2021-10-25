@@ -1,0 +1,14 @@
+--SQL--
+WITH code_markdown AS
+  (SELECT "Try `function(x)` or `function(y)`" as code)
+
+SELECT
+  REGEXP_EXTRACT_ALL(code, "`(.+?)`") AS example
+FROM code_markdown;
+
+--RESULT--
++----------------------------+
+| example                    |
++----------------------------+
+| [function(x), function(y)] |
++----------------------------+

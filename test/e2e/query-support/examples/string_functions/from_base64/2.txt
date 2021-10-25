@@ -1,0 +1,10 @@
+--SQL--
+SELECT FROM_BASE64(REPLACE(REPLACE("_-A=", "-", "+"), "_", "/")) AS binary;
+
+-- Note that the result of FROM_BASE64 is of type BYTES, displayed as a base64-encoded string.
+--RESULT--
++--------+
+| binary |
++--------+
+| /+A=   |
++--------+

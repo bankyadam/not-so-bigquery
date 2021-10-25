@@ -1,0 +1,82 @@
+--SQL--
+-- An error is thrown if you provide an invalid JSONPath.
+SELECT JSON_EXTRACT_STRING_ARRAY('["foo","bar","baz"]','INVALID_JSONPath') AS result;
+
+-- If the JSON formatted string is invalid, then NULL is returned.
+SELECT JSON_EXTRACT_STRING_ARRAY('}}','$') AS result;
+
+--RESULT--
++--------+
+| result |
++--------+
+| NULL   |
++--------+
+
+-- If the JSON document is NULL, then NULL is returned.
+SELECT JSON_EXTRACT_STRING_ARRAY(NULL,'$') AS result;
+
++--------+
+| result |
++--------+
+| NULL   |
++--------+
+
+-- If a JSONPath does not match anything, then the output is NULL.
+SELECT JSON_EXTRACT_STRING_ARRAY('{"a":["foo","bar","baz"]}','$.b') AS result;
+
++--------+
+| result |
++--------+
+| NULL   |
++--------+
+
+-- If a JSONPath matches an object that is not an array, then the output is NULL.
+SELECT JSON_EXTRACT_STRING_ARRAY('{"a":"foo"}','$') AS result;
+
++--------+
+| result |
++--------+
+| NULL   |
++--------+
+
+-- If a JSONPath matches an array of non-scalar objects, then the output is NULL.
+SELECT JSON_EXTRACT_STRING_ARRAY('{"a":[{"b":"foo","c":1},{"b":"bar","c":2}],"d":"baz"}','$.a') AS result;
+
++--------+
+| result |
++--------+
+| NULL   |
++--------+
+
+-- If a JSONPath matches an array of mixed scalar and non-scalar objects, then the output is NULL.
+SELECT JSON_EXTRACT_STRING_ARRAY('{"a":[10, {"b": 20}]','$.a') AS result;
+
++--------+
+| result |
++--------+
+| NULL   |
++--------+
+
+-- If a JSONPath matches an empty JSON array, then the output is an empty array instead of NULL.
+SELECT JSON_EXTRACT_STRING_ARRAY('{"a":"foo","b":[]}','$.b') AS result;
+
++--------+
+| result |
++--------+
+| []     |
++--------+
+
+-- If a JSONPath matches an array that contains scalar values and a JSON null,
+-- then the output of the JSON_EXTRACT_STRING_ARRAY function must be transformed
+-- because the final output cannot be an array with NULL values. This example
+-- uses the UNNEST operator to convert the output array into a table as the final output.
+SELECT string_value FROM UNNEST(JSON_EXTRACT_STRING_ARRAY('["world", 1, null]')) AS string_value;
+
++--------------+
+| string_value |
++--------------+
+| world        |
+| 1            |
+| NULL         |
++--------------+
+

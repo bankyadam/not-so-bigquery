@@ -1,0 +1,10 @@
+--SQL--
+WITH t AS (SELECT 'column value' AS `current_date`)
+SELECT current_date() AS the_date, t.current_date FROM t;
+
+--RESULT--
++------------+--------------+
+| the_date   | current_date |
++------------+--------------+
+| 2016-12-25 | column value |
++------------+--------------+

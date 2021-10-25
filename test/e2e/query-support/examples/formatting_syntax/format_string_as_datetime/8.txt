@@ -1,0 +1,9 @@
+--SQL--
+SELECT CAST('2020.06.03 00:00:53+00' AS TIMESTAMP FORMAT 'YYYY.MM.DD HH:MI:SSTZH') AS string_to_date_time
+
+--RESULT--
++-----------------------------+
+| as_timestamp                |
++-----------------------------+
+| 2020-06-03 00:00:53.110 UTC |
++-----------------------------+

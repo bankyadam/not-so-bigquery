@@ -1,0 +1,14 @@
+--SQL--
+SELECT entry FROM entry_table WHERE NOT (entry = 'a')
+
+-- a => NOT('a' = 'a') => NOT(TRUE) => FALSE
+-- b => NOT('b' = 'a') => NOT(FALSE) => TRUE
+-- NULL => NOT(NULL = 'a') => NOT(NULL) => NULL
+
+--RESULT--
++-------+
+| entry |
++-------+
+| b     |
+| c     |
++-------+

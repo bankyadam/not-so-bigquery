@@ -1,0 +1,12 @@
+--SQL--
+SELECT
+  TIMESTAMP_TRUNC(TIMESTAMP "2008-12-25 15:30:00+00", DAY, "UTC") AS utc,
+  TIMESTAMP_TRUNC(TIMESTAMP "2008-12-25 15:30:00+00", DAY, "America/Los_Angeles") AS la;
+
+-- Results may differ, depending upon the environment and time zone where this query was executed.
+--RESULT--
++-------------------------+-----------------=-------+
+| utc                     | la                      |
++-------------------------+-------------------------+
+| 2008-12-25 00:00:00 UTC | 2008-12-25 08:00:00 UTC |
++-------------------------+-------------------------+

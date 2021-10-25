@@ -1,0 +1,15 @@
+--SQL--
+SELECT TO_JSON_STRING(t) AS t, len, TO_JSON_STRING(LPAD(t, len)) AS LPAD FROM UNNEST([
+  STRUCT(b'abc' AS t, 5 AS len),
+  (b'abc', 2),
+  (b'\xab\xcd\xef', 4)
+]);
+
+--RESULT--
++-----------------+-----+------------------+
+| t               | len | LPAD             |
+|-----------------|-----|------------------|
+| b"abc"          | 5   | b"  abc"         |
+| b"abc"          | 2   | b"ab"            |
+| b"\xab\xcd\xef" | 4   | b" \xab\xcd\xef" |
++-----------------+-----+------------------+

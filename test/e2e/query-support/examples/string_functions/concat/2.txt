@@ -1,0 +1,9 @@
+--SQL--
+SELECT CONCAT("Summer", " ", 1923) as release_date;
+
+--RESULT--
++---------------------+
+| release_date        |
++---------------------+
+| Summer 1923         |
++---------------------+

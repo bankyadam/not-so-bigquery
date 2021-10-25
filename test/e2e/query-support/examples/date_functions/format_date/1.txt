@@ -1,0 +1,9 @@
+--SQL--
+SELECT FORMAT_DATE("%x", DATE "2008-12-25") as US_format;
+
+--RESULT--
++------------+
+| US_format  |
++------------+
+| 12/25/08   |
++------------+

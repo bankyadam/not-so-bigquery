@@ -1,0 +1,15 @@
+--SQL--
+WITH example AS
+  (SELECT "абвгд" AS characters)
+
+SELECT
+  characters,
+  CHARACTER_LENGTH(characters) AS char_length_example
+FROM example;
+
+--RESULT--
++------------+---------------------+
+| characters | char_length_example |
++------------+---------------------+
+| абвгд      |                   5 |
++------------+---------------------+

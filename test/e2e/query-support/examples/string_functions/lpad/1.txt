@@ -1,0 +1,15 @@
+--SQL--
+SELECT t, len, TO_JSON_STRING(LPAD(t, len)) AS LPAD FROM UNNEST([
+  STRUCT('abc' AS t, 5 AS len),
+  ('abc', 2),
+  ('例子', 4)
+]);
+
+--RESULT--
++------+-----+----------+
+| t    | len | LPAD     |
+|------|-----|----------|
+| abc  | 5   | "  abc"  |
+| abc  | 2   | "ab"     |
+| 例子  | 4   | "  例子" |
++------+-----+----------+

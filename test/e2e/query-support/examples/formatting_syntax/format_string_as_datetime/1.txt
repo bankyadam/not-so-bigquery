@@ -1,0 +1,9 @@
+--SQL--
+SELECT CAST('18-12-03' AS DATE FORMAT 'YY-MM-DD') AS string_to_date_time
+
+--RESULT--
++---------------------+
+| string_to_date_time |
++---------------------+
+| 2018-02-03          |
++---------------------+

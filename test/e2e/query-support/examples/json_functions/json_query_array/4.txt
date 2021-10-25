@@ -1,0 +1,12 @@
+--SQL--
+SELECT JSON_QUERY_ARRAY(
+  '{"fruit":[{"apples":5,"oranges":10},{"apples":2,"oranges":4}],"vegetables":[{"lettuce":7,"kale": 8}]}',
+  '$.fruit'
+) AS string_array;
+
+--RESULT--
++-------------------------------------------------------+
+| string_array                                          |
++-------------------------------------------------------+
+| [{"apples":5,"oranges":10}, {"apples":2,"oranges":4}] |
++-------------------------------------------------------+

@@ -1,0 +1,13 @@
+--SQL--
+SELECT TO_JSON_STRING(ARRAY_CONCAT_AGG(x ORDER BY ARRAY_LENGTH(x))) AS array_concat_agg FROM (
+  SELECT [1, 2, 3, 4] AS x
+  UNION ALL SELECT [5, 6]
+  UNION ALL SELECT [7, 8, 9]
+);
+
+--RESULT--
++-----------------------------------+
+| array_concat_agg                  |
++-----------------------------------+
+| [5, 6, 7, 8, 9, 1, 2, 3, 4]       |
++-----------------------------------+

@@ -1,0 +1,9 @@
+--SQL--
+SELECT CODE_POINTS_TO_STRING([97, 0, 0xF9B5]) AS string;
+
+--RESULT--
++--------+
+| string |
++--------+
+| a例    |
++--------+

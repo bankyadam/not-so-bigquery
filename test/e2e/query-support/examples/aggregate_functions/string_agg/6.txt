@@ -1,0 +1,10 @@
+--SQL--
+SELECT STRING_AGG(DISTINCT fruit, " & " ORDER BY fruit DESC LIMIT 2) AS string_agg
+FROM UNNEST(["apple", "pear", "banana", "pear"]) AS fruit;
+
+--RESULT--
++---------------+
+| string_agg    |
++---------------+
+| pear & banana |
++---------------+
