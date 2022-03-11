@@ -5,8 +5,12 @@ const runTestCaseFactory = require('../_common/run-test-case');
 const runTestCase = runTestCaseFactory(__dirname);
 const { NOT_ORDERED } = runTestCaseFactory.EXPECTATIONS;
 
-describe('SQL Function _common', function() {
-  this.timeout(700);
+describe.notComplete = describe.skip;
+it.notComplete = it.skip;
+describe.notPlannedToImplement = describe.skip;
+
+describe('SQL Function support', function() {
+  this.timeout(500);
 
   context('aggregate_functions functions', function() {
     describe('ANY_VALUE', function() {
@@ -84,7 +88,7 @@ describe('SQL Function _common', function() {
       it('example-5', runTestCase('./examples/aggregate_functions/sum/5.txt'));
     });
   });
-  context.notComplete('approximate_aggregate_functions functions', function() {
+  context.notPlannedToImplement('approximate_aggregate_functions functions', function() {
     describe('APPROX_COUNT_DISTINCT', function() {
       it('example-1', runTestCase('./examples/approximate_aggregate_functions/approx_count_distinct/1.txt'));
     });
@@ -106,7 +110,7 @@ describe('SQL Function _common', function() {
       it('example-4', runTestCase('./examples/approximate_aggregate_functions/approx_top_sum/4.txt'));
     });
   });
-  context.notComplete('hyperloglog_functions functions', function() {
+  context.notPlannedToImplement('hyperloglog_functions functions', function() {
     describe('HLL_COUNTEXTRACT', function() {
       it('example-1', runTestCase('./examples/hyperloglog_functions/hll_countextract/1.txt'));
     });
@@ -723,7 +727,7 @@ describe('SQL Function _common', function() {
       it('example-1', runTestCase('./examples/timestamp_functions/unix_micros/1.txt'));
     });
   });
-  context.notComplete('geography_functions functions', function() {
+  context.notPlannedToImplement('geography_functions functions', function() {
     describe('ST_CENTROID_AGG', function() {
       it('example-1', runTestCase('./examples/geography_functions/st_centroid_agg/1.txt'));
     });
@@ -777,7 +781,7 @@ describe('SQL Function _common', function() {
       it('example-1', runTestCase('./examples/geography_functions/st_x/1.txt'));
     });
   });
-  context.notComplete('security_functions functions', function() {
+  context.notPlannedToImplement('security_functions functions', function() {
     describe('SESSION_USER', function() {
       it('example-1', runTestCase('./examples/security_functions/session_user/1.txt'));
     });

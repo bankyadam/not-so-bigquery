@@ -18,7 +18,3 @@ beforeEach(function() {
 afterEach(function() {
   global.sandbox.restore();
 });
-
-// Aliases
-describe.notComplete = describe.skip;
-it.notComplete = it.skip;
