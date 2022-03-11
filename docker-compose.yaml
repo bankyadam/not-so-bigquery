@@ -24,7 +24,12 @@ services:
     restart: always
 
   postgres:
-    image: clkao/postgres-plv8:10-2
+    image: postgres_14-plv8_3
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+      shm_size: '4gb'
     volumes:
       - db-data:/var/lib/postgresql/data
       - ./docker/postgres/init_db:/docker-entrypoint-initdb.d
