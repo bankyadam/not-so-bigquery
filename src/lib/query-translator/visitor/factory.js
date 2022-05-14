@@ -483,7 +483,7 @@ module.exports = (parser) => {
     intervalExpression(ctx) {
       return [
         'INTERVAL',
-        ctx.atomicExpression[0].children.hasOwnProperty('literalValue') ?
+        ctx.atomicExpression[0].children && ctx.atomicExpression[0].children.literalValue ?
           ["'", this.visit(ctx.atomicExpression), "'"].join('') :
           this.visit(ctx.atomicExpression),
         ctx.datePart[0].image.toUpperCase()
