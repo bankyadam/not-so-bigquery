@@ -35,7 +35,7 @@ export default class JobsInsertAction extends BaseJsonResponse {
 
     const bqQuery = configuration.query.query;
     const pgQuery = queryTranslator(bqQuery, new Project(projectId).internalId);
-    console.log(bqQuery, pgQuery);
+
     const queryCache = new QueryCache();
     await queryCache.run(pgQuery, null, jobReference.jobId);
 
