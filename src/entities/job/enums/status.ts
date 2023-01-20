@@ -1,0 +1,5 @@
+export enum JOB_STATUS {
+  PENDING = 'PENDING',
+  RUNNING = 'RUNNING',
+  DONE = 'DONE'
+}

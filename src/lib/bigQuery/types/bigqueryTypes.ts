@@ -1,0 +1,13 @@
+export enum BIGQUERY_TYPES {
+  'STRING' = 'TEXT',
+  'INTEGER' = 'BIGINT',
+  'INT64' = 'BIGINT',
+  'FLOAT' = 'FLOAT',
+  'FLOAT64' = 'FLOAT',
+  'NUMERIC' = 'NUMERIC(38, 9)',
+  'BOOLEAN' = 'BOOLEAN',
+  'BOOL' = 'BOOLEAN',
+  'DATE' = 'DATE',
+  'TIME' = 'TIME',
+  'DATETIME' = 'TIMESTAMP WITH TIME ZONE'
+}

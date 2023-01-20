@@ -1,6 +1,6 @@
 {
-  "require": ["dotenv/config"],
-  "file": ["./test/mocha-init.js"],
+  "require": ["dotenv/config", "ts-node/register"],
+  "file": ["./test/mocha-init.ts"],
   "exit": true,
   "timeout": 20000
 }

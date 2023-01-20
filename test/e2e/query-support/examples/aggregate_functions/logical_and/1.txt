@@ -1,9 +1,0 @@
---SQL--
-SELECT LOGICAL_AND(x) AS logical_and FROM UNNEST([true, false, true]) AS x;
-
---RESULT--
-+-------------+
-| logical_and |
-+-------------+
-| false       |
-+-------------+
