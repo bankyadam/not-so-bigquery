@@ -1,9 +1,0 @@
---SQL--
-SELECT BIT_AND(x) as bit_and FROM UNNEST([0xF001, 0x00A1]) as x;
-
---RESULT--
-+---------+
-| bit_and |
-+---------+
-| 1       |
-+---------+

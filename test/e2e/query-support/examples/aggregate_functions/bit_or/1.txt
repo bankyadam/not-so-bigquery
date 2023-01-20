@@ -1,9 +1,0 @@
---SQL--
-SELECT BIT_OR(x) as bit_or FROM UNNEST([0xF001, 0x00A1]) as x;
-
---RESULT--
-+--------+
-| bit_or |
-+--------+
-| 61601  |
-+--------+

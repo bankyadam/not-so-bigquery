@@ -3,11 +3,11 @@
   "ignore": [
     ".git",
     "node_modules/**/node_modules",
-    "src/**/*.spec.js"
+    "built/**/*.spec.js"
   ],
   "verbose": true,
   "watch": [
-    "src/**"
+    "built/**"
   ],
   "ext": "js,json"
 }

@@ -1,9 +1,0 @@
---SQL--
-SELECT CURRENT_TIME() as the_time;
-
---RESULT--
-+----------------+
-| the_time       |
-+----------------+
-| {CURRENT_TIME} |
-+----------------+

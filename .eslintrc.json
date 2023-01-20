@@ -1,5 +1,7 @@
 {
   "root": true,
+  "ignorePatterns": ["built/**/*"],
+  "parser": "@typescript-eslint/parser",
   "env": {
     "commonjs": true,
     "es6": true,
@@ -13,7 +15,13 @@
   "plugins": [
     "no-only-tests",
     "require-path-exists",
-    "security"
+    "security",
+    "typescript-enum",
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 2018
@@ -48,13 +56,13 @@
     "no-trailing-spaces": 2,
     "no-undef": [2, { "typeof": true }],
     "no-unused-expressions": 0,
-    "no-unused-vars": [2, { "vars": "all", "args": "after-used" }],
+    "no-unused-vars": "off",
     "no-with": 2,
     "object-curly-spacing": [2, "always"],
     "one-var": [2, "never"],
     "operator-linebreak": [2, "after"],
     "quotes": [2, "single", "avoid-escape"],
-    "require-path-exists/exists": 2,
+    "require-path-exists/exists": [2, { "extensions": [".js", ".ts"] }],
     "require-path-exists/notEmpty": 2,
     "security/detect-buffer-noassert": 1,
     "security/detect-child-process": 1,
@@ -66,7 +74,6 @@
     "security/detect-possible-timing-attacks": 1,
     "security/detect-pseudoRandomBytes": 1,
     "security/detect-unsafe-regex": 1,
-    "semi": [2, "always"],
     "semi-spacing": 2,
     "space-before-blocks": 2,
     "space-before-function-paren": [2, { "anonymous": "never", "named": "never" }],
@@ -74,6 +81,8 @@
     "space-infix-ops": 2,
     "space-unary-ops": [2, { "words": true, "nonwords": false }],
     "strict": [2, "global"],
-    "yoda": 2
+    "yoda": 2,
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-var-requires": 0
   }
 }
