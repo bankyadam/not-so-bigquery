@@ -654,17 +654,17 @@ describe('SQL Function support', function() {
       it('example-3', runTestCase('./testcases/datetime_functions/parse_datetime/3.txt'));
     });
   });
-  context.skip('timestamp_functions functions', function() {
-    describe('CURRENT_TIMESTAMP', function() {
+  context('timestamp_functions functions', function() {
+    describe.skip('CURRENT_TIMESTAMP', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/current_timestamp/1.txt'));
       it('example-2', runTestCase('./testcases/timestamp_functions/current_timestamp/2.txt'));
     });
-    describe('EXTRACT_4', function() {
+    describe.skip('EXTRACT_4', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/extract_4/1.txt'));
       it('example-2', runTestCase('./testcases/timestamp_functions/extract_4/2.txt'));
       it('example-3', runTestCase('./testcases/timestamp_functions/extract_4/3.txt'));
     });
-    describe('STRING', function() {
+    describe.skip('STRING', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/string/1.txt'));
     });
     describe('TIMESTAMP', function() {
@@ -674,46 +674,46 @@ describe('SQL Function support', function() {
       it('example-4', runTestCase('./testcases/timestamp_functions/timestamp/4.txt'));
       it('example-5', runTestCase('./testcases/timestamp_functions/timestamp/5.txt'));
     });
-    describe('TIMESTAMP_ADD', function() {
+    describe.skip('TIMESTAMP_ADD', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/timestamp_add/1.txt'));
     });
-    describe('TIMESTAMP_SUB', function() {
+    describe.skip('TIMESTAMP_SUB', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/timestamp_sub/1.txt'));
     });
-    describe('TIMESTAMP_DIFF', function() {
+    describe.skip('TIMESTAMP_DIFF', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/timestamp_diff/1.txt'));
       it('example-2', runTestCase('./testcases/timestamp_functions/timestamp_diff/2.txt'));
       it('example-3', runTestCase('./testcases/timestamp_functions/timestamp_diff/3.txt'));
     });
-    describe('TIMESTAMP_TRUNC', function() {
+    describe.skip('TIMESTAMP_TRUNC', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/timestamp_trunc/1.txt'));
       it('example-2', runTestCase('./testcases/timestamp_functions/timestamp_trunc/2.txt'));
       it('example-3', runTestCase('./testcases/timestamp_functions/timestamp_trunc/3.txt'));
     });
-    describe('FORMAT_TIMESTAMP', function() {
+    describe.skip('FORMAT_TIMESTAMP', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/format_timestamp/1.txt'));
       it('example-2', runTestCase('./testcases/timestamp_functions/format_timestamp/2.txt'));
       it('example-3', runTestCase('./testcases/timestamp_functions/format_timestamp/3.txt'));
     });
-    describe('PARSE_TIMESTAMP', function() {
+    describe.skip('PARSE_TIMESTAMP', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/parse_timestamp/1.txt'));
     });
-    describe('TIMESTAMP_SECONDS', function() {
+    describe.skip('TIMESTAMP_SECONDS', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/timestamp_seconds/1.txt'));
     });
-    describe('TIMESTAMP_MILLIS', function() {
+    describe.skip('TIMESTAMP_MILLIS', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/timestamp_millis/1.txt'));
     });
-    describe('TIMESTAMP_MICROS', function() {
+    describe.skip('TIMESTAMP_MICROS', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/timestamp_micros/1.txt'));
     });
-    describe('UNIX_SECONDS', function() {
+    describe.skip('UNIX_SECONDS', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/unix_seconds/1.txt'));
     });
-    describe('UNIX_MILLIS', function() {
+    describe.skip('UNIX_MILLIS', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/unix_millis/1.txt'));
     });
-    describe('UNIX_MICROS', function() {
+    describe.skip('UNIX_MICROS', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/unix_micros/1.txt'));
     });
   });

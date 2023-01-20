@@ -3,8 +3,8 @@ SELECT TIMESTAMP(DATE "2008-12-25") AS timestamp_date;
 
 -- Results may differ, depending upon the environment and time zone where this query was executed.
 --RESULT--
-+-------------------------+
-| timestamp_date          |
-+-------------------------+
-| 2008-12-25 00:00:00 UTC |
-+-------------------------+
++--------------------------+
+| timestamp_date           |
++--------------------------+
+| 2008-12-25T00:00:00.000Z |
++--------------------------+

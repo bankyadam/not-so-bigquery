@@ -1,10 +1,9 @@
 --SQL--
 SELECT TIMESTAMP("2008-12-25 15:30:00", "America/Los_Angeles") AS timestamp_str;
 
--- Results may differ, depending upon the environment and time zone where this query was executed.
 --RESULT--
-+-------------------------+
-| timestamp_str           |
-+-------------------------+
-| 2008-12-25 23:30:00 UTC |
-+-------------------------+
++--------------------------+
+| timestamp_str            |
++--------------------------+
+| 2008-12-25T23:30:00.000Z |
++--------------------------+
