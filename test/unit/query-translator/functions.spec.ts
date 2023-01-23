@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import runExpectation from './run-expectation';
 
 describe('Query Translator', function() {
@@ -28,6 +29,8 @@ describe('Query Translator', function() {
 
     describe('timestamp functions', function() {
       it('current_timestamp()', runExpectation(require('./testcases/functions/timestamp/current_timestamp.txt')));
+      it('timestamp without timezone', runExpectation(require('./testcases/functions/timestamp/timestamp_without_timezone.txt')));
+      it('timestamp with timezone', runExpectation(require('./testcases/functions/timestamp/timestamp_with_timezone.txt')));
     });
   });
 });
