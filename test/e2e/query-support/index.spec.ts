@@ -133,11 +133,11 @@ describe('SQL Function support', function() {
     describe.skip('INSTR', function() {
       it('example-1', runTestCase('./testcases/string_functions/instr/1.txt'));
     });
-    describe.skip('LEFT', function() {
+    describe('LEFT', function() {
       it('example-1', runTestCase('./testcases/string_functions/left/1.txt'));
-      it('example-2', runTestCase('./testcases/string_functions/left/2.txt'));
+      it.skip('example-2', runTestCase('./testcases/string_functions/left/2.txt'));
     });
-    describe.skip('LENGTH', function() {
+    describe('LENGTH', function() {
       it('example-1', runTestCase('./testcases/string_functions/length/1.txt'));
     });
     describe.skip('LPAD', function() {
@@ -194,9 +194,9 @@ describe('SQL Function support', function() {
     describe.skip('REVERSE', function() {
       it('example-1', runTestCase('./testcases/string_functions/reverse/1.txt'));
     });
-    describe.skip('RIGHT', function() {
+    describe('RIGHT', function() {
       it('example-1', runTestCase('./testcases/string_functions/right/1.txt'));
-      it('example-2', runTestCase('./testcases/string_functions/right/2.txt'));
+      it.skip('example-2', runTestCase('./testcases/string_functions/right/2.txt'));
     });
     describe.skip('RPAD', function() {
       it('example-1', runTestCase('./testcases/string_functions/rpad/1.txt'));
@@ -217,7 +217,7 @@ describe('SQL Function support', function() {
     describe.skip('STARTS_WITH', function() {
       it('example-1', runTestCase('./testcases/string_functions/starts_with/1.txt'));
     });
-    describe.skip('STRPOS', function() {
+    describe('STRPOS', function() {
       it('example-1', runTestCase('./testcases/string_functions/strpos/1.txt'));
     });
     describe('SUBSTR', function() {

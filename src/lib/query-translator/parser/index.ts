@@ -421,7 +421,7 @@ class SelectParser extends CstParser {
   });
 
   private function = this.RULE('function', () => {
-    this.CONSUME(TOKENS.Identifier, { LABEL: 'functionName' });
+    this.CONSUME(TOKENS.AnyWord, { LABEL: 'functionName' });
     this.CONSUME(TOKENS.LeftParenthesis);
     this.OPTION1(() => {
       this.OPTION2(() => {
