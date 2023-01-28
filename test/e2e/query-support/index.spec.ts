@@ -97,7 +97,7 @@ describe('SQL Function support', function() {
     });
     describe('CHR', function() {
       it('example-1', runTestCase('./testcases/string_functions/chr/1.txt'));
-      it.skip('example-2', runTestCase('./testcases/string_functions/chr/2.txt'));
+      it('example-2', runTestCase('./testcases/string_functions/chr/2.txt'));
     });
     describe.skip('CODE_POINTS_TO_BYTES', function() {
       it('example-1', runTestCase('./testcases/string_functions/code_points_to_bytes/1.txt'));
