@@ -114,7 +114,7 @@ describe('SQL Function support', function() {
       it('example-2', runTestCase('./testcases/string_functions/concat/2.txt'));
       it('example-3', runTestCase('./testcases/string_functions/concat/3.txt'));
     });
-    describe.skip('ENDS_WITH', function() {
+    describe('ENDS_WITH', function() {
       it('example-1', runTestCase('./testcases/string_functions/ends_with/1.txt'));
     });
     describe.skip('FROM_BASE32', function() {
