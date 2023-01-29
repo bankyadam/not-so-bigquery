@@ -32,5 +32,10 @@ describe('Query Translator', function() {
       it('timestamp without timezone', runExpectation(require('./testcases/functions/timestamp/timestamp_without_timezone.txt')));
       it('timestamp with timezone', runExpectation(require('./testcases/functions/timestamp/timestamp_with_timezone.txt')));
     });
+
+    describe('string functions', function() {
+      it('chr()', runExpectation(require('./testcases/functions/string/chr.txt')));
+      it('ends_with()', runExpectation(require('./testcases/functions/string/ends_with.txt')));
+    });
   });
 });

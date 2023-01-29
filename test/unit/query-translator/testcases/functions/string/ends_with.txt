@@ -1,0 +1,5 @@
+--INPUT--
+SELECT ENDS_WITH('banana', 'na')
+--EXPECT--
+SELECT STARTS_WITH(REVERSE('banana'), REVERSE('na'))
+
