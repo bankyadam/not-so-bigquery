@@ -177,7 +177,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ⚠️ | INSTR (negative position is not supported yet) |
 | ✅  | LEFT                                           |
 | ✅  | LENGTH                                         |
-| ❌  | LPAD                                           |
+| ✅  | LPAD                                           |
 | ✅  | LOWER                                          |
 | ✅  | LTRIM                                          |
 | ❌  | NORMALIZE                                      |
@@ -191,9 +191,9 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ❌  | REGEXP_SUBSTR                                  |
 | ✅  | REPLACE                                        |
 | ❌  | REPEAT                                         |
-| ❌  | REVERSE                                        |
+| ✅  | REVERSE                                        |
 | ✅  | RIGHT                                          |
-| ❌  | RPAD                                           |
+| ✅  | RPAD                                           |
 | ✅  | RTRIM                                          |
 | ❌  | SAFE_CONVERT_BYTES_TO_STRING                   |
 | ❌  | SOUNDEX                                        |
