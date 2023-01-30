@@ -1,0 +1,18 @@
+--SQL--
+WITH example AS
+(SELECT 'banana' as source_value, 'an' as search_value, -1 as position, 1 as
+occurrence UNION ALL
+SELECT 'banana' as source_value, 'an' as search_value, -3 as position, 1 as
+occurrence
+)
+SELECT source_value, search_value, position, occurrence, INSTR(source_value,
+search_value, position, occurrence) AS instr
+FROM example;
+
+--RESULT--
++--------------+--------------+----------+------------+-------+
+| source_value | search_value | position | occurrence | instr |
++--------------+--------------+----------+------------+-------+
+| banana       | an           | -1       | 1          | 4     |
+| banana       | an           | -3       | 1          | 4     |
++--------------+--------------+----------+------------+-------+

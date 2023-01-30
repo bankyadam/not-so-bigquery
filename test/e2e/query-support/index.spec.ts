@@ -130,8 +130,11 @@ describe('SQL Function support', function() {
     describe.skip('INITCAP', function() {
       it('example-1', runTestCase('./testcases/string_functions/initcap/1.txt'));
     });
-    describe.skip('INSTR', function() {
+    describe('INSTR', function() {
       it('example-1', runTestCase('./testcases/string_functions/instr/1.txt'));
+      it.skip('negative position', runTestCase('./testcases/string_functions/instr/2.txt'));
+      it('null parameters', runTestCase('./testcases/string_functions/instr/null.txt'));
+      it('zero returns', runTestCase('./testcases/string_functions/instr/zero-return.txt'));
     });
     describe('LEFT', function() {
       it('example-1', runTestCase('./testcases/string_functions/left/1.txt'));
