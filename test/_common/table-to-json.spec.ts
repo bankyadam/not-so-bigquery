@@ -13,6 +13,17 @@ describe('Table to JSON converter', function() {
     expect(convert(input)).to.be.eql([{ first: 'data' }]);
   });
 
+  it('skips delimiter lines', function() {
+    const input = `
++-------+
+| first |
+|-------|
+| data  |
++-------+
+`;
+    expect(convert(input)).to.be.eql([{ first: 'data' }]);
+  });
+
   it('multi-column with data', function() {
     const input = `
 +-------+-------+-------+-------+-------+

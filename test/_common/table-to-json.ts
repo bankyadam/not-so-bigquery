@@ -7,7 +7,9 @@ const TYPES = {
 };
 
 export default function(input:string) {
-  const rows = input.split('\n').filter(row => row[0] === '|');
+  const rows = input.split('\n')
+    .filter(row => row[0] === '|')
+    .filter(row => !/(?:\|-+)+\|/.test(row));
   const data = rows.map(row => row.split(/\s*\|\s*/).slice(1, -1));
   const headers = [];
   const headerTypes = [];
