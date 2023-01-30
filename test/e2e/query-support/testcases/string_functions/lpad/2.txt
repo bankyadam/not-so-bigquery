@@ -1,9 +1,10 @@
 --SQL--
-SELECT t, len, pattern, TO_JSON_STRING(LPAD(t, len, pattern)) AS LPAD FROM UNNEST([
-  STRUCT('abc' AS t, 8 AS len, 'def' AS pattern),
-  ('abc', 5, '-'),
-  ('例子', 5, '中文')
-]);
+WITH examples AS (
+    SELECT 'abc' AS t, 8 AS len, 'def' AS pattern UNION ALL
+    SELECT 'abc' AS t, 5 AS len, '-' AS pattern UNION ALL
+    SELECT '例子' AS t, 5 AS len, '中文' AS pattern
+)
+SELECT t, len, pattern, TO_JSON_STRING(LPAD(t, len, pattern)) AS LPAD FROM examples;
 
 --RESULT--
 +------+-----+---------+--------------+

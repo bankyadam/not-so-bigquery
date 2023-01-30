@@ -143,11 +143,11 @@ describe('SQL Function support', function() {
     describe('LENGTH', function() {
       it('example-1', runTestCase('./testcases/string_functions/length/1.txt'));
     });
-    describe.skip('LPAD', function() {
+    describe('LPAD', function() {
       it('example-1', runTestCase('./testcases/string_functions/lpad/1.txt'));
       it('example-2', runTestCase('./testcases/string_functions/lpad/2.txt'));
-      it('example-3', runTestCase('./testcases/string_functions/lpad/3.txt'));
-      it('example-4', runTestCase('./testcases/string_functions/lpad/4.txt'));
+      it.skip('example-3', runTestCase('./testcases/string_functions/lpad/3.txt'));
+      it.skip('example-4', runTestCase('./testcases/string_functions/lpad/4.txt'));
     });
     describe('LOWER', function() {
       it('example-1', runTestCase('./testcases/string_functions/lower/1.txt'));
