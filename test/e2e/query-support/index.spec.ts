@@ -201,11 +201,11 @@ describe('SQL Function support', function() {
       it('example-1', runTestCase('./testcases/string_functions/right/1.txt'));
       it.skip('example-2', runTestCase('./testcases/string_functions/right/2.txt'));
     });
-    describe.skip('RPAD', function() {
+    describe('RPAD', function() {
       it('example-1', runTestCase('./testcases/string_functions/rpad/1.txt'));
       it('example-2', runTestCase('./testcases/string_functions/rpad/2.txt'));
-      it('example-3', runTestCase('./testcases/string_functions/rpad/3.txt'));
-      it('example-4', runTestCase('./testcases/string_functions/rpad/4.txt'));
+      it.skip('example-3', runTestCase('./testcases/string_functions/rpad/3.txt'));
+      it.skip('example-4', runTestCase('./testcases/string_functions/rpad/4.txt'));
     });
     describe('RTRIM', function() {
       it('example-1', runTestCase('./testcases/string_functions/rtrim/1.txt'));

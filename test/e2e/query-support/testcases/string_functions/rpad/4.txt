@@ -1,14 +1,15 @@
 --SQL--
+WITH examples AS (
+    SELECT b'abc' AS t, 8 AS len, b'def' AS pattern UNION ALL
+    SELECT b'abc' AS t, 5 AS len, b'-' AS pattern UNION ALL
+    SELECT b'\xab\xcd\xef' AS t, 5 AS len, b'\x00' AS pattern
+)
 SELECT
   TO_JSON_STRING(t) AS t,
   len,
   TO_JSON_STRING(pattern) AS pattern,
   TO_JSON_STRING(RPAD(t, len, pattern)) AS RPAD
-FROM UNNEST([
-  STRUCT(b'abc' AS t, 8 AS len, b'def' AS pattern),
-  (b'abc', 5, b'-'),
-  (b'\xab\xcd\xef', 5, b'\x00')
-]);
+FROM examples;
 
 --RESULT--
 +-----------------+-----+---------+-------------------------+

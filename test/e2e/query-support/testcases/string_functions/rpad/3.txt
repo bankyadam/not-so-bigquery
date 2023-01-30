@@ -1,9 +1,10 @@
 --SQL--
-SELECT TO_JSON_STRING(t) AS t, len, TO_JSON_STRING(RPAD(t, len)) AS RPAD FROM UNNEST([
-  STRUCT(b'abc' AS t, 5 AS len),
-  (b'abc', 2),
-  (b'\xab\xcd\xef', 4)
-]);
+WITH examples AS (
+    SELECT b'abc' AS t, 5 AS len UNION ALL
+    SELECT b'abc' AS t, 2 AS len UNION ALL
+    SELECT b'\xab\xcd\xef' AS t, 4 AS len
+)
+SELECT TO_JSON_STRING(t) AS t, len, TO_JSON_STRING(RPAD(t, len)) AS RPAD FROM examples;
 
 --RESULT--
 +-----------------+-----+------------------+
