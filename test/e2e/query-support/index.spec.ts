@@ -194,7 +194,7 @@ describe('SQL Function support', function() {
     describe.skip('REPEAT', function() {
       it('example-1', runTestCase('./testcases/string_functions/repeat/1.txt'));
     });
-    describe.skip('REVERSE', function() {
+    describe('REVERSE', function() {
       it('example-1', runTestCase('./testcases/string_functions/reverse/1.txt'));
     });
     describe('RIGHT', function() {
