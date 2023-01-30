@@ -1,9 +1,10 @@
-FROM postgres:14
+FROM postgres:15
 
-ENV PLV8_VERSION=3.0.0 \
-    PLV8_SHASUM="de030f5d6b0439710efa05f4c35ffb8ef36ae754fa0e3c46d334352cf1507661"
+ENV PLV8_VERSION=3.1.5 \
+    PLV8_SHASUM="1e108d5df639e4c189e1c5bdfa2432a521c126ca89e7e5a969d46899ca7bf106"
 
-RUN buildDependencies="build-essential \
+RUN buildDependencies="\
+      build-essential \
       ca-certificates \
       curl \
       git-core \
@@ -19,16 +20,20 @@ RUN buildDependencies="build-essential \
       libtinfo5 \
       libglib2.0-dev \
       libc++abi-dev \
-      postgresql-server-dev-$PG_MAJOR" \
-    runtimeDependencies="libc++1" \
+      postgresql-server-dev-$PG_MAJOR \
+      gnutls-bin \
+    " \
+    runtimeDependencies=" \
+      libc++1 \
+    " \
   && apt-get update \
   && apt-get install -y --no-install-recommends ${buildDependencies} ${runtimeDependencies} \
   && mkdir -p /tmp/build \
   && curl -o /tmp/build/v$PLV8_VERSION.tar.gz -SL "https://github.com/plv8/plv8/archive/v${PLV8_VERSION}.tar.gz" \
   && cd /tmp/build \
   && echo $PLV8_SHASUM v$PLV8_VERSION.tar.gz | sha256sum -c \
-  && tar -xzf /tmp/build/v$PLV8_VERSION.tar.gz -C /tmp/build/ \
-  && cd /tmp/build/plv8-$PLV8_VERSION \
+  && tar -xzf /tmp/build/v$PLV8_VERSION.tar.gz -C /tmp/build/
+RUN cd /tmp/build/plv8-$PLV8_VERSION \
   && make \
   && make install \
   && strip /usr/lib/postgresql/${PG_MAJOR}/lib/plv8-${PLV8_VERSION}.so \

@@ -24,8 +24,8 @@ services:
       - 5443:8080
 
   postgres:
-    image: postgres_14-plv8_3
-    platform: linux/amd64
+    image: postgres_15-plv8_3
+    platform: linux/arm64
     restart: always
     build:
       context: .
