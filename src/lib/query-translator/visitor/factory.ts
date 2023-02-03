@@ -481,12 +481,15 @@ export default (parser) => {
 
     intervalExpression(ctx) {
       return [
-        'INTERVAL',
+        '(',
         ctx.atomicExpression[0].children && ctx.atomicExpression[0].children.literalValue ?
           ["'", this.visit(ctx.atomicExpression), "'"].join('') :
           this.visit(ctx.atomicExpression),
-        ctx.datePart[0].image.toUpperCase()
-      ].join(' ');
+        '||',
+        "'", ctx.datePart[0].image.toUpperCase(), "'",
+        ')',
+        '::INTERVAL'
+      ].join('');
     }
 
     cast(ctx) {
