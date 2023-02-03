@@ -191,7 +191,13 @@ class SelectParser extends CstParser {
   private unnest = this.RULE('unnest', () => {
     this.CONSUME(TOKENS.Unnest);
     this.CONSUME(TOKENS.LeftParenthesis);
-    this.SUBRULE(this.array);
+    this.OR({
+      IGNORE_AMBIGUITIES: true,
+      DEF: [
+        { ALT: () => this.SUBRULE(this.array) },
+        { ALT: () => this.SUBRULE(this.function) }
+      ]
+    });
     this.CONSUME(TOKENS.RightParenthesis);
     this.OPTION1(() => {
       this.SUBRULE(this.asAlias);

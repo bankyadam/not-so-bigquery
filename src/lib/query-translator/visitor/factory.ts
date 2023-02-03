@@ -224,7 +224,17 @@ export default (parser) => {
     }
 
     unnest(ctx) {
-      const parts = ['UNNEST(', this.visit(ctx.array), ')'];
+      const parts = ['UNNEST('];
+
+      if (ctx.function) {
+        parts.push(this.visit(ctx.function));
+      }
+
+      if (ctx.array) {
+        parts.push(this.visit(ctx.array));
+      }
+
+      parts.push(')');
       if (ctx.asAlias) {
         parts.push(this.visit(ctx.asAlias));
       }
