@@ -225,14 +225,14 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ✅ | TO_JSON_STRING            |
 
 ## Array functions
-|  | function                     |
+|   | function                     |
 |---|------------------------------|
 | ❌ | ARRAY                        |
 | ❌ | ARRAY_CONCAT                 |
 | ❌ | ARRAY_LENGTH                 |
 | ❌ | ARRAY_TO_STRING              |
 | ❌ | GENERATE_ARRAY               |
-| ❌ | GENERATE_DATE_ARRAY          |
+| ✅ | GENERATE_DATE_ARRAY          |
 | ❌ | GENERATE_TIMESTAMP_ARRAY     |
 | ❌ | OFFSET and ORDINAL           |
 | ❌ | ARRAY_REVERSE                |

@@ -283,13 +283,13 @@ describe('SQL Function support', function() {
       it('example-6', runTestCase('./testcases/array_functions/generate_array/6.txt'));
       it('example-7', runTestCase('./testcases/array_functions/generate_array/7.txt'));
     });
-    describe.skip('GENERATE_DATE_ARRAY', function() {
+    describe('GENERATE_DATE_ARRAY', function() {
       it('example-1', runTestCase('./testcases/array_functions/generate_date_array/1.txt'));
       it('example-2', runTestCase('./testcases/array_functions/generate_date_array/2.txt'));
       it('example-3', runTestCase('./testcases/array_functions/generate_date_array/3.txt'));
       it('example-4', runTestCase('./testcases/array_functions/generate_date_array/4.txt'));
       it('example-5', runTestCase('./testcases/array_functions/generate_date_array/5.txt'));
-      it('example-6', runTestCase('./testcases/array_functions/generate_date_array/6.txt'));
+      it.skip('example-6', runTestCase('./testcases/array_functions/generate_date_array/6.txt'));
       it('example-7', runTestCase('./testcases/array_functions/generate_date_array/7.txt'));
       it('example-8', runTestCase('./testcases/array_functions/generate_date_array/8.txt'));
     });
@@ -319,7 +319,7 @@ describe('SQL Function support', function() {
     });
     describe('EXTRACT', function() {
       it('example-1', runTestCase('./testcases/date_functions/extract/1.txt'));
-      it.skip('example-2', runTestCase('./testcases/date_functions/extract/2.txt'));
+      it('example-2', runTestCase('./testcases/date_functions/extract/2.txt'));
       it.skip('example-3', runTestCase('./testcases/date_functions/extract/3.txt'));
     });
     describe('DATE', function() {

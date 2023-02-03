@@ -60,7 +60,10 @@ const cast = function(value, type) {
   }
 
   if (type === TYPES.ARRAY) {
-    return JSON.parse(value).map(cast);
+    if (/\[\s*\]/.test(value)) {
+      return [];
+    }
+    return value.replace(/^\[\s*|\s*\]$/g, '').split(/\s*,\s*/).map(v => ({ value: cast(v, null) }));
   }
 
   // eslint-disable-next-line eqeqeq

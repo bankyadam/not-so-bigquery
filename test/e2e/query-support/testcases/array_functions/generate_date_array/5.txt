@@ -3,8 +3,8 @@ SELECT GENERATE_DATE_ARRAY('2016-10-05',
   '2016-10-01', INTERVAL 1 DAY) AS example;
 
 --RESULT--
-+---------+
-| example |
-+---------+
-| []      |
-+---------+
++-----------+
+| example[] |
++-----------+
+| []        |
++-----------+

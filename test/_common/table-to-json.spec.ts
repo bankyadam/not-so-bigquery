@@ -141,12 +141,39 @@ describe('Table to JSON converter', function() {
       expect(convert(input)).to.be.eql([{ int: '123' }]);
     });
 
-    it('supports array', function() {
-      const input = `
+    describe('array', function() {
+      it('empty', function() {
+        const input = `
+| empty[] |
+| []      |
+| [   ]   |
+`;
+        expect(convert(input)).to.be.eql([{ empty: [] }, { empty: [] }]);
+      });
+
+      it('numbers', function() {
+        const input = `
 | array[] |
 | [1,2]   |
 `;
-      expect(convert(input)).to.be.eql([{ array: [1, 2] }]);
-    });
+        expect(convert(input)).to.be.eql([{ array: [{ value: 1 }, { value: 2 }] }]);
+      });
+
+      it('nulls', function() {
+        const input = `
+| nulls[]        |
+| [NULL, NULL]   |
+`;
+        expect(convert(input)).to.be.eql([{ nulls: [{ value: null }, { value: null }] }]);
+      });
+
+      it('null value', function() {
+        const input = `
+| nulls[] |
+| NULL    |
+`;
+        expect(convert(input)).to.be.eql([{ nulls: null }]);
+      });
+    })
   });
 });
