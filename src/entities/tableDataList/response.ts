@@ -34,6 +34,12 @@ export default class TableDataListResponse extends BaseEntityResponse {
       f: map(row, (value, name) => {
         const field = this.getFieldByName(name);
         if (field.mode === 'REPEATED') {
+          if (value === null) {
+            return { v: null };
+          }
+          if (value.length === 0) {
+            return { v: [] }
+          }
           return { v: value.map(v => ({ v: this.convertValue(v, field.type) })) };
         }
         return { v: this.convertValue(value, field.type) };
