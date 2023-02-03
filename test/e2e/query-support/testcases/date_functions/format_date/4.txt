@@ -1,0 +1,9 @@
+--SQL--
+SELECT FORMAT_DATE("%w", DATE "2023-02-01") AS formatted;
+
+--RESULT--
++-------------+
+| formatted   |
++-------------+
+| 3           |
++-------------+

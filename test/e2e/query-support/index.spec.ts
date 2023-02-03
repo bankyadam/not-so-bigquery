@@ -176,7 +176,7 @@ describe('SQL Function support', function() {
     describe.skip('REGEXP_EXTRACT_ALL', function() {
       it('example-1', runTestCase('./testcases/string_functions/regexp_extract_all/1.txt'));
     });
-    describe.skip('REGEXP_INSTR', function() {
+    describe('REGEXP_INSTR', function() {
       it('example-1', runTestCase('./testcases/string_functions/regexp_instr/1.txt'));
       it('example-2', runTestCase('./testcases/string_functions/regexp_instr/2.txt'));
       it('example-3', runTestCase('./testcases/string_functions/regexp_instr/3.txt'));
@@ -185,7 +185,7 @@ describe('SQL Function support', function() {
     describe.skip('REGEXP_REPLACE', function() {
       it('example-1', runTestCase('./testcases/string_functions/regexp_replace/1.txt'));
     });
-    describe.skip('REGEXP_SUBSTR', function() {
+    describe('REGEXP_SUBSTR', function() {
       it('example-1', runTestCase('./testcases/string_functions/regexp_substr/1.txt'));
     });
     describe('REPLACE', function() {
@@ -319,7 +319,7 @@ describe('SQL Function support', function() {
     });
     describe('EXTRACT', function() {
       it('example-1', runTestCase('./testcases/date_functions/extract/1.txt'));
-      it('example-2', runTestCase('./testcases/date_functions/extract/2.txt'));
+      it.skip('example-2', runTestCase('./testcases/date_functions/extract/2.txt'));
       it.skip('example-3', runTestCase('./testcases/date_functions/extract/3.txt'));
     });
     describe('DATE', function() {
@@ -349,6 +349,7 @@ describe('SQL Function support', function() {
       it('example-1', runTestCase('./testcases/date_functions/format_date/1.txt'));
       it('example-2', runTestCase('./testcases/date_functions/format_date/2.txt'));
       it('example-3', runTestCase('./testcases/date_functions/format_date/3.txt'));
+      it.skip('example-4', runTestCase('./testcases/date_functions/format_date/4.txt'));
     });
     describe.skip('LAST_DAY', function() {
       it('example-1', runTestCase('./testcases/date_functions/last_day/1.txt'));

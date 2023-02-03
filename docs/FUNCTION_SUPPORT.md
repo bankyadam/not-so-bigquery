@@ -158,58 +158,58 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ❌ | SHA512           |
 
 ## String functions
-|    | function                                       |
-|----|------------------------------------------------|
-| ✅  | ASCII                                          |
-| ❌  | BYTE_LENGTH                                    |
-| ✅  | CHAR_LENGTH                                    |
-| ✅  | CHARACTER_LENGTH                               |
-| ✅  | CHR                                            |
-| ❌  | CODE_POINTS_TO_BYTES                           |
-| ❌  | CODE_POINTS_TO_STRING                          |
-| ✅  | CONCAT                                         |
-| ✅  | ENDS_WITH                                      |
-| ❌  | FORMAT                                         |
-| ❌  | FROM_BASE32                                    |
-| ❌  | FROM_BASE64                                    |
-| ❌  | FROM_HEX                                       |
-| ❌  | INITCAP                                        |
-| ⚠️ | INSTR (negative position is not supported yet) |
-| ✅  | LEFT                                           |
-| ✅  | LENGTH                                         |
-| ✅  | LPAD                                           |
-| ✅  | LOWER                                          |
-| ✅  | LTRIM                                          |
-| ❌  | NORMALIZE                                      |
-| ❌  | NORMALIZE_AND_CASEFOLD                         |
-| ❌  | OCTET_LENGTH                                   |
-| ❌  | REGEXP_CONTAINS                                |
-| ❌  | REGEXP_EXTRACT                                 |
-| ❌  | REGEXP_EXTRACT_ALL                             |
-| ❌  | REGEXP_INSTR                                   |
-| ❌  | REGEXP_REPLACE                                 |
-| ❌  | REGEXP_SUBSTR                                  |
-| ✅  | REPLACE                                        |
-| ❌  | REPEAT                                         |
-| ✅  | REVERSE                                        |
-| ✅  | RIGHT                                          |
-| ✅  | RPAD                                           |
-| ✅  | RTRIM                                          |
-| ❌  | SAFE_CONVERT_BYTES_TO_STRING                   |
-| ❌  | SOUNDEX                                        |
-| ❌  | SPLIT                                          |
-| ❌  | STARTS_WITH                                    |
-| ✅  | STRPOS                                         |
-| ✅  | SUBSTR                                         |
-| ❌  | SUBSTRING                                      |
-| ❌  | TO_BASE32                                      |
-| ❌  | TO_BASE64                                      |
-| ❌  | TO_CODE_POINTS                                 |
-| ❌  | TO_HEX                                         |
-| ✅  | TRANSLATE                                      |
-| ✅  | TRIM                                           |
-| ❌  | UNICODE                                        |
-| ✅  | UPPER                                          |
+|     | function                                       |
+|-----|------------------------------------------------|
+| ✅   | ASCII                                          |
+| ❌   | BYTE_LENGTH                                    |
+| ✅   | CHAR_LENGTH                                    |
+| ✅   | CHARACTER_LENGTH                               |
+| ✅   | CHR                                            |
+| ❌   | CODE_POINTS_TO_BYTES                           |
+| ❌   | CODE_POINTS_TO_STRING                          |
+| ✅   | CONCAT                                         |
+| ✅   | ENDS_WITH                                      |
+| ❌   | FORMAT                                         |
+| ❌   | FROM_BASE32                                    |
+| ❌   | FROM_BASE64                                    |
+| ❌   | FROM_HEX                                       |
+| ❌   | INITCAP                                        |
+| ⚠️  | INSTR (negative position is not supported yet) |
+| ✅   | LEFT                                           |
+| ✅   | LENGTH                                         |
+| ✅   | LPAD                                           |
+| ✅   | LOWER                                          |
+| ✅   | LTRIM                                          |
+| ❌   | NORMALIZE                                      |
+| ❌   | NORMALIZE_AND_CASEFOLD                         |
+| ❌   | OCTET_LENGTH                                   |
+| ❌   | REGEXP_CONTAINS                                |
+| ❌   | REGEXP_EXTRACT                                 |
+| ❌   | REGEXP_EXTRACT_ALL                             |
+| ✅   | REGEXP_INSTR                                   |
+| ❌   | REGEXP_REPLACE                                 |
+| ✅   | REGEXP_SUBSTR                                  |
+| ✅   | REPLACE                                        |
+| ❌   | REPEAT                                         |
+| ✅   | REVERSE                                        |
+| ✅   | RIGHT                                          |
+| ✅   | RPAD                                           |
+| ✅   | RTRIM                                          |
+| ❌   | SAFE_CONVERT_BYTES_TO_STRING                   |
+| ❌   | SOUNDEX                                        |
+| ❌   | SPLIT                                          |
+| ❌   | STARTS_WITH                                    |
+| ✅   | STRPOS                                         |
+| ✅   | SUBSTR                                         |
+| ❌   | SUBSTRING                                      |
+| ❌   | TO_BASE32                                      |
+| ❌   | TO_BASE64                                      |
+| ❌   | TO_CODE_POINTS                                 |
+| ❌   | TO_HEX                                         |
+| ✅   | TRANSLATE                                      |
+| ✅   | TRIM                                           |
+| ❌   | UNICODE                                        |
+| ✅   | UPPER                                          |
 
 ## JSON functions
 |  | function                  |
