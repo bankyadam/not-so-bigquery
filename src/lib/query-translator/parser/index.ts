@@ -479,7 +479,12 @@ class SelectParser extends CstParser {
   private extract = this.RULE('extract', () => {
     this.CONSUME(TOKENS.Extract);
     this.CONSUME(TOKENS.LeftParenthesis);
-    this.CONSUME1(TOKENS.Identifier);
+    this.CONSUME(TOKENS.Identifier);
+    this.OPTION(()=>{
+      this.CONSUME2(TOKENS.LeftParenthesis)
+      this.CONSUME2(TOKENS.Identifier);
+      this.CONSUME2(TOKENS.RightParenthesis)
+    });
     this.CONSUME(TOKENS.From);
     this.SUBRULE(this.expression);
     this.CONSUME(TOKENS.RightParenthesis);

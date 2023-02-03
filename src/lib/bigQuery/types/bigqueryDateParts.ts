@@ -1,5 +1,5 @@
 export enum BIGQUERY_DATE_PARTS {
-  DAYOFWEEK = 'DOW',
+  DAYOFWEEK = 'ISODOW',
   DAY = 'DAY',
   DAYOFYEAR = 'DOY',
   WEEK = 'WEEK',

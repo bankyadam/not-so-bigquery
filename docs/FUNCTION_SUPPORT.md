@@ -242,7 +242,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 |  | function                                                                                                        |
 |---|-----------------------------------------------------------------------------------------------------------------|
 | ⚠️ | CURRENT_DATE (no timezone support)                                                                              |
-| ✅ | EXTRACT                                                                                                         |
+| ⚠️ | EXTRACT (WEEK(<WEEKDAY>) is not supported, translated as WEEK)                                                  |
 | ✅ | DATE                                                                                                            |
 | ✅ | DATE_ADD                                                                                                        |
 | ✅ | DATE_SUB                                                                                                        |
