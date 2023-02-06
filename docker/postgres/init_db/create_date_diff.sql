@@ -15,6 +15,10 @@ BEGIN
 
     units = lower(units);
 
+    IF units = 'isoyear' THEN
+        RETURN DATE_PART('ISOYEAR', end_t) - DATE_PART('ISOYEAR', start_t);
+    END IF;
+
     diff = DATE_PART('year', end_t) - DATE_PART('year', start_t);
     IF units = 'year' THEN
         RETURN diff;
@@ -26,10 +30,10 @@ BEGIN
     END IF;
 
     diff_interval = end_t - start_t;
-    diff = diff + DATE_PART('day', diff_interval);
+    diff = DATE_PART('day', diff_interval);
 
     IF units = 'week' THEN
-        diff = diff/7;
+        diff = CEIL(diff::FLOAT/7);
         RETURN diff;
     END IF;
 

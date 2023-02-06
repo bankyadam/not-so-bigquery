@@ -331,11 +331,11 @@ describe('SQL Function support', function() {
     describe('DATE_SUB', function() {
       it('example-1', runTestCase('./testcases/date_functions/date_sub/1.txt'));
     });
-    describe.skip('DATE_DIFF', function() {
+    describe('DATE_DIFF', function() {
       it('example-1', runTestCase('./testcases/date_functions/date_diff/1.txt'));
       it('example-2', runTestCase('./testcases/date_functions/date_diff/2.txt'));
       it('example-3', runTestCase('./testcases/date_functions/date_diff/3.txt'));
-      it('example-4', runTestCase('./testcases/date_functions/date_diff/4.txt'));
+      it.skip('example-4', runTestCase('./testcases/date_functions/date_diff/4.txt'));
     });
     describe('DATE_TRUNC', function() {
       it('example-1', runTestCase('./testcases/date_functions/date_trunc/1.txt'));
