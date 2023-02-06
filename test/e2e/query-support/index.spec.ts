@@ -351,12 +351,12 @@ describe('SQL Function support', function() {
       it('example-3', runTestCase('./testcases/date_functions/format_date/3.txt'));
       it.skip('example-4', runTestCase('./testcases/date_functions/format_date/4.txt'));
     });
-    describe.skip('LAST_DAY', function() {
+    describe('LAST_DAY', function() {
       it('example-1', runTestCase('./testcases/date_functions/last_day/1.txt'));
       it('example-2', runTestCase('./testcases/date_functions/last_day/2.txt'));
       it('example-3', runTestCase('./testcases/date_functions/last_day/3.txt'));
-      it('example-4', runTestCase('./testcases/date_functions/last_day/4.txt'));
-      it('example-5', runTestCase('./testcases/date_functions/last_day/5.txt'));
+      it.skip('example-4', runTestCase('./testcases/date_functions/last_day/4.txt'));
+      it.skip('example-5', runTestCase('./testcases/date_functions/last_day/5.txt'));
     });
     describe.skip('PARSE_DATE', function() {
       it('example-1', runTestCase('./testcases/date_functions/parse_date/1.txt'));
