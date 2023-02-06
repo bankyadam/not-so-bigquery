@@ -246,7 +246,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ✅ | DATE                                                                                                            |
 | ✅ | DATE_ADD                                                                                                        |
 | ✅ | DATE_SUB                                                                                                        |
-| ⚠️ | DATE_DIFF (ISOWEEK, QUARTER, ISOWEEK and WEEK(<WEEKDAY>) is not supported)                                      |
+| ⚠️ | DATE_DIFF (QUARTER, ISOWEEK and WEEK(<WEEKDAY>) is not supported)                                               |
 | ⚠️ | DATE_TRUNC (WEEK(<WEEKDAY>) is not supported)                                                                   |
 | ❌ | DATE_FROM_UNIX_DATE                                                                                             |
 | ⚠️ | FORMAT_DATE ("w": The weekday (Sunday as the first day of the week) as a decimal number (1-7) instead of (0-6)) |
