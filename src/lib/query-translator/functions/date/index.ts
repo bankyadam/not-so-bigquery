@@ -6,6 +6,7 @@ import DATE_DIFF from './date_diff';
 import DATE_TRUNC from './date_trunc';
 import FORMAT_DATE from './format_date';
 import LAST_DAY from './last_day';
+import PARSE_DATE from './parse_date';
 
 export {
   CURRENT_DATE,
@@ -15,5 +16,6 @@ export {
   DATE_DIFF,
   DATE_TRUNC,
   FORMAT_DATE,
-  LAST_DAY
+  LAST_DAY,
+  PARSE_DATE
 };

@@ -358,7 +358,7 @@ describe('SQL Function support', function() {
       it.skip('example-4', runTestCase('./testcases/date_functions/last_day/4.txt'));
       it.skip('example-5', runTestCase('./testcases/date_functions/last_day/5.txt'));
     });
-    describe.skip('PARSE_DATE', function() {
+    describe('PARSE_DATE', function() {
       it('example-1', runTestCase('./testcases/date_functions/parse_date/1.txt'));
       it('example-2', runTestCase('./testcases/date_functions/parse_date/2.txt'));
     });

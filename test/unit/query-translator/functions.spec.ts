@@ -21,6 +21,7 @@ describe('Query Translator', function() {
       it('date_diff()', runExpectation(require('./testcases/functions/date/date_diff.txt')));
       it('date_trunc()', runExpectation(require('./testcases/functions/date/date_trunc.txt')));
       it('format_date()', runExpectation(require('./testcases/functions/date/format_date.txt')));
+      it('parse_date()', runExpectation(require('./testcases/functions/date/parse_date.txt')));
     });
 
     describe('time functions', function() {

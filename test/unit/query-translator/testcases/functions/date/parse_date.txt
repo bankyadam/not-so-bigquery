@@ -1,0 +1,9 @@
+--INPUT--
+SELECT
+    PARSE_DATE('%A %a %B %b %C %c %D %d %e %F %G %g %H %h %I %J %j %k %l %M %m %n %P %p %Q %R %S %s %T %t %U %u %V %W %w %X %x %Y %y %Z %z %% %Ez %E3S %E*S %E4Y', 'some string input') AS all_params,
+    PARSE_DATE("%Y%m%d", "20081225") as bug1
+--EXPECT--
+SELECT
+    TO_DATE('some string input', 'fmday dy fmmonth mon cc dy mon dd hh24:mi:ss yyyy mm/dd/yy dd fmdd yyyy-mm-dd iyyy iy hh24 mon hh12 iddd ddd hh24 hh mi mm \n am am q hh24:mi ss null hh24:mi:ss \t ww id iw iw d hh24:mi:ss mm/dd/yy yyyy yy tz of % tzh:tzm ss.ff3 ss.ff6 yyyy') AS "all_params",
+    TO_DATE('20081225', 'YYYYMMDD') AS "bug1"
+
