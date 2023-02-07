@@ -1,0 +1,8 @@
+CREATE OR REPLACE FUNCTION TO_BASE64(bytes BYTEA)
+    RETURNS TEXT AS
+$$
+DECLARE
+BEGIN
+    RETURN encode(bytes, 'base64');
+END;
+$$ LANGUAGE plpgsql;

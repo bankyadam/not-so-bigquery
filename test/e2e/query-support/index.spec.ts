@@ -120,7 +120,7 @@ describe('SQL Function support', function() {
     describe.skip('FROM_BASE32', function() {
       it('example-1', runTestCase('./testcases/string_functions/from_base32/1.txt'));
     });
-    describe.skip('FROM_BASE64', function() {
+    describe('FROM_BASE64', function() {
       it('example-1', runTestCase('./testcases/string_functions/from_base64/1.txt'));
       it('example-2', runTestCase('./testcases/string_functions/from_base64/2.txt'));
     });
@@ -231,7 +231,7 @@ describe('SQL Function support', function() {
     describe.skip('TO_BASE32', function() {
       it('example-1', runTestCase('./testcases/string_functions/to_base32/1.txt'));
     });
-    describe.skip('TO_BASE64', function() {
+    describe('TO_BASE64', function() {
       it('example-1', runTestCase('./testcases/string_functions/to_base64/1.txt'));
       it('example-2', runTestCase('./testcases/string_functions/to_base64/2.txt'));
     });

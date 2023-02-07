@@ -1,5 +1,5 @@
 --SQL--
-SELECT FROM_BASE64('/+A=') AS byte_data;
+SELECT TO_BASE64(FROM_BASE64('/+A=')) AS byte_data;
 
 -- Note that the result of FROM_BASE64 is of type BYTES, displayed as a base64-encoded string.
 --RESULT--
