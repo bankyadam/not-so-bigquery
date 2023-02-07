@@ -16,7 +16,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ✅ | AVG              |
 | ✅ | BIT_AND          |
 | ✅ | BIT_OR           |
-| ❌ | BIT_XOR          |
+| ✅ | BIT_XOR          |
 | ✅ | COUNT            |
 | ✅ | COUNTIF          |
 | ✅ | LOGICAL_AND      |
