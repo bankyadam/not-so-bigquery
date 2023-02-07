@@ -1,0 +1,8 @@
+CREATE OR REPLACE FUNCTION BYTE_LENGTH("text" TEXT)
+    RETURNS INT AS
+$$
+DECLARE
+BEGIN
+    RETURN bit_length(text) / 8;
+END;
+$$ LANGUAGE plpgsql;

@@ -86,7 +86,7 @@ describe('SQL Function support', function() {
     describe('ASCII', function() {
       it('example-1', runTestCase('./testcases/string_functions/ascii/1.txt'));
     });
-    describe.skip('BYTE_LENGTH', function() {
+    describe('BYTE_LENGTH', function() {
       it('example-1', runTestCase('./testcases/string_functions/byte_length/1.txt'));
     });
     describe('CHAR_LENGTH', function() {
