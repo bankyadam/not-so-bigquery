@@ -124,7 +124,7 @@ describe('SQL Function support', function() {
       it('example-1', runTestCase('./testcases/string_functions/from_base64/1.txt'));
       it('example-2', runTestCase('./testcases/string_functions/from_base64/2.txt'));
     });
-    describe.skip('FROM_HEX', function() {
+    describe('FROM_HEX', function() {
       it('example-1', runTestCase('./testcases/string_functions/from_hex/1.txt'));
     });
     describe.skip('INITCAP', function() {
@@ -240,7 +240,7 @@ describe('SQL Function support', function() {
       it('example-2', runTestCase('./testcases/string_functions/to_code_points/2.txt'));
       it('example-3', runTestCase('./testcases/string_functions/to_code_points/3.txt'));
     });
-    describe.skip('TO_HEX', function() {
+    describe('TO_HEX', function() {
       it('example-1', runTestCase('./testcases/string_functions/to_hex/1.txt'));
     });
     describe('TRANSLATE', function() {
