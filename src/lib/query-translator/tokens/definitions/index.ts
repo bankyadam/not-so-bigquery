@@ -10,6 +10,7 @@ import Cast from './cast';
 import Comma from './comma';
 import Comment from './comment';
 import CurrentRow from './current_row';
+import DateType from './date_type';
 import Else from './else';
 import End from './end';
 import Extract from './extract';
@@ -75,6 +76,7 @@ export {
   Comma,
   Comment,
   CurrentRow,
+  DateType,
   Else,
   End,
   Extract,

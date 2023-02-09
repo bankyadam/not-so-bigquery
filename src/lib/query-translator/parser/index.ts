@@ -398,7 +398,7 @@ class SelectParser extends CstParser {
   });
 
   private dateExpression = this.RULE('dateExpression', () => {
-    this.CONSUME(TOKENS.Identifier, { LABEL: 'dateType' });
+    this.CONSUME(TOKENS.DateType, { LABEL: 'dateType' });
     this.CONSUME(TOKENS.String);
   });
 

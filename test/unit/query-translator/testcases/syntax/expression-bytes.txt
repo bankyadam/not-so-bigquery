@@ -1,0 +1,6 @@
+--INPUT--
+SELECT b'\x00\x01\x02\x03\xAA\xEE\xEF\xFF',
+    b'foobar'
+
+--EXPECT--
+SELECT '\x00010203AAEEEFFF'::bytea, 'foobar'::bytea

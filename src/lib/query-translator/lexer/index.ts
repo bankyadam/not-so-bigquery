@@ -69,6 +69,7 @@ export const lexerDefinition = [
   TOKENS.LiteralConstant,
 
   TOKENS.Struct,
+  TOKENS.DateType,
   TOKENS.Identifier,
 
   TOKENS.AnyWord

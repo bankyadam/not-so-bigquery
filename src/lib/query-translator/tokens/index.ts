@@ -13,6 +13,7 @@ export default {
   Comma: Definitions.Comma,
   Comment: Definitions.Comment,
   CurrentRow: Definitions.CurrentRow,
+  DateType: Definitions.DateType,
   Else: Definitions.Else,
   End: Definitions.End,
   Extract: Definitions.Extract,

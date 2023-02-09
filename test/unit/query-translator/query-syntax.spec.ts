@@ -22,6 +22,7 @@ describe('Query Translator', function() {
     it('expression-array-of-booleans', runExpectation(require('./testcases/syntax/expression-array-of-booleans.txt')));
     it('expression-array-empty', runExpectation(require('./testcases/syntax/expression-array-empty.txt')));
     it('expression-numeric_hex', runExpectation(require('./testcases/syntax/expression-numeric_hex.txt')));
+    it('expression-bytes', runExpectation(require('./testcases/syntax/expression-bytes.txt')));
     it('from-clause-backtick-table-name', runExpectation(require('./testcases/syntax/from-clause-backtick-table-name.txt')));
     it('from-clause-dataset-project-handling-uses-default', runExpectation(require('./testcases/syntax/from-clause-dataset-project-handling-uses-default.txt')));
     it('from-clause-dataset-project-handling', runExpectation(require('./testcases/syntax/from-clause-dataset-project-handling.txt')));
@@ -92,5 +93,6 @@ describe('Query Translator', function() {
     it('with-clause-more-items', runExpectation(require('./testcases/syntax/with-clause-more-items.txt')));
     it('with-clause-simple-query', runExpectation(require('./testcases/syntax/with-clause-simple-query.txt')));
     it('with-clause-with-inception', runExpectation(require('./testcases/syntax/with-clause-with-inception.txt')));
+    it('with-clause-with-bytes', runExpectation(require('./testcases/syntax/with-clause-with-bytes.txt')));
   });
 });

@@ -291,8 +291,12 @@ export default (parser) => {
     }
 
     groupByExpression(ctx) {
-      if (ctx.Numeric) { return ctx.Numeric[0].image; }
-      if (ctx.identifier) { return this.visit(ctx.identifier[0]); }
+      if (ctx.Numeric) {
+        return ctx.Numeric[0].image;
+      }
+      if (ctx.identifier) {
+        return this.visit(ctx.identifier[0]);
+      }
     }
 
     havingClause(ctx) {
@@ -391,7 +395,12 @@ export default (parser) => {
     }
 
     _convertString(string) {
-      if (string[0] === "'") { return string; }
+      if (string[0].toLowerCase() === 'b') {
+        return this._convertBytea(this._convertString(string.substring(1))) + '::bytea';
+      }
+      if (string[0] === "'") {
+        return string;
+      }
       if (string.indexOf('"""') === 0) {
         return string.replace(/^"""|"""$/g, "'''");
       }
@@ -403,6 +412,27 @@ export default (parser) => {
           .replace(/'/g, "\\'"),
         "'"
       ].join('');
+    }
+
+    _convertBytea(string) {
+      let ret = string.slice(1, -1);
+      if (/(?<!\\)(?:\\\\)*\\x/.test(string)) {
+        ret = '\\x' + ret.split('\\x').reduce((v, p) => {
+          if (p === null) {
+            return v;
+          }
+          v += p.slice(0, 2);
+          p.slice(2).split('').map(r => {
+            if (r === null) {
+              return;
+            }
+            v += r.charCodeAt(0).toString(16);
+          });
+
+          return v;
+        }, '')
+      }
+      return ["'", ret, "'"].join('');
     }
 
     array(ctx) {

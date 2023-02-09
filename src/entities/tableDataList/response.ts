@@ -53,6 +53,9 @@ export default class TableDataListResponse extends BaseEntityResponse {
     }
 
     switch (type) {
+      case 'BYTE':
+        return this.convertBytea(value);
+
       case 'BOOLEAN':
         return JSON.stringify(value);
 
@@ -87,5 +90,13 @@ export default class TableDataListResponse extends BaseEntityResponse {
         console.error('Unhandled type', value, type);
         return value.toString();
     }
+  }
+
+  private convertBytea(bytes) {
+    let ret = '';
+    for (const value of bytes.values()) {
+      ret += '\\x' + value.toString(16).padStart(2, '0');
+    }
+    return ret;
   }
 }
