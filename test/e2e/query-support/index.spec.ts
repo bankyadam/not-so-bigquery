@@ -663,7 +663,7 @@ describe('SQL Function support', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/current_timestamp/1.txt'));
       it('example-2', runTestCase('./testcases/timestamp_functions/current_timestamp/2.txt'));
     });
-    describe.skip('EXTRACT_4', function() {
+    describe.skip('EXTRACT', function() {
       it('example-1', runTestCase('./testcases/timestamp_functions/extract_4/1.txt'));
       it('example-2', runTestCase('./testcases/timestamp_functions/extract_4/2.txt'));
       it('example-3', runTestCase('./testcases/timestamp_functions/extract_4/3.txt'));
