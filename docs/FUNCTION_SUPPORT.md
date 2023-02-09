@@ -190,7 +190,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ❌  | [REGEXP_REPLACE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_replace)                             |
 | ✅  | [REGEXP_SUBSTR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_substr)                               |
 | ✅  | [REPLACE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#replace)                                           |
-| ❌  | [REPEAT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#repeat)                                             |
+| ✅  | [REPEAT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#repeat)                                             |
 | ✅  | [REVERSE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#reverse)                                           |
 | ✅  | [RIGHT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#right)                                               |
 | ✅  | [RPAD](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#rpad)                                                 |

@@ -13,12 +13,12 @@ export default (parser) => {
   const BaseCstVisitorWithDefaults = parser.getBaseCstVisitorConstructorWithDefaults();
 
   class Visitor extends BaseCstVisitorWithDefaults {
+    private _currentLevel = -1;
+    private _aliases = [];
+    private _tableAliasCounter = 0;
+
     constructor() {
       super();
-
-      this._currentLevel = -1;
-      this._aliases = [];
-
       this.validateVisitor();
     }
 
@@ -38,6 +38,10 @@ export default (parser) => {
 
     _isAliasExists(aliasName) {
       return this._aliases[this._currentLevel].indexOf(aliasName) !== -1;
+    }
+
+    _nextTableAliasName() {
+      return '_t' + (++this._tableAliasCounter);
     }
 
     selectStatement(ctx) {
@@ -219,6 +223,9 @@ export default (parser) => {
       const parts = ['(', this.visit(ctx.queryExpression), ')'];
       if (ctx.asAlias) {
         parts.push(this.visit(ctx.asAlias));
+      } else {
+        parts.push('AS');
+        parts.push(this._nextTableAliasName());
       }
       return parts.join(' ');
     }

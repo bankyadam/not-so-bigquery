@@ -1,10 +1,10 @@
 --SQL--
-SELECT t, n, REPEAT(t, n) AS REPEAT FROM UNNEST([
-  STRUCT('abc' AS t, 3 AS n),
-  ('例子', 2),
-  ('abc', null),
-  (null, 3)
-]);
+SELECT t, n, REPEAT(t, n) AS REPEAT FROM (
+    SELECT 'abc' AS t, 3 AS n UNION ALL
+    SELECT '例子', 2 UNION ALL
+    SELECT 'abc', null UNION ALL
+    SELECT null, 3
+    );
 
 --RESULT--
 +------+------+-----------+
