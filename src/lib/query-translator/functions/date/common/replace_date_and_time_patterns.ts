@@ -57,7 +57,6 @@ const FORMAT_ELEMENT_MAP = {
 export default function(template) {
   return reduce(FORMAT_ELEMENT_MAP,
     function(template, postgresFormatElement, bqFormatElement) {
-      console.log(template, postgresFormatElement, bqFormatElement);
       // eslint-disable-next-line security/detect-non-literal-regexp
       return template.replaceAll('%' + bqFormatElement, postgresFormatElement);
     },
