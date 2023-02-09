@@ -217,7 +217,7 @@ describe('SQL Function support', function() {
     describe.skip('SPLIT', function() {
       it('example-1', runTestCase('./testcases/string_functions/split/1.txt'));
     });
-    describe.skip('STARTS_WITH', function() {
+    describe('STARTS_WITH', function() {
       it('example-1', runTestCase('./testcases/string_functions/starts_with/1.txt'));
     });
     describe('STRPOS', function() {

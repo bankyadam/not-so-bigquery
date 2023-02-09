@@ -158,58 +158,58 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ❌ | [SHA512](https://cloud.google.com/bigquery/docs/reference/standard-sql/hash_functions#sha512)                     |
 
 ## String functions
-|     | function                                                                                                                                    |
-|-----|---------------------------------------------------------------------------------------------------------------------------------------------|
-| ✅   | [ASCII](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#ascii)                                               |
-| ✅   | [BYTE_LENGTH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#byte_length)                                   |
-| ✅   | [CHAR_LENGTH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#char_length)                                   |
-| ✅   | [CHARACTER_LENGTH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#character_length)                         |
-| ✅   | [CHR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#chr)                                                   |
-| ❌   | [CODE_POINTS_TO_BYTES](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#code_points_to_bytes)                 |
-| ❌   | [CODE_POINTS_TO_STRING](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#code_points_to_string)               |
-| ✅   | [CONCAT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#concat)                                             |
-| ✅   | [ENDS_WITH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#ends_with)                                       |
-| ❌   | [FORMAT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#format)                                             |
-| ❌   | [FROM_BASE32](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#from_base32)                                   |
-| ✅   | [FROM_BASE64](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#from_base64)                                   |
-| ✅   | [FROM_HEX](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#from_hex)                                         |
-| ❌   | [INITCAP](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#initcap)                                           |
-| ⚠️  | [INSTR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#instr) (negative position is not supported yet)      |
-| ✅   | [LEFT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#left)                                                 |
-| ✅   | [LENGTH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#length)                                             |
-| ✅   | [LPAD](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#lpad)                                                 |
-| ✅   | [LOWER](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#lower)                                               |
-| ✅   | [LTRIM](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#ltrim)                                               |
-| ❌   | [NORMALIZE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#normalize)                                       |
-| ❌   | [NORMALIZE_AND_CASEFOLD](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#normalize_and_casefold)             |
-| ❌   | [OCTET_LENGTH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#octet_length)                                 |
-| ❌   | [REGEXP_CONTAINS](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_contains)                           |
-| ❌   | [REGEXP_EXTRACT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_extract)                             |
-| ❌   | [REGEXP_EXTRACT_ALL](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_extract_all)                     |
-| ✅   | [REGEXP_INSTR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_instr)                                 |
-| ❌   | [REGEXP_REPLACE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_replace)                             |
-| ✅   | [REGEXP_SUBSTR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_substr)                               |
-| ✅   | [REPLACE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#replace)                                           |
-| ❌   | [REPEAT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#repeat)                                             |
-| ✅   | [REVERSE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#reverse)                                           |
-| ✅   | [RIGHT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#right)                                               |
-| ✅   | [RPAD](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#rpad)                                                 |
-| ✅   | [RTRIM](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#rtrim)                                               |
-| ❌   | [SAFE_CONVERT_BYTES_TO_STRING](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#safe_convert_bytes_to_string) |
-| ❌   | [SOUNDEX](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#soundex)                                           |
-| ❌   | [SPLIT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#split)                                               |
-| ❌   | [STARTS_WITH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#starts_with)                                   |
-| ✅   | [STRPOS](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#strpos)                                             |
-| ✅   | [SUBSTR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#substr)                                             |
-| ❌   | [SUBSTRING](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#substring)                                       |
-| ❌   | [TO_BASE32](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_base32)                                       |
-| ✅   | [TO_BASE64](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_base64)                                       |
-| ❌   | [TO_CODE_POINTS](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_code_points)                             |
-| ✅   | [TO_HEX](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_hex)                                             |
-| ✅   | [TRANSLATE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#translate)                                       |
-| ✅   | [TRIM](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#trim)                                                 |
-| ❌   | [UNICODE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#unicode)                                           |
-| ✅   | [UPPER](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#upper)                                               |
+|    | function                                                                                                                                    |
+|----|---------------------------------------------------------------------------------------------------------------------------------------------|
+| ✅  | [ASCII](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#ascii)                                               |
+| ✅  | [BYTE_LENGTH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#byte_length)                                   |
+| ✅  | [CHAR_LENGTH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#char_length)                                   |
+| ✅  | [CHARACTER_LENGTH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#character_length)                         |
+| ✅  | [CHR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#chr)                                                   |
+| ❌  | [CODE_POINTS_TO_BYTES](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#code_points_to_bytes)                 |
+| ❌  | [CODE_POINTS_TO_STRING](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#code_points_to_string)               |
+| ✅  | [CONCAT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#concat)                                             |
+| ✅  | [ENDS_WITH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#ends_with)                                       |
+| ❌  | [FORMAT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#format)                                             |
+| ❌  | [FROM_BASE32](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#from_base32)                                   |
+| ✅  | [FROM_BASE64](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#from_base64)                                   |
+| ✅  | [FROM_HEX](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#from_hex)                                         |
+| ❌  | [INITCAP](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#initcap)                                           |
+| ⚠️ | [INSTR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#instr) (negative position is not supported yet)      |
+| ✅  | [LEFT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#left)                                                 |
+| ✅  | [LENGTH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#length)                                             |
+| ✅  | [LPAD](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#lpad)                                                 |
+| ✅  | [LOWER](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#lower)                                               |
+| ✅  | [LTRIM](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#ltrim)                                               |
+| ❌  | [NORMALIZE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#normalize)                                       |
+| ❌  | [NORMALIZE_AND_CASEFOLD](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#normalize_and_casefold)             |
+| ❌  | [OCTET_LENGTH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#octet_length)                                 |
+| ❌  | [REGEXP_CONTAINS](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_contains)                           |
+| ❌  | [REGEXP_EXTRACT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_extract)                             |
+| ❌  | [REGEXP_EXTRACT_ALL](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_extract_all)                     |
+| ✅  | [REGEXP_INSTR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_instr)                                 |
+| ❌  | [REGEXP_REPLACE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_replace)                             |
+| ✅  | [REGEXP_SUBSTR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#regexp_substr)                               |
+| ✅  | [REPLACE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#replace)                                           |
+| ❌  | [REPEAT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#repeat)                                             |
+| ✅  | [REVERSE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#reverse)                                           |
+| ✅  | [RIGHT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#right)                                               |
+| ✅  | [RPAD](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#rpad)                                                 |
+| ✅  | [RTRIM](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#rtrim)                                               |
+| ❌  | [SAFE_CONVERT_BYTES_TO_STRING](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#safe_convert_bytes_to_string) |
+| ❌  | [SOUNDEX](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#soundex)                                           |
+| ❌  | [SPLIT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#split)                                               |
+| ✅  | [STARTS_WITH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#starts_with)                                   |
+| ✅  | [STRPOS](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#strpos)                                             |
+| ✅  | [SUBSTR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#substr)                                             |
+| ❌  | [SUBSTRING](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#substring)                                       |
+| ❌  | [TO_BASE32](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_base32)                                       |
+| ✅  | [TO_BASE64](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_base64)                                       |
+| ❌  | [TO_CODE_POINTS](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_code_points)                             |
+| ✅  | [TO_HEX](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_hex)                                             |
+| ✅  | [TRANSLATE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#translate)                                       |
+| ✅  | [TRIM](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#trim)                                                 |
+| ❌  | [UNICODE](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#unicode)                                           |
+| ✅  | [UPPER](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#upper)                                               |
 
 ## JSON functions
 |  | function                                                                                                                            |

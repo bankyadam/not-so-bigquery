@@ -14,7 +14,7 @@ FROM items;
 +---------+
 | example |
 +---------+
-|   False |
-|    True |
-|    True |
+|   false |
+|    true |
+|    true |
 +---------+
