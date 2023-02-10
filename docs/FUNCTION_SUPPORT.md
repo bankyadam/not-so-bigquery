@@ -112,7 +112,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ❌ | [SAFE_NEGATE](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_negate)     |
 | ❌ | [SAFE_ADD](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_add)           |
 | ❌ | [SAFE_SUBTRACT](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_subtract) |
-| ❌ | [MOD](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#mod)                     |
+| ✅ | [MOD](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#mod)                     |
 | ❌ | [ROUND](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#round)                 |
 | ❌ | [TRUNC](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#trunc)                 |
 | ✅ | [CEIL](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ceil)                   |

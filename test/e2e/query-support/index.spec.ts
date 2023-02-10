@@ -583,7 +583,7 @@ describe('SQL Function support', function() {
     describe('LOG10', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/log10/1.md'));
     });
-    describe.skip('MOD', function() {
+    describe('MOD', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/mod/1.md'));
     });
     describe.skip('POW', function() {
