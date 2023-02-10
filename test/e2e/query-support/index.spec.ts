@@ -586,10 +586,10 @@ describe('SQL Function support', function() {
     describe('MOD', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/mod/1.md'));
     });
-    describe.skip('POW', function() {
+    describe('POW', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/pow/1.md'));
     });
-    describe.skip('POWER', function() {
+    describe('POWER', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/power/1.md'));
     });
     describe('RAND', function() {
