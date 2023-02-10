@@ -141,6 +141,16 @@ describe('Table to JSON converter', function() {
       expect(convert(input)).to.be.eql([{ int: '123' }]);
     });
 
+    it('forces number', function() {
+      const input = `
+| num+ |
+| Infinity  |
+| -Infinity  |
+| NaN  |
+`;
+      expect(convert(input)).to.be.eql([{ num: Infinity }, { num: -Infinity }, { num: NaN }]);
+    });
+
     describe('array', function() {
       it('empty', function() {
         const input = `

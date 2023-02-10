@@ -3,6 +3,7 @@ import { zipObject } from 'lodash';
 const TYPES = {
   STRING: 'string',
   ARRAY: 'array',
+  FLOAT: 'float',
   UNKNOWN: 'unknown'
 };
 
@@ -31,6 +32,12 @@ export default function(input:string) {
     matches = /(.+)!$/.exec(headerName);
     if (matches) {
       addHeader(matches[1], TYPES.STRING);
+      return;
+    }
+
+    matches = /(.+)\+$/.exec(headerName);
+    if (matches) {
+      addHeader(matches[1], TYPES.FLOAT);
       return;
     }
 
@@ -67,7 +74,7 @@ const cast = function(value, type) {
   }
 
   // eslint-disable-next-line eqeqeq
-  if (parseFloat(value) == value) {
+  if (type === TYPES.FLOAT || parseFloat(value) == value) {
     return parseFloat(value);
   }
 
