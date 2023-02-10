@@ -513,9 +513,129 @@ describe('SQL Function support', function() {
       it('example-7', runTestCase('./testcases/formatting_syntax/format_numeric_type_as_string/7.txt'));
     });
   });
-  context.skip('mathematical_functions functions', function() {
-    describe('RANGE_BUCKET', function() {
+  context('mathematical_functions functions', function() {
+    describe('ABS', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/abs/1.md'));
+    });
+    describe('ACOS', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/acos/1.md'));
+    });
+    describe('ACOSH', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/acosh/1.md'));
+    });
+    describe('ASIN', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/asin/1.md'));
+    });
+    describe('ASINH', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/asinh/1.md'));
+    });
+    describe('ATAN', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/atan/1.md'));
+    });
+    describe.skip('ATAN2', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/atan2/1.md'));
+    });
+    describe('ATANH', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/atanh/1.md'));
+    });
+    describe('CEIL', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/ceil/1.md'));
+    });
+    describe('CEILING', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/ceiling/1.md'));
+    });
+    describe('COS', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/cos/1.md'));
+    });
+    describe('COSH', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/cosh/1.md'));
+    });
+    describe('DIV', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/div/1.md'));
+    });
+    describe('EXP', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/exp/1.md'));
+    });
+    describe('FLOOR', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/floor/1.md'));
+    });
+    describe.skip('GREATEST', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/greatest/1.md'));
+    });
+    describe('IEEE_DIVIDE', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/ieee_divide/1.md'));
+    });
+    describe.skip('IS_INF', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/is_inf/1.md'));
+    });
+    describe.skip('IS_NAN', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/is_nan/1.md'));
+    });
+    describe.skip('LEAST', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/least/1.md'));
+    });
+    describe.skip('LN', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/ln/1.md'));
+    });
+    describe.skip('LOG', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/log/1.md'));
+    });
+    describe.skip('LOG10', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/log10/1.md'));
+    });
+    describe.skip('MOD', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/mod/1.md'));
+    });
+    describe.skip('POW', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/pow/1.md'));
+    });
+    describe.skip('POWER', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/power/1.md'));
+    });
+    describe.skip('RAND', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/rand/1.md'));
+    });
+    describe.skip('RANGE_BUCKET', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/range_bucket/1.txt'));
+    });
+    describe.skip('ROUND', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/round/1.md'));
+    });
+    describe.skip('SAFE_ADD', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/safe_add/1.md'));
+    });
+    describe.skip('SAFE_DIVIDE', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/safe_divide/1.md'));
+    });
+    describe.skip('SAFE_MULTIPLY', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/safe_multiply/1.md'));
+    });
+    describe.skip('SAFE_NEGATE', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/safe_negate/1.md'));
+    });
+    describe.skip('SAFE_SUBTRACT', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/safe_subtract/1.md'));
+    });
+    describe('SIGN', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/sign/1.md'));
+    });
+    describe.skip('SIN', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/sin/1.md'));
+    });
+    describe.skip('SINH', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/sinh/1.md'));
+    });
+    describe.skip('SQRT', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/sqrt/1.md'));
+    });
+    describe.skip('TAN', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/tan/1.md'));
+    });
+    describe.skip('TANH', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/tanh/1.md'));
+    });
+    describe.skip('TRUNC', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/trunc/1.md'));
     });
   });
   context.skip('navigation_functions functions', function() {

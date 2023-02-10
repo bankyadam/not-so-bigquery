@@ -78,7 +78,12 @@ export default class TableDataListResponse extends BaseEntityResponse {
         return parseInt(value, 10);
 
       case 'FLOAT':
-        return parseFloat(value);
+        switch (value) {
+          case Infinity: return 'Infinity';
+          case -Infinity: return '-Infinity';
+          default:
+            return isNaN(value) ? 'NaN' : parseFloat(value);
+        }
 
       case 'JSON':
         return JSON.stringify(value);

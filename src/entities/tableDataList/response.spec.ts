@@ -28,9 +28,12 @@ describe('TableDataListResponse', function() {
       // { type: POSTGRES_TYPES.DATETIME, input: '2021-05-01T20:20:21.000Z', output: '2021-05-01T20:20:21' },
       { type: POSTGRES_TYPES.DATE, input: '2021-05-01T20:20:21.000Z', output: '2021-05-01' },
       { type: POSTGRES_TYPES.TIME, input: '20:20:21', output: '20:20:21' },
-      { type: POSTGRES_TYPES.TEXT, input: null, output: null }
+      { type: POSTGRES_TYPES.TEXT, input: null, output: null },
+      { type: POSTGRES_TYPES.FLOAT8, input: Infinity, output: 'Infinity' },
+      { type: POSTGRES_TYPES.FLOAT8, input: -Infinity, output: '-Infinity' },
+      { type: POSTGRES_TYPES.FLOAT8, input: NaN, output: 'NaN' }
     ].forEach(testCase => {
-      it(testCase.type, function() {
+      it(`${testCase.type} with value "${testCase.input}"`, function() {
         const subject = new TableDataListResponse(
           [{ field: testCase.input }],
           1,
