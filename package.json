@@ -23,6 +23,7 @@
     "express-async-router": "0.1.15",
     "hex2dec": "1.1.2",
     "lodash": "4.17.21",
+    "marked": "4.2.12",
     "pg": "8.9.0",
     "source-map-loader": "4.0.1",
     "sprintf-js": "1.1.2",

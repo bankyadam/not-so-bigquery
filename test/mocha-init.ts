@@ -7,6 +7,9 @@ import chaiString from 'chai-string';
 chai.use(sinonChai);
 chai.use(chaiString);
 
-require.extensions['.txt'] = function(module, filename) {
+const readTextFile = function(module, filename) {
   module.exports = fs.readFileSync(filename, 'utf8');
 };
+
+require.extensions['.txt'] = readTextFile;
+require.extensions['.md'] = readTextFile;
