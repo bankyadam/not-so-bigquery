@@ -101,7 +101,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ❌ | [POW](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#pow)                     |
 | ❌ | [POWER](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#power)                 |
 | ✅ | [EXP](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#exp)                     |
-| ❌ | [LN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ln)                       |
+| ✅ | [LN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ln)                       |
 | ❌ | [LOG](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#log)                     |
 | ❌ | [LOG10](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#log10)                 |
 | ❌ | [GREATEST](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#greatest)           |
