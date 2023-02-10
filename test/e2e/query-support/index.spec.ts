@@ -577,7 +577,7 @@ describe('SQL Function support', function() {
     describe('LN', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/ln/1.md'));
     });
-    describe.skip('LOG', function() {
+    describe('LOG', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/log/1.md'));
     });
     describe.skip('LOG10', function() {
