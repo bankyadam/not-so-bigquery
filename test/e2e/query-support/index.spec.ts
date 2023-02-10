@@ -565,7 +565,7 @@ describe('SQL Function support', function() {
     describe('IEEE_DIVIDE', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/ieee_divide/1.md'));
     });
-    describe.skip('IS_INF', function() {
+    describe('IS_INF', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/is_inf/1.md'));
     });
     describe.skip('IS_NAN', function() {
