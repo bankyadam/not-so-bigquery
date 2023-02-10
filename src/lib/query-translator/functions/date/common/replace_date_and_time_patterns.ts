@@ -16,7 +16,7 @@ const FORMAT_ELEMENT_MAP = {
   E4S: 'SS.FF4',
   E5S: 'SS.FF5',
   E6S: 'SS.FF6',
-  'E\\*S': 'SS.FF6',
+  'E*S': 'SS.FF6',
   E4Y: 'YYYY',
   e: 'FMDD',
   F: 'YYYY-MM-DD',
