@@ -568,7 +568,7 @@ describe('SQL Function support', function() {
     describe('IS_INF', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/is_inf/1.md'));
     });
-    describe.skip('IS_NAN', function() {
+    describe('IS_NAN', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/is_nan/1.md'));
     });
     describe.skip('LEAST', function() {
