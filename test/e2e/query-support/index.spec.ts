@@ -592,8 +592,10 @@ describe('SQL Function support', function() {
     describe.skip('POWER', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/power/1.md'));
     });
-    describe.skip('RAND', function() {
-      it('example-1', runTestCase('./testcases/mathematical_functions/rand/1.md'));
+    describe('RAND', function() {
+      it('example-1', runTestCase('./testcases/mathematical_functions/rand/1.md', data => {
+        expect(data[0].rand).to.be.a('number').and.within(0, 1);
+      }));
     });
     describe.skip('RANGE_BUCKET', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/range_bucket/1.txt'));

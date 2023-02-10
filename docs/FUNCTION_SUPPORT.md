@@ -96,7 +96,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ✅ | [IS_INF](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_inf)               |
 | ✅ | [IS_NAN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_nan)               |
 | ✅ | [IEEE_DIVIDE](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ieee_divide)     |
-| ❌ | [RAND](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#rand)                   |
+| ✅ | [RAND](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#rand)                   |
 | ❌ | [SQRT](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sqrt)                   |
 | ❌ | [POW](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#pow)                     |
 | ❌ | [POWER](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#power)                 |
