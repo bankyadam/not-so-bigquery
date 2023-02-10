@@ -580,7 +580,7 @@ describe('SQL Function support', function() {
     describe('LOG', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/log/1.md'));
     });
-    describe.skip('LOG10', function() {
+    describe('LOG10', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/log10/1.md'));
     });
     describe.skip('MOD', function() {
