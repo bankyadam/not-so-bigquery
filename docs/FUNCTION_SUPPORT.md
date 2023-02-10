@@ -71,22 +71,22 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ❌ | [BIT_COUNT](https://cloud.google.com/bigquery/docs/reference/standard-sql/bit_functions#bit_count) |
 
 ## Conversion functions
-|  | function                                                                                                                    |
+|   | function                                                                                                                    |
 |---|-----------------------------------------------------------------------------------------------------------------------------|
-| ❌ | [CAST AS ARRAY](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as array)           |
-| ❌ | [CAST AS BIGNUMERIC](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as bignumeric) |
-| ❌ | [CAST AS BOOL](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as bool)             |
-| ❌ | [CAST AS BYTES](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as bytes)           |
-| ❌ | [CAST AS DATE](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as date)             |
-| ❌ | [CAST AS DATETIME](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as datetime)     |
-| ❌ | [CAST AS FLOAT64](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as float64)       |
-| ✅ | [CAST AS INT64](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as int64)           |
-| ❌ | [CAST AS NUMERIC](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as numeric)       |
-| ❌ | [CAST AS STRING](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as string)         |
-| ❌ | [CAST AS STRUCT](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as struct)         |
-| ❌ | [CAST AS TIME](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as time)             |
-| ❌ | [CAST AS TIMESTAMP](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast as timestamp)   |
-| ❌ | [SAFE_CAST](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#safe_cast)                   |
+| ❌ | [CAST AS ARRAY](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_array)           |
+| ❌ | [CAST AS BIGNUMERIC](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_bignumeric) |
+| ❌ | [CAST AS BOOL](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_bool)             |
+| ❌ | [CAST AS BYTES](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_bytes)           |
+| ❌ | [CAST AS DATE](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_date)             |
+| ❌ | [CAST AS DATETIME](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_datetime)     |
+| ❌ | [CAST AS FLOAT64](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_float64)       |
+| ✅ | [CAST AS INT64](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_int64)           |
+| ❌ | [CAST AS NUMERIC](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_numeric)       |
+| ✅ | [CAST AS STRING](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_string)         |
+| ❌ | [CAST AS STRUCT](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_struct)         |
+| ❌ | [CAST AS TIME](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_time)             |
+| ❌ | [CAST AS TIMESTAMP](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#cast_as_timestamp)   |
+| ✅ | [SAFE_CAST](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#safe_cast)                   |
 
 ## Mathematical functions
 |    | function                                                                                                                             |

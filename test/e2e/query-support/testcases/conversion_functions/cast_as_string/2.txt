@@ -1,5 +1,5 @@
 --SQL--
-SELECT CAST(CURRENT_DATE() AS STRING FORMAT 'DAY') AS current_day
+SELECT CAST(DATE "2021-08-09" AS STRING FORMAT 'DAY') AS current_day
 
 --RESULT--
 +-------------+

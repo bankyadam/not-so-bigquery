@@ -438,7 +438,7 @@ describe('SQL Function support', function() {
       it('example-1', runTestCase('./testcases/bit_functions/bit_count/1.txt'));
     });
   });
-  context.skip('conversion_functions functions', function() {
+  context('conversion_functions functions', function() {
     describe('CAST_AS_INTEGER', function() {
       it('example-1', runTestCase('./testcases/conversion_functions/cast_as_integer/1.txt'));
       it('example-2', runTestCase('./testcases/conversion_functions/cast_as_integer/2.txt'));
@@ -449,24 +449,24 @@ describe('SQL Function support', function() {
       it('example-3', runTestCase('./testcases/conversion_functions/cast_as_string/3.txt'));
       it('example-4', runTestCase('./testcases/conversion_functions/cast_as_string/4.txt'));
     });
-    describe('CAST_AS_TIMESTAMP', function() {
+    describe.skip('CAST_AS_TIMESTAMP', function() {
       it('example-1', runTestCase('./testcases/conversion_functions/cast_as_timestamp/1.txt'));
     });
-    describe('PARSE_BIGNUMERIC', function() {
+    describe.skip('PARSE_BIGNUMERIC', function() {
       it('example-1', runTestCase('./testcases/conversion_functions/parse_bignumeric/1.txt'));
       it('example-2', runTestCase('./testcases/conversion_functions/parse_bignumeric/2.txt'));
       it('example-3', runTestCase('./testcases/conversion_functions/parse_bignumeric/3.txt'));
       it('example-4', runTestCase('./testcases/conversion_functions/parse_bignumeric/4.txt'));
       it('example-5', runTestCase('./testcases/conversion_functions/parse_bignumeric/5.txt'));
     });
-    describe('PARSE_NUMERIC', function() {
+    describe.skip('PARSE_NUMERIC', function() {
       it('example-1', runTestCase('./testcases/conversion_functions/parse_numeric/1.txt'));
       it('example-2', runTestCase('./testcases/conversion_functions/parse_numeric/2.txt'));
       it('example-3', runTestCase('./testcases/conversion_functions/parse_numeric/3.txt'));
       it('example-4', runTestCase('./testcases/conversion_functions/parse_numeric/4.txt'));
       it('example-5', runTestCase('./testcases/conversion_functions/parse_numeric/5.txt'));
     });
-    describe('SAFE_CASTING', function() {
+    describe('SAFE_CAST', function() {
       it('example-1', runTestCase('./testcases/conversion_functions/safe_casting/1.txt'));
     });
   });

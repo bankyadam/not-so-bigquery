@@ -1,7 +1,6 @@
 --SQL--
 SELECT CAST("2020-06-02 17:00:53.110+00:00" AS TIMESTAMP) AS as_timestamp
 
--- Results depend upon where this query was executed.
 --RESULT--
 +-----------------------------+
 | as_timestamp                |

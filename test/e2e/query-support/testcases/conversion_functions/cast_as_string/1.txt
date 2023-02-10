@@ -1,5 +1,5 @@
 --SQL--
-SELECT CAST(CURRENT_DATE() AS STRING) AS current_date
+SELECT CAST(DATE "2021-03-09" AS STRING) AS current_date
 
 --RESULT--
 +---------------+
