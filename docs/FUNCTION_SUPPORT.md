@@ -89,49 +89,49 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ❌ | [SAFE_CAST](https://cloud.google.com/bigquery/docs/reference/standard-sql/conversion_functions#safe_cast)                   |
 
 ## Mathematical functions
-|   | function                                                                                                            |
-|---|---------------------------------------------------------------------------------------------------------------------|
-| ✅ | [ABS](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#abs)                     |
-| ✅ | [SIGN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sign)                   |
-| ✅ | [IS_INF](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_inf)               |
-| ✅ | [IS_NAN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_nan)               |
-| ✅ | [IEEE_DIVIDE](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ieee_divide)     |
-| ✅ | [RAND](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#rand)                   |
-| ❌ | [SQRT](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sqrt)                   |
-| ✅ | [POW](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#pow)                     |
-| ✅ | [POWER](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#power)                 |
-| ✅ | [EXP](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#exp)                     |
-| ✅ | [LN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ln)                       |
-| ✅ | [LOG](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#log)                     |
-| ✅ | [LOG10](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#log10)                 |
-| ❌ | [GREATEST](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#greatest)           |
-| ❌ | [LEAST](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#least)                 |
-| ✅ | [DIV](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#div)                     |
-| ❌ | [SAFE_DIVIDE](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_divide)     |
-| ❌ | [SAFE_MULTIPLY](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_multiply) |
-| ❌ | [SAFE_NEGATE](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_negate)     |
-| ❌ | [SAFE_ADD](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_add)           |
-| ❌ | [SAFE_SUBTRACT](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_subtract) |
-| ✅ | [MOD](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#mod)                     |
-| ❌ | [ROUND](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#round)                 |
-| ❌ | [TRUNC](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#trunc)                 |
-| ✅ | [CEIL](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ceil)                   |
-| ✅ | [CEILING](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ceiling)             |
-| ✅ | [FLOOR](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#floor)                 |
-| ✅ | [COS](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cos)                     |
-| ✅ | [COSH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cosh)                   |
-| ✅ | [ACOS](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#acos)                   |
-| ✅ | [ACOSH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#acosh)                 |
-| ❌ | [SIN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sin)                     |
-| ❌ | [SINH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sinh)                   |
-| ✅ | [ASIN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#asin)                   |
-| ✅ | [ASINH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#asinh)                 |
-| ❌ | [TAN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#tan)                     |
-| ❌ | [TANH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#tanh)                   |
-| ✅ | [ATAN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atan)                   |
-| ✅ | [ATANH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atanh)                 |
-| ❌ | [ATAN2](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atan2)                 |
-| ❌ | [RANGE_BUCKET](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#range_bucket)   |
+|    | function                                                                                                                             |
+|----|--------------------------------------------------------------------------------------------------------------------------------------|
+| ✅  | [ABS](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#abs)                                      |
+| ✅  | [SIGN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sign)                                    |
+| ✅  | [IS_INF](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_inf)                                |
+| ✅  | [IS_NAN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#is_nan)                                |
+| ✅  | [IEEE_DIVIDE](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ieee_divide)                      |
+| ✅  | [RAND](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#rand)                                    |
+| ❌  | [SQRT](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sqrt)                                    |
+| ✅  | [POW](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#pow)                                      |
+| ✅  | [POWER](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#power)                                  |
+| ✅  | [EXP](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#exp)                                      |
+| ✅  | [LN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ln)                                        |
+| ✅  | [LOG](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#log)                                      |
+| ✅  | [LOG10](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#log10)                                  |
+| ❌  | [GREATEST](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#greatest)                            |
+| ❌  | [LEAST](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#least)                                  |
+| ✅  | [DIV](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#div)                                      |
+| ❌  | [SAFE_DIVIDE](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_divide)                      |
+| ❌  | [SAFE_MULTIPLY](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_multiply)                  |
+| ❌  | [SAFE_NEGATE](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_negate)                      |
+| ❌  | [SAFE_ADD](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_add)                            |
+| ❌  | [SAFE_SUBTRACT](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#safe_subtract)                  |
+| ✅  | [MOD](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#mod)                                      |
+| ⚠️ | [ROUND](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#round) (rounding_mode is not supported) |
+| ❌  | [TRUNC](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#trunc)                                  |
+| ✅  | [CEIL](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ceil)                                    |
+| ✅  | [CEILING](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#ceiling)                              |
+| ✅  | [FLOOR](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#floor)                                  |
+| ✅  | [COS](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cos)                                      |
+| ✅  | [COSH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#cosh)                                    |
+| ✅  | [ACOS](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#acos)                                    |
+| ✅  | [ACOSH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#acosh)                                  |
+| ❌  | [SIN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sin)                                      |
+| ❌  | [SINH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#sinh)                                    |
+| ✅  | [ASIN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#asin)                                    |
+| ✅  | [ASINH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#asinh)                                  |
+| ❌  | [TAN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#tan)                                      |
+| ❌  | [TANH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#tanh)                                    |
+| ✅  | [ATAN](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atan)                                    |
+| ✅  | [ATANH](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atanh)                                  |
+| ❌  | [ATAN2](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#atan2)                                  |
+| ❌  | [RANGE_BUCKET](https://cloud.google.com/bigquery/docs/reference/standard-sql/mathematical_functions#range_bucket)                    |
 
 ## Navigation functions
 |  | function                                                                                                              |
@@ -174,7 +174,7 @@ SELECT COUNT(DISTINCT x) OVER (…)
 | ✅  | [FROM_BASE64](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#from_base64)                                   |
 | ✅  | [FROM_HEX](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#from_hex)                                         |
 | ❌  | [INITCAP](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#initcap)                                           |
-| ⚠️ | [INSTR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#instr) (negative position is not supported yet)      |
+| ⚠️ | [INSTR](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#instr) (negative position is not supported)          |
 | ✅  | [LEFT](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#left)                                                 |
 | ✅  | [LENGTH](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#length)                                             |
 | ✅  | [LPAD](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#lpad)                                                 |

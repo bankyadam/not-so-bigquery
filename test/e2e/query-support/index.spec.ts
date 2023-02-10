@@ -600,8 +600,10 @@ describe('SQL Function support', function() {
     describe.skip('RANGE_BUCKET', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/range_bucket/1.txt'));
     });
-    describe.skip('ROUND', function() {
+    describe('ROUND', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/round/1.md'));
+      it('example-2', runTestCase('./testcases/mathematical_functions/round/2.md'));
+      it.skip('example-3', runTestCase('./testcases/mathematical_functions/round/3.md'));
     });
     describe.skip('SAFE_ADD', function() {
       it('example-1', runTestCase('./testcases/mathematical_functions/safe_add/1.md'));
