@@ -151,6 +151,33 @@ describe('Table to JSON converter', function() {
       expect(convert(input)).to.be.eql([{ num: Infinity }, { num: -Infinity }, { num: NaN }]);
     });
 
+    describe('forced bytes', function() {
+
+      it('handles simple strings as bytes', function() {
+        const input = `
+| bytes>       |
+| 123          |
+| "'string'"\\\\\\" |
+| \xd0\xb0\xd0\xb1\xd0\xb2\xd0\xb3\xd0\xb4 |
+`;
+        expect(convert(input)).to.be.eql([
+          { bytes: Buffer.from('123', 'utf8') },
+          { bytes: Buffer.from(String.raw`"'string'"\\\"`, 'utf8') },
+          { bytes: Buffer.from('абвгд', 'utf8') }
+        ]);
+      });
+
+      it('hexa chars', function() {
+        const input = `
+| bytes>       |
+| \\x31\\x32\\x33 |
+`;
+        expect(convert(input)).to.be.eql([
+          { bytes: Buffer.from('123', 'utf8') }
+        ]);
+      });
+    })
+
     describe('array', function() {
       it('empty', function() {
         const input = `

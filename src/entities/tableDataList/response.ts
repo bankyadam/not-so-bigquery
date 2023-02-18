@@ -53,8 +53,8 @@ export default class TableDataListResponse extends BaseEntityResponse {
     }
 
     switch (type) {
-      case 'BYTE':
-        return this.convertBytea(value);
+      case 'BYTES':
+        return value.toString('base64');//this.convertBytea(value);
 
       case 'BOOLEAN':
         return JSON.stringify(value);
@@ -72,6 +72,9 @@ export default class TableDataListResponse extends BaseEntityResponse {
       case 'TIME':
       case 'TEXT':
       case 'STRING':
+        if (value instanceof Buffer) {
+          value = this.convertBytea(value);
+        }
         return value.toString();
 
       case 'INTEGER':

@@ -1,9 +1,10 @@
 import { zipObject } from 'lodash';
 
 const TYPES = {
-  STRING: 'string',
   ARRAY: 'array',
+  BYTES: 'bytes',
   FLOAT: 'float',
+  STRING: 'string',
   UNKNOWN: 'unknown'
 };
 
@@ -41,6 +42,12 @@ export default function(input:string) {
       return;
     }
 
+    matches = /(.+)>$/.exec(headerName);
+    if (matches) {
+      addHeader(matches[1], TYPES.BYTES);
+      return;
+    }
+
     addHeader(headerName, TYPES.UNKNOWN);
   });
 
@@ -64,6 +71,16 @@ const cast = function(value, type) {
 
   if (type === TYPES.STRING) {
     return value.toString();
+  }
+
+  if (type === TYPES.BYTES) {
+    if (value.includes('\\x')) {
+      const newString = value.replace(/\\x([a-f0-9]{2})/g, function(_, hexCode) {
+        return String.fromCharCode(parseInt(hexCode, 16));
+      });
+      return Buffer.from(newString, 'ascii');
+    }
+    return Buffer.from(value.toString('utf8'), 'utf8');
   }
 
   if (type === TYPES.ARRAY) {
